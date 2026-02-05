@@ -1,0 +1,8 @@
+{
+  "name": "growth",
+  "version": "1.0.0",
+  "description": "Growth skills - growth hacking, product-led growth, SaaS bootstrap",
+  "author": {"name": "Petr"},
+  "keywords": ["growth", "plg", "saas", "bootstrap"],
+  "skills": "./skills/"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ux",
+  "version": "1.0.0",
+  "description": "UX skills - orchestrator, optimization, expert dialogue",
+  "author": {"name": "Petr"},
+  "keywords": ["ux", "user-experience", "optimization"],
+  "skills": "./skills/"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "development",
+  "version": "1.0.0",
+  "description": "Development workflow skills - Flutter, Expo, FastAPI, frontend, fullstack orchestrator",
+  "author": {"name": "Petr"},
+  "keywords": ["development", "flutter", "expo", "fastapi", "frontend", "workflow"],
+  "skills": "./skills/"
+}

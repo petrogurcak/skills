@@ -1,0 +1,8 @@
+{
+  "name": "marketing",
+  "version": "1.0.0",
+  "description": "Marketing skills - orchestrator, offer creation, UVP, analytics, pricing",
+  "author": {"name": "Petr"},
+  "keywords": ["marketing", "offers", "uvp", "pricing", "analytics"],
+  "skills": "./skills/"
+}

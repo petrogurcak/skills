@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+*.js.map
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Archives
+*.zip
+*.tar.gz
+
+# Temporary
+*.log
+.cache/
+
+# Bun
+bun-darwin-x64-baseline/
+bun-baseline.zip

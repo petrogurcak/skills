@@ -1,0 +1,8 @@
+{
+  "name": "copywriting",
+  "version": "1.0.0",
+  "description": "Copywriting skills - OttoCopy framework, web copy, product copy, newsletters, Instagram",
+  "author": {"name": "Petr"},
+  "keywords": ["copywriting", "ottocopy", "content", "newsletter", "instagram"],
+  "skills": "./skills/"
+}

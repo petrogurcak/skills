@@ -1,0 +1,8 @@
+{
+  "name": "seo",
+  "version": "1.0.0",
+  "description": "SEO skills - search engine optimization, technical SEO, keyword research, ASO",
+  "author": {"name": "Petr"},
+  "keywords": ["seo", "keywords", "technical-seo", "aso"],
+  "skills": "./skills/"
+}

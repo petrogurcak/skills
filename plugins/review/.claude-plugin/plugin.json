@@ -1,0 +1,8 @@
+{
+  "name": "review",
+  "version": "1.0.0",
+  "description": "Code review skills - deep review, API design, database, security",
+  "author": {"name": "Petr"},
+  "keywords": ["review", "code-review", "api", "database", "security"],
+  "skills": "./skills/"
+}
