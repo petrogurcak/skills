@@ -110,6 +110,12 @@ C) Subagent-Driven (subagent-driven-development)
    - Fresh subagent per task
    - Auto code review after each task
    - Best for: fast iteration, experienced teams, many tasks
+
+D) Agent Team (agent-team-development)
+   - Parallel teammates via tmux split panes
+   - Each teammate owns a module, reviewer validates continuously
+   - Best for: 3+ independent modules, cross-layer work (API + frontend + tests)
+   - Requires: CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS enabled
 "
 ```
 
@@ -149,6 +155,17 @@ Use Skill tool: superpowers:subagent-driven-development
 - Continuous progress without human-in-loop
 - Includes finishing-branch at the end
 
+**D) Agent Team:**
+```
+Announce: "I'm using development:agent-team-development for parallel execution."
+Use Skill tool: development:agent-team-development
+```
+- Parallel teammates in tmux split panes
+- Each teammate owns a module (separate files)
+- Reviewer teammate validates continuously
+- Lead coordinates via shared task list
+- Includes finishing-branch at the end
+
 **Step 4: Verify (for Manual TDD only)**
 
 If using Manual TDD (option A), MANDATORY before claiming done:
@@ -158,13 +175,13 @@ If using Manual TDD (option A), MANDATORY before claiming done:
 - Show actual output (not assumptions)
 ```
 
-Note: Options B and C include verification in their workflows.
+Note: Options B, C, and D include verification in their workflows.
 
 ### Phase 3: Finalize
 
 **For Manual TDD (option A) only:**
 
-Options B and C include finalization in their workflows. For Manual TDD:
+Options B, C, and D include finalization in their workflows. For Manual TDD:
 
 **1. Code Review:**
 ```
@@ -228,12 +245,13 @@ User: "Implement feature X"
     [Phase 2: Implementation]
     ASK: Execution strategy?
          │
-    ┌────┼────┐
-    A    B    C
-    │    │    │
- Manual Batch Subagent
-  TDD  Exec  Driven
-    │    │    │
+    ┌────┼────┬────┐
+    A    B    C    D
+    │    │    │    │
+ Manual Batch Sub  Agent
+  TDD  Exec  agent Team
+    │    │    │    │
+    │    │    │    └──→ [auto: parallel + review + finish]
     │    │    └──→ [auto: review + finish]
     │    └───────→ [auto: review + finish]
     │
@@ -276,6 +294,7 @@ This skill orchestrates superpowers skills:
 | 1 | writing-plans | Task breakdown |
 | 2 | executing-plans | Batch execution (option B) |
 | 2 | subagent-driven-development | Fast iteration (option C) |
+| 2 | agent-team-development | Parallel execution (option D) |
 | 3 | requesting-code-review | Quality gate |
 | 3 | finishing-a-development-branch | Git completion |
 | 4 | session-context | Save progress & decisions |
@@ -289,11 +308,11 @@ projectsetup (Constitutional Law)
 development-workflow (THIS SKILL - Orchestration)
        │ sequences phases, asks execution strategy
        ▼
-┌──────┼──────┐
-│      │      │
-▼      ▼      ▼
-Manual Batch  Subagent
-TDD    Exec   Driven
+┌──────┼──────┬──────┐
+│      │      │      │
+▼      ▼      ▼      ▼
+Manual Batch  Sub    Agent
+TDD    Exec   agent  Team
 │      │      │
 ▼      │      │
 Framework     │
@@ -331,8 +350,8 @@ Superpowers (Support Layer)
 **Every feature implementation follows:**
 1. **Detect** → Check for existing plan, redirect if bug
 2. **Design** → Brainstorm + Plan (skip if plan exists)
-3. **Implement** → ASK execution strategy (Manual/Batch/Subagent)
-4. **Finalize** → Review + Finish (auto for B/C, manual for A)
+3. **Implement** → ASK execution strategy (Manual/Batch/Subagent/Agent Team)
+4. **Finalize** → Review + Finish (auto for B/C/D, manual for A)
 5. **Context** → Update session context + log decisions
 
 **This skill orchestrates, other skills execute.**
