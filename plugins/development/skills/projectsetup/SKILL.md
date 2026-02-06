@@ -147,6 +147,10 @@ Next steps:
 2. Customize Section 8 in CORE_PRINCIPLES.md if needed
 3. Start developing with: "Use development-workflow skill to implement [feature]"
 
+Want to add workflow optimization (mistakes tracking, verification checklist, code quality hooks)?
+→ Yes: I'll run workflow-optimization skill now
+→ No: You can add it later with "Use workflow-optimization skill"
+
 Active skills for development:
 - development-workflow ← Orchestrates: Brainstorming → Planning → Implementation → Review
 - [If framework:] [nette-framework/flutter-workflow/frontend-workflow] ← Executes implementation with docs-first TDD
