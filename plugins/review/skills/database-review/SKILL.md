@@ -1,6 +1,8 @@
 ---
 name: database-review
 description: SQL/ORM patterns review - N+1 queries, indexy, transactions, connection management
+context: fork
+agent: Explore
 ---
 
 # Database Review

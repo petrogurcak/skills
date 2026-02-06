@@ -1,6 +1,13 @@
 ---
 name: fastapi-workflow
 description: Use when working with Python + FastAPI + Pydantic v2 - enforces DOCS-FIRST workflow where AI MUST fetch current documentation BEFORE proposing any implementation (async APIs, dependency injection, SQLAlchemy)
+hooks:
+  PostToolUse:
+    - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.py$\""
+      hooks:
+        - type: command
+          command: "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && python -m mypy --ignore-missing-imports \"$TOOL_INPUT_FILE_PATH\" 2>&1 | head -20'"
+          timeout: 30
 ---
 
 # FastAPI Workflow-Driven Development Skill

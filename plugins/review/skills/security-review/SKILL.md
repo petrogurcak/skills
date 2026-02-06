@@ -1,6 +1,8 @@
 ---
 name: security-review
 description: OWASP Top 10 security checklist pro code review - injection, auth, XSS, CSRF, sensitive data
+context: fork
+agent: Explore
 ---
 
 # Security Review

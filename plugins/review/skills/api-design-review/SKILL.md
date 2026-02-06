@@ -1,6 +1,8 @@
 ---
 name: api-design-review
 description: REST API conventions, error handling, versioning, pagination, rate limiting
+context: fork
+agent: Explore
 ---
 
 # API Design Review

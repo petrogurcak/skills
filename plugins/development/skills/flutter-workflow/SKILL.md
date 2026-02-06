@@ -1,6 +1,13 @@
 ---
 name: flutter-workflow
 description: Use when working with Flutter/Dart - enforces DOCS-FIRST workflow where AI MUST fetch current documentation BEFORE proposing any implementation (workflows for widgets, state management, navigation, platform integration)
+hooks:
+  PostToolUse:
+    - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.dart$\""
+      hooks:
+        - type: command
+          command: "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && dart analyze --no-fatal-infos 2>&1 | tail -5'"
+          timeout: 30
 ---
 
 # Flutter Workflow-Driven Development Skill

@@ -1,6 +1,8 @@
 ---
 name: deep-review
 description: Use after completing significant code changes - orchestrates specialized review skills (security, database, API, UX) based on auto-detected stack and scope
+context: fork
+agent: general-purpose
 ---
 
 # Deep Review - Code Review Orchestrator

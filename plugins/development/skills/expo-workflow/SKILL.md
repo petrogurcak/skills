@@ -1,6 +1,23 @@
 ---
 name: expo-workflow
 description: Use when working with React Native + Expo - enforces DOCS-FIRST workflow where AI MUST fetch current documentation BEFORE proposing any implementation (Expo SDK 54+, React Native 0.79+, iOS Premium UI with Tamagui + Liquid Glass)
+hooks:
+  PostToolUse:
+    - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\""
+      hooks:
+        - type: command
+          command: "bash ~/.claude/hooks/ts-check.sh"
+          timeout: 30
+    - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\""
+      hooks:
+        - type: command
+          command: "bash ~/.claude/hooks/auto-prettier.sh"
+          timeout: 10
+    - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\""
+      hooks:
+        - type: command
+          command: "bash ~/.claude/hooks/console-log-check.sh"
+          timeout: 5
 ---
 
 # Expo Workflow-Driven Development Skill
