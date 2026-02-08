@@ -94,6 +94,51 @@ Is there CLAUDE.md in current directory?
 [WAIT FOR ANSWER]
 ```
 
+### Step 2.5: Select MCP Servers
+
+**Purpose:** Prevent context bloat by enabling only relevant MCP servers per project.
+
+**Registry:** `~/.claude/mcp-registry.yaml` contains all available servers with categories and variant mappings.
+
+```
+1. Read ~/.claude/mcp-registry.yaml
+2. Filter servers by chosen variant (Step 2):
+   - Show servers where `variant` matches chosen type
+   - Show all servers without `variant` (universal)
+   - Mark `phase: true` servers separately
+3. Present to user:
+
+❓ Which MCP servers for this project?
+
+   Recommended for [variant]:
+   [x] nette-mcp - Nette PHP framework documentation
+   [ ] code-mode - Complex TypeScript workflows
+
+   Monitoring (enable if needed):
+   [ ] sentry - Sentry error tracking
+   [ ] stripe - Stripe payments
+
+   Phase-based (activate later when needed):
+   ℹ google-analytics - GA4 reporting (use: mcp-activate.sh add google-analytics)
+   ℹ gtm - Google Tag Manager (use: mcp-activate.sh add gtm)
+   ℹ notebooklm - NotebookLM queries (use: mcp-activate.sh add notebooklm)
+   ℹ claude-in-chrome - Browser automation (use: mcp-activate.sh add claude-in-chrome)
+
+   [WAIT FOR ANSWER - user selects which permanent servers to enable]
+
+4. For each selected server, run:
+   claude mcp add --scope project <server-name> -- <command> <args>
+   (or --transport http for HTTP servers)
+
+5. This creates .mcp.json in project root with project-scoped servers
+```
+
+**Important:** Phase-based servers are NOT added during setup. User activates them on-demand:
+```bash
+~/.claude/scripts/mcp-activate.sh add google-analytics   # when doing analytics
+~/.claude/scripts/mcp-activate.sh remove google-analytics # when done
+```
+
 ### Step 3: Create Files
 
 Based on choice, copy template files from skill directory:
@@ -118,6 +163,9 @@ Based on choice, copy template files from skill directory:
 1. Create `.claude/` directory if it doesn't exist
 2. Read template files from appropriate variant directory
 3. Write files to current project directory
+8. If user wants Playwright scaffold:
+   - Copy files from templates/playwright-scaffold/ to current project
+   - Run: npm install -D @playwright/test && npx playwright install chromium
 ```
 
 ### Step 4: Inform User
@@ -136,8 +184,15 @@ Created files:
 
 Project type: [Generic/Nette/Flutter/Frontend]
 
+MCP servers configured:
+- Project-scoped: [list of enabled servers]
+- Phase-based (activate when needed):
+  - `~/.claude/scripts/mcp-activate.sh add <name>` to enable
+  - `~/.claude/scripts/mcp-activate.sh remove <name>` to disable
+  - `~/.claude/scripts/mcp-activate.sh list` to see available
+
 Session context enabled:
-- .claude/ACTIVE_CONTEXT.md - tracks where you left off
+- .claude/ACTIVE_CONTEXT.md - tracks where you left off + workflow maturity
 - .claude/DECISIONS.md - logs architectural decisions
 - Context loads automatically at session start
 - Use `session-context` skill for manual control
@@ -146,6 +201,10 @@ Next steps:
 1. Read CLAUDE.md for quick reference
 2. Customize Section 8 in CORE_PRINCIPLES.md if needed
 3. Start developing with: "Use development-workflow skill to implement [feature]"
+
+Want to add Playwright e2e scaffold?
+→ Yes: I'll create e2e/ directory structure with Playwright config and fixtures
+→ No: You can add it later manually
 
 Want to add workflow optimization (mistakes tracking, verification checklist, code quality hooks)?
 → Yes: I'll run workflow-optimization skill now
@@ -176,6 +235,8 @@ This skill:
 - ✅ Template files stored in `~/.claude/skills/project-setup/templates/`
 - ✅ Customizable Section 8 for project-specific rules
 - ✅ Session context for continuity between sessions (ACTIVE_CONTEXT.md, DECISIONS.md)
+- ✅ MCP server selection per project (prevents context bloat from unused servers)
+- ✅ Phase-based MCP activation for temporary tools (analytics, research, browser)
 
 **Usage:** User says "Setup this project" → AI creates CLAUDE.md + .claude/ → Ready to develop with workflow orchestration!
 

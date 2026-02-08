@@ -12,3 +12,15 @@
 
 ## Poznámky pro další session
 [důležitý kontext pro příští session - nebo "Žádné"]
+
+## Workflow Maturity
+
+| Component | Status |
+|-----------|--------|
+| CLAUDE.md + .claude/ | ✅ |
+| workflow-optimization | ❌ |
+| Pyramid summaries (ARCHITECTURE.md) | ❌ |
+| Scenario testing (Playwright e2e) | ❌ |
+| CI/CD integration | ❌ |
+
+Level: 1/5 (Basic Setup)

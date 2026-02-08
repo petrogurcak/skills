@@ -1,6 +1,6 @@
 # Core Development Principles
 
-This document outlines the 12 core principles that guide all development work in this project.
+This document outlines the 13 core principles that guide all development work in this project.
 
 ---
 
@@ -24,6 +24,33 @@ This document outlines the 12 core principles that guide all development work in
 - ALWAYS run the test and watch it fail before writing code
 - Write the simplest code that makes the test pass
 - Refactor only after tests are green
+
+**Variant: Scenario-First (Recommended for UI projects)**
+
+For projects with user-facing UI, complement TDD with scenario-based testing:
+
+| Project Type | Testing Approach |
+|-------------|-----------------|
+| Backend/Logic | Classic TDD (mandatory) - RED → GREEN → REFACTOR |
+| Web Application | Scenario-First (recommended) - Define user flows → Implement → Playwright e2e |
+| Landing Page | Scenario-Light (recommended) - Define scenarios for interactive sections → Implement → Verify |
+
+**Scenario-First process:**
+1. Define user flows BEFORE implementation (natural language):
+   "User logs in → sees dashboard → clicks 'New Item' → fills form → saves → item appears in list"
+2. Implement the feature
+3. Write Playwright e2e test covering the flow
+4. Two-tier test system:
+   - Smoke (< 5 min, every PR): auth, navigation, CRUD happy paths
+   - Core (< 15 min, pre-deploy): full user journeys, error states
+
+**Scenario-Light process (landing pages):**
+1. Define scenarios for interactive sections (CTA clicks, form submissions, pricing toggles)
+2. Implement sections
+3. Verify manually or with Playwright
+4. Lighthouse check mandatory (Performance > 90)
+
+Note: Scenario-First does NOT replace backend TDD. Backend logic still requires classic RED → GREEN → REFACTOR.
 
 ---
 
@@ -286,24 +313,6 @@ Closes #123
 
 ---
 
-## Summary
-
-These 11 principles work together to create:
-- **Confidence:** Tests verify everything works
-- **Safety:** Git workflow prevents disasters
-- **Quality:** Static analysis + TDD prevent bugs
-- **Clarity:** Discipline creates understandable code
-- **Speed:** Small steps are faster than big rewrites
-
-**Remember:**
-1. Branch first
-2. Test first (RED -> GREEN -> REFACTOR)
-3. Verify always
-4. Ask at checkpoints
-5. Commit incrementally
-
----
-
 ## 12. No Hardcoded Values
 
 **Principle:** Configuration, secrets, and environment-specific values NEVER belong in code.
@@ -345,6 +354,48 @@ const PORT = 3000;
 const API_URL = process.env.API_URL;
 const PORT = parseInt(process.env.PORT || "3000");
 ```
+
+---
+
+## 13. Progressive Context
+
+**Principle:** Documentation follows a pyramid - broad overview → module details → source code. Agents read top-down.
+
+**Process:**
+1. Read `ARCHITECTURE.md` first (project root, 1 page max)
+2. Read module `README.md` when working in that area
+3. Read source code only for specific files needed
+
+**Why:**
+- Saves tokens (10x reduction in context needed)
+- Faster orientation for new sessions
+- Prevents "lost in codebase" syndrome
+- Scales to any project size
+
+**Rules:**
+- ALWAYS read `ARCHITECTURE.md` before starting work on any task
+- Each major module/directory SHOULD have a `README.md` with public API summary
+- Keep `ARCHITECTURE.md` under 1 page (concise, not exhaustive)
+- Update `ARCHITECTURE.md` when adding new modules or changing architecture
+
+---
+
+## Summary
+
+These 13 principles work together to create:
+- **Confidence:** Tests verify everything works
+- **Safety:** Git workflow prevents disasters
+- **Quality:** Static analysis + TDD prevent bugs
+- **Clarity:** Discipline creates understandable code
+- **Speed:** Small steps are faster than big rewrites
+- **Orientation:** Progressive context prevents token waste
+
+**Remember:**
+1. Branch first
+2. Test first (RED -> GREEN -> REFACTOR)
+3. Verify always
+4. Ask at checkpoints
+5. Commit incrementally
 
 ---
 

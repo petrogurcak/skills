@@ -43,14 +43,21 @@ Orchestrates complete feature development with superpowers integration.
 
 ### Phase 0: Detect Context
 
-**FIRST, check for existing plan:**
+**FIRST, check for ARCHITECTURE.md:**
+```
+Check: Does ARCHITECTURE.md exist?
+├─ YES → Read it first for project orientation
+└─ NO → Continue (suggest creating one if project has 10+ files)
+```
+
+**SECOND, check for existing plan:**
 ```
 Check: docs/plans/*.md OR ~/.claude/plans/*.md
 ├─ Found recent plan for this feature → Skip to Phase 2
 └─ No plan → Continue to Phase 1
 ```
 
-**SECOND, check task type:**
+**THIRD, check task type:**
 ```
 ├─ Bug fix mentioned? → STOP, use systematic-debugging skill
 ├─ API/specs mentioned? → Consider openspec-workflow skill

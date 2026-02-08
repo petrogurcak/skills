@@ -20,7 +20,7 @@ This project uses session context for continuity between Claude sessions.
 
 ## Quick Links
 
-- **[Core Principles](.claude/CORE_PRINCIPLES.md)** - 11 core development principles
+- **[Core Principles](.claude/CORE_PRINCIPLES.md)** - 13 core development principles
 - **[Workflows](.claude/WORKFLOWS.md)** - TDD workflow, Bug fixes, Git operations
 - **[Checkpoints](.claude/CHECKPOINTS.md)** - When to ask vs when to proceed automatically
 

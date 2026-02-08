@@ -150,6 +150,66 @@ Phase 4: Implementation
 
 ---
 
+## User Flow Testing Workflow
+
+**Use when:** Building or modifying user-facing features in web applications
+
+### Two-Layer Testing
+
+```
+CI Layer (automatic, every PR):
+  └─ Playwright - smoke + core + error-states
+     Deterministic, fast, free
+     Catches regressions: broken CRUD? login failing?
+
+AI Layer (manual, before deploy/release):
+  └─ Claude-in-Chrome - exploratory + visual + UX
+     "Walk through the app, find problems"
+     Output: GIF recording + findings report
+     Catches what Playwright can't: UX issues, visual bugs
+```
+
+### Playwright Test Structure
+
+```
+e2e/
+├── auth.setup.ts            # Auth setup (runs first, shares session)
+├── smoke/                   # Fast sanity (< 5 min, every PR)
+│   ├── auth.spec.ts
+│   ├── dashboard.spec.ts
+│   └── [feature].spec.ts
+├── core/                    # Full user journeys (< 15 min, pre-deploy)
+│   ├── [feature]-crud.spec.ts
+│   └── [feature]-flow.spec.ts
+├── error-states/            # Simulated API failures
+│   └── api-errors.spec.ts
+└── fixtures/
+    ├── test-fixtures.ts     # Custom Playwright fixtures
+    └── test-data.ts         # API TestDataFactory (create/delete via API)
+```
+
+### Playwright Conventions
+
+- Use `data-testid` attributes for selectors (not CSS classes, not XPath)
+- TestDataFactory for API setup/teardown (create test data via API, not UI)
+- Auth as setup project (runs once, shares session state)
+- Timeouts: `{ timeout: 15000 }` for navigation, `{ timeout: 10000 }` for actions
+- Cleanup in `afterEach` (delete test data created during test)
+- `test.describe()` for grouping related flows
+- Serial tests within describe when order matters
+
+### AI Exploratory Testing (Pre-Deploy)
+
+Before deploying, use Claude-in-Chrome to:
+1. Walk through main user flows
+2. Record GIF of each flow
+3. Check for visual issues, UX problems, broken states
+4. Report findings with screenshots
+
+Trigger: "Run exploratory testing on [URL]"
+
+---
+
 ## Git Operations
 
 ### Create Branch
