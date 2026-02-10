@@ -2,14 +2,31 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "skills",
   "description": "Petr's custom skills - marketing, copywriting, development, review, workflow, UX",
-  "owner": {"name": "Petr"},
+  "owner": { "name": "Petr" },
   "plugins": [
-    {"name": "seo", "source": "./plugins/seo", "category": "marketing"},
-    {"name": "growth", "source": "./plugins/growth", "category": "marketing"},
-    {"name": "marketing", "source": "./plugins/marketing", "category": "marketing"},
-    {"name": "copywriting", "source": "./plugins/copywriting", "category": "content"},
-    {"name": "development", "source": "./plugins/development", "category": "development"},
-    {"name": "review", "source": "./plugins/review", "category": "development"},
-    {"name": "ux", "source": "./plugins/ux", "category": "design"}
+    { "name": "seo", "source": "./plugins/seo", "category": "marketing" },
+    { "name": "growth", "source": "./plugins/growth", "category": "marketing" },
+    {
+      "name": "marketing",
+      "source": "./plugins/marketing",
+      "category": "marketing"
+    },
+    {
+      "name": "copywriting",
+      "source": "./plugins/copywriting",
+      "category": "content"
+    },
+    {
+      "name": "development",
+      "source": "./plugins/development",
+      "category": "development"
+    },
+    {
+      "name": "review",
+      "source": "./plugins/review",
+      "category": "development"
+    },
+    { "name": "ux", "source": "./plugins/ux", "category": "design" },
+    { "name": "branding", "source": "./plugins/branding", "category": "design" }
   ]
 }
