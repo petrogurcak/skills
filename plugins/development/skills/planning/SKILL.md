@@ -72,9 +72,10 @@ Save to: `docs/plans/YYYY-MM-DD-<feature-name>.md`
 
 > **Post-execution:** After all tasks are complete, run these in order:
 >
-> 1. `/development:verify` - tests, build, lint, plan checklist
-> 2. `/development:merge` - commit, merge to development, cleanup
-> 3. `/development:wrapup` - context, mistakes, lessons, docs
+> 1. `/development:verify` - tests, build, lint, plan checklist, browser smoke
+> 2. `/development:demo` - executable demo document (optional, for UI/API features)
+> 3. `/development:merge` - commit, merge to development, cleanup
+> 4. `/development:wrapup` - context, mistakes, lessons, docs
 
 ---
 
@@ -305,7 +306,9 @@ Phase 4: Execution Handoff
   └─ Choose strategy (subagent/session/team) → Choose workspace (branch/worktree/current)
   └─ Hand off to execution skill
 Phase 5: Verification
-  └─ Tests + Build + Lint + Plan checklist → User tests → Fix if needed
+  └─ Tests + Build + Lint + Plan checklist + Browser smoke → Fix if needed
+Phase 5b: Demo (optional)
+  └─ Showboat executable demo doc + Rodney screenshots + Accessibility
 Phase 6: Merge & Cleanup
   └─ Commit → Merge to development → Verify → Delete branch/worktree
 Phase 7: Wrap-up & Reflect
@@ -314,13 +317,14 @@ Phase 7: Wrap-up & Reflect
 
 ## Integration
 
-| Skill                                        | Role                  |
-| -------------------------------------------- | --------------------- |
-| `review:deep-review`                         | Phase 3 plan review   |
-| `superpowers:subagent-driven-development`    | Execution option 1    |
-| `superpowers:executing-plans`                | Execution option 2    |
-| `development:agent-team-development`         | Execution option 3    |
-| `superpowers:using-git-worktrees`            | Workspace option b    |
-| `superpowers:verification-before-completion` | Phase 5 verification  |
-| `superpowers:test-driven-development`        | Used during execution |
-| `development:session-context`                | Phase 7 context save  |
+| Skill                                        | Role                              |
+| -------------------------------------------- | --------------------------------- |
+| `review:deep-review`                         | Phase 3 plan review               |
+| `superpowers:subagent-driven-development`    | Execution option 1                |
+| `superpowers:executing-plans`                | Execution option 2                |
+| `development:agent-team-development`         | Execution option 3                |
+| `superpowers:using-git-worktrees`            | Workspace option b                |
+| `superpowers:verification-before-completion` | Phase 5 verification              |
+| `development:demo`                           | Phase 5b demo (showboat + rodney) |
+| `superpowers:test-driven-development`        | Used during execution             |
+| `development:session-context`                | Phase 7 context save              |
