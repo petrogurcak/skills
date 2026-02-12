@@ -70,12 +70,11 @@ Save to: `docs/plans/YYYY-MM-DD-<feature-name>.md`
 **Tech Stack:** [Key technologies]
 **Created:** [YYYY-MM-DD]
 
-> **Post-execution:** After all tasks are complete, run these in order:
+> **Post-execution:** After all tasks are complete, run:
 >
-> 1. `/development:verify` - tests, build, lint, plan checklist, browser smoke
-> 2. `/development:demo` - executable demo document (optional, for UI/API features)
-> 3. `/development:merge` - commit, merge to development, cleanup
-> 4. `/development:wrapup` - context, mistakes, lessons, docs
+> `/development:finish` - orchestrates verify → demo → merge → wrapup
+>
+> Or individually: `/development:verify` → `/development:demo` → `/development:merge` → `/development:wrapup`
 
 ---
 
