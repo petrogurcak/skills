@@ -70,6 +70,12 @@ Save to: `docs/plans/YYYY-MM-DD-<feature-name>.md`
 **Tech Stack:** [Key technologies]
 **Created:** [YYYY-MM-DD]
 
+> **Post-execution:** After all tasks are complete, run these in order:
+>
+> 1. `/development:verify` - tests, build, lint, plan checklist
+> 2. `/development:merge` - commit, merge to development, cleanup
+> 3. `/development:wrapup` - context, mistakes, lessons, docs
+
 ---
 
 ### Task N: [Component Name]
