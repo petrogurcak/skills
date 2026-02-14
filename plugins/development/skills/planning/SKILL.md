@@ -63,6 +63,13 @@ Explore, brainstorm, and write implementation plan in one flow. Saves plan to pr
 Save to: `docs/plans/YYYY-MM-DD-<feature-name>.md`
 
 ````markdown
+---
+status: pending
+created: [YYYY-MM-DD]
+tasks_total: [count]
+tasks_done: 0
+---
+
 # [Feature Name] Implementation Plan
 
 **Goal:** [One sentence]
@@ -110,7 +117,7 @@ git commit -m "feat: [message]"
 
 ---
 
-```
+````
 
 ### Plan Rules
 
@@ -129,16 +136,36 @@ git commit -m "feat: [message]"
 
 After saving the plan:
 
-1. **Announce:** "Plan uložen. Pouštím deep review."
-2. **Run `review:deep-review`** on the plan file
+1. **Add YAML frontmatter** to the plan file if not already present:
+   ```yaml
+   ---
+   status: pending
+   created: YYYY-MM-DD
+   tasks_total: [count]
+   tasks_done: 0
+   ---
+````
+
+2. **Run plan-challenger agent** (adversarial review):
+
+   ```
+   Use plan-challenger agent to review [plan file path]
+   ```
+
+   - Presents structured findings (CRITICAL / WARNING / INFO)
+   - CRITICAL findings must be addressed before proceeding
+
+3. **Announce:** "Plan uložen. Pouštím deep review."
+4. **Run `review:deep-review`** on the plan file
    - Architecture consistency
    - Missing error handling / edge cases
    - Security concerns
    - Task ordering and dependencies
    - Missing tests or test scenarios
-3. **Present review findings** to user
-4. **Incorporate feedback** - update the plan file with agreed changes
-5. **User confirms:** "Plan je OK, jdeme implementovat"
+5. **Present review findings** to user
+6. **Incorporate feedback** - update the plan file with agreed changes
+7. **User confirms:** "Plan je OK, jdeme implementovat"
+8. **Update plan status** to `in_progress` when user confirms
 
 **Exit Phase 3 when:** User confirms the reviewed plan.
 
@@ -150,11 +177,11 @@ After plan is reviewed and confirmed:
 
 **"Plan zrevidovan a pripraven. Jak chces implementovat?"**
 
-| # | Strategy | When to use | Skill |
-|---|----------|-------------|-------|
-| **1** | **Subagent-driven** (this session) | Default. Sequential tasks, fast iteration, same session. | `superpowers:subagent-driven-development` |
-| **2** | **New session** (executing-plans) | Want human checkpoints between batches, or running in parallel with other work. | `superpowers:executing-plans` |
-| **3** | **Team agents** (parallel) | 3+ independent modules touching different files. Max speed. | `development:agent-team-development` |
+| #     | Strategy                           | When to use                                                                     | Skill                                     |
+| ----- | ---------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------- |
+| **1** | **Subagent-driven** (this session) | Default. Sequential tasks, fast iteration, same session.                        | `superpowers:subagent-driven-development` |
+| **2** | **New session** (executing-plans)  | Want human checkpoints between batches, or running in parallel with other work. | `superpowers:executing-plans`             |
+| **3** | **Team agents** (parallel)         | 3+ independent modules touching different files. Max speed.                     | `development:agent-team-development`      |
 
 ### Decision helper:
 
@@ -168,11 +195,11 @@ Want batch checkpoints / parallel work? → Option 2 (new session)
 
 **Then ask workspace setup:**
 
-| # | Workspace | When |
-|---|-----------|------|
-| **a** | New branch | Default. Feature work, will PR later. |
-| **b** | Git worktree | Large feature, want isolation from main workspace. |
-| **c** | Current branch | Quick changes, already on feature branch. |
+| #     | Workspace      | When                                               |
+| ----- | -------------- | -------------------------------------------------- |
+| **a** | New branch     | Default. Feature work, will PR later.              |
+| **b** | Git worktree   | Large feature, want isolation from main workspace. |
+| **c** | Current branch | Quick changes, already on feature branch.          |
 
 If **branch:** Create `feature/<name>` and switch to it.
 If **worktree:** Use `superpowers:using-git-worktrees` to create.
@@ -193,6 +220,7 @@ If **current:** Confirm current branch is not main/master.
    - Run linter/type check → show output
    - Check plan checklist → verify each task was implemented
 3. **Present results:**
+
 ```
 
 Verifikace:
@@ -204,7 +232,8 @@ Verifikace:
 
 Vsechno OK. Chces otestovat sam, nebo rovnou dokoncime branch?
 
-````
+```
+
 4. **If failures:** Fix issues, re-run verification. Do NOT proceed to Phase 6.
 5. **User tests manually** (optional) → dílčí opravy → re-verify if needed
 
@@ -221,6 +250,8 @@ Vsechno OK. Chces otestovat sam, nebo rovnou dokoncime branch?
    ```bash
    git checkout development
    git merge <feature-branch>
+   ```
+
 ````
 
 3. **Verify on development** - run tests + build again on merged result
@@ -327,3 +358,4 @@ Phase 7: Wrap-up & Reflect
 | `development:demo`                           | Phase 5b demo (showboat + rodney) |
 | `superpowers:test-driven-development`        | Used during execution             |
 | `development:session-context`                | Phase 7 context save              |
+````

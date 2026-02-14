@@ -10,6 +10,7 @@ Orchestrates complete feature development with superpowers integration.
 ## When to Use
 
 **Trigger phrases (CZ/EN):**
+
 - "přidej X" / "add X"
 - "udělej X" / "make X"
 - "vytvoř X" / "create X"
@@ -21,11 +22,13 @@ Orchestrates complete feature development with superpowers integration.
 - Any request to CREATE something new
 
 **Also use when:**
+
 - Starting work on any coding task requiring structured approach
 - Continuing work on an existing plan
 - User describes desired outcome (not a fix)
 
 **Redirects to systematic-debugging:**
+
 - "oprav X" / "fix X"
 - "nefunguje X" / "X doesn't work"
 - "proč X" / "why X"
@@ -35,6 +38,7 @@ Orchestrates complete feature development with superpowers integration.
 - Any request to FIX something broken
 
 **Skip orchestration for:**
+
 - Simple documentation updates
 - Configuration-only changes
 - One-line fixes
@@ -44,6 +48,7 @@ Orchestrates complete feature development with superpowers integration.
 ### Phase 0: Detect Context
 
 **FIRST, check for ARCHITECTURE.md:**
+
 ```
 Check: Does ARCHITECTURE.md exist?
 ├─ YES → Read it first for project orientation
@@ -51,6 +56,7 @@ Check: Does ARCHITECTURE.md exist?
 ```
 
 **SECOND, check for existing plan:**
+
 ```
 Check: docs/plans/*.md OR ~/.claude/plans/*.md
 ├─ Found recent plan for this feature → Skip to Phase 2
@@ -58,6 +64,7 @@ Check: docs/plans/*.md OR ~/.claude/plans/*.md
 ```
 
 **THIRD, check task type:**
+
 ```
 ├─ Bug fix mentioned? → STOP, use systematic-debugging skill
 ├─ API/specs mentioned? → Consider openspec-workflow skill
@@ -69,20 +76,24 @@ Check: docs/plans/*.md OR ~/.claude/plans/*.md
 **MANDATORY sequence - do not skip:**
 
 **1. Brainstorming:**
+
 ```
 Announce: "I'm using superpowers:brainstorming to refine the design."
 Use Skill tool: superpowers:brainstorming
 ```
+
 - Refine rough idea into clear design
 - Explore alternatives and trade-offs
 - Validate approach with user
 - Clarify requirements and edge cases
 
 **2. Write Plan:**
+
 ```
 Announce: "I'm using superpowers:writing-plans to create implementation tasks."
 Use Skill tool: superpowers:writing-plans
 ```
+
 - Break design into bite-sized tasks
 - Define verification criteria for each task
 - Document expected outcomes
@@ -90,16 +101,19 @@ Use Skill tool: superpowers:writing-plans
 ### Phase 2: Implementation
 
 **Step 1: Git Branch**
+
 ```
 ASK user: "Create branch feature/[name]?"
 ├─ Yes → git checkout -b feature/[name]
 └─ No → Continue on current branch (with warning)
 ```
+
 Branch naming: `feature/description` or `fix/description`
 
 **Step 2: Choose Execution Strategy**
 
 **ALWAYS ASK user - no default:**
+
 ```
 "How do you want to execute this plan?
 
@@ -131,6 +145,7 @@ D) Agent Team (agent-team-development)
 Based on user choice:
 
 **A) Manual TDD:**
+
 1. Detect framework from CLAUDE.md or config files:
    - `composer.json` → Use `nette-framework` skill
    - `pubspec.yaml` → Use `flutter-workflow` skill
@@ -144,29 +159,35 @@ Based on user choice:
    - Verification (tests + static analysis)
 
 **B) Batch Execution:**
+
 ```
 Announce: "I'm using superpowers:executing-plans for batch execution."
 Use Skill tool: superpowers:executing-plans
 ```
+
 - Loads plan, executes 3 tasks per batch
 - Reports between batches, waits for feedback
 - Includes finishing-branch at the end
 
 **C) Subagent-Driven:**
+
 ```
 Announce: "I'm using superpowers:subagent-driven-development for fast iteration."
 Use Skill tool: superpowers:subagent-driven-development
 ```
+
 - Fresh subagent per task
 - Auto code review after each task
 - Continuous progress without human-in-loop
 - Includes finishing-branch at the end
 
 **D) Agent Team:**
+
 ```
 Announce: "I'm using development:agent-team-development for parallel execution."
 Use Skill tool: development:agent-team-development
 ```
+
 - Parallel teammates in tmux split panes
 - Each teammate owns a module (separate files)
 - Reviewer teammate validates continuously
@@ -176,6 +197,7 @@ Use Skill tool: development:agent-team-development
 **Step 4: Verify (for Manual TDD only)**
 
 If using Manual TDD (option A), MANDATORY before claiming done:
+
 ```
 - Run test suite → must pass 100%
 - Run static analysis → 0 errors
@@ -190,20 +212,47 @@ Note: Options B, C, and D include verification in their workflows.
 
 Options B, C, and D include finalization in their workflows. For Manual TDD:
 
-**1. Code Review:**
+**1. Code Review (Dual):**
+
+Launch TWO review agents in parallel for comprehensive coverage:
+
+a) **Compliance Review** (code vs plan):
+
+```
+Use compliance-reviewer agent to review against [plan file]
+```
+
+- Checks every plan task was implemented
+- Identifies scope creep or missing pieces
+
+b) **Quality Review** (code quality):
+
+```
+Use quality-reviewer agent to review [changed files]
+```
+
+- TDD compliance, error handling, security
+- Independent of plan — focuses on code itself
+
+c) **Process findings:**
+
+- If either returns CRITICAL → fix and re-review (max 3 iterations)
+- Both must APPROVE before proceeding to merge
+
+**Fallback:** If no plan file exists, use single review:
+
 ```
 Announce: "I'm using superpowers:requesting-code-review"
 Use Skill tool: superpowers:requesting-code-review
 ```
-- Review implementation against plan
-- Check CORE_PRINCIPLES compliance
-- Verify all tests pass
 
 **2. Finish Branch:**
+
 ```
 Announce: "I'm using superpowers:finishing-a-development-branch"
 Use Skill tool: superpowers:finishing-a-development-branch
 ```
+
 - Present options: merge, create PR, or cleanup
 - Ask user for decision
 - Complete git workflow
@@ -213,15 +262,18 @@ Use Skill tool: superpowers:finishing-a-development-branch
 After completing any feature work (for all execution strategies):
 
 **1. Update ACTIVE_CONTEXT.md:**
+
 ```
 Announce: "I'm updating session context."
 Use Skill tool: session-context (save mode)
 ```
+
 - Mark what was completed this session
 - Note any open items or work in progress
 - Set "next step" recommendation for future sessions
 
 **2. Log decisions (if any):**
+
 - Review changes made during this session
 - Check decision logging checklist:
   - [ ] Chose between 2+ valid approaches?
@@ -285,6 +337,7 @@ User: "Implement feature X"
 Projects initialized with `projectsetup` skill have `CLAUDE.md` that references this workflow.
 
 When you see instruction in `CLAUDE.md`:
+
 ```
 Use development-workflow skill
 ```
@@ -295,16 +348,16 @@ This is your cue to follow this orchestration process.
 
 This skill orchestrates superpowers skills:
 
-| Phase | Skill | Purpose |
-|-------|-------|---------|
-| 1 | brainstorming | Design refinement |
-| 1 | writing-plans | Task breakdown |
-| 2 | executing-plans | Batch execution (option B) |
-| 2 | subagent-driven-development | Fast iteration (option C) |
-| 2 | agent-team-development | Parallel execution (option D) |
-| 3 | requesting-code-review | Quality gate |
-| 3 | finishing-a-development-branch | Git completion |
-| 4 | session-context | Save progress & decisions |
+| Phase | Skill                          | Purpose                       |
+| ----- | ------------------------------ | ----------------------------- |
+| 1     | brainstorming                  | Design refinement             |
+| 1     | writing-plans                  | Task breakdown                |
+| 2     | executing-plans                | Batch execution (option B)    |
+| 2     | subagent-driven-development    | Fast iteration (option C)     |
+| 2     | agent-team-development         | Parallel execution (option D) |
+| 3     | requesting-code-review         | Quality gate                  |
+| 3     | finishing-a-development-branch | Git completion                |
+| 4     | session-context                | Save progress & decisions     |
 
 ## Architecture
 
@@ -332,29 +385,37 @@ Superpowers (Support Layer)
 ## Common Mistakes to Avoid
 
 ❌ **Skipping Phase 0** - "I'll just start brainstorming"
+
 - Always check for existing plan first
 
 ❌ **Skipping brainstorming** - "The requirement is clear"
+
 - Even clear requirements benefit from design exploration
 
 ❌ **Choosing execution strategy without asking** - "I'll use subagent-driven"
+
 - ALWAYS ask user, no default
 
 ❌ **Skipping docs-first** - "I know this framework"
+
 - Training data may be outdated, ALWAYS fetch current docs
 
 ❌ **Starting implementation before branch** - "It's a small change"
+
 - Git branch is MANDATORY, no exceptions
 
 ❌ **Claiming done without verification** - "Tests should pass"
+
 - Verification requires actual test output, not assumptions
 
 ❌ **Using for bugs** - "It's a small bug fix"
+
 - Use `systematic-debugging` skill for bugs
 
 ## Summary
 
 **Every feature implementation follows:**
+
 1. **Detect** → Check for existing plan, redirect if bug
 2. **Design** → Brainstorm + Plan (skip if plan exists)
 3. **Implement** → ASK execution strategy (Manual/Batch/Subagent/Agent Team)

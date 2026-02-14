@@ -10,6 +10,7 @@ description: Adds Anthropic-inspired workflow optimization to existing projects 
 Optimalizuje Claude Code workflow kombinací Anthropic best practices (Cherny pattern) + Everything Claude Code patterns.
 
 **Key improvements:**
+
 - **mistakes.md** - Učení z chyb = 2-3x quality improvement
 - **verification.md** - Built-in verification = 2-3x quality
 - **ACTIVE_CONTEXT.md pruning** - Importance-based [MAJOR]/[MINOR] tagging
@@ -24,6 +25,7 @@ Optimalizuje Claude Code workflow kombinací Anthropic best practices (Cherny pa
 ## When to Use
 
 **USE this skill:**
+
 - "Optimize my Claude workflow"
 - "Add mistakes tracking to this project"
 - "Setup verification checklist"
@@ -31,6 +33,7 @@ Optimalizuje Claude Code workflow kombinací Anthropic best practices (Cherny pa
 - After running `projectsetup` to add workflow improvements
 
 **DON'T use this skill:**
+
 - Project has no `.claude/` folder yet → run `projectsetup` first
 - Just want to create CLAUDE.md → use `projectsetup`
 
@@ -61,30 +64,36 @@ Check existing `.claude/` structure:
 ls -la .claude/
 ```
 
-| File | Status | Action |
-|------|--------|--------|
-| CLAUDE.md | Missing | Run `projectsetup` first |
-| .claude/ | Missing | Run `projectsetup` first |
-| mistakes.md | Missing | Create from template |
-| verification.md | Missing | Create project-specific |
-| ACTIVE_CONTEXT.md | >15KB | Prune with [MAJOR]/[MINOR] |
-| CHECKPOINTS.md | Present | Add mistakes detection |
+| File              | Status  | Action                     |
+| ----------------- | ------- | -------------------------- |
+| CLAUDE.md         | Missing | Run `projectsetup` first   |
+| .claude/          | Missing | Run `projectsetup` first   |
+| mistakes.md       | Missing | Create from template       |
+| verification.md   | Missing | Create project-specific    |
+| ACTIVE_CONTEXT.md | >15KB   | Prune with [MAJOR]/[MINOR] |
+| CHECKPOINTS.md    | Present | Add mistakes detection     |
 
 ### Step 2: Ask What to Add
 
 **Question:** What optimizations do you want?
 
-| Option | What it adds |
-|--------|--------------|
-| **A) Full optimization** (Recommended) | Everything below |
-| **B) Mistakes tracking only** | .claude/mistakes.md + CHECKPOINTS update |
-| **C) Verification checklist only** | .claude/verification.md customized for project |
-| **D) Context pruning only** | Update ACTIVE_CONTEXT.md format |
-| **E) Code quality hooks** | Auto-Prettier, TS check, console.log warning |
-| **F) Pattern learning** | /learn command + continuous-learning SessionEnd hook |
-| **G) Checkpoints** | /checkpoint command for workflow milestones |
-| **H) Build error resolver** | Agent for minimal-diff build/TS error fixes |
-| **I) Project Summaries** | ARCHITECTURE.md + module READMEs (Pyramid Summaries pattern) |
+| Option                                 | What it adds                                                 |
+| -------------------------------------- | ------------------------------------------------------------ |
+| **A) Full optimization** (Recommended) | Everything below                                             |
+| **B) Mistakes tracking only**          | .claude/mistakes.md + CHECKPOINTS update                     |
+| **C) Verification checklist only**     | .claude/verification.md customized for project               |
+| **D) Context pruning only**            | Update ACTIVE_CONTEXT.md format                              |
+| **E) Code quality hooks**              | Auto-Prettier, TS check, console.log warning                 |
+| **F) Pattern learning**                | /learn command + continuous-learning SessionEnd hook         |
+| **G) Checkpoints**                     | /checkpoint command for workflow milestones                  |
+| **H) Build error resolver**            | Agent for minimal-diff build/TS error fixes                  |
+| **I) Project Summaries**               | ARCHITECTURE.md + module READMEs (Pyramid Summaries pattern) |
+| **J) Stop Guard**                      | Plan-aware stop prevention hook                              |
+| **K) Context Monitor**                 | Tool call count based context usage tracking                 |
+| **L) TDD Enforcer**                    | Missing test file detection on Write/Edit                    |
+| **M) Plan Lifecycle**                  | YAML frontmatter status in plan files                        |
+| **N) Review Agents**                   | plan-challenger + compliance-reviewer + quality-reviewer     |
+| **O) OS Notifications**                | macOS/Linux native notifications                             |
 
 ### Step 3: Implement Changes
 
@@ -173,12 +182,14 @@ See "Project Summaries" section below for implementation.
 ### Step 4: Update Maturity & Verify
 
 **Update Workflow Maturity table** in `.claude/ACTIVE_CONTEXT.md`:
+
 - Set `workflow-optimization` to ✅
 - If Pyramid Summaries added (Option I): set to ✅
 - If Playwright scaffold exists: set `Scenario testing` to ✅
 - Update level based on count of ✅ components (1=Basic, 2=Structured, 3=Optimized, 4=Automated, 5=Full)
 
 **Verify:**
+
 - [ ] New files created
 - [ ] CHECKPOINTS.md updated (if applicable)
 - [ ] ACTIVE_CONTEXT.md < 15KB (if pruned)
@@ -232,12 +243,12 @@ See "Project Summaries" section below for implementation.
 
 Detect stack and generate relevant checklist:
 
-| Stack | Sections |
-|-------|----------|
+| Stack   | Sections                                                                                        |
+| ------- | ----------------------------------------------------------------------------------------------- |
 | FastAPI | Tests (pytest, mypy), Security (input validation, tenant isolation), Database (N+1, migrations) |
-| Expo | Tests (npm test, tsc), UI/UX (iOS/Android test, dark mode), i18n |
-| Nette | Templates (Latte syntax), Assets (Vite build), Security (XSS) |
-| Generic | Tests, Type safety, Manual test, Security basics |
+| Expo    | Tests (npm test, tsc), UI/UX (iOS/Android test, dark mode), i18n                                |
+| Nette   | Templates (Latte syntax), Assets (Vite build), Security (XSS)                                   |
+| Generic | Tests, Type safety, Manual test, Security basics                                                |
 
 ### ACTIVE_CONTEXT.md Format
 
@@ -250,11 +261,13 @@ Detect stack and generate relevant checklist:
 ---
 
 ## [MAJOR] 2026-01-05: Feature Name
+
 - **Impact:** Why this is major
 - **Files:** key files changed
 - **Commit:** hash
 
 ## [MINOR] 2026-01-04: Bug Fix
+
 - Brief description
 - **File:** single file if relevant
 
@@ -262,9 +275,9 @@ Detect stack and generate relevant checklist:
 
 ## Klíčová rozhodnutí
 
-| # | Rozhodnutí | Důvod |
-|---|------------|-------|
-| 1 | Decision | Why |
+| #   | Rozhodnutí | Důvod |
+| --- | ---------- | ----- |
+| 1   | Decision   | Why   |
 
 ---
 
@@ -282,6 +295,7 @@ Add to end of existing CHECKPOINTS.md:
 ## Before Session End - Mistakes Detection
 
 If during this session:
+
 - I apologized for an error
 - I had to revert/undo something
 - I made multiple attempts at the same thing
@@ -393,18 +407,29 @@ Add to `~/.claude/settings.json`:
 ```json
 {
   "hooks": {
-    "SessionStart": [{
-      "matcher": "startup",
-      "hooks": [
-        {"type": "command", "command": "bash ~/.claude/hooks/load-mistakes.sh"}
-      ]
-    }],
-    "PostToolUse": [{
-      "matcher": "Bash",
-      "hooks": [
-        {"type": "command", "command": "bash ~/.claude/hooks/after-commit.sh", "timeout": 5}
-      ]
-    }]
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/load-mistakes.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/after-commit.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -423,12 +448,12 @@ chmod +x ~/.claude/hooks/load-mistakes.sh
 
 ## Integration with Other Skills
 
-| Skill | Relationship |
-|-------|--------------|
-| `projectsetup` | Run first if no .claude/ exists |
-| `deep-review` | Use verification.md checklist |
-| `systematic-debugging` | Log fixes to mistakes.md |
-| `development-workflow` | Follow verification.md before commits |
+| Skill                  | Relationship                           |
+| ---------------------- | -------------------------------------- |
+| `projectsetup`         | Run first if no .claude/ exists        |
+| `deep-review`          | Use verification.md checklist          |
+| `systematic-debugging` | Log fixes to mistakes.md               |
+| `development-workflow` | Follow verification.md before commits  |
 | `build-error-resolver` | New agent for minimal-diff build fixes |
 
 ---
@@ -437,29 +462,33 @@ chmod +x ~/.claude/hooks/load-mistakes.sh
 
 Automatic code quality checks after every edit.
 
-| Hook | Trigger | What it does |
-|------|---------|--------------|
-| Auto-Prettier | Edit *.ts/tsx/js/jsx | Formats code automatically |
-| TypeScript check | Edit *.ts/tsx | Runs tsc --noEmit on file |
-| console.log warning | Edit *.ts/tsx/js/jsx | Warns about debug statements |
+| Hook                | Trigger               | What it does                 |
+| ------------------- | --------------------- | ---------------------------- |
+| Auto-Prettier       | Edit \*.ts/tsx/js/jsx | Formats code automatically   |
+| TypeScript check    | Edit \*.ts/tsx        | Runs tsc --noEmit on file    |
+| console.log warning | Edit \*.ts/tsx/js/jsx | Warns about debug statements |
 
 ### Implementation
 
 Add to `~/.claude/settings.json` under `hooks.PostToolUse`:
 
 **1. Auto-Prettier:**
+
 ```json
 {
   "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
-  "hooks": [{
-    "type": "command",
-    "command": "bash ~/.claude/hooks/auto-prettier.sh"
-  }],
+  "hooks": [
+    {
+      "type": "command",
+      "command": "bash ~/.claude/hooks/auto-prettier.sh"
+    }
+  ],
   "description": "Auto-format JS/TS files with Prettier"
 }
 ```
 
 **File:** `~/.claude/hooks/auto-prettier.sh`
+
 ```bash
 #!/bin/bash
 INPUT=$(cat)
@@ -471,18 +500,22 @@ echo "$INPUT"
 ```
 
 **2. TypeScript Check:**
+
 ```json
 {
   "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\"",
-  "hooks": [{
-    "type": "command",
-    "command": "bash ~/.claude/hooks/ts-check.sh"
-  }],
+  "hooks": [
+    {
+      "type": "command",
+      "command": "bash ~/.claude/hooks/ts-check.sh"
+    }
+  ],
   "description": "TypeScript check after editing .ts/.tsx"
 }
 ```
 
 **File:** `~/.claude/hooks/ts-check.sh`
+
 ```bash
 #!/bin/bash
 INPUT=$(cat)
@@ -497,18 +530,22 @@ echo "$INPUT"
 ```
 
 **3. console.log Warning:**
+
 ```json
 {
   "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
-  "hooks": [{
-    "type": "command",
-    "command": "bash ~/.claude/hooks/console-log-check.sh"
-  }],
+  "hooks": [
+    {
+      "type": "command",
+      "command": "bash ~/.claude/hooks/console-log-check.sh"
+    }
+  ],
   "description": "Warn about console.log statements"
 }
 ```
 
 **File:** `~/.claude/hooks/console-log-check.sh`
+
 ```bash
 #!/bin/bash
 INPUT=$(cat)
@@ -557,12 +594,15 @@ Analyze current session and extract patterns worth saving.
 **Context:** [When this applies]
 
 ### Problem
+
 [What problem this solves]
 
 ### Solution
+
 [The technique/workaround]
 
 ### Example
+
 [Code if applicable]
 
 3. Ask user to confirm
@@ -587,14 +627,22 @@ EOF
 ```
 
 Add to settings.json:
+
 ```json
 {
   "hooks": {
-    "SessionEnd": [{
-      "matcher": "*",
-      "hooks": [{"type": "command", "command": "bash ~/.claude/hooks/evaluate-session.sh"}],
-      "description": "Pattern extraction reminder"
-    }]
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/evaluate-session.sh"
+          }
+        ],
+        "description": "Pattern extraction reminder"
+      }
+    ]
   }
 }
 ```
@@ -643,10 +691,10 @@ Simple milestone system for tracking workflow progress.
 
 ## Typical Flow
 
-[Start]     -> /checkpoint create "feature-start"
+[Start] -> /checkpoint create "feature-start"
 [Implement] -> /checkpoint create "core-done"
-[Test]      -> /checkpoint verify "core-done"
-[PR]        -> /checkpoint verify "feature-start"
+[Test] -> /checkpoint verify "core-done"
+[PR] -> /checkpoint verify "feature-start"
 ```
 
 ### Implementation Script
@@ -737,6 +785,7 @@ Fix TypeScript and build errors quickly with smallest possible changes.
 ### Invocation
 
 Claude automatically uses when detecting build failures, or manually:
+
 ```
 Use build-error-resolver agent to fix these errors
 ```
@@ -772,6 +821,7 @@ ls -d src/ lib/ app/ packages/ modules/ 2>/dev/null
 **2. For existing projects (has source directories):**
 
 Generate draft `ARCHITECTURE.md` by scanning:
+
 - Directory structure (`find . -type d -maxdepth 2`)
 - Config files (package.json, tsconfig.json, etc.)
 - Main entry points (index.ts, main.py, app.ts, etc.)
@@ -784,8 +834,8 @@ Draft template for existing projects:
 
 ## Modules
 
-| Module | Purpose | Key Files |
-|--------|---------|-----------|
+| Module    | Purpose    | Key Files      |
+| --------- | ---------- | -------------- |
 | [scanned] | [inferred] | [entry points] |
 
 ## Dependencies
@@ -802,7 +852,7 @@ Draft template for existing projects:
 
 ---
 
-*Auto-generated by workflow-optimization. Review and adjust.*
+_Auto-generated by workflow-optimization. Review and adjust._
 ```
 
 Show to user: "Here's my draft ARCHITECTURE.md. Review and adjust?"
@@ -819,8 +869,8 @@ Create template:
 ## Modules
 
 | Module | Purpose | Key Files |
-|--------|---------|-----------|
-| | | |
+| ------ | ------- | --------- |
+|        |         |           |
 
 ## Dependencies
 
@@ -836,7 +886,7 @@ Create template:
 
 ---
 
-*Reminder: Update this file after implementing first feature.*
+_Reminder: Update this file after implementing first feature._
 ```
 
 **4. Module READMEs:**
@@ -847,16 +897,20 @@ For directories with 5+ files, recommend creating `README.md`:
 # [Module Name]
 
 ## Purpose
+
 [What this module does]
 
 ## Public API
+
 - `functionName()` - [description]
 - `ClassName` - [description]
 
 ## Dependencies
+
 - [other modules this depends on]
 
 ## Usage
+
 [Brief example]
 ```
 
@@ -874,8 +928,74 @@ If a new module/directory was created:
 
 ### Integration
 
-| Skill | Relationship |
-|-------|--------------|
-| `projectsetup` | Creates initial ARCHITECTURE.md template |
-| `development-workflow` | Phase 0 reads ARCHITECTURE.md first |
-| `session-context` | ARCHITECTURE.md provides orientation context |
+| Skill                  | Relationship                                 |
+| ---------------------- | -------------------------------------------- |
+| `projectsetup`         | Creates initial ARCHITECTURE.md template     |
+| `development-workflow` | Phase 0 reads ARCHITECTURE.md first          |
+| `session-context`      | ARCHITECTURE.md provides orientation context |
+
+---
+
+## Enforcement Hooks (Options J-O)
+
+Claude-pilot inspired hooks for automated workflow enforcement. Added 2026-02-14.
+
+### J) Stop Guard
+
+Plan-aware stop prevention. Modifies `~/.claude/hooks/stop-verify.sh`:
+
+- Before verification, checks for active plan with `in_progress` or `pending` status
+- If found: blocks stop, shows plan name + progress + next task
+- Escape hatch: second /stop within 60s forces approval
+- Sources `~/.claude/hooks/plan-utils.sh` for shared plan utilities
+
+### K) Context Monitor
+
+Tool call heuristic for context usage. Creates `~/.claude/hooks/context-monitor.sh`:
+
+- Tracks tool call count in `/tmp/claude-context-counter`
+- Thresholds: 120 (info), 170 (save context), 220 (critical)
+- Throttled: checks every 10 calls after 100
+- Registered on Bash, Edit, Write PostToolUse matchers
+
+### L) TDD Enforcer
+
+Missing test file detection. Creates `~/.claude/hooks/tdd-enforcer.sh`:
+
+- After Write/Edit of implementation file, checks for corresponding test file
+- Supports: Python, TypeScript, JavaScript, Dart, PHP, Go
+- Non-blocking: systemMessage reminder only
+- Session dedup: warns once per file per session
+
+### M) Plan Lifecycle
+
+YAML frontmatter for plan files:
+
+```yaml
+---
+status: pending | in_progress | complete | verified
+created: YYYY-MM-DD
+tasks_total: N
+tasks_done: N
+---
+```
+
+- `writing-plans` adds frontmatter at creation
+- `executing-plans` updates after each task
+- Stop guard and drift detection read status
+
+### N) Review Agents
+
+Three agents for structured review:
+
+- `~/.claude/agents/plan-challenger.md` — adversarial plan review (before implementation)
+- `~/.claude/agents/compliance-reviewer.md` — code vs plan compliance (after implementation)
+- `~/.claude/agents/quality-reviewer.md` — code quality + TDD (after implementation)
+
+### O) OS Notifications
+
+macOS/Linux native notifications. Creates `~/.claude/hooks/notify.sh`:
+
+- macOS: osascript with Glass sound
+- Linux: notify-send with paplay
+- Triggered at session end and after stop verification approval
