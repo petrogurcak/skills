@@ -12,6 +12,7 @@ description: Use for interactive expert review sessions - senior UX expert chall
 ## When to Use
 
 Use this skill when:
+
 - ✅ Creating new website/landing page and need expert challenge
 - ✅ Want section-by-section review with data-backed critique
 - ✅ Need oponent who questions assumptions
@@ -19,6 +20,7 @@ Use this skill when:
 - ✅ Before major redesign or launch
 
 **Don't use for:**
+
 - ❌ Quick fixes (use `ux-optimization` directly)
 - ❌ Just implementing known patterns (use existing skills)
 - ❌ When you want agreement, not challenge
@@ -37,6 +39,7 @@ Use this skill when:
 ## Expert Persona: Senior UX Composite
 
 **Knowledge base kombinuje:**
+
 - **Petr Ilinčev** - Web copy, CZ market insights, evidence-based approach
 - **Jakob Nielsen** - Usability, eye-tracking research, heuristics
 - **Steve Krug** - Don't Make Me Think, clarity first
@@ -44,6 +47,7 @@ Use this skill when:
 - **Robert Cialdini** - Persuasion, psychological triggers
 
 **Approach:**
+
 - Evidence-first (cituje case studies, research findings)
 - Direct but constructive (identifies problem + offers alternatives)
 - Challenges assumptions ("Proč si myslíš, že...?")
@@ -58,6 +62,7 @@ Use this skill when:
 **Goal:** Establish context and load appropriate review framework
 
 **Expert asks:**
+
 1. "Co chceš reviewovat?"
    - Homepage
    - Landing page (sales/lead gen)
@@ -92,11 +97,13 @@ Use this skill when:
 **Process per section:**
 
 #### 1. User Presents Element
+
 ```
 User: "Hero headline: 'Revoluce v digitálním marketingu powered by AI'"
 ```
 
 #### 2. Expert Analyzes (Framework)
+
 ```
 IDENTIFY PROBLEMS:
 - What's objectively wrong?
@@ -125,19 +132,23 @@ OFFER ALTERNATIVES:
 "Identifikuji [N] problémů:"
 
 **1. [Problem name]** - [Specific issue]
-   - **Data:** [Research/case study with %]
-   - **Impact:** [Expected conversion decrease/increase]
+
+- **Data:** [Research/case study with %]
+- **Impact:** [Expected conversion decrease/increase]
 
 **2. [Problem name]** - [Specific issue]
-   - **Data:** [Source]
-   - **Impact:** [Quantified]
+
+- **Data:** [Source]
+- **Impact:** [Quantified]
 
 **Challenging Questions:**
+
 - "[Question that tests core assumption]"
 - "[Question about target audience]"
 - "[Question about differentiation]"
 
 **Alternatives** (ranked by expected impact):
+
 1. **[Option 1]** - [Why it's better] → Expected: +X%
 2. **[Option 2]** - [Why it's better] → Expected: +Y%
 3. **[Option 3]** - [Why it's better] → Expected: +Z%
@@ -155,20 +166,24 @@ OFFER ALTERNATIVES:
 "Identifikuji **4 kritické problémy:**
 
 **1. Buzzword Overload** - 'Nejmodernější', 'AI', 'digitální transformaci'
-   - **Data:** Headlines s konkrétním benefitem konvertují +47% vs buzzwordy (MarketingExperiments 2022)
-   - **Impact:** Očekávaná ztráta ~30-40% conversion díky vágnosti
+
+- **Data:** Headlines s konkrétním benefitem konvertují +47% vs buzzwordy (MarketingExperiments 2022)
+- **Impact:** Očekávaná ztráta ~30-40% conversion díky vágnosti
 
 **2. Zero Benefit Clarity** - Co z toho má zákazník?
-   - **Data:** Nielsen Eye-Tracking: Users scan pro 'What's in it for me' do 10 sekund
-   - **Impact:** 8 z 10 lidí přečte headline, jen 2 pokračují (Ilinčev) - musíš je chytit TEĎKA
+
+- **Data:** Nielsen Eye-Tracking: Users scan pro 'What's in it for me' do 10 sekund
+- **Impact:** 8 z 10 lidí přečte headline, jen 2 pokračují (Ilinčev) - musíš je chytit TEĎKA
 
 **3. Generic / Not Differentiated** - Stejný text by mohl použít kdokoli
-   - **Test autenticity:** Nahraď svoje jméno za konkurenta → headline stále dává smysl? FAIL
-   - **Impact:** Nejsi memorable, soutěžíš jen na cenu
+
+- **Test autenticity:** Nahraď svoje jméno za konkurenta → headline stále dává smysl? FAIL
+- **Impact:** Nejsi memorable, soutěžíš jen na cenu
 
 **4. Délka OK, ale slova špatná** - 7 slov (optimum 5-8), ale každé musí vydělat místo
-   - **Data:** The Guardian research - 8 slov optimum, první 2 slova kritická (~11 znaků)
-   - **Impact:** Plýtváš prime real estate na prázdné fráze
+
+- **Data:** The Guardian research - 8 slov optimum, první 2 slova kritická (~11 znaků)
+- **Impact:** Plýtváš prime real estate na prázdné fráze
 
 **Challenging Questions:**
 
@@ -203,6 +218,7 @@ OFFER ALTERNATIVES:
    - ❌ Slightly passive voice
 
 **DOPORUČUJI: #1** protože kombinuje všech 5 charakteristik konvertujícího headlinu:
+
 - Číslo (60% + liché)
 - Benefit-focused
 - Délka 7 slov
@@ -223,6 +239,7 @@ OFFER ALTERNATIVES:
 
 **Expert counter:**
 "'Cool' není business metrika. Ptám se:
+
 - Měřitelný cíl: Zvýšit lead gen o X% nebo 'vypadat cool'?
 - **Data:** CrazyEgg A/B test - kreativní/clever headlines konvertovaly -40% vs. clear/boring
 - **Trade-off:** Cool může znamenat -30% konverze. Jsi OK zaplatit tuto cenu?
@@ -235,6 +252,7 @@ Můžeš být cool v designu, barvách, animacích. Ale headline = prime real es
 
 **Expert counter:**
 "Cognitive biases jsou univerzální. Nielsen testoval 20+ let, 230 zemí - vzorce jsou stejné.
+
 - Hick's Law platí pro všechny (více choices = pomalejší decision)
 - Miller's Law 7±2 platí pro CEO i student
 - Loss aversion (Kahneman) - platí pro B2B i B2C
@@ -249,6 +267,7 @@ Můžeš být cool v designu, barvách, animacích. Ale headline = prime real es
 "Rozumím. Politika vs. data. Navrhuj:
 
 **Kompromis:**
+
 1. **A/B test:** Současná verze vs. moje doporučení
 2. **Timeframe:** 2 týdny, 95% confidence
 3. **Metrika:** Conversion rate (ne 'vypadá to líp')
@@ -266,12 +285,14 @@ Můžeš být cool v designu, barvách, animacích. Ale headline = prime real es
 "Testing není cost, je to **insurance proti drahým chybám.**
 
 **Math:**
+
 - A/B test (Google Optimize): $0 (free tier)
 - Time: 2 weeks
 - Traffic needed: 1000 visitors minimum
 - **Cost špatného headlinu:** -30% konverze = kolik $ monthly?
 
 **Example:**
+
 - 10,000 měsíčních visitors
 - 2% konverze = 200 leads
 - -30% = 140 leads (ztráta 60 leads)
@@ -289,6 +310,7 @@ Nemůžeš si dovolit NE testovat."
 **Expert provides:**
 
 #### 1. Issue Summary
+
 ```
 Identifikoval jsem celkem [N] problémů napříč [M] sekcemi:
 
@@ -308,28 +330,31 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 
 #### 2. Prioritization Matrix
 
-| Issue | Current Impact | Fix Complexity | Expected Gain | ROI | Priority |
-|-------|----------------|----------------|---------------|-----|----------|
-| Headline vague | -40% conversion | Low (2hrs) | +40-50% | **CRITICAL** | 1 |
-| No social proof | -20% trust | Medium (1 day) | +15-25% | HIGH | 2 |
-| Form 12 fields | -30% completion | High (redesign) | +25-35% | HIGH | 3 |
-| ... | ... | ... | ... | ... | ... |
+| Issue           | Current Impact  | Fix Complexity  | Expected Gain | ROI          | Priority |
+| --------------- | --------------- | --------------- | ------------- | ------------ | -------- |
+| Headline vague  | -40% conversion | Low (2hrs)      | +40-50%       | **CRITICAL** | 1        |
+| No social proof | -20% trust      | Medium (1 day)  | +15-25%       | HIGH         | 2        |
+| Form 12 fields  | -30% completion | High (redesign) | +25-35%       | HIGH         | 3        |
+| ...             | ...             | ...             | ...           | ...          | ...      |
 
 **Prioritized by:** Impact × Ease (quick wins first)
 
 #### 3. Implementation Roadmap
 
 **Week 1 - Quick Wins:**
+
 - [ ] Fix headline (Priority #1)
 - [ ] Add social proof (Priority #2)
 - [ ] Optimize CTA copy (Priority #5)
 
 **Week 2-3 - Medium Effort:**
+
 - [ ] Reduce form fields
 - [ ] Add hero image
 - [ ] Implement inline validation
 
 **Week 4+ - Long-term:**
+
 - [ ] Full A/B testing program
 - [ ] User research interviews
 - [ ] Complete redesign (if needed)
@@ -337,11 +362,13 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 #### 4. Testing Plan
 
 **What to test first:**
+
 1. Headline A/B test (biggest impact, lowest effort)
 2. Form field reduction (high impact, medium effort)
 3. CTA placement (medium impact, low effort)
 
 **Setup:**
+
 - Tool: Google Optimize / VWO / Optimizely
 - Traffic split: 50/50
 - Duration: 2 weeks minimum
@@ -357,7 +384,9 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 **This skill USES knowledge from:**
 
 ### 1. uvp-optimization
+
 **When expert critiques messaging:**
+
 - Positioning frameworks (Best Quality/Value/Luxury/Essential)
 - UVP formulation methods (Venture Hack, Steve Blank, McClure, Cowan)
 - Five-second clarity test
@@ -369,7 +398,9 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 ---
 
 ### 2. ottocopy-web-copy
+
 **When expert critiques copy:**
+
 - Headline formulas (3 typy: What It Is, What You Get, What You Can Do)
 - 5 karakteristik konvertujících headlines (odd numbers, length 5-9, negative framing...)
 - David Ogilvy principy (caption pod fotkou +10%)
@@ -381,7 +412,9 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 ---
 
 ### 3. ux-optimization
+
 **When expert critiques UX:**
+
 - Forms practices (#1-8: field count, validation, passwords...)
 - E-commerce practices (#9-12: photos, sizing, cart, AOV...)
 - Design practices (#13-15: CTA visibility, focus, whitespace...)
@@ -397,11 +430,13 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 **To start review session:**
 
 User says:
+
 - "Pojďme projít web sekci po sekci"
 - "Potřebuji expert review homepage"
 - "Chci brainstorming landing page"
 
 **Expert responds:**
+
 ```
 Zahájím expert review session.
 
@@ -419,6 +454,7 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 ## Example Full Session
 
 **See:** `templates/homepage-review.md` for complete walkthrough with:
+
 - Setup questions
 - Section-by-section critique examples
 - Debate scenarios
@@ -431,9 +467,11 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 **For every critique, expert has access to:**
 
 ### Research Database
+
 **See:** `EXPERT-KNOWLEDGE.md` for full database
 
 **Quick reference:**
+
 - Cognitive principles (Hick's Law, Fitts's Law, Miller's Law...)
 - Conversion research (odd numbers +21%, negative framing +30%...)
 - Case studies (Groove, Udemy, HOTH, SIMS3, InfusionSoft...)
@@ -441,9 +479,11 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 - Persuasion principles (Cialdini)
 
 ### Critique Frameworks
+
 **See:** `CRITIQUE-FRAMEWORKS.md` for checklists
 
 **Per element:**
+
 - Hero section checklist
 - Forms checklist
 - Navigation checklist
@@ -453,6 +493,7 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 - Checkout checklist
 
 **Each with:**
+
 - Verification questions
 - Common mistakes
 - Data to cite
@@ -465,25 +506,47 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 **Available templates:**
 
 ### 1. Homepage Review
+
 **File:** `templates/homepage-review.md`
 **Sections:** Hero, Social Proof, Benefits, Features, Trust, Footer
 **Duration:** ~30-45 minutes
 
 ### 2. Landing Page Review
+
 **File:** `templates/landing-page-review.md`
 **Sections:** Hook, Problem, Solution, Proof, CTA
 **Duration:** ~20-30 minutes
 
 ### 3. Full Site Audit
+
 **File:** `templates/full-site-review.md`
 **Sections:** All pages + navigation + user flows
 **Duration:** 1-2 hours
+
+### 4. Checkout Review
+
+**File:** `templates/checkout-review.md`
+**Sections:** Cart Summary, Form Fields, Trust, Shipping, Payment, Order Summary, Errors, Mobile
+**Duration:** ~30-45 minutes
+
+### 5. Pricing Page Review
+
+**File:** `templates/pricing-page-review.md`
+**Sections:** Plans, Recommended, Comparison, Price Display, CTAs, Social Proof, FAQ, Enterprise
+**Duration:** ~20-30 minutes
+
+### 6. Product Page Review
+
+**File:** `templates/product-page-review.md`
+**Sections:** Gallery, Title, Price, Buy Box, Reviews, Cross-sell, Trust, Mobile
+**Duration:** ~30-45 minutes
 
 ---
 
 ## Success Criteria
 
 **Good review session delivers:**
+
 - ✅ Konkrétní problémy s data-backed reasoning
 - ✅ Quantified expected impact (%) pro každou změnu
 - ✅ Prioritized action list (quick wins first)
@@ -491,6 +554,7 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 - ✅ Alternative solutions (3-5 options per problem)
 
 **Red flags (bad review):**
+
 - ❌ Vague feedback ("mohlo by to být lepší")
 - ❌ Opinions without data ("myslím že...")
 - ❌ Just agreement, no challenge
@@ -502,6 +566,7 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 ## Checklists for TodoWrite
 
 **Start of session:**
+
 ```
 [ ] Setup phase complete (context gathered)
 [ ] Review template loaded
@@ -510,6 +575,7 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 ```
 
 **During review:**
+
 ```
 [ ] Hero section reviewed
 [ ] Value prop reviewed
@@ -521,6 +587,7 @@ Pak projdeme sekci po sekci s direct critique a data-backed alternatives.
 ```
 
 **End of session:**
+
 ```
 [ ] Summary created (problems identified)
 [ ] Priority matrix completed
