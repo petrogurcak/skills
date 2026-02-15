@@ -154,20 +154,25 @@ After saving the plan:
 
    - Presents structured findings (CRITICAL / WARNING / INFO)
    - CRITICAL findings must be addressed before proceeding
+   - **After addressing findings, update the plan file**
 
-3. **Announce:** "Plan uložen. Pouštím deep review."
-4. **Run `review:deep-review`** on the plan file
+3. **Ask user:** "Plan-challenger hotovy. Chces pustit i deep review? (Doporuceno — challenger hleda strategicke diry, deep-review technicke problemy.)"
+   - **If yes** → continue to step 4
+   - **If no** → skip to step 7
+
+4. **Announce:** "Pouštím deep review."
+5. **Run `review:deep-review`** on the plan file
    - Architecture consistency
    - Missing error handling / edge cases
    - Security concerns
    - Task ordering and dependencies
    - Missing tests or test scenarios
-5. **Present review findings** to user
-6. **Incorporate feedback** - update the plan file with agreed changes
+6. **Present review findings** to user, incorporate feedback, update plan
+
 7. **User confirms:** "Plan je OK, jdeme implementovat"
 8. **Update plan status** to `in_progress` when user confirms
 
-**Exit Phase 3 when:** User confirms the reviewed plan.
+**Exit Phase 3 when:** Plan-challenger done + optional deep-review done + user confirms.
 
 ---
 

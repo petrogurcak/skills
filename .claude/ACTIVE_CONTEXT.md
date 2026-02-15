@@ -2,16 +2,25 @@
 
 ## Poslední session
 
-- **Datum:** 2026-02-11
+- **Datum:** 2026-02-14
 - **Branch:** main
 - **Dokončeno:**
-  - **Nový skill `development:planning`** - 7-fázový planning workflow (explore → plan → review → execute → verify → merge → wrapup)
-  - **3 post-execution skills:** `development:verify`, `development:merge`, `development:wrapup`
-  - **2 nové hooky:** drift-detection (varuje při odchýlení od plánu), auto-capture-corrections (detekuje retry/revert patterny)
-  - **Prošli jsme celý workflow flow** od session start po session end
-  - Vše nainstalováno: cache + Cowork symlink + settings.json
+  - **Claude-pilot inspired enforcement hooks** (inspirace z maxritter/claude-pilot)
+  - **4 nové hook skripty** v `~/.claude/hooks/`:
+    - `plan-utils.sh` — shared utilities pro plan-aware hooks
+    - `context-monitor.sh` — tool call tracking (120/170/220 thresholds)
+    - `tdd-enforcer.sh` — detekce chybějících testů po Write/Edit
+    - `notify.sh` — macOS notifikace (osascript + Glass sound)
+  - **2 upravené hooky**: `stop-verify.sh` (plan-aware stop guard), `drift-detection.sh` (plan-utils integrace)
+  - **3 noví agenti** v `~/.claude/agents/`:
+    - `plan-challenger.md` — adversarial plan review
+    - `compliance-reviewer.md` — kód vs plán
+    - `quality-reviewer.md` — kvalita kódu + TDD
+  - **3 updatnuté skills**: planning (YAML frontmatter lifecycle), development-workflow (dual review), workflow-optimization (options J-O)
+  - **settings.json** updatnutý s novými hooky (12 PostToolUse, 4 SessionEnd)
+  - Commit `4ad7027`, pushed + cache updatnutý
 - **Rozděláno:** Žádné
-- **Další krok:** Otestovat kompletní flow na reálném projektu
+- **Další krok:** Žádný specifický
 
 ## Otevřené otázky
 
@@ -19,17 +28,9 @@
 
 ## Poznámky pro další session
 
-- Kompletní development flow:
-  ```
-  /development:planning  → Phase 1-4 (explore, plan, review, execution handoff)
-  ... exekuce ...
-  /development:verify    → Phase 5 (testy, build, lint, plan checklist)
-  /development:merge     → Phase 6 (commit, merge do development, cleanup)
-  /development:wrapup    → Phase 7 (context, mistakes, lessons, docs)
-  ```
-- Planning NEVOLÁ finishing-a-development-branch (Petr nedělá PR)
-- Plán má v hlavičce post-execution instrukce pro execution skills
-- Pro menší tasky bez plánu stačí globální hooky
-- Doménové skills (UX, copywriting) se volají ručně PŘED `/development:planning`
-- 13 globálních hooků aktivních (včetně nových drift-detection + auto-capture-corrections)
-- Commits: `f3bdabb` (planning skill), `d4d3b1d` (verify/merge/wrapup skills)
+- Hooks jsou mimo git repo (~/.claude/hooks/) — spravovat ručně
+- Plan lifecycle: pending → in_progress → complete → verified (YAML frontmatter)
+- Deep review odhalil 4 CRITICAL + 7 WARNING bugů PŘED implementací — všechny opraveny
+- Klíčový fix: `status` je readonly v zsh → přejmenováno na `plan_status`
+- Context monitor funguje přes /tmp/claude-context-counter (static path, bez PID)
+- Stop guard escape hatch: dvojitý stop do 60s → approve
