@@ -156,17 +156,18 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 
 **Poznámka:** UUID se může změnit. Pokud skills v Cowork zmizí, najdi novou cestu a znovu vytvoř symlinky.
 
-## 7 pluginů (37 skills)
+## 8 pluginů (43 skills)
 
-| Plugin          | Skills | Popis                                             |
-| --------------- | ------ | ------------------------------------------------- |
-| **seo**         | 4      | SEO, technical SEO, keyword research, ASO         |
-| **growth**      | 3      | Growth hacking, PLG, SaaS bootstrap               |
-| **marketing**   | 5      | Orchestrator, offers, UVP, analytics, pricing     |
-| **copywriting** | 6      | OttoCopy framework, web/product copy, newsletters |
-| **development** | 12     | Flutter, Expo, FastAPI, frontend workflows        |
-| **review**      | 4      | Deep review, API/database/security review         |
-| **ux**          | 3      | UX orchestrator, optimization, expert dialogue    |
+| Plugin          | Skills | Popis                                                           |
+| --------------- | ------ | --------------------------------------------------------------- |
+| **seo**         | 4      | SEO, technical SEO, keyword research, ASO                       |
+| **growth**      | 3      | Growth hacking, PLG, SaaS bootstrap                             |
+| **marketing**   | 5      | Orchestrator, offers, UVP, analytics, pricing                   |
+| **copywriting** | 6      | OttoCopy framework, web/product copy, newsletters               |
+| **development** | 12     | Flutter, Expo, FastAPI, frontend workflows                      |
+| **review**      | 4      | Deep review, API/database/security review                       |
+| **ux**          | 3      | UX orchestrator, optimization, expert dialogue                  |
+| **product**     | 6      | Orchestrator, discovery, prioritization, strategy, PMF, metrics |
 
 ## SKILL.md formát
 

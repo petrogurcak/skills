@@ -27,6 +27,11 @@
       "category": "development"
     },
     { "name": "ux", "source": "./plugins/ux", "category": "design" },
-    { "name": "branding", "source": "./plugins/branding", "category": "design" }
+    {
+      "name": "branding",
+      "source": "./plugins/branding",
+      "category": "design"
+    },
+    { "name": "product", "source": "./plugins/product", "category": "product" }
   ]
 }

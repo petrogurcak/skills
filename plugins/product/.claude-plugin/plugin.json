@@ -1,0 +1,8 @@
+{
+  "name": "product",
+  "version": "1.0.0",
+  "description": "Product management skills - strategy, discovery, prioritization, metrics, product-market fit",
+  "author": {"name": "Petr"},
+  "keywords": ["product-management", "pm", "discovery", "prioritization", "strategy", "metrics", "pmf"],
+  "skills": "./skills/"
+}
