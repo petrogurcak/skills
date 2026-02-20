@@ -6,6 +6,7 @@ description: Use when researching keywords for SEO, content strategy, or new pro
 # Keyword Research
 
 **When to use this skill:**
+
 - Starting new website/project and need keyword strategy
 - Planning content calendar based on search demand
 - Finding low-competition opportunities (quick wins)
@@ -13,37 +14,38 @@ description: Use when researching keywords for SEO, content strategy, or new pro
 - Building topic clusters for SEO
 
 **When NOT to use:**
+
 - Already have keywords, need to optimize page → use `seo-optimization`
-- Writing content → use `ottocopy-web-copy`
+- Writing content → use `web-copy`
 - Setting up analytics → use `analytics-setup`
 
 ---
 
 ## Quick Router
 
-| User says... | Go to... |
-|--------------|----------|
-| "najdi klíčová slova", "keyword ideas" | Phase 1: Discovery |
-| "long-tail keywords", "rozšíř seznam" | Phase 2: Expansion |
-| "difficulty", "volume", "analyzuj" | Phase 3: Analysis |
+| User says...                            | Go to...                |
+| --------------------------------------- | ----------------------- |
+| "najdi klíčová slova", "keyword ideas"  | Phase 1: Discovery      |
+| "long-tail keywords", "rozšíř seznam"   | Phase 2: Expansion      |
+| "difficulty", "volume", "analyzuj"      | Phase 3: Analysis       |
 | "prioritizuj", "quick wins", "co cílit" | Phase 4: Prioritization |
-| "kompletní keyword research" | All phases sequentially |
+| "kompletní keyword research"            | All phases sequentially |
 
 ---
 
 ## Free Tools Stack
 
-| Nástroj | Účel | Limit | URL |
-|---------|------|-------|-----|
-| **Google Keyword Planner** | Volume, competition | Unlimited* | [ads.google.com/keyword-planner](https://ads.google.com/home/tools/keyword-planner/) |
-| **Ubersuggest** | Volume, difficulty, ideas | 3/den | [neilpatel.com/ubersuggest](https://neilpatel.com/ubersuggest/) |
-| **AlsoAsked** | PAA questions, mind maps | 3/den | [alsoasked.com](https://alsoasked.com/) |
-| **Google Trends** | Seasonality, trends | Unlimited | [trends.google.com](https://trends.google.com/) |
-| **AnswerThePublic** | Question keywords | 3/den | [answerthepublic.com](https://answerthepublic.com/) |
-| **Google Search Console** | Existing rankings | Unlimited | [search.google.com/search-console](https://search.google.com/search-console) |
-| **Keywords Everywhere** | Chrome extension | $10/rok | [keywordseverywhere.com](https://keywordseverywhere.com/) |
+| Nástroj                    | Účel                      | Limit       | URL                                                                                  |
+| -------------------------- | ------------------------- | ----------- | ------------------------------------------------------------------------------------ |
+| **Google Keyword Planner** | Volume, competition       | Unlimited\* | [ads.google.com/keyword-planner](https://ads.google.com/home/tools/keyword-planner/) |
+| **Ubersuggest**            | Volume, difficulty, ideas | 3/den       | [neilpatel.com/ubersuggest](https://neilpatel.com/ubersuggest/)                      |
+| **AlsoAsked**              | PAA questions, mind maps  | 3/den       | [alsoasked.com](https://alsoasked.com/)                                              |
+| **Google Trends**          | Seasonality, trends       | Unlimited   | [trends.google.com](https://trends.google.com/)                                      |
+| **AnswerThePublic**        | Question keywords         | 3/den       | [answerthepublic.com](https://answerthepublic.com/)                                  |
+| **Google Search Console**  | Existing rankings         | Unlimited   | [search.google.com/search-console](https://search.google.com/search-console)         |
+| **Keywords Everywhere**    | Chrome extension          | $10/rok     | [keywordseverywhere.com](https://keywordseverywhere.com/)                            |
 
-*Vyžaduje Google Ads účet (nemusíš utratit peníze)
+\*Vyžaduje Google Ads účet (nemusíš utratit peníze)
 
 **Tip:** Kombinuj nástroje - žádný free tool nedá kompletní obraz.
 
@@ -52,11 +54,13 @@ description: Use when researching keywords for SEO, content strategy, or new pro
 ## Phase 1: Discovery (Seed Keywords)
 
 ### Cíl
+
 Vytvořit počáteční seznam 20-50 seed keywords.
 
 ### Metody
 
 **1.1 Brain Dump**
+
 ```
 Odpověz na tyto otázky:
 - Co prodáváš/nabízíš?
@@ -67,6 +71,7 @@ Odpověz na tyto otázky:
 ```
 
 **1.2 Competitor Mining**
+
 ```
 1. Najdi 3-5 konkurentů v Google
 2. Podívej se na jejich:
@@ -78,6 +83,7 @@ Odpověz na tyto otázky:
 ```
 
 **1.3 Google Autocomplete**
+
 ```
 1. Zadej seed keyword do Google
 2. Zapiš všechny autocomplete suggestions
@@ -87,6 +93,7 @@ Odpověz na tyto otázky:
 ```
 
 **1.4 Google "Related Searches"**
+
 ```
 1. Vyhledej seed keyword
 2. Scrolluj na konec SERP
@@ -94,6 +101,7 @@ Odpověz na tyto otázky:
 ```
 
 **1.5 People Also Ask (PAA)**
+
 ```
 1. Vyhledej seed keyword
 2. Rozbal PAA boxy
@@ -102,6 +110,7 @@ Odpověz na tyto otázky:
 ```
 
 ### Output Phase 1
+
 - [ ] 20-50 seed keywords v spreadsheet
 - [ ] Kategorizované podle tématu
 
@@ -110,11 +119,13 @@ Odpověz na tyto otázky:
 ## Phase 2: Expansion (Long-tail & LSI)
 
 ### Cíl
+
 Rozšířit seed keywords na 100-500+ variant.
 
 ### Metody
 
 **2.1 Ubersuggest Expansion**
+
 ```
 1. Jdi na neilpatel.com/ubersuggest
 2. Zadej seed keyword
@@ -124,6 +135,7 @@ Rozšířit seed keywords na 100-500+ variant.
 ```
 
 **2.2 AlsoAsked Mind Maps**
+
 ```
 1. Jdi na alsoasked.com
 2. Zadej seed keyword
@@ -132,6 +144,7 @@ Rozšířit seed keywords na 100-500+ variant.
 ```
 
 **2.3 AnswerThePublic**
+
 ```
 1. Jdi na answerthepublic.com
 2. Zadej seed keyword
@@ -143,6 +156,7 @@ Rozšířit seed keywords na 100-500+ variant.
 ```
 
 **2.4 Google Keyword Planner**
+
 ```
 1. Jdi do Google Ads → Keyword Planner
 2. "Discover new keywords"
@@ -152,6 +166,7 @@ Rozšířit seed keywords na 100-500+ variant.
 ```
 
 **2.5 Search Console (existing site)**
+
 ```
 1. Performance → Search results
 2. Export všechny queries
@@ -160,6 +175,7 @@ Rozšířit seed keywords na 100-500+ variant.
 ```
 
 ### Output Phase 2
+
 - [ ] 100-500 keywords v spreadsheet
 - [ ] Zahrnuje long-tail varianty
 - [ ] Zahrnuje question keywords
@@ -169,28 +185,30 @@ Rozšířit seed keywords na 100-500+ variant.
 ## Phase 3: Analysis (Metrics)
 
 ### Cíl
+
 Obohatit keywords o metriky pro prioritizaci.
 
 ### Klíčové metriky
 
-| Metrika | Co znamená | Ideální hodnota |
-|---------|------------|-----------------|
-| **Search Volume** | Měsíční hledanost | 100-10,000 (záleží na niche) |
-| **Keyword Difficulty** | Obtížnost rankování | <30 pro quick wins |
-| **CPC** | Cena za klik (indikátor hodnoty) | Vyšší = hodnotnější |
-| **Search Intent** | Záměr uživatele | Match s tvým obsahem |
-| **Trend** | Roste/klesá? | Stabilní nebo rostoucí |
+| Metrika                | Co znamená                       | Ideální hodnota              |
+| ---------------------- | -------------------------------- | ---------------------------- |
+| **Search Volume**      | Měsíční hledanost                | 100-10,000 (záleží na niche) |
+| **Keyword Difficulty** | Obtížnost rankování              | <30 pro quick wins           |
+| **CPC**                | Cena za klik (indikátor hodnoty) | Vyšší = hodnotnější          |
+| **Search Intent**      | Záměr uživatele                  | Match s tvým obsahem         |
+| **Trend**              | Roste/klesá?                     | Stabilní nebo rostoucí       |
 
 ### Search Intent Types
 
-| Intent | Popis | Příklad | Typ obsahu |
-|--------|-------|---------|------------|
-| **Informational** | Chce vědět | "jak vařit rýži" | Blog, guide |
-| **Navigational** | Hledá web | "facebook login" | Homepage |
-| **Commercial** | Zkoumá před nákupem | "nejlepší notebooky 2025" | Comparison, review |
-| **Transactional** | Chce koupit | "koupit iPhone 15" | Product page |
+| Intent            | Popis               | Příklad                   | Typ obsahu         |
+| ----------------- | ------------------- | ------------------------- | ------------------ |
+| **Informational** | Chce vědět          | "jak vařit rýži"          | Blog, guide        |
+| **Navigational**  | Hledá web           | "facebook login"          | Homepage           |
+| **Commercial**    | Zkoumá před nákupem | "nejlepší notebooky 2025" | Comparison, review |
+| **Transactional** | Chce koupit         | "koupit iPhone 15"        | Product page       |
 
 ### Analýza v Ubersuggest
+
 ```
 Pro každý keyword zjisti:
 1. Search Volume (SV)
@@ -202,6 +220,7 @@ Zapiš do spreadsheet.
 ```
 
 ### SERP Analysis
+
 ```
 Pro top 20 keywords:
 1. Vyhledej v Google
@@ -213,6 +232,7 @@ Pro top 20 keywords:
 ```
 
 ### Google Trends Validation
+
 ```
 1. Zadej keyword do Google Trends
 2. Nastav období na 12 měsíců
@@ -223,6 +243,7 @@ Pro top 20 keywords:
 ```
 
 ### Output Phase 3
+
 - [ ] Spreadsheet s metrikami pro každý keyword
 - [ ] Search intent určen
 - [ ] SERP analysis pro top keywords
@@ -232,6 +253,7 @@ Pro top 20 keywords:
 ## Phase 4: Prioritization
 
 ### Cíl
+
 Vybrat keywords pro první vlnu obsahu.
 
 ### Opportunity Score Formula
@@ -244,12 +266,12 @@ Vysoké skóre = priorita
 
 ### Prioritization Matrix
 
-| Kategorie | Volume | Difficulty | Akce |
-|-----------|--------|------------|------|
-| **Quick Wins** | 100-1000 | <30 | ✅ Okamžitě |
-| **Strategic** | 1000+ | 30-60 | 📅 Plánuj |
-| **Long-term** | 5000+ | 60+ | 🎯 S backlinking |
-| **Skip** | <50 | Any | ❌ Ignoruj |
+| Kategorie      | Volume   | Difficulty | Akce             |
+| -------------- | -------- | ---------- | ---------------- |
+| **Quick Wins** | 100-1000 | <30        | ✅ Okamžitě      |
+| **Strategic**  | 1000+    | 30-60      | 📅 Plánuj        |
+| **Long-term**  | 5000+    | 60+        | 🎯 S backlinking |
+| **Skip**       | <50      | Any        | ❌ Ignoruj       |
 
 ### Content Clustering
 
@@ -279,11 +301,11 @@ Vysoké skóre = priorita
 
 ### Keyword Research Spreadsheet
 
-| Keyword | Volume | Difficulty | CPC | Intent | Cluster | Priority |
-|---------|--------|------------|-----|--------|---------|----------|
-| best vegetarian recipes | 5400 | 42 | $0.80 | Info | Recipes | Strategic |
-| easy vegetarian dinner | 1900 | 28 | $0.65 | Info | Recipes | Quick Win |
-| vegetarian meal prep | 880 | 25 | $0.70 | Info | Meal Prep | Quick Win |
+| Keyword                 | Volume | Difficulty | CPC   | Intent | Cluster   | Priority  |
+| ----------------------- | ------ | ---------- | ----- | ------ | --------- | --------- |
+| best vegetarian recipes | 5400   | 42         | $0.80 | Info   | Recipes   | Strategic |
+| easy vegetarian dinner  | 1900   | 28         | $0.65 | Info   | Recipes   | Quick Win |
+| vegetarian meal prep    | 880    | 25         | $0.70 | Info   | Meal Prep | Quick Win |
 
 ### Topic Cluster Map
 
@@ -307,22 +329,22 @@ PILLAR: "Vegetarian Diet Guide"
 
 ### Keyboard Shortcuts (Google)
 
-| Akce | Shortcut |
-|------|----------|
-| Autocomplete bypass | Keyword + space před Enter |
-| Exact match search | "keyword v uvozovkách" |
-| Exclude term | keyword -exclude |
-| Site-specific | site:competitor.com keyword |
+| Akce                | Shortcut                    |
+| ------------------- | --------------------------- |
+| Autocomplete bypass | Keyword + space před Enter  |
+| Exact match search  | "keyword v uvozovkách"      |
+| Exclude term        | keyword -exclude            |
+| Site-specific       | site:competitor.com keyword |
 
 ### Difficulty Benchmarks
 
-| Difficulty Score | Interpretace |
-|------------------|--------------|
-| 0-20 | Velmi snadné - můžeš rankovat rychle |
-| 21-40 | Snadné - solidní šance |
-| 41-60 | Střední - potřebuješ kvalitní obsah + odkazy |
-| 61-80 | Těžké - potřebuješ autoritu |
-| 81-100 | Velmi těžké - velké brandy dominují |
+| Difficulty Score | Interpretace                                 |
+| ---------------- | -------------------------------------------- |
+| 0-20             | Velmi snadné - můžeš rankovat rychle         |
+| 21-40            | Snadné - solidní šance                       |
+| 41-60            | Střední - potřebuješ kvalitní obsah + odkazy |
+| 61-80            | Těžké - potřebuješ autoritu                  |
+| 81-100           | Velmi těžké - velké brandy dominují          |
 
 ---
 
@@ -340,7 +362,7 @@ PILLAR: "Vegetarian Diet Guide"
 ## Integration
 
 - **Po keyword research:** `seo-optimization` pro on-page SEO
-- **Pro psaní obsahu:** `ottocopy-web-copy`
+- **Pro psaní obsahu:** `web-copy`
 - **Pro měření výsledků:** `analytics-setup` + Google Search Console
 
 ---

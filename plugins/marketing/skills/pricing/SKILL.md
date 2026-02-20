@@ -21,6 +21,7 @@ This skill provides a systematic framework for pricing strategy based on Dima Me
 ## When to Use
 
 **USE this skill:**
+
 - Designing or optimizing pricing pages
 - Creating price comparison tables
 - Planning price increase for existing customers
@@ -29,8 +30,9 @@ This skill provides a systematic framework for pricing strategy based on Dima Me
 - Auditing pricing presentation
 
 **DON'T use this skill:**
+
 - Product positioning (use UVP skill)
-- General copywriting (use ottocopy)
+- General copywriting (use copywriting-orchestrator)
 - Financial/accounting decisions
 
 ---
@@ -39,12 +41,12 @@ This skill provides a systematic framework for pricing strategy based on Dima Me
 
 ### Step 1: Detect Pricing Task Type
 
-| Keywords in Request | Detected Type | Go To |
-|---------------------|---------------|-------|
-| `price increase`, `raise prices`, `zvýšení cen`, `zdražení` | Price Increase | Phase A |
-| `pricing page`, `ceník`, `balíčky`, `tiers`, `packages` | Price Offer Design | Phase B |
-| `price table`, `comparison`, `srovnání cen` | Price Offer Design | Phase B |
-| `price email`, `announcement`, `oznámení` | Price Increase | Phase A |
+| Keywords in Request                                         | Detected Type      | Go To   |
+| ----------------------------------------------------------- | ------------------ | ------- |
+| `price increase`, `raise prices`, `zvýšení cen`, `zdražení` | Price Increase     | Phase A |
+| `pricing page`, `ceník`, `balíčky`, `tiers`, `packages`     | Price Offer Design | Phase B |
+| `price table`, `comparison`, `srovnání cen`                 | Price Offer Design | Phase B |
+| `price email`, `announcement`, `oznámení`                   | Price Increase     | Phase A |
 
 ### Step 2: If Unclear, Ask
 
@@ -85,11 +87,11 @@ C) Both - Full pricing strategy
 
 **Migration Table Template:**
 
-| Segment | Old Price | New Price | % Increase | Migration Date |
-|---------|-----------|-----------|------------|----------------|
-| Basic | $29/mo | $39/mo | +34% | Wave 1 |
-| Pro | $99/mo | $129/mo | +30% | Wave 2 |
-| Enterprise | Custom | Custom | +20% | Wave 3 |
+| Segment    | Old Price | New Price | % Increase | Migration Date |
+| ---------- | --------- | --------- | ---------- | -------------- |
+| Basic      | $29/mo    | $39/mo    | +34%       | Wave 1         |
+| Pro        | $99/mo    | $129/mo   | +30%       | Wave 2         |
+| Enterprise | Custom    | Custom    | +20%       | Wave 3         |
 
 **Key insight:** Pokud zákazníci měnili tier (např. Basic→Pro), zahrň je do "old tier" kategorie pro nižší šok.
 
@@ -99,12 +101,14 @@ C) Both - Full pricing strategy
 - [ ] Apply "Loyalty Discount" messaging
 
 **Formula:**
+
 ```
 Loyalty Discount = Years as customer × 5%
 Max discount: 25%
 ```
 
 **Messaging:**
+
 > "Jako zákazník od roku 2021 máte nárok na slevu 15% na novou cenu."
 
 ### Step PI-3: Psychological Price Borders
@@ -115,6 +119,7 @@ Max discount: 25%
 **Borders:** $10, $50, $100, $500, $1000
 
 **Example:**
+
 - ❌ $99 → $110 (crosses $100 border = psychological shock)
 - ✅ $99 → $99 (hold price, increase value)
 - ✅ $99 → $109 (stays below $110 perceived border)
@@ -134,6 +139,7 @@ Max discount: 25%
 - [ ] Monitor churn after each wave before proceeding
 
 **Wave Order:**
+
 1. Smallest/newest customers
 2. Mid-tier customers
 3. Largest/oldest customers (most careful)
@@ -145,10 +151,10 @@ Max discount: 25%
 
 **Subject Line Examples:**
 
-| ❌ Bad | ✅ Good |
-|--------|---------|
-| Price Increase Notice | What's New at [Company] |
-| Important Pricing Update | Your Exclusive Loyalty Reward |
+| ❌ Bad                      | ✅ Good                               |
+| --------------------------- | ------------------------------------- |
+| Price Increase Notice       | What's New at [Company]               |
+| Important Pricing Update    | Your Exclusive Loyalty Reward         |
 | Your Plan Price is Changing | Exciting Updates + Your Special Offer |
 
 ### Step PI-7: Calm Down (List Improvements)
@@ -158,6 +164,7 @@ Max discount: 25%
 - [ ] Lead with most impressive improvement
 
 **Template:**
+
 ```
 Za poslední rok jsme přidali:
 • Feature A - ušetří vám 3 hodiny týdně
@@ -173,6 +180,7 @@ Za poslední rok jsme přidali:
 - [ ] Bundle new features with price increase
 
 **Options:**
+
 1. **Hold price, add value** - Keep $99, add 2 new features
 2. **Raise price, add value** - $129 includes Premium Support
 3. **Create new tier** - New "Pro Plus" at $149, keep old tier
@@ -183,6 +191,7 @@ Za poslední rok jsme přidali:
 - [ ] Show usage stats if impressive
 
 **Examples:**
+
 > "147 firem z Fortune 500 používá náš produkt"
 > "Průměrná úspora: 12 hodin/týden"
 > "98% zákazníků by nás doporučilo"
@@ -193,6 +202,7 @@ Za poslední rok jsme přidali:
 - [ ] Create urgency for early action
 
 **Messaging:**
+
 > "Nová cena platí od 1. března. Do 31. ledna si můžete předplatit celý rok za starou cenu."
 
 ---
@@ -206,6 +216,7 @@ Za poslední rok jsme přidali:
 ### The 18 Price Offer Tactics
 
 **Structure (Tactics 1-7):**
+
 ```
 ┌─────────────────────────────────────────────┐
 │  1. Segment-Specific Offers                 │
@@ -219,6 +230,7 @@ Za poslední rok jsme přidali:
 ```
 
 **Presentation (Tactics 8-15):**
+
 ```
 ┌─────────────────────────────────────────────┐
 │  8. No-Brainer Smart Choice                 │
@@ -233,6 +245,7 @@ Za poslední rok jsme přidali:
 ```
 
 **Conversion (Tactics 16-18):**
+
 ```
 ┌─────────────────────────────────────────────┐
 │  16. Minimize Perceived Cost                │
@@ -249,6 +262,7 @@ Za poslední rok jsme přidali:
 - [ ] Each segment sees most relevant package first
 
 **Example:**
+
 - Freelancers → Solo plan highlighted
 - Agencies → Team plan highlighted
 - Enterprise → Custom plan highlighted
@@ -267,9 +281,9 @@ Za poslední rok jsme přidali:
 
 **Optimal:** 3 tiers (Good-Better-Best)
 
-| ❌ Bad | ✅ Good |
-|--------|---------|
-| 6+ packages | 3 packages |
+| ❌ Bad           | ✅ Good           |
+| ---------------- | ----------------- |
+| 6+ packages      | 3 packages        |
 | Too many choices | Clear progression |
 
 ### Tactic PO-4: Hide Cheap Option
@@ -316,6 +330,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Use "Most Popular" or "Best Value" badge
 
 **Messaging:**
+
 > "Nejoblíbenější volba"
 > "Doporučujeme"
 > "Best Value - Save 40%"
@@ -326,6 +341,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] End in 9 or 7
 
 **Price Points:**
+
 - $9, $19, $29, $49, $99, $199, $499
 - NOT $10, $20, $30, $50, $100, $200, $500
 
@@ -335,6 +351,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Lead with most impressive benefit
 
 **Order:**
+
 1. Most impactful feature
 2. Second most impactful
 3. Basic features last
@@ -363,6 +380,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Focus on outcome, not features
 
 **Example:**
+
 - Solo: "For freelancers who want to save 5 hours/week"
 - Team: "For growing teams who need collaboration"
 - Agency: "For agencies managing 10+ clients"
@@ -373,6 +391,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Creates reference point
 
 **Examples:**
+
 > "Value: $2,400/year → Your price: $499/year"
 > "Ušetříte 12 000 Kč ročně"
 > "Průměrná úspora: $15,000/year"
@@ -383,6 +402,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Larger box, different color, badge
 
 **Techniques:**
+
 - Larger card size
 - Different background color
 - "Popular" badge
@@ -394,6 +414,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Compare to daily cost of coffee
 
 **Reframing:**
+
 - ❌ "$588/year"
 - ✅ "$49/month (billed annually)"
 - ✅ "Less than $2/day"
@@ -405,6 +426,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Place near pricing section
 
 **Selection criteria:**
+
 1. Most recognizable brands
 2. Same industry as target customer
 3. Aspirational companies
@@ -415,6 +437,7 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 - [ ] Low-cost, high-margin items
 
 **Examples:**
+
 - Priority support (+$29/mo)
 - Extra users (+$15/user)
 - White-label (+$99/mo)
@@ -426,41 +449,41 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 
 ### Price Increase Tactics Summary
 
-| # | Tactic | Core Principle | Expected Impact |
-|---|--------|----------------|-----------------|
-| PI-1 | Game Plan | Segment customers, plan migration | Foundation |
-| PI-2 | Personalized Discount | Tenure-based loyalty rewards | -20% churn |
-| PI-3 | Psychological Borders | Stay below $X00 thresholds | -15% resistance |
-| PI-4 | Test First | New customers test new prices | Risk reduction |
-| PI-5 | Migrate in Groups | Wave-based rollout | -25% churn |
-| PI-6 | First Impression | Positive subject lines | +30% open rate |
-| PI-7 | Calm Down | List improvements | Trust building |
-| PI-8 | Value Increase | Add value with price | +15% acceptance |
-| PI-9 | Social Proof | Show customer success | Trust building |
-| PI-10 | Postpone in Time | Delayed implementation | -20% resistance |
+| #     | Tactic                | Core Principle                    | Expected Impact |
+| ----- | --------------------- | --------------------------------- | --------------- |
+| PI-1  | Game Plan             | Segment customers, plan migration | Foundation      |
+| PI-2  | Personalized Discount | Tenure-based loyalty rewards      | -20% churn      |
+| PI-3  | Psychological Borders | Stay below $X00 thresholds        | -15% resistance |
+| PI-4  | Test First            | New customers test new prices     | Risk reduction  |
+| PI-5  | Migrate in Groups     | Wave-based rollout                | -25% churn      |
+| PI-6  | First Impression      | Positive subject lines            | +30% open rate  |
+| PI-7  | Calm Down             | List improvements                 | Trust building  |
+| PI-8  | Value Increase        | Add value with price              | +15% acceptance |
+| PI-9  | Social Proof          | Show customer success             | Trust building  |
+| PI-10 | Postpone in Time      | Delayed implementation            | -20% resistance |
 
 ### Price Offer Tactics Summary
 
-| # | Tactic | Core Principle | Expected Impact |
-|---|--------|----------------|-----------------|
-| PO-1 | Segment-Specific | Different offers per segment | +25% conversion |
-| PO-2 | Multiple Options | Never single price | +30% conversion |
-| PO-3 | Max 4 Packages | Avoid choice paralysis | +15% conversion |
-| PO-4 | Hide Cheap Option | De-emphasize starter | +20% ARPU |
-| PO-5 | Middle Option Key | 50-65% choose middle | +25% ARPU |
-| PO-6 | Substitution Effect | Decoy makes target attractive | +15% conversion |
-| PO-7 | Key Features Only | 5-7 differentiators max | +20% clarity |
-| PO-8 | No-Brainer Choice | "Most Popular" badge | +25% conversion |
-| PO-9 | Seductive Pricing | $199 not $200 | +8% conversion |
-| PO-10 | Big Guns First | Lead with best features | +15% engagement |
-| PO-11 | Profile Names | Self-selection into tier | +20% fit |
-| PO-12 | Small Font Prices | Benefits > price visual | +10% conversion |
-| PO-13 | Dream Outcome | Outcome summaries | +15% clarity |
-| PO-14 | Anchor High | Reference point first | +20% value perception |
-| PO-15 | Highlight Preferred | Visual emphasis on target | +25% selection |
-| PO-16 | Minimize Perceived | Monthly, daily reframing | +15% conversion |
-| PO-17 | Crown Jewel Logos | Best customer logos | +20% trust |
-| PO-18 | Add-ons | Post-selection upsells | +15% ARPU |
+| #     | Tactic              | Core Principle                | Expected Impact       |
+| ----- | ------------------- | ----------------------------- | --------------------- |
+| PO-1  | Segment-Specific    | Different offers per segment  | +25% conversion       |
+| PO-2  | Multiple Options    | Never single price            | +30% conversion       |
+| PO-3  | Max 4 Packages      | Avoid choice paralysis        | +15% conversion       |
+| PO-4  | Hide Cheap Option   | De-emphasize starter          | +20% ARPU             |
+| PO-5  | Middle Option Key   | 50-65% choose middle          | +25% ARPU             |
+| PO-6  | Substitution Effect | Decoy makes target attractive | +15% conversion       |
+| PO-7  | Key Features Only   | 5-7 differentiators max       | +20% clarity          |
+| PO-8  | No-Brainer Choice   | "Most Popular" badge          | +25% conversion       |
+| PO-9  | Seductive Pricing   | $199 not $200                 | +8% conversion        |
+| PO-10 | Big Guns First      | Lead with best features       | +15% engagement       |
+| PO-11 | Profile Names       | Self-selection into tier      | +20% fit              |
+| PO-12 | Small Font Prices   | Benefits > price visual       | +10% conversion       |
+| PO-13 | Dream Outcome       | Outcome summaries             | +15% clarity          |
+| PO-14 | Anchor High         | Reference point first         | +20% value perception |
+| PO-15 | Highlight Preferred | Visual emphasis on target     | +25% selection        |
+| PO-16 | Minimize Perceived  | Monthly, daily reframing      | +15% conversion       |
+| PO-17 | Crown Jewel Logos   | Best customer logos           | +20% trust            |
+| PO-18 | Add-ons             | Post-selection upsells        | +15% ARPU             |
 
 ---
 
@@ -471,10 +494,10 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 
 ### The Paradigm Shift
 
-| Traditional (72% Fail) | Successful Innovators |
-|------------------------|----------------------|
+| Traditional (72% Fail)              | Successful Innovators               |
+| ----------------------------------- | ----------------------------------- |
 | Design → Build → Market → **Price** | Market → **Price** → Design → Build |
-| Price is afterthought | WTP drives product decisions |
+| Price is afterthought               | WTP drives product decisions        |
 
 **Case Study — Porsche Cayenne:** Before development, Porsche researched WTP. Removed features customers didn't value (racing transmission), added what they'd pay for (cup holders). Result: most profitable vehicle in industry history.
 
@@ -485,27 +508,35 @@ Pro+ adds only 2 features for $10 more → Pro looks like best value.
 ## Key Psychological Principles
 
 ### 1. Anchoring & Coherent Arbitrariness
+
 First number seen becomes reference point. People don't have internal "value meter" — perception is arbitrary but coherent once anchored. Random high numbers (even SSN digits) can increase WTP by **up to 346%**.
 
 ### 2. Loss Aversion
+
 People fear losing more than they desire gaining. Frame price increases as "keeping what you have."
 
 ### 3. Decoy Effect (Asymmetric Dominance)
+
 Adding slightly inferior option makes target option look better. The Economist experiment: decoy shifted 52 percentage points toward premium.
 
 ### 4. Goldilocks Effect (Safe Bet)
+
 Most people avoid extremes and choose middle option. Target: **50-65%** choosing middle tier.
 
 ### 5. Price-Quality Heuristic
+
 Higher price = higher perceived quality. Don't price too low.
 
 ### 6. Social Proof
+
 "Most Popular" badges and customer logos reduce risk perception.
 
 ### 7. The Power of FREE
+
 FREE isn't just a discount — it's an emotional trigger. Hershey's experiment: FREE shifted 42pp from superior Lindt truffle.
 
 ### 8. Leaders, Fillers, Killers
+
 - **Leaders:** Features so valuable people pay for them
 - **Fillers:** Nice-to-have, don't drive purchase
 - **Killers:** Features that kill deal if forced to pay
@@ -516,15 +547,15 @@ FREE isn't just a discount — it's an emotional trigger. Hershey's experiment: 
 
 Beyond basic presentation, these visual techniques have measurable impact:
 
-| Tactic | Mechanism | Impact |
-|--------|-----------|--------|
-| Remove currency symbol ($) | Reduces payment pain | +5-10% luxury conversion |
-| Remove comma in thousands (1645 vs 1,645) | Fewer syllables = lower perceived | +3-5% |
-| Smaller price font | Visual = psychological size | +5-8% |
-| Precise prices for B2B ($39.72) | Signals calculated value | +10-15% trust |
-| Round prices for emotional ($40) | Reduces cognitive friction | +5-10% impulse |
-| Wide gap between original/sale price | Larger perceived savings | +10-15% |
-| Vertical stacking for cheap products | Easier mental math | +8-12% discount perception |
+| Tactic                                    | Mechanism                         | Impact                     |
+| ----------------------------------------- | --------------------------------- | -------------------------- |
+| Remove currency symbol ($)                | Reduces payment pain              | +5-10% luxury conversion   |
+| Remove comma in thousands (1645 vs 1,645) | Fewer syllables = lower perceived | +3-5%                      |
+| Smaller price font                        | Visual = psychological size       | +5-8%                      |
+| Precise prices for B2B ($39.72)           | Signals calculated value          | +10-15% trust              |
+| Round prices for emotional ($40)          | Reduces cognitive friction        | +5-10% impulse             |
+| Wide gap between original/sale price      | Larger perceived savings          | +10-15%                    |
+| Vertical stacking for cheap products      | Easier mental math                | +8-12% discount perception |
 
 ### The Runway Metaphor
 
@@ -538,27 +569,27 @@ Beyond basic presentation, these visual techniques have measurable impact:
 
 ### ❌ Price Increase Mistakes
 
-| Mistake | Why It's Bad | Fix |
-|---------|--------------|-----|
-| "Price Increase" in subject | Sets negative frame immediately | Use positive framing |
-| Raising price without adding value | Pure extraction = churn | Add features with increase |
-| Big bang migration | Maximum shock | Wave-based rollout |
-| Crossing psychological borders | $99→$110 feels huge | Stay at $109 or add value |
-| No loyalty discount | Long-term customers feel betrayed | Tenure-based rewards |
-| Immediate implementation | No time to adjust | 60-90 day notice |
+| Mistake                            | Why It's Bad                      | Fix                        |
+| ---------------------------------- | --------------------------------- | -------------------------- |
+| "Price Increase" in subject        | Sets negative frame immediately   | Use positive framing       |
+| Raising price without adding value | Pure extraction = churn           | Add features with increase |
+| Big bang migration                 | Maximum shock                     | Wave-based rollout         |
+| Crossing psychological borders     | $99→$110 feels huge               | Stay at $109 or add value  |
+| No loyalty discount                | Long-term customers feel betrayed | Tenure-based rewards       |
+| Immediate implementation           | No time to adjust                 | 60-90 day notice           |
 
 ### ❌ Price Offer Design Mistakes
 
-| Mistake | Why It's Bad | Fix |
-|---------|--------------|-----|
-| Single price option | Take it or leave it | Minimum 3 options |
-| 5+ packages | Decision paralysis | Max 4 packages |
-| All features in comparison | Overwhelming | 5-7 key differentiators |
-| Round numbers ($100) | Less conversion | Use $99, $97 |
-| Cheapest option prominent | Anchors low | De-emphasize visually |
-| No "Most Popular" badge | No guidance | Highlight preferred |
-| Annual price shown | Sticker shock | Show monthly |
-| Generic tier names | No self-selection | Use profile names |
+| Mistake                    | Why It's Bad        | Fix                     |
+| -------------------------- | ------------------- | ----------------------- |
+| Single price option        | Take it or leave it | Minimum 3 options       |
+| 5+ packages                | Decision paralysis  | Max 4 packages          |
+| All features in comparison | Overwhelming        | 5-7 key differentiators |
+| Round numbers ($100)       | Less conversion     | Use $99, $97            |
+| Cheapest option prominent  | Anchors low         | De-emphasize visually   |
+| No "Most Popular" badge    | No guidance         | Highlight preferred     |
+| Annual price shown         | Sticker shock       | Show monthly            |
+| Generic tier names         | No self-selection   | Use profile names       |
 
 ---
 
@@ -567,6 +598,7 @@ Beyond basic presentation, these visual techniques have measurable impact:
 **See:** [Price Increase Email Templates](./price-increase-email-templates.md)
 
 Templates included:
+
 1. **Advance Notice Email** - 60-90 days before
 2. **Final Reminder Email** - 7 days before
 3. **Implementation Email** - Day of change
@@ -578,6 +610,7 @@ Templates included:
 ### Price Increase Checklist
 
 **Before Announcement:**
+
 - [ ] Customer migration table created (PI-1)
 - [ ] Loyalty discounts calculated (PI-2)
 - [ ] Psychological borders checked (PI-3)
@@ -585,6 +618,7 @@ Templates included:
 - [ ] Migration waves defined (PI-5)
 
 **Communication:**
+
 - [ ] Positive subject line (PI-6)
 - [ ] Improvements listed (PI-7)
 - [ ] Value increase communicated (PI-8)
@@ -594,12 +628,14 @@ Templates included:
 ### Price Offer Design Checklist
 
 **Structure:**
+
 - [ ] 3-4 packages maximum (PO-3)
 - [ ] Middle option is target (PO-5)
 - [ ] Cheap option de-emphasized (PO-4)
 - [ ] Decoy option considered (PO-6)
 
 **Presentation:**
+
 - [ ] "Most Popular" badge on target (PO-8, PO-15)
 - [ ] Psychological pricing ($X9) (PO-9)
 - [ ] Big features first (PO-10)
@@ -609,6 +645,7 @@ Templates included:
 - [ ] Anchor number present (PO-14)
 
 **Conversion:**
+
 - [ ] Monthly price shown (PO-16)
 - [ ] Customer logos near pricing (PO-17)
 - [ ] Add-ons available (PO-18)
@@ -617,15 +654,18 @@ Templates included:
 
 ## Integration with Other Skills
 
-**With ottocopy-web-copy:**
+**With web-copy:**
+
 - Pricing page copy follows web copy principles
 - Headlines, CTAs, social proof integration
 
 **With ux-optimization:**
+
 - Pricing page UX follows conversion principles
 - Layout, visual hierarchy, form optimization
 
 **With uvp-optimization:**
+
 - Pricing tiers align with value proposition
 - Each tier communicates clear outcome
 
@@ -634,6 +674,7 @@ Templates included:
 ## Common Mistakes & Red Flags
 
 **STOP if:**
+
 - Single price option only
 - 5+ packages offered
 - Crossing psychological price borders without added value
@@ -643,6 +684,7 @@ Templates included:
 - Round number pricing ($100, $200)
 
 **Solution:**
+
 1. Return to relevant phase (A or B)
 2. Apply specific tactics
 3. Use checklists before publishing
@@ -652,6 +694,7 @@ Templates included:
 ## Real-World Impact
 
 **Proč tato metodika funguje:**
+
 - **3-4 packages:** Reduces choice paralysis by 40%
 - **Middle option targeting:** 50-65% choose correctly priced tier
 - **Psychological pricing:** +8-15% conversion vs round numbers
@@ -666,19 +709,19 @@ Templates included:
 
 ### Practice Files
 
-| File | Content | When to Use |
-|------|---------|-------------|
-| [Value Metrics Framework](./practices/value-metrics-framework.md) | Patrick Campbell's methodology for choosing what to charge for | Designing new pricing model |
-| [Willingness to Pay Research](./practices/willingness-to-pay-research.md) | Simon-Kucher 9-step approach, WTP research methods | Before setting prices |
-| [SaaS Benchmarks 2024](./practices/saas-benchmarks-2024.md) | OpenView data: NRR, CAC payback, churn benchmarks | Comparing your metrics |
+| File                                                                      | Content                                                        | When to Use                 |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------- |
+| [Value Metrics Framework](./practices/value-metrics-framework.md)         | Patrick Campbell's methodology for choosing what to charge for | Designing new pricing model |
+| [Willingness to Pay Research](./practices/willingness-to-pay-research.md) | Simon-Kucher 9-step approach, WTP research methods             | Before setting prices       |
+| [SaaS Benchmarks 2024](./practices/saas-benchmarks-2024.md)               | OpenView data: NRR, CAC payback, churn benchmarks              | Comparing your metrics      |
 
 ### Research
 
-| File | Content | When to Use |
-|------|---------|-------------|
-| [Academic Studies](./research/academic-studies.md) | Peer-reviewed evidence: decoy effect, charm pricing, anchoring | Justifying pricing decisions |
-| [Pricing Psychology Books](./research/pricing-psychology-books.md) | Deep insights from 6 foundational books: Ariely, Poundstone, Ramanujam | Advanced psychological tactics |
-| [Case Studies: Quantified](./research/case-studies-quantified.md) | Real-world examples with ROI: Porsche, Gillette, Amazon Fire | Proving pricing impact to stakeholders |
+| File                                                               | Content                                                                | When to Use                            |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| [Academic Studies](./research/academic-studies.md)                 | Peer-reviewed evidence: decoy effect, charm pricing, anchoring         | Justifying pricing decisions           |
+| [Pricing Psychology Books](./research/pricing-psychology-books.md) | Deep insights from 6 foundational books: Ariely, Poundstone, Ramanujam | Advanced psychological tactics         |
+| [Case Studies: Quantified](./research/case-studies-quantified.md)  | Real-world examples with ROI: Porsche, Gillette, Amazon Fire           | Proving pricing impact to stakeholders |
 
 ---
 
@@ -686,37 +729,40 @@ Templates included:
 
 ### Must Read
 
-| Book | Author | Key Insight |
-|------|--------|-------------|
-| **Monetizing Innovation** | Madhavan Ramanujam (Simon-Kucher) | "Design product around price, not price around product" |
-| **The Pricing Roadmap** | Ulrik Lehrskov-Schmidt | B2B SaaS packaging and tier design |
-| **Predictably Irrational** | Dan Ariely | Decoy effect, behavioral economics foundations |
+| Book                       | Author                            | Key Insight                                             |
+| -------------------------- | --------------------------------- | ------------------------------------------------------- |
+| **Monetizing Innovation**  | Madhavan Ramanujam (Simon-Kucher) | "Design product around price, not price around product" |
+| **The Pricing Roadmap**    | Ulrik Lehrskov-Schmidt            | B2B SaaS packaging and tier design                      |
+| **Predictably Irrational** | Dan Ariely                        | Decoy effect, behavioral economics foundations          |
 
 ### Nice to Have
 
-| Book | Author | Key Insight |
-|------|--------|-------------|
-| Priceless | William Poundstone | Price psychology deep dive |
-| The 1% Windfall | Rafi Mohammed | "1% price improvement = 11% profit increase" |
-| Price to Scale | Ajit Ghuman (2024) | Zoom, DocuSign case studies |
+| Book            | Author             | Key Insight                                  |
+| --------------- | ------------------ | -------------------------------------------- |
+| Priceless       | William Poundstone | Price psychology deep dive                   |
+| The 1% Windfall | Rafi Mohammed      | "1% price improvement = 11% profit increase" |
+| Price to Scale  | Ajit Ghuman (2024) | Zoom, DocuSign case studies                  |
 
 ---
 
 ## Sources & Evidence
 
 **Primary Sources:**
+
 - Dima Melnik: "10 Tips How to Raise Prices", "18 Tips for Price Offers"
 - Patrick Campbell / ProfitWell (acquired for $200M by Paddle)
 - Simon-Kucher & Partners (world's largest pricing consultancy)
 - OpenView SaaS Benchmarks 2024 (4,000+ companies)
 
 **Academic Evidence:**
+
 - Dan Ariely's Economist experiment: Decoy effect +52pp
 - MIT/Chicago charm pricing study: $39 > $34 in sales
 - Columbia/Stanford jam study: 6 options = 10x conversion vs 24 options
 - Kahneman & Tversky anchoring research
 
 **Conversion Research:**
+
 - ConversionXL: Expensive plans first = +6-10% conversion
 - Surveygizmo: Highlighted second option = highest selection
 - Nielsen: Testimonials = +34% conversion

@@ -1,15 +1,16 @@
 ---
-name: ottocopy
+name: copywriting-orchestrator
 description: Use when writing ANY marketing copy, content, or text - orchestrates specialized copywriting skills (Instagram, web, product, newsletter) based on content type detection
 ---
 
-# Ottocopy - Copywriting Orchestrator
+# Copywriting Orchestrator
 
 ## Overview
 
 This skill orchestrates copywriting work by detecting content type and calling the appropriate specialized skill. It does NOT implement copywriting itself - it routes to specialists.
 
 **Philosophy:**
+
 ```
 Orchestrator = Conductor
 Specialized Skills = Musicians
@@ -17,17 +18,19 @@ Specialized Skills = Musicians
 The conductor doesn't play instruments, but coordinates who plays when.
 ```
 
-**Announce:** "I'm using ottocopy to determine the right copywriting approach."
+**Announce:** "I'm using copywriting-orchestrator to determine the right copywriting approach."
 
 ## When to Use
 
 **USE this skill:**
+
 - Any copywriting request (unclear which specialist to use)
 - Multi-channel campaigns (product launch = product page + email + social)
 - "Help me write copy for..." requests
 - Content strategy requiring multiple formats
 
 **DON'T use this skill:**
+
 - Already know exact medium → use specialist directly
 - Pure editing/proofreading (not copywriting)
 
@@ -35,12 +38,12 @@ The conductor doesn't play instruments, but coordinates who plays when.
 
 ### Step 1: Keyword Detection
 
-| Keywords in Request | Detected Type | Specialist Skill |
-|---------------------|---------------|------------------|
-| `instagram`, `reel`, `stories`, `post`, `social`, `tiktok` | Social Media | `ottocopy-instagram-content` |
-| `homepage`, `web`, `landing`, `about us`, `sales page`, `website` | Web Copy | `ottocopy-web-copy` |
-| `produkt`, `e-shop`, `product description`, `e-commerce`, `popis` | Product Copy | `ottocopy-product-copy` |
-| `email`, `newsletter`, `mailing`, `campaign`, `sequence` | Email | `ottocopy-newsletter` |
+| Keywords in Request                                               | Detected Type | Specialist Skill    |
+| ----------------------------------------------------------------- | ------------- | ------------------- |
+| `instagram`, `reel`, `stories`, `post`, `social`, `tiktok`        | Social Media  | `instagram-content` |
+| `homepage`, `web`, `landing`, `about us`, `sales page`, `website` | Web Copy      | `web-copy`          |
+| `produkt`, `e-shop`, `product description`, `e-commerce`, `popis` | Product Copy  | `product-copy`      |
+| `email`, `newsletter`, `mailing`, `campaign`, `sequence`          | Email         | `newsletter`        |
 
 ### Step 2: Context Clues
 
@@ -48,16 +51,16 @@ If keywords unclear, check context:
 
 ```
 Is it for social media platform?
-├─ YES → ottocopy-instagram-content
+├─ YES → instagram-content
 │
 Is it for a website page?
-├─ YES → ottocopy-web-copy
+├─ YES → web-copy
 │
 Is it describing a product for sale?
-├─ YES → ottocopy-product-copy
+├─ YES → product-copy
 │
 Is it sent to inbox?
-├─ YES → ottocopy-newsletter
+├─ YES → newsletter
 │
 Still unclear?
 └─ ASK user (see Step 3)
@@ -80,18 +83,18 @@ E) Multi-channel campaign (combination)
 ### Skills this orchestrator calls:
 
 ```
-ottocopy (orchestrator)
+copywriting-orchestrator
         │
-        ├── ottocopy-instagram-content
+        ├── instagram-content
         │   └── Hook-Substance-Payoff, viral content
         │
-        ├── ottocopy-web-copy
+        ├── web-copy
         │   └── Blueprint, Triáda, PROTTO, homepage elements
         │
-        ├── ottocopy-product-copy
+        ├── product-copy
         │   └── 7-step framework, Type A/B products
         │
-        └── ottocopy-newsletter
+        └── newsletter
             └── 9-step email anatomy, subject lines
 ```
 
@@ -111,6 +114,7 @@ Detect content type using keywords and context (see above).
 Before calling specialist, ensure briefing is complete:
 
 **Quick Brief (minimum 4 questions):**
+
 - **KOMU (Audience):** Who is the target?
 - **KAM (Goal):** What action do we want?
 - **ČÍM (Differentiation):** Why us vs competitors?
@@ -121,7 +125,8 @@ If briefing incomplete → prompt user for answers before proceeding.
 ### Phase 3: Call Specialist
 
 Invoke appropriate skill:
-> "Using ottocopy-instagram-content for Instagram Reel creation."
+
+> "Using instagram-content for Instagram Reel creation."
 
 The specialist skill handles its own workflow (TDD, checklists, quality controls).
 
@@ -149,9 +154,9 @@ User: "Chystám launch nového produktu"
 Orchestrator detects: Multi-channel campaign
 
 Recommended sequence:
-1. ottocopy-product-copy → produktová stránka
-2. ottocopy-newsletter → launch email sekvence
-3. ottocopy-instagram-content → promo Reels/Stories
+1. product-copy → produktová stránka
+2. newsletter → launch email sekvence
+3. instagram-content → promo Reels/Stories
 
 Execution: Call each skill in sequence OR parallel
 ```
@@ -163,7 +168,7 @@ User: "Potřebujeme přepsat celý web"
 
 Orchestrator detects: Web copy (multiple pages)
 
-ottocopy-web-copy handles:
+web-copy handles:
 - Homepage (9 prvků)
 - About Us
 - Landing pages
@@ -173,7 +178,7 @@ ottocopy-web-copy handles:
 ## Decision Logic
 
 ```dot
-digraph ottocopy_flow {
+digraph copywriting_flow {
     "Request arrives" [shape=doublecircle];
     "Detect content type" [shape=box];
     "Type clear?" [shape=diamond];
@@ -199,12 +204,12 @@ digraph ottocopy_flow {
 
 ## Quick Reference
 
-| Content Type | Specialist Skill | Core Framework |
-|--------------|------------------|----------------|
-| Instagram/Social | `ottocopy-instagram-content` | Hook-Substance-Payoff |
-| Website/Landing | `ottocopy-web-copy` | Blueprint, Triáda, PROTTO |
-| E-shop Products | `ottocopy-product-copy` | 7-step, Type A/B |
-| Email/Newsletter | `ottocopy-newsletter` | 9-step anatomy |
+| Content Type     | Specialist Skill    | Core Framework            |
+| ---------------- | ------------------- | ------------------------- |
+| Instagram/Social | `instagram-content` | Hook-Substance-Payoff     |
+| Website/Landing  | `web-copy`          | Blueprint, Triáda, PROTTO |
+| E-shop Products  | `product-copy`      | 7-step, Type A/B          |
+| Email/Newsletter | `newsletter`        | 9-step anatomy            |
 
 ## Common Mistakes
 
@@ -212,7 +217,7 @@ digraph ottocopy_flow {
 "Let me just start writing..." → STOP. Brief first.
 
 **❌ Using wrong specialist:**
-Product description on landing page → `ottocopy-web-copy` (sales page section), NOT `ottocopy-product-copy`
+Product description on landing page → `web-copy` (sales page section), NOT `product-copy`
 
 **❌ Ignoring quality gate:**
 Specialist done ≠ copy done. Always verify Core Principles.
@@ -224,10 +229,12 @@ Specialist done ≠ copy done. Always verify Core Principles.
 
 **From specialists back to orchestrator:**
 If specialist needs input from another (e.g., UVP for web copy), orchestrator coordinates:
+
 1. `uvp-optimization` → define positioning
-2. `ottocopy-web-copy` → write homepage with UVP
+2. `web-copy` → write homepage with UVP
 
 **Cross-skill knowledge:**
+
 - Instagram hooks can inform email subject lines
 - Product copy microbenefits can become web headlines
 - Newsletter CTAs follow same principles as web CTAs

@@ -14,6 +14,7 @@ This skill helps create compelling, high-value offers using frameworks from Alex
 ## When to Use
 
 **USE this skill:**
+
 - Creating new product/service offer
 - Pricing strategy and value stacking
 - Making offer stand out from competition
@@ -22,6 +23,7 @@ This skill helps create compelling, high-value offers using frameworks from Alex
 - "My conversion rate is low"
 
 **DON'T use this skill:**
+
 - Positioning (who is it for?) → `uvp-optimization`
 - Growth experiments → `growth-hacking`
 - Onboarding optimization → `product-led-growth`
@@ -85,20 +87,22 @@ To increase value without lowering price:
 **Purpose:** Increase perceived value without changing price.
 
 **The Equation:**
+
 ```
 Value = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort)
 ```
 
 **Optimization Strategies:**
 
-| Variable | How to Optimize |
-|----------|-----------------|
-| **Dream Outcome** | Paint vivid picture of end state, use specific numbers, show transformations |
-| **Perceived Likelihood** | Case studies, testimonials, guarantees, credentials, demonstrations |
-| **Time Delay** | Quick wins, fast onboarding, immediate value, show progress |
-| **Effort & Sacrifice** | Done-for-you options, templates, automation, remove friction |
+| Variable                 | How to Optimize                                                              |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| **Dream Outcome**        | Paint vivid picture of end state, use specific numbers, show transformations |
+| **Perceived Likelihood** | Case studies, testimonials, guarantees, credentials, demonstrations          |
+| **Time Delay**           | Quick wins, fast onboarding, immediate value, show progress                  |
+| **Effort & Sacrifice**   | Done-for-you options, templates, automation, remove friction                 |
 
 **Application Checklist:**
+
 - [ ] Is dream outcome crystal clear and desirable?
 - [ ] Do customers believe they can achieve it with you?
 - [ ] How fast do they see first results?
@@ -112,15 +116,16 @@ Value = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort)
 
 **Formula:**
 
-| Letter | Element | Purpose | Example |
-|--------|---------|---------|---------|
-| **M** | Magnet | Attention grabber | "FREE", "88% off", "New" |
-| **A** | Avatar | Who is this for | "For SaaS founders", "For busy moms" |
-| **G** | Goal | Dream outcome | "Get 100 customers", "Lose 10kg" |
-| **I** | Interval | Time frame | "in 30 days", "this weekend" |
-| **C** | Container | Wrapper/format | "Blueprint", "Challenge", "System" |
+| Letter | Element   | Purpose           | Example                              |
+| ------ | --------- | ----------------- | ------------------------------------ |
+| **M**  | Magnet    | Attention grabber | "FREE", "88% off", "New"             |
+| **A**  | Avatar    | Who is this for   | "For SaaS founders", "For busy moms" |
+| **G**  | Goal      | Dream outcome     | "Get 100 customers", "Lose 10kg"     |
+| **I**  | Interval  | Time frame        | "in 30 days", "this weekend"         |
+| **C**  | Container | Wrapper/format    | "Blueprint", "Challenge", "System"   |
 
 **Examples:**
+
 - "FREE Blueprint for SaaS Founders to Get First 100 Customers in 90 Days"
 - "The 7-Day Challenge for Busy Moms to Meal Prep Like a Pro"
 - "88% OFF: Restaurant Owner's System to Double Revenue This Quarter"
@@ -132,6 +137,7 @@ Value = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort)
 ### Phase 1: Understand Current State
 
 **Questions to ask:**
+
 1. What do you currently offer?
 2. What price are you charging?
 3. How does competition price similar offerings?
@@ -141,10 +147,11 @@ Value = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort)
 ### Phase 2: Apply Value Equation
 
 Rate current offer 1-10 on each dimension:
-- Dream Outcome clarity: ___/10
-- Perceived Likelihood: ___/10
-- Time Delay (inverse): ___/10
-- Effort Required (inverse): ___/10
+
+- Dream Outcome clarity: \_\_\_/10
+- Perceived Likelihood: \_\_\_/10
+- Time Delay (inverse): \_\_\_/10
+- Effort Required (inverse): \_\_\_/10
 
 Focus improvement on LOWEST scores first.
 
@@ -166,6 +173,7 @@ Test which resonates most.
 **Pricing principle:** Price should feel like a "steal" compared to value delivered.
 
 Calculate value stack:
+
 ```
 Solution 1: Worth $X
 Solution 2: Worth $Y
@@ -181,13 +189,13 @@ Your Price: $YYY (fraction of value)
 
 ## Quick Router
 
-| Situation | Framework to Use |
-|-----------|------------------|
+| Situation                            | Framework to Use                                  |
+| ------------------------------------ | ------------------------------------------------- |
 | "My offer is similar to competitors" | Grand Slam Offer (differentiate through bundling) |
-| "Customers don't see the value" | Value Equation (improve perceived likelihood) |
-| "My headline doesn't convert" | M-A-G-I-C Formula |
-| "I don't know what to include" | Grand Slam Offer (problem→solution mapping) |
-| "Customers say it's too expensive" | Value Equation (increase top, decrease bottom) |
+| "Customers don't see the value"      | Value Equation (improve perceived likelihood)     |
+| "My headline doesn't convert"        | M-A-G-I-C Formula                                 |
+| "I don't know what to include"       | Grand Slam Offer (problem→solution mapping)       |
+| "Customers say it's too expensive"   | Value Equation (increase top, decrease bottom)    |
 
 ---
 
@@ -208,38 +216,45 @@ Your Price: $YYY (fraction of value)
 
 ```markdown
 ## Dream Outcome
+
 [What transformation does customer want?]
 
 ## Problems Before
+
 1.
 2.
 3.
 
 ## Problems During
+
 1.
 2.
 3.
 
 ## Problems After
+
 1.
 2.
 3.
 
 ## Solutions (High Value + Low Cost)
+
 | Solution | Delivery | Value | Cost |
-|----------|----------|-------|------|
-| | | | |
+| -------- | -------- | ----- | ---- |
+|          |          |       |      |
 
 ## Stack Summary
+
 - Core: [Main offering]
 - Bonus 1: [High-value add-on]
 - Bonus 2: [High-value add-on]
 - Bonus 3: [High-value add-on]
 
 ## Pricing
-Total Value: $____
-Your Price: $____
-Savings: _____%
+
+Total Value: $\_**\_
+Your Price: $\_\_**
+Savings: **\_**%
 ```
 
 ### M-A-G-I-C Headline Worksheet
@@ -263,6 +278,7 @@ Options: in X days, this [week/month], by [date]
 Options: Blueprint, System, Challenge, Framework, Method, Playbook
 
 ## Generated Headlines:
+
 1.
 2.
 3.
@@ -289,10 +305,12 @@ Without guarantee, perceived likelihood drops.
 ## Integration
 
 After offer created, route to:
-- `ottocopy-web-copy` → Sales page implementation
-- `ottocopy-newsletter` → Email sequence for offer
+
+- `web-copy` → Sales page implementation
+- `newsletter` → Email sequence for offer
 - `pricing` → Advanced pricing tactics
 
 Before offer creation, ensure:
+
 - `uvp-optimization` → Positioning is clear
 - `growth-hacking` → PMF validated (don't polish bad offer)

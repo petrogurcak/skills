@@ -3,6 +3,7 @@
 Major strategic frameworks for structuring persuasive copy.
 
 **When to use this file:**
+
 - Before writing any sales/landing page copy
 - When audience awareness level is unclear
 - When existing copy isn't converting despite good UX
@@ -31,6 +32,7 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 #### Stage 1: UNAWARE (Ví prd)
 
 **Charakteristika:**
+
 - Netuší že má problém
 - Nepřišel hledat řešení
 - Přišel z obsahu nesouvisejícího s vaším produktem (social media, blog, viral content)
@@ -38,17 +40,20 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 **Messaging Strategy:**
 
 **DON'T:**
+
 - ❌ Pitch produkt
 - ❌ Nabízet řešení
 - ❌ Mluvit o features
 
 **DO:**
+
 - ✅ Content marketing nesouvisející přímo s produktem
 - ✅ Educational / entertainment value
 - ✅ Vytvořit problem awareness subtilně
 - ✅ Build brand familiarity
 
 **Example:**
+
 - **Bad:** "Kup náš CRM software" (они не ví že potřebují CRM)
 - **Good:** "5 signálů že ztrácíte zákazníky" (blog post který subtilně ukazuje CRM symptoms)
 
@@ -59,6 +64,7 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 #### Stage 2: PROBLEM AWARE
 
 **Charakteristika:**
+
 - Ví že něco je špatně
 - Hledá pochopení problému
 - Neví že vy existujete
@@ -67,11 +73,13 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 **Messaging Strategy:**
 
 **DON'T:**
+
 - ❌ Pitch váš specifický produkt
 - ❌ Competitor comparison
 - ❌ Aggressive CTAs
 
 **DO:**
+
 - ✅ Educational content (neutral, objective)
 - ✅ Explain problem thoroughly
 - ✅ Present multiple solution categories (yours is one option)
@@ -79,12 +87,14 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 - ✅ Subtle brand mentions
 
 **Example:**
+
 - **Bad:** "Our AI chatbot reduces support tickets 60%" (premature pitch)
 - **Good:** "3 approaches to reducing support workload: Hiring, outsourcing, automation" (neutral comparison with your category mentioned)
 
 **Conversion Goal:** Problem Aware → Solution Aware
 
 **Content Types:**
+
 - Blog posts (in-depth guides)
 - Webinars (educational, 90% teaching / 10% pitch)
 - Free tools (calculators, assessments)
@@ -95,6 +105,7 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 #### Stage 3: SOLUTION AWARE
 
 **Charakteristika:**
+
 - Zná různé kategorie řešení
 - Evaluates approaches
 - Neví o všech dostupných produktech
@@ -103,10 +114,12 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 **Messaging Strategy:**
 
 **DON'T:**
+
 - ❌ Assume they know your brand
 - ❌ Feature-dump immediately
 
 **DO:**
+
 - ✅ Content marketing (tutorials, comparisons, demos)
 - ✅ Build audience (email list, retargeting)
 - ✅ Show your solution working
@@ -114,12 +127,14 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 - ✅ Case studies (without hard sell)
 
 **Example:**
+
 - **Bad:** "Sign up now!" (они не знают о vás)
 - **Good:** "How [Your Approach] reduces costs vs traditional methods" (category comparison with your method winning)
 
 **Conversion Goal:** Solution Aware → Product Aware
 
 **Content Types:**
+
 - Comparison guides ("Live chat vs chatbots vs help desk")
 - Video tutorials showing your approach
 - Free trials / demos (low-commitment exploration)
@@ -130,6 +145,7 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 #### Stage 4: PRODUCT AWARE
 
 **Charakteristika:**
+
 - Zná váš produkt + konkurenční produkty
 - Srovnává specifické features/pricing
 - Má námitky (price, effort, risk, timing)
@@ -138,10 +154,12 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 **Messaging Strategy:**
 
 **DON'T:**
+
 - ❌ Educate on problem/solution (already know)
 - ❌ Generic benefits
 
 **DO:**
+
 - ✅ Address specific objections
 - ✅ Testimonials with quantified results
 - ✅ Guarantees (money-back, risk reversal)
@@ -150,12 +168,14 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 - ✅ Strong CTAs with urgency
 
 **Example:**
+
 - **Bad:** "We help teams collaborate" (already know this)
 - **Good:** "30-day money-back guarantee. 5,000+ teams switched from [Competitor]. Set up in 15 minutes."
 
 **Conversion Goal:** Product Aware → Most Aware (purchase decision)
 
 **Content Types:**
+
 - Product comparison pages
 - Customer testimonials (video preferred)
 - Pricing page with FAQ addressing objections
@@ -164,19 +184,20 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 
 **Common Objections to Address:**
 
-| Objection | Counter-Strategy |
-|-----------|------------------|
-| **"Too expensive"** | ROI calculator, cost comparison, payment plans |
-| **"Takes too long to implement"** | "Set up in X minutes" proof, onboarding support |
-| **"What if it doesn't work?"** | Money-back guarantee, free trial, case studies |
-| **"Why now?"** | Limited-time offer, scarcity (seats/pricing), cost of inaction |
-| **"Not sure it fits my use case"** | Multiple case studies, vertical-specific examples |
+| Objection                          | Counter-Strategy                                               |
+| ---------------------------------- | -------------------------------------------------------------- |
+| **"Too expensive"**                | ROI calculator, cost comparison, payment plans                 |
+| **"Takes too long to implement"**  | "Set up in X minutes" proof, onboarding support                |
+| **"What if it doesn't work?"**     | Money-back guarantee, free trial, case studies                 |
+| **"Why now?"**                     | Limited-time offer, scarcity (seats/pricing), cost of inaction |
+| **"Not sure it fits my use case"** | Multiple case studies, vertical-specific examples              |
 
 ---
 
 #### Stage 5: MOST AWARE
 
 **Charakteristika:**
+
 - Rozhodnutý koupit VÁŠ produkt
 - Hledá poslední details (pricing, implementation)
 - Možná čeká na trigger (budget approval, timing)
@@ -184,22 +205,26 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 **Messaging Strategy:**
 
 **DON'T:**
+
 - ❌ Sell (už jsou přesvědčení)
 - ❌ Long-form persuasion
 
 **DO:**
+
 - ✅ Remove friction
 - ✅ Facilitate purchase (clear pricing, simple checkout)
 - ✅ Urgency if appropriate (limited-time discount)
 - ✅ Onboarding clarity ("What happens after I buy?")
 
 **Example:**
+
 - **Bad:** Long sales page re-explaining benefits
 - **Good:** "Start now. $99/month. Cancel anytime. Questions? Chat with us."
 
 **Conversion Goal:** Purchase completion
 
 **Page Elements:**
+
 - Clear pricing (no hidden costs)
 - Simple form (min fields)
 - Multiple payment options
@@ -215,26 +240,26 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 
 ### Method 1: Search Query Analysis
 
-| Query Type | Awareness Stage |
-|------------|-----------------|
-| "How to [achieve outcome]" | Problem Aware |
-| "Best [solution category]" | Solution Aware |
-| "[Your Brand] vs [Competitor]" | Product Aware |
-| "[Your Brand] pricing" | Most Aware |
-| "Why is my [symptom]" | Problem Aware |
-| "[Solution category] comparison" | Solution Aware |
+| Query Type                       | Awareness Stage |
+| -------------------------------- | --------------- |
+| "How to [achieve outcome]"       | Problem Aware   |
+| "Best [solution category]"       | Solution Aware  |
+| "[Your Brand] vs [Competitor]"   | Product Aware   |
+| "[Your Brand] pricing"           | Most Aware      |
+| "Why is my [symptom]"            | Problem Aware   |
+| "[Solution category] comparison" | Solution Aware  |
 
 ### Method 2: Traffic Source Analysis
 
-| Source | Likely Awareness |
-|--------|------------------|
-| Organic search (problem queries) | Problem Aware |
-| Organic search (brand queries) | Product/Most Aware |
-| Social media (viral content) | Unaware |
-| Paid ads (retargeting) | Product Aware |
-| Email (nurture sequence) | Solution → Product Aware |
-| Direct traffic | Most Aware |
-| Competitor comparison sites | Product Aware |
+| Source                           | Likely Awareness         |
+| -------------------------------- | ------------------------ |
+| Organic search (problem queries) | Problem Aware            |
+| Organic search (brand queries)   | Product/Most Aware       |
+| Social media (viral content)     | Unaware                  |
+| Paid ads (retargeting)           | Product Aware            |
+| Email (nurture sequence)         | Solution → Product Aware |
+| Direct traffic                   | Most Aware               |
+| Competitor comparison sites      | Product Aware            |
 
 ### Method 3: User Interview Question
 
@@ -243,6 +268,7 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 "Když jste poprvé našli naši stránku, co jste přesně hledali?"
 
 **Answers reveal:**
+
 - "Didn't know I needed this, saw your post" → Unaware
 - "Ways to reduce [problem]" → Problem Aware
 - "Different types of [solution]" → Solution Aware
@@ -271,14 +297,17 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 **Breakdown:**
 
 **1. Awareness Stage Targeting:** Solution Aware → Product Aware
+
 - Audience already knew staying informed = career advantage
 - WSJ positioned as THE solution for business intelligence
 
 **2. Emotional Hook:** Status anxiety + aspiration
+
 - Two similar men, drastically different outcomes
 - Reader identifies with manager, aspires to president
 
 **3. Mechanism Revealed:** "The difference? [Information access]"
+
 - Not talent, not luck → **what you know**
 - WSJ = information edge
 
@@ -289,9 +318,11 @@ Wrong awareness targeting = immediate bounce, no matter how good the copy.
 ### Lesson for Modern Copy
 
 **DON'T:**
+
 - Write for "35-year-old male, $80k income, married with kids"
 
 **DO:**
+
 - Write for "person who feels stuck in career, sees peers advancing, suspects they're missing critical information"
 
 **Motivation > Demographics**
@@ -307,11 +338,13 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Principle:** Great copy comes from deep audience understanding, not clever writing.
 
 **Application:**
+
 - Interview customers extensively (Groove: 40+ interviews)
 - Read support tickets, reviews, forum posts
 - Note exact phrases they use
 
 **Example:**
+
 - Customer says: "I hate spending 3 hours sorting emails"
 - Use their words: "Reduce email sorting from 3 hours to 15 minutes"
 
@@ -322,11 +355,13 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Principle:** Quality copy requires deep focus, not marathon sessions.
 
 **Application:**
+
 - Write in 60-90 minute focused blocks
 - Break between sections
 - Fresh eyes = better critique
 
 **Schwartz's method:**
+
 - 3-4 hours/day maximum writing time
 - Rest of day: research, editing, thinking
 
@@ -337,11 +372,13 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Principle:** Innovation in copy = new combinations of true product attributes, not fabrication.
 
 **Application:**
+
 - List all product features/benefits
 - Find unexpected connections
 - Combine in novel ways
 
 **Example:**
+
 - Feature A: "Cloud storage"
 - Feature B: "Real-time sync"
 - **Combination:** "Never lose work even if laptop dies mid-sentence" (new angle, true claim)
@@ -353,11 +390,13 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Principle:** Humans make decisions emotionally (reptile brain), then rationalize logically (neocortex).
 
 **Application:**
+
 - Lead with emotion/desire/fear
 - Support with logic/data
 - Simple, direct language (not corporate speak)
 
 **Brain Hierarchy:**
+
 1. **Reptile (survival, pleasure, pain):** "Reduce costs 60%" / "Never lose a lead again"
 2. **Limbic (emotion, memory):** "Remember when you lost that $50k deal because..."
 3. **Neocortex (logic, analysis):** "Our algorithm uses XYZ methodology..."
@@ -365,6 +404,7 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Structure:** Hook reptile → engage limbic → satisfy neocortex
 
 **Example:**
+
 - ❌ "Our platform leverages advanced NLP algorithms" (neocortex only)
 - ✅ "Stop losing customers to slow responses" (reptile) → "AI responds in 30 seconds" (neocortex)
 
@@ -375,14 +415,17 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Principle:** You can't create desire. You can only channel existing desire toward your product.
 
 **Application:**
+
 - Find what people already want
 - Position your product as the path to that desire
 - Don't convince them to want something new
 
 **Schwartz quote:**
+
 > "Copy cannot create desire for a product. It can only take the hopes, dreams, fears and desires that already exist in the hearts of millions of people, and focus those already existing desires onto a particular product."
 
 **Example:**
+
 - ❌ "You should want to automate customer support" (creating desire)
 - ✅ "You already hate repetitive support tickets. Here's how to eliminate 60% of them." (channeling existing desire)
 
@@ -396,11 +439,11 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 
 **Application:**
 
-| Feature (What It Is) | Benefit (What It Does) |
-|---------------------|------------------------|
-| "AI-powered chatbot" | "Answers customers instantly, 24/7" |
-| "Cloud-based CRM" | "Access customer data anywhere, never lose a lead" |
-| "256-bit encryption" | "Your data is unhackable" |
+| Feature (What It Is)     | Benefit (What It Does)                                   |
+| ------------------------ | -------------------------------------------------------- |
+| "AI-powered chatbot"     | "Answers customers instantly, 24/7"                      |
+| "Cloud-based CRM"        | "Access customer data anywhere, never lose a lead"       |
+| "256-bit encryption"     | "Your data is unhackable"                                |
 | "Inline form validation" | "Users fix mistakes before submitting, 60% fewer errors" |
 
 **Advanced:** Show what it does FOR THEM specifically
@@ -415,15 +458,18 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Principle:** Brains discount future rewards. Emphasize immediate wins.
 
 **Application:**
+
 - Lead with quick wins, not long-term vision
 - Specify timeframes ("in 15 minutes" not "eventually")
 - Show before/after (immediate contrast)
 
 **Example:**
+
 - ❌ "Over time, you'll see productivity improvements"
 - ✅ "See your first automated response in 5 minutes. 50% fewer tickets by end of week."
 
 **Data:**
+
 - Immediate benefits: +30% conversion vs future-focused (CXL Institute)
 
 ---
@@ -433,16 +479,19 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Principle:** First draft is never the winner. A/B test major variations.
 
 **Application:**
+
 - Write 3-5 headline variations minimum
 - Test radically different approaches (not minor tweaks)
 - Let data decide
 
 **Schwartz's process:**
+
 - Write 50+ headlines per project
 - Narrow to top 5-10
 - Test winners
 
 **Example (Groove case study):**
+
 - Tested 50+ headline variations
 - Winner: +104% conversion vs original
 
@@ -457,17 +506,20 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 ### Selling to an Eskimo (Product Aware)
 
 **Context:**
+
 - Lives in snow
 - Knows what snow is (solution aware)
 - Knows you sell snow (product aware)
 - May need snow (existing demand)
 
 **Copy Approach:**
+
 ```
 "Fresh snow: 100 Kč per bag. Delivered today."
 ```
 
 **Why it works:**
+
 - Audience = Product Aware → Most Aware
 - Direct pitch appropriate
 - No education needed
@@ -478,6 +530,7 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 ### Selling to a Jamaican (Unaware → Problem Aware)
 
 **Context:**
+
 - Never seen snow
 - Doesn't know snow exists (unaware)
 - Doesn't know they have a "no snow" problem (unaware)
@@ -486,30 +539,38 @@ From "Breakthrough Advertising" (1966) and copywriting career insights:
 **Copy Approach (Multi-Stage):**
 
 **Stage 1: Create Problem Awareness**
+
 ```
 "Tired of heat making it impossible to preserve food long-term?"
 ```
+
 → Jamaican: "Yes, food spoils fast." (now Problem Aware)
 
 **Stage 2: Introduce Solution Category**
+
 ```
 "Cold storage solutions extend food life 10x.
 Three approaches: Ice, refrigeration, or snow."
 ```
+
 → Jamaican: "Interesting, what's snow?" (now Solution Aware)
 
 **Stage 3: Educate on Your Solution**
+
 ```
 "Snow = frozen water from sky (common in cold countries).
 Cools 3x longer than ice, costs 50% less than refrigeration."
 ```
+
 → Jamaican: "Where can I get snow?" (now Product Aware)
 
 **Stage 4: Pitch Your Product**
+
 ```
 "We import premium snow from Alaska.
 100 Kč per bag. Stays cold 48 hours. Money-back guarantee."
 ```
+
 → Jamaican: "I'll try one bag." (now Most Aware → Purchase)
 
 ---
@@ -519,11 +580,13 @@ Cools 3x longer than ice, costs 50% less than refrigeration."
 **Same product. Radically different copy based on awareness stage.**
 
 **If you use "Eskimo copy" for Jamaican audience:**
+
 - "Fresh snow: 100 Kč"
 - Jamaican: "What the hell is snow? Why would I buy this?"
 - Result: 0% conversion
 
 **If you use "Jamaican copy" for Eskimo audience:**
+
 - "Tired of heat? Here's what snow is..."
 - Eskimo: "I know what snow is, stop wasting my time."
 - Result: Annoyance, exit
@@ -535,20 +598,23 @@ Cools 3x longer than ice, costs 50% less than refrigeration."
 ## Cross-References
 
 **Use this framework BEFORE:**
-- Writing any copy (see `ottocopy-web-copy/SKILL.md`)
+
+- Writing any copy (see `web-copy/SKILL.md`)
 - Designing UVP (see `uvp-optimization/SKILL.md` Phase 1: Position)
-- Creating landing pages (see `ottocopy-web-copy` Part B)
+- Creating landing pages (see `web-copy` Part B)
 
 **Combine with:**
+
 - `ux-optimization/practices/ab-testing.md` - Test awareness stage hypotheses
 - `uvp-optimization/TESTING.md` - Five-second test validates awareness match
 - `ux-expert-dialogue` - Expert reviews can identify awareness mismatches
 
 **Diagnosis:**
+
 - If users bounce immediately → Check awareness stage match
 - If low conversion despite good UX → Likely wrong awareness targeting
 - If testimonials/features don't resonate → Audience may be earlier stage (need education first)
 
 ---
 
-**Framework created.** Eugene Schwartz 5 Awareness Stages now integrated into ottocopy-web-copy skill.
+**Framework created.** Eugene Schwartz 5 Awareness Stages now integrated into web-copy skill.

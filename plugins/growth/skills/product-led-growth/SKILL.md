@@ -14,6 +14,7 @@ This skill helps build products that sell themselves using frameworks from Wes B
 ## When to Use
 
 **USE this skill:**
+
 - "Should I use freemium or free trial?"
 - "Users sign up but don't convert"
 - "Onboarding is confusing"
@@ -22,6 +23,7 @@ This skill helps build products that sell themselves using frameworks from Wes B
 - Product-led vs sales-led decision
 
 **DON'T use this skill:**
+
 - Creating compelling offers → `offer-creation`
 - Positioning → `uvp-optimization`
 - Growth experiments → `growth-hacking`
@@ -45,6 +47,7 @@ Every click between signup and value = lost users.
 **Purpose:** Design onboarding that guides users to value like bowling bumpers guide the ball.
 
 **Metaphor:**
+
 ```
         SIGNUP                    "AHA!" MOMENT
            │                            │
@@ -66,6 +69,7 @@ Every click between signup and value = lost users.
 **Components:**
 
 **1. The Straight Line**
+
 - Shortest path from signup to "Aha!" moment
 - Remove every unnecessary step
 - Map current path, then ruthlessly cut
@@ -88,6 +92,7 @@ Every click between signup and value = lost users.
 | Win-back | Recover dropoffs | Day 7 if inactive |
 
 **Implementation Steps:**
+
 1. Define your "Aha!" moment (when users get value)
 2. Map current signup-to-Aha path (all steps)
 3. Create "straight line" (minimum steps)
@@ -104,33 +109,33 @@ Every click between signup and value = lost users.
 
 **Step 1: Market Strategy**
 
-| Strategy | Description | Model Fit |
-|----------|-------------|-----------|
-| **Dominant** | Better than existing (10x) | Freemium (show superiority) |
-| **Disruptive** | Cheaper alternative | Free Trial or Freemium |
-| **Differentiated** | Unique for niche | Free Trial (needs explanation) |
+| Strategy           | Description                | Model Fit                      |
+| ------------------ | -------------------------- | ------------------------------ |
+| **Dominant**       | Better than existing (10x) | Freemium (show superiority)    |
+| **Disruptive**     | Cheaper alternative        | Free Trial or Freemium         |
+| **Differentiated** | Unique for niche           | Free Trial (needs explanation) |
 
 **Step 2: Ocean Conditions**
 
-| Ocean | Description | Model Fit |
-|-------|-------------|-----------|
-| **Red Ocean** | Many competitors, known category | Free Trial (differentiate by experience) |
-| **Blue Ocean** | New category, no direct competition | Demo (needs education) |
+| Ocean          | Description                         | Model Fit                                |
+| -------------- | ----------------------------------- | ---------------------------------------- |
+| **Red Ocean**  | Many competitors, known category    | Free Trial (differentiate by experience) |
+| **Blue Ocean** | New category, no direct competition | Demo (needs education)                   |
 
 **Step 3: Audience**
 
-| Approach | Description | Model Fit |
-|----------|-------------|-----------|
-| **Top-Down** | Sell to executives, then rollout | Demo/Sales-led |
-| **Bottom-Up** | Users adopt, then spread | Freemium or Free Trial |
+| Approach      | Description                      | Model Fit              |
+| ------------- | -------------------------------- | ---------------------- |
+| **Top-Down**  | Sell to executives, then rollout | Demo/Sales-led         |
+| **Bottom-Up** | Users adopt, then spread         | Freemium or Free Trial |
 
 **Step 4: Time-to-Value**
 
-| Time-to-Value | Description | Model Fit |
-|---------------|-------------|-----------|
-| **Immediate** | Value in minutes | Freemium |
-| **Short** | Value in hours/days | Free Trial (7-14 days) |
-| **Long** | Value takes weeks | Demo + onboarding |
+| Time-to-Value | Description         | Model Fit              |
+| ------------- | ------------------- | ---------------------- |
+| **Immediate** | Value in minutes    | Freemium               |
+| **Short**     | Value in hours/days | Free Trial (7-14 days) |
+| **Long**      | Value takes weeks   | Demo + onboarding      |
 
 **Decision Matrix:**
 
@@ -151,6 +156,7 @@ Top-down  │   FREE TRIAL  │   DEMO +
 **Purpose:** Identify the moment users truly understand your value.
 
 **Finding your Aha moment:**
+
 1. Interview converted users: "When did you realize this was for you?"
 2. Analyze data: What actions correlate with conversion?
 3. Common patterns:
@@ -161,14 +167,15 @@ Top-down  │   FREE TRIAL  │   DEMO +
 
 **Examples:**
 
-| Product | "Aha!" Moment |
-|---------|---------------|
-| Slack | Sending 2000 messages as team |
-| Dropbox | Putting first file in folder |
-| Zoom | Completing first video call |
-| Canva | Downloading first design |
+| Product | "Aha!" Moment                 |
+| ------- | ----------------------------- |
+| Slack   | Sending 2000 messages as team |
+| Dropbox | Putting first file in folder  |
+| Zoom    | Completing first video call   |
+| Canva   | Downloading first design      |
 
 **Optimizing for Aha:**
+
 - Reduce steps to reach it
 - Make it happen in first session
 - Measure time-to-Aha
@@ -190,6 +197,7 @@ Top-down  │   FREE TRIAL  │   DEMO +
 ### Phase 2: Apply MOAT Framework
 
 Answer each question:
+
 - [ ] Market Strategy: Dominant / Disruptive / Differentiated?
 - [ ] Ocean: Red / Blue?
 - [ ] Audience: Top-down / Bottom-up?
@@ -210,6 +218,7 @@ Answer each question:
 ### Phase 4: Measure and Iterate
 
 Key metrics:
+
 - Signup-to-Aha conversion rate
 - Time-to-Aha
 - Free-to-paid conversion
@@ -219,13 +228,13 @@ Key metrics:
 
 ## Quick Router
 
-| Situation | Framework to Use |
-|-----------|------------------|
-| "Free trial or freemium?" | MOAT Framework |
-| "Users sign up but don't convert" | Bowling Alley (find drop-off) |
-| "Onboarding is too long" | Straight Line optimization |
-| "What's our key activation metric?" | Aha Moment analysis |
-| "Users don't come back" | Conversational Bumpers |
+| Situation                           | Framework to Use              |
+| ----------------------------------- | ----------------------------- |
+| "Free trial or freemium?"           | MOAT Framework                |
+| "Users sign up but don't convert"   | Bowling Alley (find drop-off) |
+| "Onboarding is too long"            | Straight Line optimization    |
+| "What's our key activation metric?" | Aha Moment analysis           |
+| "Users don't come back"             | Conversational Bumpers        |
 
 ---
 
@@ -237,22 +246,27 @@ Key metrics:
 ## Product: [Name]
 
 ### M - Market Strategy
+
 Our approach: [ ] Dominant [ ] Disruptive [ ] Differentiated
 Because: [Why]
 
 ### O - Ocean Conditions
+
 We're in: [ ] Red Ocean [ ] Blue Ocean
 Because: [Why]
 
 ### A - Audience
+
 Our approach: [ ] Top-Down [ ] Bottom-Up
 Because: [Why]
 
 ### T - Time-to-Value
+
 Our TTV is: [ ] Immediate [ ] Short [ ] Long
 Because: [Why]
 
 ### Recommendation
+
 Based on MOAT: [ ] Freemium [ ] Free Trial [ ] Demo
 Reasoning: [Summary]
 ```
@@ -263,33 +277,38 @@ Reasoning: [Summary]
 ## Product: [Name]
 
 ### Aha! Moment
+
 [What action = value received?]
 
 ### Current Path (Signup → Aha)
+
 1. [Step] - [Drop-off %]
 2. [Step] - [Drop-off %]
 3. [Step] - [Drop-off %]
-...
-[Aha moment]
+   ...
+   [Aha moment]
 
 ### Straight Line (Optimized)
+
 1. [Essential step only]
 2. [Essential step only]
 3. [Aha moment]
 
 ### Product Bumpers
-| Drop-off Point | Bumper Type | Content |
-|----------------|-------------|---------|
-| After signup | Welcome modal | [Content] |
-| Step 2 | Tooltip | [Content] |
-| ... | ... | ... |
+
+| Drop-off Point | Bumper Type   | Content   |
+| -------------- | ------------- | --------- |
+| After signup   | Welcome modal | [Content] |
+| Step 2         | Tooltip       | [Content] |
+| ...            | ...           | ...       |
 
 ### Conversational Bumpers
-| Trigger | Channel | Content |
-|---------|---------|---------|
-| Signup | Email | [Welcome content] |
-| 24h inactive | Email | [Re-engage content] |
-| ... | ... | ... |
+
+| Trigger      | Channel | Content             |
+| ------------ | ------- | ------------------- |
+| Signup       | Email   | [Welcome content]   |
+| 24h inactive | Email   | [Re-engage content] |
+| ...          | ...     | ...                 |
 ```
 
 ---
@@ -297,12 +316,14 @@ Reasoning: [Summary]
 ## PLG Metrics Dashboard
 
 **Leading Indicators:**
+
 - Signup rate
 - Activation rate (reached Aha)
 - Feature adoption
 - Invite rate
 
 **Lagging Indicators:**
+
 - Free-to-paid conversion
 - Revenue per user
 - Churn rate
@@ -350,10 +371,12 @@ Blank dashboard after signup → User doesn't know what to do.
 ## Integration
 
 **Before PLG optimization:**
+
 - `uvp-optimization` → Clear positioning
 - `offer-creation` → Compelling value proposition
 
 **After PLG setup:**
+
 - `growth-hacking` → Experiment on activation
 - `ux-optimization` → Implement UX improvements
-- `ottocopy-web-copy` → Onboarding copy optimization
+- `web-copy` → Onboarding copy optimization

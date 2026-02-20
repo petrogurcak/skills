@@ -1,7 +1,7 @@
 # Homepage Expert Review Template
 
 **Duration:** ~30-45 minutes
-**Sections:** 9 key elements (follows ottocopy-web-copy structure)
+**Sections:** 9 key elements (follows web-copy structure)
 **Outcome:** Prioritized action list with expected impact
 
 ---
@@ -11,32 +11,36 @@
 **Expert asks these questions first:**
 
 ### 1. Business Context
+
 - **"Jaký je primární business cíl této homepage?"**
   - [ ] Lead generation (B2B)
   - [ ] Direct sales (E-commerce)
   - [ ] Sign-ups (SaaS freemium)
   - [ ] Information/Education
-  - [ ] Other: _______________
+  - [ ] Other: **\*\***\_\_\_**\*\***
 
 ### 2. Target Audience
+
 - **"Kdo je tvoje target audience?"**
   - **B2B:** Company size, industry, role/title
   - **B2C:** Demographics, income, life stage
   - **Both:** Tech-savviness, pain points, motivations
 
 ### 3. Existing Data
+
 - **"Máš nějaká data?"**
-  - Current conversion rate: ____%
-  - Bounce rate: ____%
-  - Avg time on page: ____ seconds
-  - Drop-off points (Analytics): _______________
-  - User complaints/feedback: _______________
+  - Current conversion rate: \_\_\_\_%
+  - Bounce rate: \_\_\_\_%
+  - Avg time on page: \_\_\_\_ seconds
+  - Drop-off points (Analytics): **\*\***\_\_\_**\*\***
+  - User complaints/feedback: **\*\***\_\_\_**\*\***
 
 ### 4. Competitive Context
+
 - **"Kdo jsou tvoji hlavní konkurenti?"**
-  - List 2-3: _______________
-  - Their messaging approach: _______________
-  - Your differentiation: _______________
+  - List 2-3: **\*\***\_\_\_**\*\***
+  - Their messaging approach: **\*\***\_\_\_**\*\***
+  - Your differentiation: **\*\***\_\_\_**\*\***
 
 **→ Expert loads relevant checklist based on answers**
 
@@ -47,6 +51,7 @@
 ### Element 1: Claim / Slogan
 
 **User provides:**
+
 ```
 Claim text: "_________________"
 Placement: [ ] Pod logem  [ ] Jinde
@@ -55,6 +60,7 @@ Placement: [ ] Pod logem  [ ] Jinde
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Max 6 slov
 - [ ] Originální a libozvučný
 - [ ] Obsahuje příslib/benefit
@@ -62,17 +68,20 @@ Placement: [ ] Pod logem  [ ] Jinde
 - [ ] Není generický popis ("komplexní služby v oblasti...")
 
 **Common problems:**
+
 - ❌ Tečka na konci (iron rule violation)
 - ❌ Příliš dlouhý (>6 slov)
 - ❌ Generic/nezapamatovatelný
 - ❌ Žádný příslib
 
 **Challenge questions:**
+
 1. "Je claim memorable? Pamatuješ si ho po 5 sekundách?"
 2. "Je libozvučný nebo křečovitý?"
 3. "Mohl by to říct konkurent?"
 
 **Data to cite:**
+
 - Claim must be memorable (Ilinčev: "když má švih, jak když bičem mrská")
 - If missing: "Pod logem musí být jasné co děláte, 3 slova a je vymalováno"
 
@@ -86,6 +95,7 @@ Placement: [ ] Pod logem  [ ] Jinde
    - Impact: [expected loss/gain]
 
 **Alternatives:**
+
 - Option 1: [rewrite] - Why: [reason]
 - Option 2: [rewrite] - Why: [reason]
 - Option 3: [rewrite] - Why: [reason]
@@ -97,6 +107,7 @@ Placement: [ ] Pod logem  [ ] Jinde
 ### Element 2: Headline
 
 **User provides:**
+
 ```
 Headline: "_________________"
 Type: [ ] What It Is  [ ] What You Get  [ ] What You Can Do
@@ -105,6 +116,7 @@ Type: [ ] What It Is  [ ] What You Get  [ ] What You Can Do
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Akční sloveso přítomné
 - [ ] Konkrétní benefit (ne vague)
 - [ ] Jazyk ulice (ne corporate speak)
@@ -114,16 +126,19 @@ Type: [ ] What It Is  [ ] What You Get  [ ] What You Can Do
 - [ ] Two-question test passes
 
 **Two-Question Test:**
+
 1. "Headline + CTA button alone = dává smysl?"
 2. "Řekl bys toto kamarádovi v hospodě?"
 
 **Research-backed checks:**
+
 - [ ] Negative framing? (+30% vs neutral, -29% positive)
 - [ ] Odd number present? (+21% CTR)
 - [ ] First 2 words strong? (~11 chars decide)
 - [ ] Passes authenticity test? (not usable by competitor)
 
 **Challenge questions:**
+
 1. "Pokud odstraním všechny buzzwords, co vlastně děláš?"
 2. "Kdo je tvůj ideální zákazník a použil by toto slovo?"
 3. "Proč si tě má vybrat, když 50 konkurentů říká totéž?"
@@ -163,6 +178,7 @@ Type: [ ] What It Is  [ ] What You Get  [ ] What You Can Do
 ### Element 3: Perex / Subheading
 
 **User provides:**
+
 ```
 Perex text (2-5 vět): "_________________"
 ```
@@ -170,6 +186,7 @@ Perex text (2-5 vět): "_________________"
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Rozvíjí příslib z headlinu (not generic)
 - [ ] 2-5 vět (optimal length)
 - [ ] Vybírá 1-2 top benefits (ne všechny)
@@ -177,18 +194,21 @@ Perex text (2-5 vět): "_________________"
 - [ ] Flirt approach: "máš jen pár vteřin na vtipnou hlášku"
 
 **Challenge questions:**
+
 1. "Podporuje perex headline nebo jde jiným směrem?"
 2. "Je to konkrétní nebo generic marketing speak?"
 3. "Přidává novou informaci nebo jen opakuje headline?"
 
 **Common problems:**
+
 - ❌ Opakuje headline (adds no value)
 - ❌ Too long (>5 vět = paragraph)
 - ❌ Generic ("Nabízíme nejlepší služby...")
 - ❌ No connection to headline promise
 
 **Data:**
-- Two-part structure: Headline catches + Subheading develops (ottocopy-web-copy advanced)
+
+- Two-part structure: Headline catches + Subheading develops (web-copy advanced)
 - 8/10 read headline, 2/10 continue - perex je pro ty 2, musí delivery
 
 **Example feedback:**
@@ -208,6 +228,7 @@ Why better: Specific outcome (30 min), removes objections (no coder needed), cle
 ### Element 4: Kontakt
 
 **User provides:**
+
 ```
 Kontakt placement: [ ] Vpravo nahoře v menu  [ ] Jinde: _______
 Visible info: [ ] Tel  [ ] Email  [ ] Adresa  [ ] Jiné
@@ -216,6 +237,7 @@ Visible info: [ ] Tel  [ ] Email  [ ] Adresa  [ ] Jiné
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] V hlavním menu jako POSLEDNÍ položka
 - [ ] Umístění vpravo nahoře (user expectation)
 - [ ] NENÍ podřazen pod jinou stránku
@@ -225,6 +247,7 @@ Visible info: [ ] Tel  [ ] Email  [ ] Adresa  [ ] Jiné
 "Kde očekáváš že uživatel hledá kontakt?" → Answer: Vpravo nahoru
 
 **Data:**
+
 - Nielsen: 72% users expect contact top-right
 - 63% fallback look in footer
 - Missing visible contact: -17% trust
@@ -237,6 +260,7 @@ Visible info: [ ] Tel  [ ] Email  [ ] Adresa  [ ] Jiné
 ### Element 5: Newsletter Signup
 
 **User provides:**
+
 ```
 Newsletter section present: [ ] Yes  [ ] No
 If yes, promise text: "_________________"
@@ -245,27 +269,32 @@ If yes, promise text: "_________________"
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Popisuje CO čeká uživatele za email
 - [ ] Neodolatelná nabídka (benefit clear)
 - [ ] CTA button specific (ne "Subscribe")
 
 **Kdy newsletter NEPSAT:**
+
 - Nemáte co zajímavého sdělit
 - Nemáte vyřešený firemní vizuál
 - Vás to otravuje
 - Myslíte si, že tím ihned získáte zákazníky
 
 **Challenge questions:**
+
 1. "Co KONKRÉTNĚ dostanu when I give you my email?"
 2. "Proč bych měl chtít tvůj newsletter vs. 50 others v inbox?"
 
 **Common problems:**
+
 - ❌ Generic "Subscribe to our newsletter"
 - ❌ No benefit stated
 - ❌ Unclear frequency
 - ❌ Unclear content
 
-**Good example (from ottocopy-web-copy):**
+**Good example (from web-copy):**
+
 ```
 S NAŠÍM NEWSLETTEREM
 VÍTE JAKO PRVNÍ:
@@ -278,6 +307,7 @@ CHCI NEWSLETTER!
 ```
 
 **Data:**
+
 - Clear value prop: +132% signups (HubSpot)
 - Specific benefits list: +57% (MailChimp study)
 
@@ -286,6 +316,7 @@ CHCI NEWSLETTER!
 ### Element 6: Hero Image
 
 **User provides:**
+
 ```
 Hero image type: [ ] Product  [ ] Context  [ ] Person  [ ] Modern/Trendy
 Caption present: [ ] Yes  [ ] No
@@ -295,6 +326,7 @@ Caption placement: [ ] Under image  [ ] Above  [ ] None
 **Expert evaluates:**
 
 **7 Hero-Shot Essentials:**
+
 - [ ] Keyword relevance (fotka answers "Co děláte?")
 - [ ] Clear value proposition (benefit visible)
 - [ ] Design consistency (ladí s brandingem)
@@ -304,18 +336,21 @@ Caption placement: [ ] Under image  [ ] Above  [ ] None
 - [ ] Relatable subject (viewer = protagonist)
 
 **David Ogilvy 4 Principles:**
+
 - [ ] Caption POD fotkou (not above) - +10% readership
 - [ ] Caption present (300% engagement vs no caption)
 - [ ] NOT left-aligned (disrupts text flow)
 - [ ] Tematická s příběhem (not generic stock)
 
 **Challenge questions:**
+
 1. "Podporuje fotka messaging nebo je to just decoration?"
 2. "Mohl by konkurent použít stejnou fotku?" (generic test)
 3. "Jakou emoci evokuje a je to správná emoce pro produkt?"
 4. "Co přidává caption k porozumění?"
 
 **Research to cite:**
+
 - **UCLA/GWU:** Racionální prvky (grafy, čísla) aktivují decision-making brain která BLOKUJE impulses. Emoční imagery → spontánní akci.
 - **Fractl:** 4 emoce pro sharing: Happiness, Surprise, Kontrastní emoce, Pozitivní vzrušení
 - **Ogilvy:** Caption +10% když je POD fotkou, caption obecně 300% více engagement než body text
@@ -324,12 +359,14 @@ Caption placement: [ ] Under image  [ ] Above  [ ] None
 "Stock foto problém: 'Business team kolem stolu s MacBooky'
 
 Problems:
+
 1. **Zero authenticity** - Každý e-shop používá similar
 2. **No informational value** - Neříká nic specific o TVÉM produktu
 3. **Fails relatable test** - User se nevidí v této situaci
 4. **Generic = competitor could use it**
 
 Alternative options:
+
 1. **Product in context** - Tvůj actual produkt v real použití
 2. **Customer solving problem** - Before/after scenario
 3. **Behind-scenes** - Tvůj team at work (authentic)
@@ -338,6 +375,7 @@ Expected impact: Real photo vs stock = +35% trust (UserTesting study)"
 
 **If no caption:**
 "Chybí caption. Ogilvy data:
+
 - Caption pod fotkou: +10% readership vs above
 - Caption presence: 300% engagement vs no caption
 - Users scan images first, caption = první text they read
@@ -354,6 +392,7 @@ nebo
 ### Element 7: Písmo (Font Size)
 
 **User provides:**
+
 ```
 Headline size: ___ px
 Perex size: ___ px
@@ -365,11 +404,13 @@ Button size: ___ px
 **Manttra:** "Kdykoli váháte, zda písmo raději nezvětšit, máte pravdu: ZVĚTŠIT!"
 
 **Checklist:**
+
 - [ ] Nadpis: Křičet přes celou šířku (nebo alespoň půlku)
 - [ ] Perex: Viditelný bez lupy
 - [ ] Buttony: Must be noticeable
 
 **Optimal sizes (guidelines):**
+
 - Headline: 48-72px (desktop), 32-48px (mobile)
 - Perex/subheading: 18-24px (desktop), 16-20px (mobile)
 - Body text: 16-18px (never smaller than 16px)
@@ -382,6 +423,7 @@ Button size: ___ px
 "Headline je 24px. Problém: Příliš malý pro hero section.
 
 **Data:**
+
 - Nielsen: Headlines should dominate visual hierarchy
 - Optimal hierarchy ratio: H1 should be 2-3x body text size
 - If body = 16px → headline min 32px, ideally 48-64px
@@ -395,6 +437,7 @@ Button size: ___ px
 ### Element 8: Patička (Footer)
 
 **User provides:**
+
 ```
 Footer sections: [ ] Kontakt  [ ] Odkazy  [ ] Social  [ ] Newsletter  [ ] Jiné
 Background contrast: [ ] Yes  [ ] No
@@ -403,6 +446,7 @@ Background contrast: [ ] Yes  [ ] No
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Kontrastní pozadí (odliší se od body)
 - [ ] Hlavní prvek: KONTAKT (prominent)
 - [ ] Social proof / fan box if relevant
@@ -411,25 +455,30 @@ Background contrast: [ ] Yes  [ ] No
 - [ ] Responsive (not 50 links on mobile)
 
 **Ilinčev insight:**
+
 > "Nejpodceňovanější místo v rámci celého webu, které se klidně může změnit v ten nejkonverznější prvek."
 
 **Challenge questions:**
+
 1. "Je footer jen 'link dump' nebo má strategic purpose?"
 2. "Najdu kontakt okamžitě?"
 3. "Je tam opportunity pro final CTA?"
 
 **Data:**
+
 - 50% users scroll to footer (Nielsen)
 - Looking for: contact, sitemap, legal, trust signals
 - Footer = final decision point for hesitant users
 
 **Anti-patterns:**
+
 - ❌ Link dump (100+ unsorted links)
 - ❌ Hidden contact (small text, low contrast)
 - ❌ Generic Facebook "Staňte se fanouškem"
 - ❌ No strategic use (just dumps everything)
 
 **Good practices:**
+
 - ✅ Prominent contact (tel + email large)
 - ✅ Organized sections (3-5 columns max)
 - ✅ Trust signals (certifications, payment methods)
@@ -441,6 +490,7 @@ Background contrast: [ ] Yes  [ ] No
 ### Element 9: CTA (Call-to-Action)
 
 **User provides:**
+
 ```
 CTA text: "_________________"
 CTA count: ___ (homepage total)
@@ -450,6 +500,7 @@ Placement: [ ] Hero  [ ] Benefits section  [ ] Footer  [ ] Jiné
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Jasná výzva k akci (not vague)
 - [ ] Konkrétní benefit stated or adjacent
 - [ ] Logický přechod (user knows what happens next)
@@ -457,27 +508,32 @@ Placement: [ ] Hero  [ ] Benefits section  [ ] Footer  [ ] Jiné
 - [ ] First-person where appropriate ("Start MY trial")
 
 **Optimal frequency:**
+
 - Homepage: 2-3 CTAs (hero + after benefits + footer)
 - Landing page: 3-5 CTAs (repeat throughout)
 
 **Challenge questions:**
+
 1. "Co se stane když kliknu?" (expectation clarity)
 2. "Proč bych měl kliknout TEĎ vs později?" (urgency)
 3. "Jaká je primary action a je un-missable?"
 
 **CTA Research:**
+
 - First-person: +90% vs second-person (Unbounce)
 - Specific vs generic: +213% clicks (Michael Aagaard)
 - Action verbs: +121% (ContentVerve)
 - High contrast: +21% (VWO)
 
 **Common problems:**
+
 - ❌ Generic: "Submit", "Click here", "Learn More"
 - ❌ No urgency: "Get started" (when?)
 - ❌ Too many: 5+ competing CTAs = split attention
 - ❌ Low contrast: Blue button on blue background
 
 **Good CTAs:**
+
 - ✅ "Get My Free Trial" (first-person + specific)
 - ✅ "Download Guide (Takes 30 Seconds)" (benefit + low friction)
 - ✅ "Start Saving 30% Now" (outcome + urgency)
@@ -490,10 +546,12 @@ Placement: [ ] Hero  [ ] Benefits section  [ ] Footer  [ ] Jiné
 3. **Second-person implied** - Not first-person advantage
 
 Data:
+
 - Generic 'Submit': Baseline
 - Specific 'Get My Free Trial': +90% (first-person) + 213% (specific) = combined ~250-300% lift
 
 Alternatives ranked:
+
 1. 'Start My Free Trial' → +250-300% (first-person + action verb + specific)
 2. 'Get Instant Access' → +150-200% (benefit + urgency)
 3. 'Try It Free for 14 Days' → +120-150% (specific timeline + no commitment)
@@ -531,19 +589,20 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 
 ### Prioritization Matrix
 
-| Issue | Current Impact | Fix Complexity | Expected Gain | Priority |
-|-------|----------------|----------------|---------------|----------|
-| Headline rewrite | -40% conversion | Low (2 hours) | +40-50% | **1** |
-| CTA text change | -60% clicks | Low (30 min) | +200-250% | **2** |
-| Add hero caption | -10% engagement | Low (1 hour) | +10-15% | **3** |
-| Headline font size | -25% visibility | Low (15 min) | +25% | **4** |
-| Perex rewrite | -15% continue reading | Medium (2-3 hours) | +15-20% | **5** |
+| Issue              | Current Impact        | Fix Complexity     | Expected Gain | Priority |
+| ------------------ | --------------------- | ------------------ | ------------- | -------- |
+| Headline rewrite   | -40% conversion       | Low (2 hours)      | +40-50%       | **1**    |
+| CTA text change    | -60% clicks           | Low (30 min)       | +200-250%     | **2**    |
+| Add hero caption   | -10% engagement       | Low (1 hour)       | +10-15%       | **3**    |
+| Headline font size | -25% visibility       | Low (15 min)       | +25%          | **4**    |
+| Perex rewrite      | -15% continue reading | Medium (2-3 hours) | +15-20%       | **5**    |
 
 ---
 
 ### Quick Wins (Week 1)
 
 **Do these first (low effort, high impact):**
+
 1. CTA text: "Submit" → "Get My Free Trial" (30 minutes)
 2. Headline font size: 24px → 54px (15 minutes)
 3. Add hero image caption (1 hour)
@@ -565,6 +624,7 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 ### Testing Plan
 
 **Priority #1 A/B Test:**
+
 - **Element:** Headline
 - **Control:** Current generic headline
 - **Variant:** Recommended specific benefit headline

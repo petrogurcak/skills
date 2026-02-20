@@ -397,7 +397,7 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 
 ---
 
-### 2. ottocopy-web-copy
+### 2. web-copy
 
 **When expert critiques copy:**
 
@@ -407,7 +407,7 @@ LOW-PRIORITY (impact <10% nebo nice-to-have):
 - Bullshit radar (avoid buzzwords)
 
 **Example usage:**
-"`ottocopy-web-copy` říká že negative framing je +30% lepší než pozitivní. Místo 'Získej více leadů' zkus 'Přestaň ztrácet 60% leadů kvůli špatným formulářům'"
+"`web-copy` říká že negative framing je +30% lepší než pozitivní. Místo 'Získej více leadů' zkus 'Přestaň ztrácet 60% leadů kvůli špatným formulářům'"
 
 ---
 

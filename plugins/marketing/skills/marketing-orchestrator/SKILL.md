@@ -10,6 +10,7 @@ description: Use when planning marketing, growth, or go-to-market strategy - orc
 This skill orchestrates marketing and growth work by detecting business stage, goal type, and routing to appropriate specialized skills. It does NOT implement strategies itself - it routes to specialists.
 
 **Philosophy:**
+
 ```
 Orchestrator = Conductor
 Specialized Skills = Musicians
@@ -22,6 +23,7 @@ The conductor coordinates who plays when.
 ## When to Use
 
 **USE this skill:**
+
 - Marketing strategy requests
 - "How do I get first customers?"
 - Go-to-market planning
@@ -30,8 +32,9 @@ The conductor coordinates who plays when.
 - "Help me grow my product"
 
 **DON'T use this skill:**
+
 - Already know exact need → use specialist directly
-- Just copywriting → `ottocopy`
+- Just copywriting → `copywriting-orchestrator`
 - Just UX improvement → `ux-orchestrator`
 - Just positioning → `uvp-optimization`
 
@@ -39,23 +42,23 @@ The conductor coordinates who plays when.
 
 ### Step 1: Stage Detection
 
-| Indicators | Stage | Primary Focus |
-|------------|-------|---------------|
-| No customers, pre-launch | **Stage 0: Idea** | Validation, positioning |
-| 0-10 customers, just launched | **Stage 1: Traction** | First customers, PMF |
-| 10-100 customers, growing | **Stage 2: Growth** | Scalable channels |
-| 100+ customers, optimizing | **Stage 3: Scale** | Optimization, expansion |
+| Indicators                    | Stage                 | Primary Focus           |
+| ----------------------------- | --------------------- | ----------------------- |
+| No customers, pre-launch      | **Stage 0: Idea**     | Validation, positioning |
+| 0-10 customers, just launched | **Stage 1: Traction** | First customers, PMF    |
+| 10-100 customers, growing     | **Stage 2: Growth**   | Scalable channels       |
+| 100+ customers, optimizing    | **Stage 3: Scale**    | Optimization, expansion |
 
 ### Step 2: Goal Detection
 
-| Keywords in Request | Detected Goal | Primary Skill |
-|---------------------|---------------|---------------|
-| `first customers`, `launch`, `validate` | Traction | `offer-creation`, `growth-hacking` |
-| `positioning`, `differentiation`, `stand out` | Positioning | `uvp-optimization` |
-| `growth`, `scale`, `more customers` | Growth | `growth-hacking`, `product-led-growth` |
-| `pricing`, `monetization`, `revenue` | Monetization | `pricing`, `offer-creation` |
-| `onboarding`, `activation`, `retention` | PLG | `product-led-growth` |
-| `bootstrap`, `solo founder`, `limited budget` | Bootstrap | `saas-bootstrap` |
+| Keywords in Request                           | Detected Goal | Primary Skill                          |
+| --------------------------------------------- | ------------- | -------------------------------------- |
+| `first customers`, `launch`, `validate`       | Traction      | `offer-creation`, `growth-hacking`     |
+| `positioning`, `differentiation`, `stand out` | Positioning   | `uvp-optimization`                     |
+| `growth`, `scale`, `more customers`           | Growth        | `growth-hacking`, `product-led-growth` |
+| `pricing`, `monetization`, `revenue`          | Monetization  | `pricing`, `offer-creation`            |
+| `onboarding`, `activation`, `retention`       | PLG           | `product-led-growth`                   |
+| `bootstrap`, `solo founder`, `limited budget` | Bootstrap     | `saas-bootstrap`                       |
 
 ### Step 3: Ask if Unclear
 
@@ -98,13 +101,13 @@ marketing-orchestrator
             └── Source: Obviously Awesome (April Dunford)
 ```
 
-### Cross-skill from ottocopy:
+### Cross-skill from copywriting-orchestrator:
 
 ```
 For implementation:
-├── ottocopy-web-copy → Landing pages, sales pages
-├── ottocopy-product-copy → Product descriptions
-└── ottocopy-newsletter → Email sequences
+├── web-copy → Landing pages, sales pages
+├── product-copy → Product descriptions
+└── newsletter → Email sequences
 ```
 
 ## Standard Workflow
@@ -130,12 +133,14 @@ Is offer compelling?
 ### Phase 3: Route to Specialist
 
 Based on detection, call appropriate skill:
+
 > "Using growth-hacking for systematic experiment process."
 
 ### Phase 4: Implementation Handoff
 
 After strategy defined, route to implementation skills:
-- Copy needed → `ottocopy`
+
+- Copy needed → `copywriting-orchestrator`
 - UX needed → `ux-orchestrator`
 - Technical → `development-workflow`
 
@@ -156,7 +161,7 @@ Sequence:
 Sequence:
 1. offer-creation → Grand Slam Offer
 2. growth-hacking → ICE prioritization of channels
-3. ottocopy-web-copy → Landing page
+3. web-copy → Landing page
 ```
 
 ### Stage 2: Growth (10-100)
@@ -188,7 +193,7 @@ digraph marketing_flow {
     "uvp-optimization" [shape=box];
     "Route to specialist" [shape=box];
     "Implementation needed?" [shape=diamond];
-    "Route to ottocopy/ux" [shape=box];
+    "Route to copywriting-orchestrator/ux" [shape=box];
     "Done" [shape=doublecircle];
 
     "Request arrives" -> "Detect stage";
@@ -198,43 +203,47 @@ digraph marketing_flow {
     "Positioning clear?" -> "Route to specialist" [label="yes"];
     "uvp-optimization" -> "Route to specialist";
     "Route to specialist" -> "Implementation needed?";
-    "Implementation needed?" -> "Route to ottocopy/ux" [label="yes"];
+    "Implementation needed?" -> "Route to copywriting-orchestrator/ux" [label="yes"];
     "Implementation needed?" -> "Done" [label="no"];
-    "Route to ottocopy/ux" -> "Done";
+    "Route to copywriting-orchestrator/ux" -> "Done";
 }
 ```
 
 ## Quick Reference
 
-| Problem Type | Specialist Skill | Core Framework |
-|--------------|------------------|----------------|
-| Can't articulate value | `uvp-optimization` | 10-Step Positioning |
-| Offer not compelling | `offer-creation` | Grand Slam Offer, Value Equation |
-| Need systematic growth | `growth-hacking` | Growth Process, ICE Scoring |
-| Product should sell itself | `product-led-growth` | Bowling Alley, MOAT |
-| Bootstrap SaaS | `saas-bootstrap` | Stair Step, 3H/3L Metrics |
+| Problem Type               | Specialist Skill     | Core Framework                   |
+| -------------------------- | -------------------- | -------------------------------- |
+| Can't articulate value     | `uvp-optimization`   | 10-Step Positioning              |
+| Offer not compelling       | `offer-creation`     | Grand Slam Offer, Value Equation |
+| Need systematic growth     | `growth-hacking`     | Growth Process, ICE Scoring      |
+| Product should sell itself | `product-led-growth` | Bowling Alley, MOAT              |
+| Bootstrap SaaS             | `saas-bootstrap`     | Stair Step, 3H/3L Metrics        |
 
 ## Iron Laws
 
 **From offer-creation:**
+
 ```
 VALUE = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort)
 If value isn't obvious, increase top or decrease bottom.
 ```
 
 **From growth-hacking:**
+
 ```
 NO GROWTH WITHOUT PRODUCT-MARKET FIT FIRST
 40% "very disappointed" = PMF achieved
 ```
 
 **From product-led-growth:**
+
 ```
 TIME-TO-VALUE IS EVERYTHING
 Reduce steps between signup and "Aha!" moment.
 ```
 
 **From saas-bootstrap:**
+
 ```
 STAIR STEP > MOONSHOT
 Build skills and capital with simple products before complex SaaS.
@@ -258,12 +267,12 @@ Build skills and capital with simple products before complex SaaS.
 
 After marketing strategy is defined:
 
-| Strategy Output | Copywriting Skill |
-|-----------------|-------------------|
-| UVP defined | `ottocopy-web-copy` for homepage |
-| Offer created | `ottocopy-web-copy` for sales page |
-| Lead magnet defined | `ottocopy-newsletter` for nurture sequence |
-| Product positioning | `ottocopy-product-copy` for e-shop |
+| Strategy Output     | Copywriting Skill                 |
+| ------------------- | --------------------------------- |
+| UVP defined         | `web-copy` for homepage           |
+| Offer created       | `web-copy` for sales page         |
+| Lead magnet defined | `newsletter` for nurture sequence |
+| Product positioning | `product-copy` for e-shop         |
 
 ## Example Scenarios
 
@@ -277,7 +286,7 @@ Sequence:
 1. uvp-optimization → "Who is this for? What makes it unique?"
 2. offer-creation → "What's the Grand Slam Offer?"
 3. growth-hacking → "Which channel to prioritize?" (ICE)
-4. ottocopy-web-copy → Implementation
+4. web-copy → Implementation
 ```
 
 ### Scenario 2: "Máme 50 uživatelů, jak růst rychleji?"
@@ -308,10 +317,10 @@ Sequence:
 
 ## Metrics for Success
 
-| Skill | Success Metric |
-|-------|----------------|
-| `uvp-optimization` | 80%+ clarity on five-second test |
-| `offer-creation` | Conversion rate increase, price elasticity |
-| `growth-hacking` | Validated experiments, metric improvement |
-| `product-led-growth` | Time-to-value reduction, activation rate |
-| `saas-bootstrap` | MRR growth, healthy 3H/3L ratios |
+| Skill                | Success Metric                             |
+| -------------------- | ------------------------------------------ |
+| `uvp-optimization`   | 80%+ clarity on five-second test           |
+| `offer-creation`     | Conversion rate increase, price elasticity |
+| `growth-hacking`     | Validated experiments, metric improvement  |
+| `product-led-growth` | Time-to-value reduction, activation rate   |
+| `saas-bootstrap`     | MRR growth, healthy 3H/3L ratios           |

@@ -10,6 +10,7 @@ description: Use when improving any user experience - orchestrates specialized U
 This skill orchestrates UX work by detecting problem type and routing to the appropriate specialized skill. It does NOT implement UX solutions itself - it routes to specialists.
 
 **Philosophy:**
+
 ```
 Orchestrator = Conductor
 Specialized Skills = Musicians
@@ -22,6 +23,7 @@ The conductor coordinates who plays when.
 ## When to Use
 
 **USE this skill:**
+
 - Any UX improvement request (unclear which specialist)
 - "Make it better" / "Improve conversion" requests
 - New website/landing page projects
@@ -29,6 +31,7 @@ The conductor coordinates who plays when.
 - Multi-aspect UX work
 
 **DON'T use this skill:**
+
 - Already know exact need → use specialist directly
 - Just A/B testing → `ux-optimization`
 - Just expert critique → `ux-expert-dialogue`
@@ -38,11 +41,11 @@ The conductor coordinates who plays when.
 
 ### Step 1: Keyword Detection
 
-| Keywords in Request | Detected Type | Specialist Skill |
-|---------------------|---------------|------------------|
-| `conversion`, `forms`, `checkout`, `A/B test`, `data` | Optimization | `ux-optimization` |
+| Keywords in Request                                                   | Detected Type   | Specialist Skill     |
+| --------------------------------------------------------------------- | --------------- | -------------------- |
+| `conversion`, `forms`, `checkout`, `A/B test`, `data`                 | Optimization    | `ux-optimization`    |
 | `review`, `critique`, `challenge`, `brainstorm`, `section-by-section` | Expert Dialogue | `ux-expert-dialogue` |
-| `value proposition`, `UVP`, `positioning`, `what we do`, `clarity` | UVP | `uvp-optimization` |
+| `value proposition`, `UVP`, `positioning`, `what we do`, `clarity`    | UVP             | `uvp-optimization`   |
 
 ### Step 2: Context Detection
 
@@ -117,6 +120,7 @@ Is this new project?
 ### Phase 3: Call Specialist
 
 Invoke appropriate skill:
+
 > "Using ux-optimization for data-driven conversion improvement."
 
 The specialist skill handles its own workflow (phases, checklists, testing).
@@ -125,11 +129,11 @@ The specialist skill handles its own workflow (phases, checklists, testing).
 
 Skills reference each other:
 
-| Skill | References |
-|-------|------------|
-| `ux-optimization` | Links to `uvp-optimization` for messaging issues |
-| `ux-expert-dialogue` | Uses knowledge from all UX skills |
-| `uvp-optimization` | Feeds into `ottocopy-web-copy` for implementation |
+| Skill                | References                                       |
+| -------------------- | ------------------------------------------------ |
+| `ux-optimization`    | Links to `uvp-optimization` for messaging issues |
+| `ux-expert-dialogue` | Uses knowledge from all UX skills                |
+| `uvp-optimization`   | Feeds into `web-copy` for implementation         |
 
 ## Complete UX Projects
 
@@ -201,27 +205,30 @@ digraph ux_flow {
 
 ## Quick Reference
 
-| Problem Type | Specialist Skill | Core Approach |
-|--------------|------------------|---------------|
-| Conversion metrics | `ux-optimization` | Data → Diagnose → Implement → Test |
-| Design critique | `ux-expert-dialogue` | Setup → Section review → Debate → Summary |
-| Positioning/clarity | `uvp-optimization` | Position → Formulate → Test → Implement |
+| Problem Type        | Specialist Skill     | Core Approach                             |
+| ------------------- | -------------------- | ----------------------------------------- |
+| Conversion metrics  | `ux-optimization`    | Data → Diagnose → Implement → Test        |
+| Design critique     | `ux-expert-dialogue` | Setup → Section review → Debate → Summary |
+| Positioning/clarity | `uvp-optimization`   | Position → Formulate → Test → Implement   |
 
 ## Iron Laws (from specialists)
 
 **From ux-optimization:**
+
 ```
 NO OPTIMIZATION WITHOUT DATA FIRST
 NO DEPLOYMENT WITHOUT A/B TEST
 ```
 
 **From ux-expert-dialogue:**
+
 ```
 EXPERT PROVIDES DIRECT CRITIQUE WITH DATA-BACKED REASONING
 (not vague "maybe try..." suggestions)
 ```
 
 **From uvp-optimization:**
+
 ```
 CLARITY > CLEVERNESS
 If they don't understand, they won't convert
@@ -244,10 +251,12 @@ If they don't understand, they won't convert
 ## Integration with Other Skills
 
 **Copywriting integration:**
-- After `uvp-optimization` → `ottocopy-web-copy` for headline/copy
-- After design decisions → `ottocopy-product-copy` for e-shop
+
+- After `uvp-optimization` → `web-copy` for headline/copy
+- After design decisions → `product-copy` for e-shop
 
 **Development integration:**
+
 - After UX decisions → `frontend-workflow` for implementation
 - UX testing → `superpowers:test-driven-development` for forms
 
@@ -290,15 +299,15 @@ Orchestrator detects: Complete project
 Sequence:
 1. uvp-optimization (positioning + UVP)
 2. ux-expert-dialogue (design review)
-3. ottocopy-web-copy (copywriting)
+3. web-copy (copywriting)
 4. frontend-workflow (implementation)
 5. ux-optimization (ongoing optimization)
 ```
 
 ## Metrics for Success
 
-| Skill | Success Metric |
-|-------|----------------|
-| `ux-optimization` | Conversion lift with statistical significance |
+| Skill                | Success Metric                                 |
+| -------------------- | ---------------------------------------------- |
+| `ux-optimization`    | Conversion lift with statistical significance  |
 | `ux-expert-dialogue` | Prioritized action list with quantified impact |
-| `uvp-optimization` | 80%+ clarity on five-second test |
+| `uvp-optimization`   | 80%+ clarity on five-second test               |

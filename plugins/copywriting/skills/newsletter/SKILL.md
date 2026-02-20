@@ -1,5 +1,5 @@
 ---
-name: ottocopy-newsletter
+name: newsletter
 description: Use when writing newsletters, direct emails, or email campaigns - comprehensive framework combining Otto Bohuš email principles, PROTTO methodology, psychological triggers, and conversion techniques for high-performing email marketing
 ---
 
@@ -16,6 +16,7 @@ This skill provides a comprehensive framework for writing **high-converting emai
 ## When to Use
 
 Use this skill when:
+
 - ✅ Writing newsletters (regular or promotional)
 - ✅ Creating direct email campaigns
 - ✅ Developing email sequences (onboarding, nurture)
@@ -23,9 +24,10 @@ Use this skill when:
 - ✅ Writing transactional emails with marketing value
 
 **Do NOT use for:**
-- ❌ Website copy (use `ottocopy:web-copy`)
-- ❌ Product descriptions (use `ottocopy:product-copy`)
-- ❌ Social media (use `ottocopy:instagram-content`)
+
+- ❌ Website copy (use `copywriting:web-copy`)
+- ❌ Product descriptions (use `copywriting:product-copy`)
+- ❌ Social media (use `copywriting:instagram-content`)
 
 ---
 
@@ -34,12 +36,14 @@ Use this skill when:
 **Strongly recommended:** Work through the [Core Briefing Process](../core-briefing-process.md) before writing email campaigns.
 
 **Otto's Principle:**
+
 > "Nemohu začít psát texty, dokud nemám jasné zadání"
-> *(Cannot begin writing without clear direction)*
+> _(Cannot begin writing without clear direction)_
 
 ### Quick Brief for Email Campaigns
 
 **Minimum questions to answer:**
+
 - **KOMU (Audience):** Who are your subscribers? Segments? (new subscribers, engaged, cold, VIP)
 - **JAK (Journey):** Where are they in the customer journey? Awareness stage?
 - **KAM (Goal):** What action do you want? (click, reply, purchase, engagement)
@@ -61,6 +65,7 @@ The brief answers become inputs for PROTTO Step 1 (PROstuduj) - you cannot study
 **Before starting, review:** [Core Copywriting Principles](../core-copywriting-principles.md)
 
 Key principles for email:
+
 1. **Předmět = 50 % úspěchu** - 2 sekundy na rozhodnutí
 2. **Prvních 5 sekund** rozhoduje o čtení
 3. **Jeden odstavec = max 3 řádky** - Email se skenuje ještě více než web
@@ -80,6 +85,7 @@ Key principles for email:
 - [ ] Otestovat na antispam
 
 **Kritický fakt:**
+
 > "Předmět rozhoduje o otevření či smazání e-mailu během **2 sekund**."
 
 ---
@@ -87,15 +93,18 @@ Key principles for email:
 #### Co NEDĚLAT v předmětu
 
 **❌ Opakovat název firmy:**
+
 - "Newsletter od Firmy XYZ"
 - "Novinky od nás"
 
 **❌ Používat blokovaná slova:**
+
 - "Sleva" / "Zdarma" / "Akce"
 - "Výhra" / "Bonus" / "Gratis"
 - "Klikněte zde"
 
 **❌ Psát obecné fráze:**
+
 - "Novinky od..."
 - "Speciální nabídka"
 - "Máme pro vás..."
@@ -105,18 +114,22 @@ Key principles for email:
 #### Co DĚLAT v předmětu
 
 **✅ Inteligentní otázka budící zvědavost:**
+
 - "Petra, ještě jste o tom nepřemýšlela?"
 - "Víte, proč vaše Instagram neprodává?"
 
 **✅ Kontext reagující na aktuální dění:**
+
 - "Po včerejším webináři..."
 - "Petra, tohle jste minulý týden přehlédla"
 
 **✅ Osobní oslovení s konkrétním benefitem:**
+
 - "Petra: 3 věci, které vám ušetří 5 hodin"
 - "Jak jsem za 3 dny prodala, na co jsem čekala 8 měsíc"
 
 **✅ Vyvolání nedořečenosti:**
+
 - "To, co se stalo v pátek..."
 - "Nemůžu uvěřit, že jsem tohle našel..."
 - "Nevěřila byste, kdo se zeptal..."
@@ -126,22 +139,27 @@ Key principles for email:
 #### Techniky pro předmět
 
 **1. Čísla a specifičnost:**
+
 - "3 chyby, které děláte s kávou"
 - "Ušetřete 2 490 Kč do pátku"
 
 **2. Zvědavost (otevřená smyčka):**
+
 - "Tohle by vás mohlo překvapit..."
 - "Konečně jsem zjistil proč..."
 
 **3. Personalizace:**
+
 - "Petra, toto je pro vás"
 - Lokace: "Petra (Praha), speciálně pro vás"
 
 **4. Urgence (pozor na spam):**
+
 - "Zbývá 24 hodin"
 - "Poslední šance" (ale musí být pravda!)
 
 **5. Negativní rámování:**
+
 - "Přestaňte dělat tuto chybu"
 - "5 věcí, co vás zdržují"
 
@@ -152,6 +170,7 @@ Key principles for email:
 **Nástroj:** Napište 10 verzí. Vyberte nejlepší. Pak ho ještě vylepšete.
 
 **Checklist:**
+
 - [ ] Vyvolává zvědavost?
 - [ ] Není tam spam slovo?
 - [ ] Max 50 znaků? (mobilní zobrazení)
@@ -176,6 +195,7 @@ Text viditelný vedle předmětu v inboxu (náhled prvních slov emailu).
 Rozšiřte příběh z předmětu. Posílíte zvědavost.
 
 **Příklad:**
+
 ```
 Předmět: Petra, tohle jste minulý týden přehlédla
 Preheader: ...a stojí to jen 7 minut vašeho času
@@ -193,9 +213,11 @@ V HTML šabloně nebo první věta emailu (pokud nástroj neumí preheader nasta
 - [ ] Pokud ne: rovnou do věci
 
 **Problém:**
+
 > "Klasické zdravice typu 'Vážený pane...' patří do minulosti."
 
 **Realita:**
+
 > "Máte pouze **5 sekund pozornosti** čtenáře."
 
 ---
@@ -203,6 +225,7 @@ V HTML šabloně nebo první věta emailu (pokud nástroj neumí preheader nasta
 #### Co NEDĚLAT
 
 **❌ Formální pozdrovy:**
+
 - "Vážený pane Nováku,"
 - "Milá paní Svobodová,"
 - "Dobrý den,"
@@ -213,11 +236,13 @@ V HTML šabloně nebo první věta emailu (pokud nástroj neumí preheader nasta
 #### Co DĚLAT
 
 **✅ Rovnou do věci:**
+
 ```
 Včera jsem přemýšlel o vašem projektu a napadlo mě...
 ```
 
 **✅ Nebo jen křestní jméno:**
+
 ```
 Petře,
 
@@ -236,6 +261,7 @@ Začít přímo textem (riskantní, ale může fungovat).
 - [ ] Konkrétní příslib
 
 **Pravidlo:**
+
 > "Bez 'kvalitního eye-catching' nadpisu hned na úvod prohráváte."
 
 ---
@@ -243,16 +269,19 @@ Začít přímo textem (riskantní, ale může fungovat).
 #### Vlastnosti dobrého nadpisu v emailu
 
 **1. Veliký**
+
 - Vizuálně výrazný (H1 nebo H2 velikost)
 - Tučný font
 - Barva odlišná od běžného textu
 
 **2. Zajímavý**
+
 - Překvapivý nebo provokativní
 - Vyvolává emoce
 - Nečekaný úhel
 
 **3. Konkrétní příslib**
+
 - Co z toho budu mít
 - Jasný benefit
 - Měřitelný výsledek
@@ -262,11 +291,13 @@ Začít přímo textem (riskantní, ale může fungovat).
 #### Příklady
 
 **❌ Špatné nadpisy:**
+
 - "Novinky z našeho obchodu"
 - "Speciální nabídka pro Vás"
 - "Newsletter - únor 2025"
 
 **✅ Dobré nadpisy:**
+
 - "Ivo, jste opravdová umělkyně! Vaše ruční výrobky si prohlédlo přes 1 500 zájemců..."
 - "Jak jsem za 3 dny prodala, na co jsem čekala 8 měsíců"
 - "Tento trik vám ušetří 40 hodin měsíčně"
@@ -276,11 +307,13 @@ Začít přímo textem (riskantní, ale může fungovat).
 #### Technika
 
 **Zasáhněte čtenáře přímo do srdce:**
+
 - Emoce (radost, strach, překvapení)
 - Čísla (specifické výsledky)
 - Osobní oslovení (jméno)
 
 **Triáda aplikace:**
+
 1. **Rezonance**: "Znáte to, když..."
 2. **Redefinice**: "Co kdyby problém nebyl v..., ale v..."
 3. **Rezistence**: "Možná si říkáte: 'To je příliš dobré.' Rozumím..."
@@ -295,6 +328,7 @@ Začít přímo textem (riskantní, ale může fungovat).
 - [ ] Emoce vstříknuty
 
 **Manttra:**
+
 > "Hned v prvních **dvou třech KRÁTKÝCH odstavcích** ať je vymalováno."
 
 ---
@@ -317,6 +351,7 @@ Co s tím může udělat
 **Jeden odstavec = maximálně 3 řádky**
 
 **Zaměření:**
+
 - ✅ Problémy čtenáře
 - ❌ NEPIŠTĚ o sobě a své firmě
 
@@ -325,6 +360,7 @@ Co s tím může udělat
 #### Příklad transformace
 
 **❌ Špatně (rozvláčné, o firmě):**
+
 ```
 Naše společnost byla založena v roce 2010 s cílem poskytovat
 kvalitní služby v oblasti marketingu. Za dobu naší existence
@@ -333,6 +369,7 @@ které nyní můžeme nabídnout i Vám...
 ```
 
 **✅ Dobře (krátké, o čtenáři):**
+
 ```
 Petra, pamatujete si, jak jste mi říkala, že vás štve
 neustálé hašení požárů v marketingu?
@@ -352,9 +389,11 @@ Chcete vědět jak?
 - [ ] Předchozí komunikace
 
 **Klíč:**
+
 > "Personalizace je asi nejvíc podceňovaný marketingový fígl dneška."
 
 **Síla:**
+
 > "Správně personalizovaný email může zvýšit konverzi až o **300 %**."
 
 ---
@@ -362,11 +401,13 @@ Chcete vědět jak?
 #### Co personalizovat
 
 **Základní:**
+
 - Jméno příjemce
 - Firma
 - Město
 
 **Pokročilé:**
+
 - Historie nákupů
 - Chování na webu
 - Předchozí komunikace
@@ -379,6 +420,7 @@ Chcete vědět jak?
 #### Příklady
 
 **❌ Špatná personalizace (jen jméno):**
+
 ```
 Dobrý den {JMENO},
 
@@ -386,6 +428,7 @@ máme pro vás speciální nabídku...
 ```
 
 **✅ Dobrá personalizace (kontext + chování):**
+
 ```
 Petře,
 
@@ -409,9 +452,11 @@ první lekce...
 - [ ] Bez křečovité reklamštiny
 
 **Princip:**
+
 > "Neberte se (při psaní) tak vážně."
 
 **Paradox:**
+
 > "Občas můžete prodávat i tím, že nic neprodáváte – jen budete milí."
 
 ---
@@ -419,12 +464,14 @@ první lekce...
 #### Příklady
 
 **❌ Formální, nudné:**
+
 ```
 Dovoluji si Vás upozornit na naší novou nabídku,
 která by mohla být pro Vaši společnost přínosná...
 ```
 
 **✅ Přátelské, vtipné:**
+
 ```
 Hele Petře,
 
@@ -449,6 +496,7 @@ Můžete použít i emoji, ale s mírou. Ne v každé větě.
 - [ ] Hyperlinky s benefitem (2-3 hlavní)
 
 **Problém:**
+
 > "Jeden dlouhý blok textu nikdo nečte."
 
 ---
@@ -456,21 +504,25 @@ Můžete použít i emoji, ale s mírou. Ne v každé větě.
 #### Řešení - používejte
 
 **1. Formátování:**
+
 - **Tučný text** pro důležité myšlenky
-- *Kurzíva* pro citace nebo zvýraznění
+- _Kurzíva_ pro citace nebo zvýraznění
 - VERZÁLKY pro výjimečné případy (ne často!)
 
 **2. Struktura:**
+
 - Nadpisy a mezititulky
 - Odrážky pro seznamy
 - Číslované kroky pro postupy
 
 **3. Vizuální prvky:**
+
 - Horizontální čáry pro oddělení sekcí
 - Bílé místo mezi odstavci
 - Krátké řádky (max 80 znaků)
 
 **4. Hyperlinky:**
+
 - **Prolinkujte** důležité pasáže
 - Ale ne "katalog linků" - vyberte 2-3 hlavní
 - Link musí obsahovat benefit (ne "klikněte zde")
@@ -480,6 +532,7 @@ Můžete použít i emoji, ale s mírou. Ne v každé větě.
 #### Příklad transformace
 
 **❌ Špatná struktura:**
+
 ```
 Máme pro vás nabídku našeho nového produktu který je
 skvělý a pomůže vám ušetřit čas a peníze a navíc je
@@ -488,6 +541,7 @@ kde najdete více informací...
 ```
 
 **✅ Dobrá struktura:**
+
 ```
 Máme pro vás 3 novinky:
 
@@ -504,6 +558,7 @@ Máme pro vás 3 novinky:
 ```
 
 **Zlaté pravidlo:**
+
 > "Text musí mít **vizuální rytmus**. Oko čtenáře se nesmí ztratit."
 
 ---
@@ -517,6 +572,7 @@ Máme pro vás 3 novinky:
 - [ ] Urgence + garance
 
 **Kritické pravidlo:**
+
 > "Pokud chybí výzva k akci, prohráli jste. **Tečka.**"
 
 ---
@@ -530,6 +586,7 @@ Přesně řekněte, co mají udělat.
 ✅ "Klikněte sem a rezervujte si místo"
 
 **2. Vizuální výraznost:**
+
 - **Velký font**
 - Zelené nebo oranžové tlačítko
 - Dostatek bílého místa kolem
@@ -539,6 +596,7 @@ Přesně řekněte, co mají udělat.
 Ne jen "Koupit", ale "Získejte kurz se slevou 30 %"
 
 **4. Umístění:**
+
 - Vždy na konci
 - U delších emailů i v polovině
 - Opakovaně (ale ne spam)
@@ -548,11 +606,13 @@ Ne jen "Koupit", ale "Získejte kurz se slevou 30 %"
 #### Příklady CTA
 
 **❌ Špatné CTA:**
+
 ```
 Více informací najdete na našem webu.
 ```
 
 **✅ Dobré CTA:**
+
 ```
 [CHCI UŠETŘIT 3 000 KČ →]
 
@@ -560,6 +620,7 @@ Více informací najdete na našem webu.
 ```
 
 **✅ Ještě lepší:**
+
 ```
 🎯 ANO, CHCI SE NAUČIT INSTAGRAM ZA 30 DNÍ
 
@@ -584,11 +645,13 @@ Přidejte urgenci (čas, množství) a garance (vrácení peněz).
 ### When to Use PROTTO
 
 PROTTO je vhodné pro:
+
 - ✅ Velké kampaně (produktový launch)
 - ✅ Email sekven ce (onboarding, nurture)
 - ✅ Strategické newslettery
 
 **Ne pro:**
+
 - ❌ Jeden-off transactional emails
 - ❌ Jednoduchá oznámení
 
@@ -597,14 +660,12 @@ PROTTO je vhodné pro:
 ### PROTTO Steps pro Email
 
 **Kroky 1-3 (Příprava):**
+
 1. **PROstuduj**: Segment, persony, historie interakce
 2. **PROžij**: Empatie - problémy a touhy
 3. **PROspěj**: Jasný benefit emailu
 
-**Kroky 4-6 (Tvorba):**
-4. **PRObuď**: Předmět + hook (3s pro zaujmutí)
-5. **PRObodni**: Emoce, storytelling, visualizace
-6. **PROlom**: Důvěryhodnost (testimonials, garance)
+**Kroky 4-6 (Tvorba):** 4. **PRObuď**: Předmět + hook (3s pro zaujmutí) 5. **PRObodni**: Emoce, storytelling, visualizace 6. **PROlom**: Důvěryhodnost (testimonials, garance)
 
 **Kroky 7-10 (Finalizace):**
 7-10: Kontrola, zrání, testování, publikování
@@ -617,18 +678,18 @@ PROTTO je vhodné pro:
 
 ### 10 Triggerů aplikovaných na email
 
-| Trigger | Princip | Aplikace na email |
-|---------|---------|-------------------|
-| **Dar** | Reciprocita | Lead magnet zdarma v předmětu |
-| **Důkaz** | Sociální tlak | "847 lidí si stáhlo..." |
-| **Triáda** | Rezonance-Redefinice-Rezistence | Struktura body copy |
-| **Zeigarnik** | Nedokončené | "Pokračování zítra" v P.S. |
-| **Emoce** | Pravá hemisféra | Storytelling, vizualizace |
-| **Kotva** | Relativní ceny | "Původně 5 990, teď 2 990" |
-| **Zapojení** | Psaní = závazek | "Odpovězte na tento email" |
-| **Cyrano** | Emoční obal | Příběh za produktem |
-| **Hypnóza** | NLP | Vložené příkazy v textu |
-| **Limit** | Nedostatek | "Zbývá 24 hodin" |
+| Trigger       | Princip                         | Aplikace na email             |
+| ------------- | ------------------------------- | ----------------------------- |
+| **Dar**       | Reciprocita                     | Lead magnet zdarma v předmětu |
+| **Důkaz**     | Sociální tlak                   | "847 lidí si stáhlo..."       |
+| **Triáda**    | Rezonance-Redefinice-Rezistence | Struktura body copy           |
+| **Zeigarnik** | Nedokončené                     | "Pokračování zítra" v P.S.    |
+| **Emoce**     | Pravá hemisféra                 | Storytelling, vizualizace     |
+| **Kotva**     | Relativní ceny                  | "Původně 5 990, teď 2 990"    |
+| **Zapojení**  | Psaní = závazek                 | "Odpovězte na tento email"    |
+| **Cyrano**    | Emoční obal                     | Příběh za produktem           |
+| **Hypnóza**   | NLP                             | Vložené příkazy v textu       |
+| **Limit**     | Nedostatek                      | "Zbývá 24 hodin"              |
 
 ---
 
@@ -638,12 +699,14 @@ PROTTO je vhodné pro:
 Dej něco zdarma PŘED žádostí o akci.
 
 **Příklady:**
+
 - Bezplatný e-book v úvodním emailu
 - Hodnotný tip/trik
 - Ukázka kurzu
 - Šablony, checklists
 
 **Pravidlo:**
+
 > "Čím větší pecku jim při prvním setkání dáte, tím silněji si je k sobě připoutáte."
 
 ---
@@ -651,11 +714,13 @@ Dej něco zdarma PŘED žádostí o akci.
 ### Urgence a scarcity
 
 **Urgence (časová):**
+
 - "Sleva končí za 24 hodin"
 - "Poslední šance dnes"
 - Dynamické odpočítávání
 
 **Scarcity (množstevní):**
+
 - "Zbývá 12 míst"
 - "Poslední kusy skladem"
 - "Jen pro prvních 50 lidí"
@@ -670,6 +735,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ### CHECKLIST: Pre-Send Email Review
 
 **Předmět & Preheader:**
+
 ```
 [ ] Předmět vyvolává zvědavost
 [ ] Žádné spam slova
@@ -680,6 +746,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ```
 
 **Úvod:**
+
 ```
 [ ] Bez zbytečného pozdravu (nebo jen jméno)
 [ ] Silný nadpis/hook
@@ -688,6 +755,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ```
 
 **Tělo:**
+
 ```
 [ ] Jeden odstavec = max 3 řádky
 [ ] Personalizováno (min. jméno + kontext)
@@ -702,6 +770,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ```
 
 **CTA:**
+
 ```
 [ ] Jasná výzva k akci
 [ ] Vizuálně výrazné (tlačítko/link)
@@ -712,6 +781,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ```
 
 **Finální kontrola:**
+
 ```
 [ ] Prošel test babičce/kamarádovi ("Rozumíš tomu?")
 [ ] Všechny linky fungují
@@ -726,6 +796,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ### CHECKLIST: Email Campaign Planning
 
 **Před vytvořením kampaně:**
+
 ```
 [ ] Cíl kampaně definován (konverze/engagement/brand)
 [ ] Segment definován (komu posílám)
@@ -737,6 +808,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ```
 
 **PROTTO aplikace (pro složité kampaně):**
+
 ```
 [ ] PROstuduj: Segment analyzován
 [ ] PROžij: Empatie mapa vytvořena
@@ -747,6 +819,7 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ```
 
 **Psychologické triggery:**
+
 ```
 [ ] Minimálně 2 triggery použity:
     [ ] Dar (lead magnet)
@@ -762,18 +835,21 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 ## Anti-Patterns: What to Avoid
 
 **❌ Předmět Mistakes:**
+
 - Spam slova ("zdarma", "sleva", "akce")
 - Obecné fráze ("Novinky od...")
 - Příliš dlouhé (>60 znaků)
 - Clickbait bez doručení slibu
 
 **❌ Úvod Mistakes:**
+
 - Formální pozdravy ("Vážený pane...")
 - Dlouhé zdvořilostní fráze
 - První odstavec o firmě (ne o čtenáři)
 - Žádný hook/nadpis
 
 **❌ Tělo Mistakes:**
+
 - Dlouhé odstavce (>3 řádky)
 - Psaní o sobě místo o problémech čtenáře
 - Formální, korporátní jazyk
@@ -781,12 +857,14 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 - Špatná struktura (žádné odrážky/formátování)
 
 **❌ CTA Mistakes:**
+
 - Chybějící CTA
 - Obecné "Klikněte zde"
 - Příliš mnoho CTA (rozptýlení)
 - Žádná urgence
 
 **❌ General Mistakes:**
+
 - "Neposílejte, co byste sami smazali."
 - Příliš časté posílání (spam)
 - Neotestované linky
@@ -796,30 +874,33 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 
 ## Quick Reference: Email Types
 
-| Typ | Předmět | Délka | CTA | Personalizace |
-|-----|---------|-------|-----|---------------|
-| **Newsletter** | Zvědavost | Střední | 1-2 | Základní |
-| **Promo** | Urgence | Krátká | 1 hlavní | Pokročilá |
-| **Launch** | Excitement | Dlouhá | Opakované | Pokročilá |
-| **Onboarding** | Welcome | Krátká | 1 jasná | Vysoká |
-| **Abandoned Cart** | FOMO | Krátká | 1 urgentní | Velmi vysoká |
-| **Cold Outreach** | Personální | Krátká | Soft ask | Extrémní |
+| Typ                | Předmět    | Délka   | CTA        | Personalizace |
+| ------------------ | ---------- | ------- | ---------- | ------------- |
+| **Newsletter**     | Zvědavost  | Střední | 1-2        | Základní      |
+| **Promo**          | Urgence    | Krátká  | 1 hlavní   | Pokročilá     |
+| **Launch**         | Excitement | Dlouhá  | Opakované  | Pokročilá     |
+| **Onboarding**     | Welcome    | Krátká  | 1 jasná    | Vysoká        |
+| **Abandoned Cart** | FOMO       | Krátká  | 1 urgentní | Velmi vysoká  |
+| **Cold Outreach**  | Personální | Krátká  | Soft ask   | Extrémní      |
 
 ---
 
 ## Integration with Other Skills
 
 **From Product Copy:**
+
 - Microbenefit v nadpisu
 - Konkrétnost (čísla, fakta)
 
 **From Web Copy:**
+
 - Blueprint (5 otázek)
 - Triáda (Rezonance-Redefinice-Rezistence)
 - PROTTO (kroky 4-6)
 - Storytelling
 
 **From Instagram:**
+
 - Hook techniky pro předmět
 - Cliffhangery (Zeigarnik)
 - Engagement CTA
@@ -831,18 +912,23 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 **Proč tato struktura funguje:**
 
 **Předmět:**
+
 > "50 % úspěchu. 2 sekundy na rozhodnutí. Testujte 10 verzí."
 
 **Personalizace:**
+
 > "300 % vyšší konverze než nepersonalizované emaily."
 
 **Krátké odstavce:**
+
 > "Emaily se skenují ještě více než weby. 3 řádky = max."
 
 **CTA:**
+
 > "Bez CTA prohráváte. Tečka. Jasné, výrazné, s benefitem."
 
 **P.S.:**
+
 > "P.S. je druhý nejčtenější prvek po předmětu. Použijte ho pro urgenci nebo bonusovou informaci."
 
 ---

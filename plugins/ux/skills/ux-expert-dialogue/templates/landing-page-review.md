@@ -9,10 +9,11 @@
 ## SETUP PHASE
 
 **Expert asks:**
+
 1. **"Jaký je conversion goal?"** (lead, sale, signup)
 2. **"Odkud přichází traffic?"** (PPC, email, organic, social)
 3. **"Jaká je target audience?"** (same as homepage setup)
-4. **"Existing conversion rate?"** ___%
+4. **"Existing conversion rate?"** \_\_\_%
 
 **→ Landing pages have higher standards:** Očekávaná conversion 10-30% (vs homepage 2-5%)
 
@@ -27,6 +28,7 @@
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Zaujme za 3 sekundy (headline test)
 - [ ] Creates urgency or curiosity
 - [ ] Matches traffic source messaging (message match)
@@ -36,6 +38,7 @@
 "If user clicked ad saying 'Reduce costs 60%', does landing page lead with this exact promise?"
 
 **Data:**
+
 - Message match: +212% conversion (Unbounce)
 - Mismatch = immediate bounce
 
@@ -51,12 +54,14 @@
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Specific pain points (not generic)
 - [ ] Emotional resonance (user recognizes self)
 - [ ] Quantified stakes if possible ("60% of leads lost")
 - [ ] Sets up solution naturally
 
 **Frameworks:**
+
 - **David Cowan Pitchcraft:** Problem + stakes (see uvp-optimization)
 - **Negative framing:** +30% vs neutral (Outbrain)
 
@@ -73,6 +78,7 @@
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Direct answer to stated problem
 - [ ] Clear mechanism ("using X technology/approach")
 - [ ] Benefit-focused (not feature-dump)
@@ -81,6 +87,7 @@
 **Bridge test:** Does solution DIRECTLY address problem from Section 2?
 
 **Data:**
+
 - Benefits beat features: +47% conversion (MarketingExperiments)
 
 ---
@@ -92,6 +99,7 @@
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Minimum 3 testimonials with photos
 - [ ] Specific results ("increased X by 40%")
 - [ ] Real names + companies (B2B) or photos (B2C)
@@ -99,6 +107,7 @@
 - [ ] Client logos (recognizable brands)
 
 **Data:**
+
 - Testimonials with results: +62% persuasiveness (BrightLocal)
 - Video vs text: 2x trust (Wyzowl)
 - Logo social proof: +15% conversion (Cialdini)
@@ -113,12 +122,14 @@
 **If feature section present:**
 
 **Checklist:**
+
 - [ ] Max 5-7 features highlighted
 - [ ] Each feature → benefit translation
 - [ ] Icons/visuals for scannability
 - [ ] Not overwhelming (Miller's Law: 7±2)
 
 **Formula:** Feature → Benefit
+
 - "Inline validation" → "Reduce form errors 60%"
 - "Cloud storage" → "Access anywhere, never lose data"
 
@@ -131,16 +142,19 @@
 **Expert evaluates:**
 
 **Checklist:**
+
 - [ ] Money-back guarantee clearly stated
 - [ ] Timeline specific ("30-day" not "satisfaction guaranteed")
 - [ ] Address top 3-5 objections
 - [ ] Security/trust badges visible
 
 **Data:**
+
 - Money-back guarantee: +25% sales (Harvard Business Review)
 - Security badges: +18% checkout completion (Baymard)
 
 **Common objections to address:**
+
 - Price ("Too expensive?")
 - Effort ("Takes too long?")
 - Risk ("What if it doesn't work?")
@@ -153,6 +167,7 @@
 **Landing pages = CTA repetition:** 3-5 CTAs ideal
 
 **Checklist:**
+
 - [ ] CTA after hook (above fold)
 - [ ] CTA after solution
 - [ ] CTA after social proof
@@ -160,6 +175,7 @@
 - [ ] All CTAs identical (consistent action)
 
 **Data:**
+
 - Multiple CTAs on landing: +300% conversion vs single (CRE)
 - Consistency: All same text + design
 
@@ -178,6 +194,7 @@
 "Většina high-converting landing pages: NO NAVIGATION (remove distraction)
 
 **Data:**
+
 - No nav: +25% conversion (HighRise/37signals test)
 - Each link = exit path
 - Exception: High-ticket B2B may need nav (trust building)
@@ -192,16 +209,19 @@
 **Expert guides:**
 
 **Short-form (above fold only):**
+
 - **When:** Simple product, high-intent traffic, low price point
 - **Example:** HOTH +844% with headline + form only
 - **Risk:** Low quality leads
 
 **Long-form (scroll required):**
+
 - **When:** Complex product, need trust-building, high price point
 - **Example:** Most B2B SaaS, professional services
 - **Benefit:** Higher quality leads
 
 **Data:**
+
 - Long-form: +220% information-gathering vs short (CrazyEgg study)
 - But: +37% time-on-page requirement
 
@@ -213,11 +233,13 @@
 ### Visual Hierarchy
 
 **F-Pattern for long landing pages:**
+
 - Hero section spans full width
 - Content in F-pattern (left-aligned)
 - CTAs break pattern (centered, isolated)
 
 **Z-Pattern for short landing pages:**
+
 - Top-left → top-right (logo → CTA)
 - Diagonal to center (hero visual)
 - Bottom-right (final CTA)
@@ -255,16 +277,19 @@
 ### Testing Priority
 
 **#1 Test: Message Match**
+
 - Control: Current headline
 - Variant: Exact ad promise as headline
 - Expected: +200%+ if currently mismatched
 
 **#2 Test: CTA Frequency**
+
 - Control: 1-2 CTAs
 - Variant: 4-5 CTAs throughout
 - Expected: +100-200%
 
 **#3 Test: Navigation**
+
 - Control: With nav
 - Variant: No nav
 - Expected: +25% (if B2C)
@@ -293,6 +318,7 @@ Use this for rapid landing page audit:
 ---
 
 **Related:**
-- Full methodology: `ottocopy-web-copy` Part B (Sales/Landing Pages)
+
+- Full methodology: `web-copy` Part B (Sales/Landing Pages)
 - Form optimization: `ux-optimization` practices/forms.md
 - A/B testing protocols: `ux-optimization` practices/ab-testing.md

@@ -6,6 +6,7 @@ description: Use when defining or optimizing Unique Value Propositions for websi
 # UVP Optimization
 
 **When to use this skill:**
+
 - Creating new website/landing page and need to define core value proposition
 - Homepage/landing page has low conversion despite traffic
 - Users don't understand what you offer within 5 seconds
@@ -14,9 +15,10 @@ description: Use when defining or optimizing Unique Value Propositions for websi
 - A/B testing different value propositions
 
 **When NOT to use:**
-- You already have validated UVP and just need to write copy → use `ottocopy-web-copy`
+
+- You already have validated UVP and just need to write copy → use `web-copy`
 - You need to optimize UVP placement/design → use `ux-optimization`
-- You're writing product descriptions → use `ottocopy-product-copy`
+- You're writing product descriptions → use `product-copy`
 
 ---
 
@@ -25,11 +27,13 @@ description: Use when defining or optimizing Unique Value Propositions for websi
 **A UVP is a promise to potential clients that it's advantageous to buy specifically from YOU.**
 
 **Critical Statistics:**
+
 - 54% of companies don't test their value propositions
 - Homepage reaches only 20-25% of visitors → place UVP on EVERY page
 - Users decide in 5 seconds if they understand your offer
 
 **Hierarchy of Impact:**
+
 ```
 1. CLARITY (users understand what you do)
 2. RELEVANCE (it solves their problem)
@@ -43,6 +47,7 @@ Without #1, #2 and #3 are irrelevant.
 ## 4-Phase UVP Optimization Framework
 
 ### Phase 1: POSITION
+
 **Goal:** Choose strategic positioning approach
 
 **Four Strategic Positions:**
@@ -70,6 +75,7 @@ Without #1, #2 and #3 are irrelevant.
 ---
 
 ### Phase 2: FORMULATE
+
 **Goal:** Craft clear, compelling UVP statement
 
 **Critical Rule: Research BEFORE Writing**
@@ -81,24 +87,28 @@ Without #1, #2 and #3 are irrelevant.
 **Research Checklist:**
 
 ☐ **Customer Interviews (40+ email exchanges recommended)**
-   - What jobs are they trying to accomplish?
-   - What problems do they expect you to solve?
-   - What vocabulary do they naturally use?
-   - What triggered their "aha moment"?
+
+- What jobs are they trying to accomplish?
+- What problems do they expect you to solve?
+- What vocabulary do they naturally use?
+- What triggered their "aha moment"?
 
 ☐ **New Customer Surveys (timing critical)**
-   - Send within 24 hours of signup: "What drove your signup decision?"
-   - Target 40%+ response rate
-   - After 1 week, responses shift from benefits → features (less useful)
+
+- Send within 24 hours of signup: "What drove your signup decision?"
+- Target 40%+ response rate
+- After 1 week, responses shift from benefits → features (less useful)
 
 ☐ **Expert Feedback**
-   - Show draft to 5-10 CRO/UX experts
-   - Ask: "What's confusing? What's missing?"
+
+- Show draft to 5-10 CRO/UX experts
+- Ask: "What's confusing? What's missing?"
 
 ☐ **Internal Alignment**
-   - What are we really selling?
-   - Why do we exist?
-   - What makes us different?
+
+- What are we really selling?
+- Why do we exist?
+- What makes us different?
 
 **Key Insight from Groove:** "Talk like your customers do" > marketing jargon
 
@@ -109,19 +119,24 @@ Without #1, #2 and #3 are irrelevant.
 **Choose ONE framework** (or test multiple):
 
 **1. Venture Hack: High-Concept Pitch**
+
 ```
 [Existing product], but for [new industry/audience]
 ```
+
 Example: "Airbnb, but for cars"
 
 **2. Steve Blank: XYZ Method**
+
 ```
 We help [X] do [Y] using [Z]
 ```
+
 Example: "We help tourists rent cars abroad affordably"
 
 **3. Dave McClure: Elevator Pitch**
 Requirements:
+
 - Short, simple, memorable
 - Three key words maximum
 - Zero jargon
@@ -130,6 +145,7 @@ Example: "Mint.com is a simple (and free) way to manage money online"
 
 **4. David Cowan: Pitchcraft**
 Structure:
+
 1. Highlight problem
 2. Offer solution
 3. One-sentence differentiation
@@ -144,11 +160,13 @@ Example: "Melanoma kills. We detect it early using WHO-approved AI."
 #### Step 2.3: Create 50+ Headline Variations
 
 **Process from Groove:**
+
 1. Write 50+ headline variations using research insights
 2. Test top 10 internally
 3. A/B test top 3-5 externally
 
 **Principles:**
+
 - Advantage-focused headlines > feature descriptions
 - Problem/solution framing > generic claims
 - Customer language > marketing speak
@@ -157,13 +175,16 @@ Example: "Melanoma kills. We detect it early using WHO-approved AI."
 ---
 
 ### Phase 3: TEST
+
 **Goal:** Validate understanding and conversion impact
 
 **Critical: What people SAY ≠ How they BEHAVE**
 Future purchase intent questions are unreliable. Test behavior.
 
 #### Test 1: Five-Second Test (Clarity)
+
 **Method:**
+
 1. Show homepage/landing page for 5 seconds
 2. Hide it
 3. Ask: "What does this company do?"
@@ -176,7 +197,9 @@ Future purchase intent questions are unreliable. Test behavior.
 ---
 
 #### Test 2: A/B Testing (Conversion)
+
 **Method:**
+
 1. Deploy variants across website
 2. Measure conversion rate changes
 3. Run until statistical significance
@@ -184,6 +207,7 @@ Future purchase intent questions are unreliable. Test behavior.
 **Platforms:** Optimizely, VWO, Google Optimize
 
 **What to test:**
+
 - Headline variations
 - Subheading presence/absence
 - Benefit order (bullet points)
@@ -195,7 +219,9 @@ Future purchase intent questions are unreliable. Test behavior.
 ---
 
 #### Test 3: PPC Campaigns (Quick Validation)
+
 **Method:**
+
 1. Create 3-5 ad variants with different UVP angles
 2. Run small budget campaigns ($50-200)
 3. Measure click-through rates
@@ -206,7 +232,9 @@ Future purchase intent questions are unreliable. Test behavior.
 ---
 
 #### Test 4: Non-Converter Feedback
+
 **Method:**
+
 1. Install Qualaroo or similar exit survey
 2. Target users who don't convert
 3. Ask: "What's missing? What's confusing?"
@@ -219,11 +247,13 @@ Future purchase intent questions are unreliable. Test behavior.
 ---
 
 ### Phase 4: IMPLEMENT
+
 **Goal:** Deploy UVP effectively across touchpoints
 
 #### 4.1: Complete UVP Structure
 
 **Five Essential Components:**
+
 1. **Headline** - Core promise (8-12 words)
 2. **Subheading** - Clarify/expand (15-25 words)
 3. **Body text** - How it works (50-100 words)
@@ -231,6 +261,7 @@ Future purchase intent questions are unreliable. Test behavior.
 5. **Visual** - Image/video reinforcing message
 
 **Example Structure:**
+
 ```
 [HEADLINE]
 Simple helpdesk software that makes customers happy
@@ -255,6 +286,7 @@ at scale—without complexity or high costs
 **Critical: Homepage = only 20-25% of traffic**
 
 **Deploy UVP on:**
+
 - ☐ Homepage (above fold)
 - ☐ Product pages
 - ☐ Pricing page
@@ -269,20 +301,24 @@ at scale—without complexity or high costs
 #### 4.3: Design Principles (from case studies)
 
 **From InfusionSoft (+40.6% conversion):**
+
 - Remove navigation on landing pages (reduces distraction)
 - Revise CTA button text for clarity
 
 **From Udemy (+246% clicks):**
+
 - Simplify layout, reduce columns
 - Clear hierarchy: headline → subheading → CTA
 - Information architecture > visual flourishes
 
 **From HOTH (+844% leads):**
+
 - Radical simplification works for high-intent traffic
 - Headline + Subheading + Form = sometimes sufficient
 - Trade-off: Volume ↑ but Quality may ↓
 
 **From SIMS3 (+128% registration):**
+
 - Specific benefits > vague appeals ("Join the fun" = no conversion incentive)
 - Prominent, repeated CTAs
 
@@ -292,13 +328,14 @@ at scale—without complexity or high costs
 
 #### 4.4: Copy Integration
 
-**Use `ottocopy-web-copy` skill for:**
+**Use `web-copy` skill for:**
+
 - Writing final headline copy (PROTTO framework)
 - Crafting psychological triggers
 - Structuring sales page narrative
 - A/B test copy variations
 
-**Cross-reference:** Homepage section in `ottocopy-web-copy`
+**Cross-reference:** Homepage section in `web-copy`
 
 ---
 
@@ -307,6 +344,7 @@ at scale—without complexity or high costs
 **UVP is never "done."**
 
 **Continuous process:**
+
 1. Monitor conversion rates weekly
 2. Collect qualitative feedback (Qualaroo, surveys)
 3. A/B test incremental changes
@@ -358,16 +396,19 @@ Already live, optimizing?
 ## Success Metrics
 
 **Phase 2 (Formulation):**
+
 - 40%+ response rate on customer surveys
 - 80%+ clarity on five-second test
 
 **Phase 3 (Testing):**
+
 - Statistical significance (95%+ confidence)
 - 20%+ conversion lift = good
 - 50%+ conversion lift = excellent
 - 100%+ conversion lift = exceptional (see Groove)
 
 **Phase 4 (Implementation):**
+
 - UVP deployed on 100% of key pages
 - Consistent messaging across touchpoints
 - Qualitative feedback showing comprehension
@@ -378,13 +419,14 @@ Already live, optimizing?
 
 - **Before UVP:** Market research, customer development
 - **During UVP:** This skill (positioning + formulation)
-- **After UVP:** `ottocopy-web-copy` (writing), `ux-optimization` (design)
+- **After UVP:** `web-copy` (writing), `ux-optimization` (design)
 
 ---
 
 ## Case Studies Reference
 
 See `CASE-STUDIES.md` for detailed analysis:
+
 - Groove: +104% conversion (copy-first approach)
 - Udemy: +246% clicks (simplified layout)
 - HOTH: +844% leads (radical simplification)
@@ -401,6 +443,7 @@ See `CASE-STUDIES.md` for detailed analysis:
 **Templates:** `templates/` - Fill-in-the-blank framework templates
 
 **External Studies:**
+
 - Groove case study: https://www.groovehq.com/blog/long-form-landing-page
 - UVP principles: https://www.ilincev.com/uvp
 
@@ -423,7 +466,7 @@ Copy this to TodoWrite when starting:
 ☐ Phase 3: Set up non-converter feedback
 ☐ Phase 4: Create complete UVP structure (headline/subheading/body/bullets/visual)
 ☐ Phase 4: Deploy to all key pages (not just homepage)
-☐ Phase 4: Cross-reference with ottocopy-web-copy for final copy
+☐ Phase 4: Cross-reference with web-copy for final copy
 ☐ Phase 4: Cross-reference with ux-optimization for design
 ☐ Ongoing: Set up weekly monitoring
 ☐ Ongoing: Schedule monthly customer interviews

@@ -7,14 +7,17 @@ This project follows framework-free development principles focused on **TDD**, *
 This project uses session context for continuity between Claude sessions.
 
 **At session start:**
+
 - Claude automatically loads `.claude/ACTIVE_CONTEXT.md`
 - Announces where we left off and continues
 
 **At session/task end:**
+
 - Claude updates ACTIVE_CONTEXT.md with current state
 - Logs important decisions to DECISIONS.md
 
 **Manual commands:**
+
 - "Načti kontext" / "Load context" - display current state
 - "Ulož kontext" / "Save context" - save current state
 
@@ -27,6 +30,7 @@ This project uses session context for continuity between Claude sessions.
 ## TL;DR
 
 **Before writing ANY code:**
+
 1. **Create a branch** (never work on main/master)
 2. **Write the test first** (RED phase)
 3. **Watch it fail** (confirms test actually tests something)
@@ -38,6 +42,7 @@ This project uses session context for continuity between Claude sessions.
 ## Critical Rules
 
 ### Always Do
+
 - Branch first, commit later
 - Test first, code second
 - Verify before claiming success
@@ -45,6 +50,7 @@ This project uses session context for continuity between Claude sessions.
 - Run full test suite before commits
 
 ### Never Do
+
 - Work directly on main/master
 - Write code before tests
 - Commit without verification
@@ -54,21 +60,27 @@ This project uses session context for continuity between Claude sessions.
 ## Workflow Skills
 
 ### Feature Implementation
+
 **Use `development-workflow` skill** for any feature implementation:
+
 ```
 User: "Implement feature X"
 -> Skill orchestrates: Brainstorm -> Plan -> Branch -> Docs -> TDD -> Verify -> Review -> Finish
 ```
 
 ### Complex Features (API/Multi-step)
+
 **Use `openspec-workflow` skill** for complex features requiring specs:
+
 ```
 User: "Add user authentication with multiple endpoints"
 -> Skill orchestrates: Proposal -> Align -> Specs -> Tasks -> TDD -> Archive
 ```
 
 ### Bug Fixes
+
 **Use `systematic-debugging` skill**:
+
 ```
 User: "Fix bug X"
 -> Skill orchestrates: Investigate -> Hypothesize -> Verify -> Fix with TDD
@@ -131,28 +143,30 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 
 ## Dual-system architektura
 
-| Systém | Odkud čte skills | Jak se aktivuje |
-|--------|------------------|-----------------|
-| **Claude Code** | `~/.claude/plugins/cache/skills/` | Plugin marketplace system |
-| **Cowork** | `~/Library/Application Support/Claude/.../skills/` | Symlinky na source |
+| Systém          | Odkud čte skills                                   | Jak se aktivuje           |
+| --------------- | -------------------------------------------------- | ------------------------- |
+| **Claude Code** | `~/.claude/plugins/cache/skills/`                  | Plugin marketplace system |
+| **Cowork**      | `~/Library/Application Support/Claude/.../skills/` | Symlinky na source        |
 
 ### Cowork skills lokace (obsahuje UUID):
+
 ```
 ~/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/803e4d51-6951-4e8b-86ba-07e2a6118f12/a8e7d198-e221-402c-b591-385eb8ba7245/skills/
 ```
+
 **Poznámka:** UUID se může změnit. Pokud skills v Cowork zmizí, najdi novou cestu a znovu vytvoř symlinky.
 
 ## 7 pluginů (37 skills)
 
-| Plugin | Skills | Popis |
-|--------|--------|-------|
-| **seo** | 4 | SEO, technical SEO, keyword research, ASO |
-| **growth** | 3 | Growth hacking, PLG, SaaS bootstrap |
-| **marketing** | 5 | Orchestrator, offers, UVP, analytics, pricing |
-| **copywriting** | 6 | OttoCopy framework, web/product copy, newsletters |
-| **development** | 12 | Flutter, Expo, FastAPI, frontend workflows |
-| **review** | 4 | Deep review, API/database/security review |
-| **ux** | 3 | UX orchestrator, optimization, expert dialogue |
+| Plugin          | Skills | Popis                                             |
+| --------------- | ------ | ------------------------------------------------- |
+| **seo**         | 4      | SEO, technical SEO, keyword research, ASO         |
+| **growth**      | 3      | Growth hacking, PLG, SaaS bootstrap               |
+| **marketing**   | 5      | Orchestrator, offers, UVP, analytics, pricing     |
+| **copywriting** | 6      | OttoCopy framework, web/product copy, newsletters |
+| **development** | 12     | Flutter, Expo, FastAPI, frontend workflows        |
+| **review**      | 4      | Deep review, API/database/security review         |
+| **ux**          | 3      | UX orchestrator, optimization, expert dialogue    |
 
 ## SKILL.md formát
 
@@ -172,11 +186,13 @@ Obsah skillu...
 ## Workflow: Úprava skillu
 
 1. **Edituj v source repo:**
+
    ```bash
    ~/Projects/skills/plugins/<plugin>/skills/<skill>/SKILL.md
    ```
 
 2. **Commit & push:**
+
    ```bash
    cd ~/Projects/skills
    git add -A && git commit -m "Update skill" && git push
@@ -193,12 +209,14 @@ Obsah skillu...
 ## Workflow: Nový skill
 
 1. **Vytvoř skill soubor:**
+
    ```bash
    mkdir ~/Projects/skills/plugins/<plugin>/skills/<novy-skill>
    # Vytvoř SKILL.md s YAML frontmatter (viz formát výše)
    ```
 
 2. **Přidej symlinky:**
+
    ```bash
    # Pro Cowork (globální skills)
    COWORK="$HOME/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/803e4d51-6951-4e8b-86ba-07e2a6118f12/a8e7d198-e221-402c-b591-385eb8ba7245/skills"
@@ -216,7 +234,7 @@ Obsah skillu...
      "name": "<novy-plugin>",
      "version": "1.0.0",
      "description": "...",
-     "author": {"name": "Petr"},
+     "author": { "name": "Petr" },
      "skills": "./skills/"
    }
    ```
@@ -228,9 +246,10 @@ Obsah skillu...
 ## Volání skills
 
 **Claude Code:**
+
 ```
 /seo:seo-optimization
-/copywriting:ottocopy
+/copywriting:copywriting-orchestrator
 /development:flutter-workflow
 ```
 
