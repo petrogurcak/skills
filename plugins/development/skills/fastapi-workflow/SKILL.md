@@ -6,7 +6,7 @@ hooks:
     - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.py$\""
       hooks:
         - type: command
-          command: "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && python -m mypy --ignore-missing-imports \"$TOOL_INPUT_FILE_PATH\" 2>&1 | head -20'"
+          command: 'bash -c ''cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && python -m mypy --ignore-missing-imports "$TOOL_INPUT_FILE_PATH" 2>&1 | head -20'''
           timeout: 30
 ---
 
@@ -23,6 +23,7 @@ This is NON-NEGOTIABLE. Every workflow below has MANDATORY MCP fetch steps that 
 ## When to Use This Skill
 
 Use this skill for ALL FastAPI development tasks:
+
 - Creating API endpoints (routers)
 - Defining Pydantic models (request/response)
 - Implementing dependency injection
@@ -35,21 +36,60 @@ Use this skill for ALL FastAPI development tasks:
 ## Current Stack Requirements
 
 **Required Versions:**
+
 - Python 3.11+ (3.12+ recommended)
 - FastAPI 0.124+
 - Pydantic 2.12+ (v2 is default, v1 support is DEPRECATED)
 - SQLAlchemy 2.0.44+ (async support)
 - Uvicorn (ASGI server)
+- scalar-fastapi (API docs — replaces Swagger UI and ReDoc)
 
 **DEPRECATED:**
+
 - Pydantic v1 compatibility will be removed in future FastAPI versions
 
 **Key Pydantic v2 Changes:**
+
 - `model_validator` instead of `validator`
 - `field_validator` instead of `validator`
 - `ConfigDict` instead of `class Config`
 - Performance boost (Rust core)
 - Strict mode available
+
+## API Documentation Setup (Scalar)
+
+**ALWAYS use Scalar instead of Swagger UI / ReDoc.** Scalar provides modern, interactive API docs with dark mode, search, and code snippets.
+
+**Setup pattern:**
+
+```python
+# requirements.txt
+scalar-fastapi>=1.6.0
+
+# main.py
+from scalar_fastapi import get_scalar_api_reference
+
+app = FastAPI(
+    title="My API",
+    docs_url=None,   # Disable Swagger UI
+    redoc_url=None,  # Disable ReDoc
+)
+
+@app.get("/docs", include_in_schema=False)
+async def scalar_docs():
+    return get_scalar_api_reference(
+        openapi_url=app.openapi_url,
+        title="My API",
+        dark_mode=True,
+    )
+```
+
+**Key points:**
+
+- Disable built-in `docs_url` and `redoc_url` in FastAPI constructor
+- Serve Scalar on `/docs` as a custom route
+- `include_in_schema=False` hides the docs endpoint from the API schema
+- OpenAPI JSON stays at `/openapi.json` (FastAPI default)
 
 ## Core Workflows
 
@@ -676,6 +716,7 @@ Query complexity?
 ## Common Mistakes to Avoid
 
 **DON'T:**
+
 - Generate code without fetching docs first
 - Use Pydantic v1 syntax (validator, class Config)
 - Use sync database operations
@@ -686,6 +727,7 @@ Query complexity?
 - Skip tests
 
 **DO:**
+
 - ALWAYS fetch documentation before implementing
 - Follow workflows step-by-step
 - Use Pydantic v2 patterns
