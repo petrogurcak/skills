@@ -32,6 +32,7 @@
       "source": "./plugins/branding",
       "category": "design"
     },
-    { "name": "product", "source": "./plugins/product", "category": "product" }
+    { "name": "product", "source": "./plugins/product", "category": "product" },
+    { "name": "team", "source": "./plugins/team", "category": "team" }
   ]
 }

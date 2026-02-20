@@ -1,0 +1,8 @@
+{
+  "name": "team",
+  "version": "1.0.0",
+  "description": "AI team briefing - virtual personas that review plans from marketing, growth, SEO, UX, security, product perspective",
+  "author": {"name": "Petr"},
+  "keywords": ["team", "briefing", "personas", "marketing", "growth", "seo", "ux", "security", "product", "review"],
+  "skills": "./skills/"
+}
