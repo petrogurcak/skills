@@ -4,6 +4,19 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-02-20: Nový plugin "product" pro product management skills
+
+**Kontext:** Potřeba PM skills pokrývajících celý product lifecycle - discovery, prioritizace, strategie, PMF, metriky
+**Rozhodnutí:** Vytvořit 9. plugin `product` (category: product) s orchestrátor + 5 sub-skills architekturou. Založeno na deep research 15 osobností a 30+ frameworků.
+**Alternativy:**
+
+- Přidat pod growth (PM je growth-adjacent)
+- Přidat pod marketing (PM se překrývá s go-to-market)
+- Jeden monolitický skill (vše v jednom SKILL.md)
+  **Důvod:** Product management je samostatná disciplína, zaslouží vlastní plugin. Orchestrátor pattern (jako ux-orchestrator) umožňuje routing na správný sub-skill. 6 skills pokrývá kompletní PM workflow: discovery → strategy → prioritization → metrics → PMF.
+
+---
+
 ## 2026-02-14: Globalni enforcement hooky inspirovane claude-pilot
 
 **Kontext:** Analyza maxritter/claude-pilot ukazala 8 enforcement mechanismu, ktere jsme nemeli

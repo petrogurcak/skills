@@ -203,7 +203,7 @@ Obsah skillu...
 3. **Update Claude Code cache:**
    ```bash
    cd ~/.claude/plugins/marketplaces/skills && git pull
-   for p in seo growth marketing copywriting development review ux; do
+   for p in seo growth marketing copywriting development review ux branding product team; do
      cp -r plugins/$p/. ~/.claude/plugins/cache/skills/$p/1.0.0/
    done
    ```
@@ -241,9 +241,11 @@ Obsah skillu...
    }
    ```
 3. Přidej do `.claude-plugin/marketplace.json`
-4. Přidej do `~/.claude/plugins/installed_plugins.json`
-5. Vytvoř cache: `mkdir -p ~/.claude/plugins/cache/skills/<novy-plugin>/1.0.0`
-6. Zkopíruj: `cp -r plugins/<novy-plugin>/. ~/.claude/plugins/cache/skills/<novy-plugin>/1.0.0/`
+4. Commit & push do GitHub
+5. `cd ~/.claude/plugins/marketplaces/skills && git pull`
+6. Restartni Claude Code, `/plugins` → najdi plugin → klikni install
+
+**DŮLEŽITÉ:** Neupravuj `installed_plugins.json` manuálně! Claude Code potřebuje instalaci přes `/plugins` UI — přidává `gitCommitSha` a validuje plugin. Bez toho se skill nezobrazí.
 
 ## Volání skills
 
