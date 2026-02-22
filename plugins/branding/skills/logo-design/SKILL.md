@@ -1,6 +1,9 @@
 ---
 name: logo-design
-description: Use when creating, evaluating, or briefing logo design - covers principles, psychology, professional process, evaluation criteria, and AI-assisted workflows
+description: Reference guide for logo design covering principles, color/shape/typography psychology, Paul Rand's 7-step test, professional 8-step process, and AI-assisted workflows. Use when creating a new logo, briefing a designer, evaluating existing logos, rebranding, or building brand identity from scratch. Trigger phrases include "design a logo", "evaluate my logo", "logo brief", "brand identity". Not for full brand strategy or brand guidelines — focused specifically on logo creation and evaluation.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Logo Design
@@ -19,15 +22,15 @@ Reference guide for creating effective, memorable logos. Covers principles, psyc
 
 Evaluate any logo against these 7 criteria:
 
-| # | Criterion | Question |
-|---|-----------|----------|
-| 1 | **Distinctive** | Does it embody unique features and values? |
-| 2 | **Visible** | Is it noticeable through color, size, or concept? |
-| 3 | **Adaptable** | Does it work on a t-shirt AND a billboard? |
-| 4 | **Memorable** | Can people recall it after one viewing? |
-| 5 | **Universal** | Is it understood across cultures and demographics? |
-| 6 | **Timeless** | Will it look dated in 5 years? |
-| 7 | **Simple** | Is it concise, accurate, and balanced? |
+| #   | Criterion       | Question                                           |
+| --- | --------------- | -------------------------------------------------- |
+| 1   | **Distinctive** | Does it embody unique features and values?         |
+| 2   | **Visible**     | Is it noticeable through color, size, or concept?  |
+| 3   | **Adaptable**   | Does it work on a t-shirt AND a billboard?         |
+| 4   | **Memorable**   | Can people recall it after one viewing?            |
+| 5   | **Universal**   | Is it understood across cultures and demographics? |
+| 6   | **Timeless**    | Will it look dated in 5 years?                     |
+| 7   | **Simple**      | Is it concise, accurate, and balanced?             |
 
 **Scoring:** If a logo fails 2+ criteria, it needs redesign.
 
@@ -41,17 +44,18 @@ Evaluate any logo against these 7 criteria:
 
 ## 7 Logo Types
 
-| Type | What | Best For | Examples |
-|------|------|----------|----------|
-| **Wordmark** | Full brand name in custom typography | Distinctive names, established brands | Google, Coca-Cola |
-| **Lettermark** | Initials/abbreviation | Long company names | IBM, NASA, HBO |
-| **Pictorial** | Recognizable icon/symbol | Universal recognition goal | Apple, Twitter |
-| **Abstract** | Geometric form, no literal meaning | Tech, innovation, complex services | Pepsi, Airbnb |
-| **Emblem** | Text inside symbol/badge | Heritage, authority, trust | Starbucks, Harley-Davidson |
-| **Combination** | Symbol + wordmark together | New brands needing both recognition paths | Burger King, Lacoste |
-| **Mascot** | Character/figure | Friendly, family-oriented brands | KFC, Mailchimp |
+| Type            | What                                 | Best For                                  | Examples                   |
+| --------------- | ------------------------------------ | ----------------------------------------- | -------------------------- |
+| **Wordmark**    | Full brand name in custom typography | Distinctive names, established brands     | Google, Coca-Cola          |
+| **Lettermark**  | Initials/abbreviation                | Long company names                        | IBM, NASA, HBO             |
+| **Pictorial**   | Recognizable icon/symbol             | Universal recognition goal                | Apple, Twitter             |
+| **Abstract**    | Geometric form, no literal meaning   | Tech, innovation, complex services        | Pepsi, Airbnb              |
+| **Emblem**      | Text inside symbol/badge             | Heritage, authority, trust                | Starbucks, Harley-Davidson |
+| **Combination** | Symbol + wordmark together           | New brands needing both recognition paths | Burger King, Lacoste       |
+| **Mascot**      | Character/figure                     | Friendly, family-oriented brands          | KFC, Mailchimp             |
 
 **Decision guide:**
+
 - New brand, unknown name -> **Combination** (builds both name and symbol recognition)
 - SaaS/tech startup -> **Wordmark** or **Abstract** (modern, scalable, works as app icon)
 - Long name -> **Lettermark** (abbreviate for memorability)
@@ -60,7 +64,9 @@ Evaluate any logo against these 7 criteria:
 ## Professional Process (8 Steps)
 
 ### 1. Creative Brief
+
 Define before designing:
+
 - Brand values, mission, personality (3-5 adjectives)
 - Target audience (age, industry, preferences)
 - Competitors (what to differentiate from)
@@ -69,36 +75,43 @@ Define before designing:
 - Mandatory elements (if any)
 
 ### 2. Research & Discovery
+
 - Audit competitor logos in the space
 - Create mood boards (Pinterest, Dribbble, Behance)
 - Identify visual patterns in the industry
 - Find differentiation opportunities
 
 ### 3. Sketching
+
 - **50-200+ rough hand sketches** (quantity breeds quality)
 - Explore multiple directions, don't commit early
 - Focus on shapes and forms, not details
 - Narrow to 3-5 strongest concepts
 
 ### 4. Vectorization
+
 - Recreate chosen sketches in vector (Illustrator/Figma)
 - Refine curves, proportions, spacing
 - Apply golden ratio grid if appropriate (1.618 proportions)
 - Test optical balance (visual center vs mathematical center)
 
 ### 5. The B&W Test
+
 > "If it doesn't work in black and white, it doesn't work." - Paul Rand
 
 Test logo WITHOUT color first. Color is enhancement, not crutch.
 
 ### 6. Color & Typography
+
 - Apply color psychology (see reference below)
 - Max 2-3 colors (95% of top brands use 2)
 - Select/customize typography that matches brand personality
 - Create primary + secondary + monochrome versions
 
 ### 7. Context Testing
+
 Present in realistic mockups:
+
 - Business card, letterhead
 - App icon (small scale)
 - Website header
@@ -107,25 +120,28 @@ Present in realistic mockups:
 - Dark and light backgrounds
 
 ### 8. Final Delivery
+
 Deliver complete asset library:
+
 - Formats: SVG, AI/EPS, PNG (transparent), JPG
 - Versions: Full color, monochrome, reversed (white on dark), icon-only
 - Brand guidelines document: spacing rules, minimum size, color codes, don'ts
 
 ## Color Psychology Quick Reference
 
-| Color | Evokes | Industries | Examples |
-|-------|--------|------------|----------|
-| **Blue** | Trust, reliability, calm | Finance, tech, healthcare | Facebook, Samsung, PayPal |
-| **Red** | Energy, urgency, passion | Retail, food, entertainment | Coca-Cola, YouTube, Netflix |
-| **Green** | Growth, health, nature | Eco, finance, health | Spotify, Whole Foods, Starbucks |
-| **Yellow** | Optimism, warmth, attention | Food, energy, kids | McDonald's, IKEA, Snapchat |
-| **Orange** | Creativity, friendly, bold | Tech, food, youth | Amazon, Fanta, Soundcloud |
-| **Purple** | Luxury, wisdom, creative | Beauty, luxury, education | Cadbury, Twitch, Yahoo |
-| **Black** | Elegance, power, premium | Luxury, fashion, tech | Nike, Chanel, Apple |
-| **Pink** | Playful, feminine, warm | Beauty, fashion, dating | Barbie, T-Mobile, Lyft |
+| Color      | Evokes                      | Industries                  | Examples                        |
+| ---------- | --------------------------- | --------------------------- | ------------------------------- |
+| **Blue**   | Trust, reliability, calm    | Finance, tech, healthcare   | Facebook, Samsung, PayPal       |
+| **Red**    | Energy, urgency, passion    | Retail, food, entertainment | Coca-Cola, YouTube, Netflix     |
+| **Green**  | Growth, health, nature      | Eco, finance, health        | Spotify, Whole Foods, Starbucks |
+| **Yellow** | Optimism, warmth, attention | Food, energy, kids          | McDonald's, IKEA, Snapchat      |
+| **Orange** | Creativity, friendly, bold  | Tech, food, youth           | Amazon, Fanta, Soundcloud       |
+| **Purple** | Luxury, wisdom, creative    | Beauty, luxury, education   | Cadbury, Twitch, Yahoo          |
+| **Black**  | Elegance, power, premium    | Luxury, fashion, tech       | Nike, Chanel, Apple             |
+| **Pink**   | Playful, feminine, warm     | Beauty, fashion, dating     | Barbie, T-Mobile, Lyft          |
 
 **Rules:**
+
 - Max 2-3 colors in logo
 - Test for color blindness accessibility (8% of men are color blind)
 - Ensure sufficient contrast ratios
@@ -133,44 +149,45 @@ Deliver complete asset library:
 
 ## Typography Psychology
 
-| Category | Conveys | Use For |
-|----------|---------|---------|
-| **Serif** (Times, Garamond) | Tradition, trust, authority | Law, finance, luxury, publishing |
-| **Sans-serif** (Helvetica, Inter) | Modern, clean, approachable | Tech, startups, healthcare |
-| **Script** (Pacifico, Allura) | Elegance, personal, creative | Beauty, fashion, wedding, food |
-| **Slab serif** (Rockwell, Courier) | Strong, confident, reliable | Manufacturing, construction, sports |
-| **Display/Custom** | Unique, bold, memorable | Entertainment, brands seeking differentiation |
+| Category                           | Conveys                      | Use For                                       |
+| ---------------------------------- | ---------------------------- | --------------------------------------------- |
+| **Serif** (Times, Garamond)        | Tradition, trust, authority  | Law, finance, luxury, publishing              |
+| **Sans-serif** (Helvetica, Inter)  | Modern, clean, approachable  | Tech, startups, healthcare                    |
+| **Script** (Pacifico, Allura)      | Elegance, personal, creative | Beauty, fashion, wedding, food                |
+| **Slab serif** (Rockwell, Courier) | Strong, confident, reliable  | Manufacturing, construction, sports           |
+| **Display/Custom**                 | Unique, bold, memorable      | Entertainment, brands seeking differentiation |
 
 **Best practice:** Custom or modified typography > stock fonts. Modification = competitive moat.
 
 ## Shape Psychology
 
-| Shape | Conveys | Examples |
-|-------|---------|----------|
-| **Circles** | Community, unity, wholeness, infinity | Target, BMW, Olympics |
+| Shape                  | Conveys                                 | Examples                            |
+| ---------------------- | --------------------------------------- | ----------------------------------- |
+| **Circles**            | Community, unity, wholeness, infinity   | Target, BMW, Olympics               |
 | **Squares/Rectangles** | Stability, reliability, strength, order | Microsoft, BBC, National Geographic |
-| **Triangles** | Dynamic, power, innovation, direction | Adidas, Delta, Google Play |
-| **Organic/Curves** | Approachability, creativity, nature | Airbnb, Instagram |
-| **Lines (horizontal)** | Calm, stability, tranquility | IBM stripes, AT&T |
-| **Lines (vertical)** | Strength, ambition, progress | Cisco, SoundCloud |
+| **Triangles**          | Dynamic, power, innovation, direction   | Adidas, Delta, Google Play          |
+| **Organic/Curves**     | Approachability, creativity, nature     | Airbnb, Instagram                   |
+| **Lines (horizontal)** | Calm, stability, tranquility            | IBM stripes, AT&T                   |
+| **Lines (vertical)**   | Strength, ambition, progress            | Cisco, SoundCloud                   |
 
 ## Lessons from Masters
 
-| Designer | Iconic Work | Key Lesson |
-|----------|------------|------------|
-| **Paul Rand** | IBM, UPS, NeXT | Geometric simplicity. Test with 7-step criteria. |
-| **Saul Bass** | AT&T, United Airlines | Minimum elements = maximum lifespan (34+ yr avg) |
-| **Milton Glaser** | I ❤ NY | Rebus engages viewer. Participation = memorability. |
-| **Rob Janoff** | Apple (1977) | Single distinctive detail (bite) = instant recognition at any scale |
-| **Carolyn Davidson** | Nike Swoosh | Movement in simplest form. Great logos can be one stroke. |
-| **Lindon Leader** | FedEx | Negative space is a design tool, not empty space. |
-| **Michael Bierut** | Mastercard rebrand | Courage to simplify. Remove text when symbol is strong enough. |
+| Designer             | Iconic Work           | Key Lesson                                                          |
+| -------------------- | --------------------- | ------------------------------------------------------------------- |
+| **Paul Rand**        | IBM, UPS, NeXT        | Geometric simplicity. Test with 7-step criteria.                    |
+| **Saul Bass**        | AT&T, United Airlines | Minimum elements = maximum lifespan (34+ yr avg)                    |
+| **Milton Glaser**    | I ❤ NY                | Rebus engages viewer. Participation = memorability.                 |
+| **Rob Janoff**       | Apple (1977)          | Single distinctive detail (bite) = instant recognition at any scale |
+| **Carolyn Davidson** | Nike Swoosh           | Movement in simplest form. Great logos can be one stroke.           |
+| **Lindon Leader**    | FedEx                 | Negative space is a design tool, not empty space.                   |
+| **Michael Bierut**   | Mastercard rebrand    | Courage to simplify. Remove text when symbol is strong enough.      |
 
 ## AI-Assisted Logo Workflow
 
 For founders/non-designers:
 
 ### Exploration Phase
+
 1. **Midjourney/DALL-E:** Generate 20-50 concept variations
    - Prompt: "minimalist logo for [brand], [industry], [2-3 adjectives], vector style, flat design"
    - Iterate on promising directions
@@ -180,6 +197,7 @@ For founders/non-designers:
 3. **Select** 2-3 strongest directions
 
 ### Production Phase
+
 4. **Vectorize:** Recreate in Figma/Illustrator (AI output is raster, not production-ready)
 5. **Refine:** Adjust proportions, clean curves, perfect spacing
 6. **B&W test:** Strip color, verify it works
@@ -189,28 +207,29 @@ For founders/non-designers:
 **Critical:** AI generates inspiration. The last 10% of refinement is what separates amateur from professional.
 
 ### Tools
-| Tool | Best For | Skill Level |
-|------|----------|-------------|
-| **Canva** | Quick logos, templates | Beginner |
-| **Figma** | Vector design, iteration, collaboration | Intermediate |
-| **Adobe Illustrator** | Professional vector production | Advanced |
-| **Midjourney/DALL-E** | Concept exploration | Any (prompting skill) |
-| **Looka/Hatchful** | AI logo generators (limited customization) | Beginner |
+
+| Tool                  | Best For                                   | Skill Level           |
+| --------------------- | ------------------------------------------ | --------------------- |
+| **Canva**             | Quick logos, templates                     | Beginner              |
+| **Figma**             | Vector design, iteration, collaboration    | Intermediate          |
+| **Adobe Illustrator** | Professional vector production             | Advanced              |
+| **Midjourney/DALL-E** | Concept exploration                        | Any (prompting skill) |
+| **Looka/Hatchful**    | AI logo generators (limited customization) | Beginner              |
 
 ## Common Mistakes
 
-| Mistake | Why It's Bad | Fix |
-|---------|-------------|-----|
-| Too many colors (4+) | Cluttered, expensive to reproduce | Max 2-3 colors |
-| Following trends | Dated in 2-3 years | Prioritize timelessness |
-| Too complex/detailed | Fails at small sizes, hard to remember | Simplify until you can sketch from memory |
-| Raster not vector | Can't scale, pixelates | Always design in vector (SVG/AI) |
-| Stock fonts unmodified | Looks generic, no differentiation | Customize or commission typography |
-| No B&W version | Fails in fax, engrave, single-color print | Design B&W first, add color second |
-| Copying competitors | Looks derivative, legal risk | Research competitors to DIFFERENTIATE |
-| Designing by committee | Diluted, compromised, bland | One decision-maker, clear brief |
-| Skipping mockup testing | Looks great on screen, fails in context | Test in 5+ real-world applications |
-| Ignoring negative space | Misses opportunities for hidden meaning | Study FedEx, Spartan Golf Club |
+| Mistake                 | Why It's Bad                              | Fix                                       |
+| ----------------------- | ----------------------------------------- | ----------------------------------------- |
+| Too many colors (4+)    | Cluttered, expensive to reproduce         | Max 2-3 colors                            |
+| Following trends        | Dated in 2-3 years                        | Prioritize timelessness                   |
+| Too complex/detailed    | Fails at small sizes, hard to remember    | Simplify until you can sketch from memory |
+| Raster not vector       | Can't scale, pixelates                    | Always design in vector (SVG/AI)          |
+| Stock fonts unmodified  | Looks generic, no differentiation         | Customize or commission typography        |
+| No B&W version          | Fails in fax, engrave, single-color print | Design B&W first, add color second        |
+| Copying competitors     | Looks derivative, legal risk              | Research competitors to DIFFERENTIATE     |
+| Designing by committee  | Diluted, compromised, bland               | One decision-maker, clear brief           |
+| Skipping mockup testing | Looks great on screen, fails in context   | Test in 5+ real-world applications        |
+| Ignoring negative space | Misses opportunities for hidden meaning   | Study FedEx, Spartan Golf Club            |
 
 ## Logo Design Brief Template
 

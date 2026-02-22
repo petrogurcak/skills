@@ -1,6 +1,9 @@
 ---
 name: api-design-review
-description: REST API conventions, error handling, versioning, pagination, rate limiting
+description: Reviews REST API design for conventions, error handling, versioning, pagination, and rate limiting. Use when reviewing API endpoints, designing new APIs, auditing existing REST services, or as part of deep-review. Trigger phrases include "review my API", "check API design", "API audit", "review endpoints". Not for GraphQL or gRPC reviews — focused on REST only.
+metadata:
+  author: Petr
+  version: 1.0.0
 context: fork
 agent: Explore
 ---
@@ -8,6 +11,7 @@ agent: Explore
 # API Design Review
 
 ## Kdy pouzit
+
 - Jako soucast deep-review
 - Nove API endpoints
 - API refactoring
@@ -18,6 +22,7 @@ agent: Explore
 ### REST Conventions
 
 **URLs:**
+
 - [ ] Nouns for resources (`/users`, ne `/getUsers`)
 - [ ] Plural (`/users/123`, ne `/user/123`)
 - [ ] Lowercase, hyphen-separated (`/user-profiles`)
@@ -35,28 +40,29 @@ agent: Explore
 ### Response Format
 
 **Consistent envelope:**
+
 ```json
 {
-  "data": { },
+  "data": {},
   "meta": { "page": 1, "total": 100 },
   "error": null
 }
 ```
 
 **Error response:**
+
 ```json
 {
   "error": {
     "code": "VALIDATION_ERROR",
     "message": "Email is required",
-    "details": [
-      { "field": "email", "message": "Required" }
-    ]
+    "details": [{ "field": "email", "message": "Required" }]
   }
 }
 ```
 
 **Checklist:**
+
 - [ ] Consistent response structure
 - [ ] HTTP status codes spravne
 - [ ] Error messages user-friendly
@@ -65,6 +71,7 @@ agent: Explore
 ### Pagination
 
 **Checklist:**
+
 - [ ] Default limit (napr. 20)
 - [ ] Max limit (napr. 100)
 - [ ] Total count v response
@@ -85,6 +92,7 @@ agent: Explore
 ### Versioning
 
 **Checklist:**
+
 - [ ] Version v URL (`/v1/users`) nebo header
 - [ ] Deprecation warnings
 - [ ] Migration guide pro breaking changes
@@ -92,6 +100,7 @@ agent: Explore
 ### Rate Limiting
 
 **Checklist:**
+
 - [ ] Limits nastavene (napr. 100/min)
 - [ ] Headers v response:
   - `X-RateLimit-Limit`
@@ -102,6 +111,7 @@ agent: Explore
 ### Authentication
 
 **Checklist:**
+
 - [ ] Auth na vsech non-public endpoints
 - [ ] Bearer token v Authorization header
 - [ ] 401 pro missing/invalid token
@@ -109,10 +119,10 @@ agent: Explore
 
 ## Quick Reference
 
-| Issue | Severity | Example |
-|-------|----------|---------|
-| No auth | CRITICAL | Sensitive endpoint public |
-| Inconsistent errors | MEDIUM | Different error formats |
-| No pagination | MEDIUM | Returns 10k items |
-| No rate limit | MEDIUM | DoS vulnerable |
-| Verbs in URLs | LOW | /getUsers instead of /users |
+| Issue               | Severity | Example                     |
+| ------------------- | -------- | --------------------------- |
+| No auth             | CRITICAL | Sensitive endpoint public   |
+| Inconsistent errors | MEDIUM   | Different error formats     |
+| No pagination       | MEDIUM   | Returns 10k items           |
+| No rate limit       | MEDIUM   | DoS vulnerable              |
+| Verbs in URLs       | LOW      | /getUsers instead of /users |

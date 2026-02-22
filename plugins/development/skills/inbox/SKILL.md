@@ -1,6 +1,9 @@
 ---
 name: inbox
-description: Use when user says "inbox", "zkontroluj inbox", "check inbox", "co je noveho", or at session start to check for queued items from mobile
+description: Fetches and processes items queued from mobile via email (articles, GitHub repos, links). Use when user says "inbox", "zkontroluj inbox", "check inbox", "co je noveho", or at session start to review new items. NOT for general email management or reading unrelated emails.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Inbox — Mobile-to-Claude Queue
@@ -32,27 +35,32 @@ Inbox: X novych polozek
 For each item, based on content type:
 
 **URL to article/blog:**
+
 - Fetch and read the content (WebFetch)
 - Summarize key takeaways (2-3 bullets)
 - Ask: "Je tu neco pro nas? Chces to ulozit do know-how?"
 
 **GitHub repo:**
+
 - Fetch README (WebFetch)
 - Summarize what it does, tech stack, why it might be useful
 - Ask: "Chces to prozkoumat vic?"
 
 **Pasted text (paywalled article):**
+
 - Summarize key points
 - Extract actionable insights
 - Ask: "Co z toho pouzijeme?"
 
 **URL + user note (subject line):**
+
 - The subject line is the user's context/question
 - Process the URL with that question in mind
 
 ### 4. After processing each item
 
 Ask user what to do:
+
 - **Ulozit** — save insight to memory or project knowledge
 - **Preskocit** — mark as processed, move on
 - **Prozkoumat vic** — deep dive into the content
@@ -62,6 +70,7 @@ Update item status in queue.json to "processed" when done.
 ### 5. Cleanup
 
 After all items processed:
+
 ```bash
 python3 ~/.claude/scripts/inbox-fetch.py --clear
 ```

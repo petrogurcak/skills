@@ -1,6 +1,9 @@
 ---
 name: product-led-growth
-description: Use when building self-serve products - Bowling Alley Framework, MOAT Framework for choosing Free Trial vs Freemium from Wes Bush's Product-Led Growth
+description: Helps build products that sell themselves using Bowling Alley Framework and MOAT Framework from Wes Bush's Product-Led Growth. Use when optimizing onboarding, choosing between freemium and free trial, reducing time-to-value, or deciding product-led vs sales-led approach. Triggers include "freemium or free trial", "users sign up but don't convert", "onboarding is confusing", "self-serve SaaS". Do NOT use for creating offers (use offer-creation), positioning (use uvp-optimization), growth experiments (use growth-hacking), or SaaS metrics (use saas-bootstrap).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product-Led Growth

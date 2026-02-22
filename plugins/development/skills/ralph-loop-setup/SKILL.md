@@ -1,6 +1,9 @@
 ---
 name: ralph-loop-setup
-description: Use when setting up autonomous coding loops for repetitive implementation tasks with clear requirements. Symptoms include wanting code to ship overnight, having multiple small stories with acceptance criteria, needing background execution while you sleep or work on other projects.
+description: Creates the 4-file structure (prd.json, prompt.md, progress.txt, ralph.sh) for autonomous AI coding loops that implement tasks unattended. Use when user has multiple small implementation stories with clear acceptance criteria and wants code to ship overnight or in the background. NOT for exploratory work, complex features requiring design decisions, tasks needing human judgment, or when no automated validation is available.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Ralph Loop Setup
@@ -14,12 +17,14 @@ Memory persists through: git commits (WHAT changed), progress.txt (WHY and patte
 ## When to Use
 
 **Use Ralph when:**
+
 - Multiple small implementation tasks (each fits in one context window)
 - Clear acceptance criteria for each task
 - Fast feedback loops available (tests, typecheck, build)
 - Repetitive work you want automated overnight
 
 **Don't use Ralph when:**
+
 - Exploratory work (unclear requirements)
 - Complex features requiring design decisions
 - Tasks needing human judgment or creativity
@@ -66,6 +71,7 @@ Ralph requires exact file structure. Missing any file breaks the loop.
 You are implementing stories from prd.json autonomously.
 
 ## Workflow
+
 1. Read prd.json and find first story where passes: false
 2. Implement the story following acceptance criteria
 3. Run validation commands (below)
@@ -74,6 +80,7 @@ You are implementing stories from prd.json autonomously.
 6. Move to next story
 
 ## Validation Commands
+
 npm run typecheck
 npm test
 npm run build
@@ -81,12 +88,15 @@ npm run build
 All must pass before commit.
 
 ## Progress Format
+
 Update progress.txt after each story:
+
 - What you implemented
 - Problems encountered and solutions
 - Patterns learned (add to Codebase Patterns section)
 
 ## Stop Condition
+
 When all stories have passes: true, stop and report summary.
 ```
 
@@ -100,6 +110,7 @@ When all stories have passes: true, stop and report summary.
 # Ralph Progress Log
 
 ## Story 1: Add user login form
+
 Implemented LoginForm component with validation.
 Problem: Form state management unclear.
 Solution: Used React Hook Form per existing patterns.
@@ -107,16 +118,20 @@ Solution: Used React Hook Form per existing patterns.
 ## Codebase Patterns
 
 ### Form Handling
+
 We use React Hook Form with Zod validation:
+
 - Define schema with z.object()
 - useForm with zodResolver
 - onSubmit gets validated data
 
 ### Component Structure
+
 Components in /components, tests colocated
 Each component exports default and named for testing
 
 ### API Calls
+
 All API calls through /lib/api.ts wrapper
 Returns {data, error} - never throws
 ```
@@ -151,13 +166,13 @@ done
 
 ## Common Mistakes
 
-| Mistake | Why It Fails | Fix |
-|---------|--------------|-----|
-| "Story title explains it" | Agent doesn't know what "done" means | Add acceptance criteria |
-| "Basic progress log" | Learning lost between iterations | Add Codebase Patterns section |
-| "Agent will find test command" | Wastes context, may run wrong tests | Specify exact validation commands |
-| Large monolithic stories | Exceeds context window | Break into small stories (one context each) |
-| No fast feedback | Agent can't validate work | Require tests, typecheck, build |
+| Mistake                        | Why It Fails                         | Fix                                         |
+| ------------------------------ | ------------------------------------ | ------------------------------------------- |
+| "Story title explains it"      | Agent doesn't know what "done" means | Add acceptance criteria                     |
+| "Basic progress log"           | Learning lost between iterations     | Add Codebase Patterns section               |
+| "Agent will find test command" | Wastes context, may run wrong tests  | Specify exact validation commands           |
+| Large monolithic stories       | Exceeds context window               | Break into small stories (one context each) |
+| No fast feedback               | Agent can't validate work            | Require tests, typecheck, build             |
 
 ## Red Flags - Missing Critical Elements
 
@@ -192,6 +207,7 @@ If any answer is "no" or "maybe", structure is incomplete.
 **Project:** iOS simulator testing app (waitlistio)
 
 **prd.json story:**
+
 ```json
 {
   "title": "Add simulator launch functionality",
@@ -208,18 +224,23 @@ If any answer is "no" or "maybe", structure is incomplete.
 ```
 
 **prompt.md validation:**
+
 ```markdown
 ## Validation Commands
+
 npm run typecheck
 npm test simulator.test.ts
 ```
 
 **progress.txt patterns:**
+
 ```markdown
 ## Codebase Patterns
 
 ### Simulator Management
+
 Use simctl CLI wrapper in /lib/simulator.ts
+
 - List simulators: simctl list devices
 - Launch: simctl boot <UDID>
 - Check status before launching
@@ -229,18 +250,18 @@ Use simctl CLI wrapper in /lib/simulator.ts
 
 ## Rationalization Table
 
-| Excuse | Reality |
-|--------|---------|
-| "Story title is clear enough" | Title describes WHAT, not HOW to verify done |
-| "User can add details later" | Setup must be complete and ready to run |
-| "User can refine criteria later" | Ralph runs autonomously, can't ask for refinement |
-| "Git provides memory" | Commits show WHAT, not WHY or patterns |
-| "Progress is just a log" | Progress needs Patterns section for learning |
-| "Patterns section can be empty" | OK initially, but MUST exist as structure |
-| "Testing approach is obvious" | Codebases differ, specify exact commands |
-| "Generic validation works for now" | Wrong commands waste iterations, specify exactly |
-| "Agent can break down stories" | Large stories exceed context, break them first |
-| "Basic loop is sufficient" | Loop needs prd reading, validation, commit logic |
+| Excuse                             | Reality                                           |
+| ---------------------------------- | ------------------------------------------------- |
+| "Story title is clear enough"      | Title describes WHAT, not HOW to verify done      |
+| "User can add details later"       | Setup must be complete and ready to run           |
+| "User can refine criteria later"   | Ralph runs autonomously, can't ask for refinement |
+| "Git provides memory"              | Commits show WHAT, not WHY or patterns            |
+| "Progress is just a log"           | Progress needs Patterns section for learning      |
+| "Patterns section can be empty"    | OK initially, but MUST exist as structure         |
+| "Testing approach is obvious"      | Codebases differ, specify exact commands          |
+| "Generic validation works for now" | Wrong commands waste iterations, specify exactly  |
+| "Agent can break down stories"     | Large stories exceed context, break them first    |
+| "Basic loop is sufficient"         | Loop needs prd reading, validation, commit logic  |
 
 ## Real-World Impact
 

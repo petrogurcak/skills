@@ -1,6 +1,9 @@
 ---
 name: seo-optimization
-description: Use when optimizing websites for search engines (Google, Bing) and AI search (ChatGPT, Perplexity, Gemini) - comprehensive framework covering On-Page SEO, Technical SEO, Entity SEO, Link Building, and Generative Engine Optimization (GEO)
+description: Optimizes websites for search engines (Google, Bing) and AI search (ChatGPT, Perplexity, Gemini) through five pillars - On-Page SEO (8 tablets), Technical SEO, Entity SEO (Knowledge Graph), Link Building, and Generative Engine Optimization (GEO). Use when launching a new website needing SEO strategy, improving rankings for specific keywords, building link profile and authority, optimizing for featured snippets, or wanting to appear in AI search results. Trigger phrases include "SEO audit", "improve rankings", "on-page SEO", "link building", "AI search optimization". NOT for writing marketing copy (use web-copy), defining value proposition (use uvp-optimization), UX/conversion optimization (use ux-optimization), or pricing page design (use pricing).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # SEO Optimization

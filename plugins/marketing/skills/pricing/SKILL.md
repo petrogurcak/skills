@@ -1,6 +1,9 @@
 ---
 name: pricing
-description: Use when designing pricing pages, price tables, raising prices for existing customers, or optimizing price presentation - covers price offer design (18 tactics) and price increase communication (10 tactics)
+description: Designs pricing pages, price tables, and price increase communication using Dima Melnik methodology with 18 price offer design tactics and 10 price increase tactics. Use when creating or optimizing pricing pages, structuring SaaS/subscription tiers, planning price increases for existing customers, writing price increase emails, or auditing pricing presentation. Trigger phrases include "pricing page", "raise prices", "price table", "tier structure", "price increase email". NOT for product positioning (use uvp-optimization), general copywriting (use copywriting-orchestrator), or financial/accounting decisions.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Pricing - Dima Melnik Methodology

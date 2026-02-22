@@ -1,6 +1,9 @@
 ---
 name: uvp-optimization
-description: Use when defining or optimizing Unique Value Propositions for websites, landing pages, or marketing materials - systematic framework for positioning, formulation, testing, and implementation based on proven methodologies and case studies
+description: Defines and optimizes Unique Value Propositions through a 4-phase framework (Position, Formulate, Test, Implement) based on proven methodologies and case studies like Groove (+104% conversion). Use when creating a new website/landing page needing a core value proposition, homepage has low conversion despite traffic, users don't understand your offer within 5 seconds, need to differentiate from competitors, or A/B testing value propositions. Trigger phrases include "value proposition", "positioning", "users don't get what we do". NOT for writing final copy (use web-copy), optimizing UVP placement/design (use ux-optimization), or writing product descriptions (use product-copy).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # UVP Optimization

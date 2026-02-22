@@ -1,6 +1,9 @@
 ---
 name: product-orchestrator
-description: Use when making product decisions - orchestrates specialized product skills (discovery, prioritization, strategy, PMF, metrics) based on problem type
+description: Routes product management questions to the right specialized skill (discovery, prioritization, strategy, PMF, metrics) based on problem type. Use for any general product decision or strategy question when you are unsure which specific product skill to invoke. Triggers include "help with product", "what should we build", "product advice", "how do I approach this product problem". Do NOT use when you already know the specific sub-skill needed — call it directly instead.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product Orchestrator
@@ -44,13 +47,13 @@ The lead coordinates which expert handles which problem.
 
 ### Step 1: Keyword Detection
 
-| Keywords in Request | Detected Type | Specialist Skill |
-|---|---|---|
-| `prioritize`, `backlog`, `what first`, `RICE`, `rank features` | Prioritization | `product-prioritization` |
-| `customer needs`, `interview`, `discovery`, `JTBD`, `user research`, `what to build` | Discovery | `product-discovery` |
-| `vision`, `strategy`, `roadmap`, `OKR`, `goals`, `direction` | Strategy | `product-strategy` |
-| `product-market fit`, `PMF`, `retention`, `churn`, `are we building the right thing` | Product-Market Fit | `product-market-fit` |
-| `metrics`, `KPI`, `measure`, `north star`, `AARRR`, `track` | Metrics | `product-metrics` |
+| Keywords in Request                                                                  | Detected Type      | Specialist Skill         |
+| ------------------------------------------------------------------------------------ | ------------------ | ------------------------ |
+| `prioritize`, `backlog`, `what first`, `RICE`, `rank features`                       | Prioritization     | `product-prioritization` |
+| `customer needs`, `interview`, `discovery`, `JTBD`, `user research`, `what to build` | Discovery          | `product-discovery`      |
+| `vision`, `strategy`, `roadmap`, `OKR`, `goals`, `direction`                         | Strategy           | `product-strategy`       |
+| `product-market fit`, `PMF`, `retention`, `churn`, `are we building the right thing` | Product-Market Fit | `product-market-fit`     |
+| `metrics`, `KPI`, `measure`, `north star`, `AARRR`, `track`                          | Metrics            | `product-metrics`        |
 
 ### Step 2: Context Detection
 
@@ -144,13 +147,13 @@ The specialist skill handles its own workflow.
 
 Skills reference each other:
 
-| Skill | Often Leads To |
-|---|---|
-| `product-discovery` | `product-prioritization` (rank discovered opportunities) |
-| `product-prioritization` | `product-strategy` (update roadmap with priorities) |
-| `product-strategy` | `product-metrics` (define success measures) |
-| `product-market-fit` | `product-discovery` (if PMF low, learn more about customers) |
-| `product-metrics` | `product-market-fit` (metrics reveal PMF status) |
+| Skill                    | Often Leads To                                               |
+| ------------------------ | ------------------------------------------------------------ |
+| `product-discovery`      | `product-prioritization` (rank discovered opportunities)     |
+| `product-prioritization` | `product-strategy` (update roadmap with priorities)          |
+| `product-strategy`       | `product-metrics` (define success measures)                  |
+| `product-market-fit`     | `product-discovery` (if PMF low, learn more about customers) |
+| `product-metrics`        | `product-market-fit` (metrics reveal PMF status)             |
 
 ## Complete Product Projects
 
@@ -198,41 +201,46 @@ Skills reference each other:
 
 ## Quick Reference
 
-| Problem Type | Specialist Skill | Core Approach |
-|---|---|---|
-| What to build | `product-discovery` | Interview → JTBD → Opportunity Solution Tree |
-| What first | `product-prioritization` | Score → Rank → Align stakeholders |
-| Where to go | `product-strategy` | Vision → Strategy → OKRs → Roadmap |
-| Right thing? | `product-market-fit` | Survey → Segment → Optimize → Repeat |
-| What to measure | `product-metrics` | Stage → North Star → Supporting metrics |
+| Problem Type    | Specialist Skill         | Core Approach                                |
+| --------------- | ------------------------ | -------------------------------------------- |
+| What to build   | `product-discovery`      | Interview → JTBD → Opportunity Solution Tree |
+| What first      | `product-prioritization` | Score → Rank → Align stakeholders            |
+| Where to go     | `product-strategy`       | Vision → Strategy → OKRs → Roadmap           |
+| Right thing?    | `product-market-fit`     | Survey → Segment → Optimize → Repeat         |
+| What to measure | `product-metrics`        | Stage → North Star → Supporting metrics      |
 
 ## Iron Laws (from specialists)
 
 **From product-discovery:**
+
 ```
 NO SOLUTION WITHOUT UNDERSTANDING THE PROBLEM FIRST
 Talk to customers weekly, not quarterly.
 ```
 
 **From product-prioritization:**
+
 ```
 DATA OVER OPINIONS
 If you can't score it, you can't prioritize it.
 ```
 
 **From product-strategy:**
+
 ```
 OUTCOMES OVER OUTPUTS
 Empowered teams solve problems, not ship features.
 ```
 
 **From product-market-fit:**
+
 ```
 IF < 40% "VERY DISAPPOINTED", DON'T SCALE
 Fix retention before investing in growth.
 ```
 
 **From product-metrics:**
+
 ```
 ONE NORTH STAR, NOT TWENTY DASHBOARDS
 If everything is a priority, nothing is.
@@ -258,14 +266,17 @@ If everything is a priority, nothing is.
 ## Integration with Other Skills
 
 **Marketing integration:**
+
 - After product-strategy → `marketing-orchestrator` for go-to-market
 - After product-market-fit → `growth-hacking` for scaling
 - Discovery insights → `uvp-optimization` for positioning
 
 **Development integration:**
+
 - After prioritization → `development-workflow` for implementation
 - Product metrics → `analytics-setup` for tracking
 
 **UX integration:**
+
 - Discovery insights → `ux-orchestrator` for UX decisions
 - Product metrics → `ux-optimization` for conversion work

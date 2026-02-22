@@ -1,6 +1,9 @@
 ---
 name: ux-expert-dialogue
-description: Use for interactive expert review sessions - senior UX expert challenges decisions, provides direct critique with data-backed reasoning, and brainstorms alternatives section-by-section
+description: Runs interactive expert review sessions where a senior UX composite persona (Nielsen, Krug, Kahneman, Cialdini, Ilincev) challenges decisions, provides direct critique with data-backed reasoning, and brainstorms alternatives section-by-section. Use when creating a new website/landing page and need expert challenge, want section-by-section review with quantified impact estimates, need an opponent who questions assumptions, brainstorming design alternatives, or preparing for major redesign or launch. Trigger phrases include "expert review", "critique my design", "challenge my assumptions", "section-by-section review". NOT for quick fixes with known solutions (use ux-optimization), implementing proven patterns directly, or when you want agreement rather than challenge.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # UX Expert Dialogue

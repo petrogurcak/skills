@@ -1,11 +1,15 @@
 ---
 name: technical-seo
-description: Use when auditing or setting up technical SEO - Core Web Vitals, structured data, crawlability, security headers, mobile-first, with automated audits via claude-in-chrome
+description: Audits and sets up technical SEO foundations covering Core Web Vitals (LCP, INP, CLS), structured data (JSON-LD schema), crawlability (robots.txt, sitemaps, canonicals), security headers, and mobile-first optimization, with automated audits via claude-in-chrome. Use when auditing an existing website for technical SEO issues, setting up correct technical foundation for a new site, fixing Core Web Vitals problems, adding structured data, or debugging crawlability issues. Trigger phrases include "technical SEO audit", "Core Web Vitals", "structured data", "robots.txt", "page speed". NOT for on-page content optimization (use seo-optimization), keyword research (use keyword-research), or analytics setup (use analytics-setup).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Technical SEO
 
 **When to use this skill:**
+
 - Auditing existing website for technical SEO issues
 - Setting up correct technical foundation for new website
 - Fixing Core Web Vitals problems
@@ -13,6 +17,7 @@ description: Use when auditing or setting up technical SEO - Core Web Vitals, st
 - Debugging crawlability issues
 
 **When NOT to use:**
+
 - On-page content optimization → use `seo-optimization`
 - Keyword research → use `keyword-research`
 - Analytics setup → use `analytics-setup`
@@ -21,14 +26,14 @@ description: Use when auditing or setting up technical SEO - Core Web Vitals, st
 
 ## Quick Router
 
-| User says... | Go to... |
-|--------------|----------|
-| "audit webu", "technické SEO check" | Full Audit (all phases) |
-| "core web vitals", "rychlost webu", "PageSpeed" | Phase 1: Performance |
-| "robots.txt", "sitemap", "crawl" | Phase 2: Crawlability |
-| "schema", "structured data", "rich snippets" | Phase 3: Structured Data |
-| "HTTPS", "security headers" | Phase 4: Security |
-| "mobile", "hreflang", "viewport" | Phase 5: Mobile & i18n |
+| User says...                                    | Go to...                 |
+| ----------------------------------------------- | ------------------------ |
+| "audit webu", "technické SEO check"             | Full Audit (all phases)  |
+| "core web vitals", "rychlost webu", "PageSpeed" | Phase 1: Performance     |
+| "robots.txt", "sitemap", "crawl"                | Phase 2: Crawlability    |
+| "schema", "structured data", "rich snippets"    | Phase 3: Structured Data |
+| "HTTPS", "security headers"                     | Phase 4: Security        |
+| "mobile", "hreflang", "viewport"                | Phase 5: Mobile & i18n   |
 
 ---
 
@@ -41,17 +46,17 @@ description: Use when auditing or setting up technical SEO - Core Web Vitals, st
 
 ## Free Tools Stack
 
-| Nástroj | Účel | URL |
-|---------|------|-----|
-| **PageSpeed Insights** | Core Web Vitals, performance | [pagespeed.web.dev](https://pagespeed.web.dev) |
-| **Google Search Console** | Crawl errors, indexing, sitemaps | [search.google.com/search-console](https://search.google.com/search-console) |
-| **Schema Markup Validator** | Validace structured data | [validator.schema.org](https://validator.schema.org) |
-| **Rich Results Test** | Test rich snippets v Google | [search.google.com/test/rich-results](https://search.google.com/test/rich-results) |
-| **Mobile-Friendly Test** | Mobile usability | [search.google.com/test/mobile-friendly](https://search.google.com/test/mobile-friendly) |
-| **Security Headers** | HTTP security headers check | [securityheaders.com](https://securityheaders.com) |
-| **SSL Labs** | HTTPS/SSL konfigurace | [ssllabs.com/ssltest](https://www.ssllabs.com/ssltest) |
-| **Screaming Frog** | Crawl webu (500 URL free) | [screamingfrog.co.uk](https://www.screamingfrog.co.uk) |
-| **Lighthouse** | Audit v Chrome DevTools | Built-in Chrome |
+| Nástroj                     | Účel                             | URL                                                                                      |
+| --------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------- |
+| **PageSpeed Insights**      | Core Web Vitals, performance     | [pagespeed.web.dev](https://pagespeed.web.dev)                                           |
+| **Google Search Console**   | Crawl errors, indexing, sitemaps | [search.google.com/search-console](https://search.google.com/search-console)             |
+| **Schema Markup Validator** | Validace structured data         | [validator.schema.org](https://validator.schema.org)                                     |
+| **Rich Results Test**       | Test rich snippets v Google      | [search.google.com/test/rich-results](https://search.google.com/test/rich-results)       |
+| **Mobile-Friendly Test**    | Mobile usability                 | [search.google.com/test/mobile-friendly](https://search.google.com/test/mobile-friendly) |
+| **Security Headers**        | HTTP security headers check      | [securityheaders.com](https://securityheaders.com)                                       |
+| **SSL Labs**                | HTTPS/SSL konfigurace            | [ssllabs.com/ssltest](https://www.ssllabs.com/ssltest)                                   |
+| **Screaming Frog**          | Crawl webu (500 URL free)        | [screamingfrog.co.uk](https://www.screamingfrog.co.uk)                                   |
+| **Lighthouse**              | Audit v Chrome DevTools          | Built-in Chrome                                                                          |
 
 ---
 
@@ -59,11 +64,11 @@ description: Use when auditing or setting up technical SEO - Core Web Vitals, st
 
 ### Metriky
 
-| Metrika | Co měří | Dobrá | Potřebuje zlepšení | Špatná |
-|---------|---------|-------|-------------------|--------|
-| **LCP** (Largest Contentful Paint) | Loading speed | <2.5s | 2.5-4s | >4s |
-| **INP** (Interaction to Next Paint) | Interactivity | <200ms | 200-500ms | >500ms |
-| **CLS** (Cumulative Layout Shift) | Visual stability | <0.1 | 0.1-0.25 | >0.25 |
+| Metrika                             | Co měří          | Dobrá  | Potřebuje zlepšení | Špatná |
+| ----------------------------------- | ---------------- | ------ | ------------------ | ------ |
+| **LCP** (Largest Contentful Paint)  | Loading speed    | <2.5s  | 2.5-4s             | >4s    |
+| **INP** (Interaction to Next Paint) | Interactivity    | <200ms | 200-500ms          | >500ms |
+| **CLS** (Cumulative Layout Shift)   | Visual stability | <0.1   | 0.1-0.25           | >0.25  |
 
 ### Audit Checklist
 
@@ -78,10 +83,10 @@ description: Use when auditing or setting up technical SEO - Core Web Vitals, st
 
 ### Opravy podle problému
 
-| Problém | Řešení |
-|---------|--------|
-| Vysoké LCP | Optimalizuj hero image, preload, CDN |
-| Vysoké INP | Rozděl long tasks, defer non-critical JS |
+| Problém    | Řešení                                                      |
+| ---------- | ----------------------------------------------------------- |
+| Vysoké LCP | Optimalizuj hero image, preload, CDN                        |
+| Vysoké INP | Rozděl long tasks, defer non-critical JS                    |
 | Vysoké CLS | Definuj size pro img/video, avoid dynamic content injection |
 
 ### Automated Audit (claude-in-chrome)
@@ -104,13 +109,13 @@ Claude provede:
 
 ### Klíčové prvky
 
-| Prvek | Účel | Soubor/Tag |
-|-------|------|------------|
-| **robots.txt** | Řízení crawlerů | `/robots.txt` |
-| **XML Sitemap** | Mapa stránek pro indexaci | `/sitemap.xml` |
-| **Canonical** | Určení primární URL | `<link rel="canonical">` |
-| **Meta robots** | Indexace per-page | `<meta name="robots">` |
-| **Internal linking** | Distribuce link equity | `<a href>` |
+| Prvek                | Účel                      | Soubor/Tag               |
+| -------------------- | ------------------------- | ------------------------ |
+| **robots.txt**       | Řízení crawlerů           | `/robots.txt`            |
+| **XML Sitemap**      | Mapa stránek pro indexaci | `/sitemap.xml`           |
+| **Canonical**        | Určení primární URL       | `<link rel="canonical">` |
+| **Meta robots**      | Indexace per-page         | `<meta name="robots">`   |
+| **Internal linking** | Distribuce link equity    | `<a href>`               |
 
 ### robots.txt šablona
 
@@ -138,12 +143,12 @@ Sitemap: https://example.com/sitemap.xml
 
 ### Běžné chyby
 
-| Chyba | Dopad | Fix |
-|-------|-------|-----|
-| Blokovaný CSS/JS v robots | Broken rendering | Allow /assets/ |
-| Sitemap s 404/redirects | Crawl budget waste | Pouze 200 OK URL |
+| Chyba                            | Dopad                  | Fix                      |
+| -------------------------------- | ---------------------- | ------------------------ |
+| Blokovaný CSS/JS v robots        | Broken rendering       | Allow /assets/           |
+| Sitemap s 404/redirects          | Crawl budget waste     | Pouze 200 OK URL         |
 | Self-referencing canonical chybí | Duplicate content risk | Přidej na každou stránku |
-| noindex + canonical | Conflicting signals | Vyber jedno |
+| noindex + canonical              | Conflicting signals    | Vyber jedno              |
 
 ---
 
@@ -151,19 +156,20 @@ Sitemap: https://example.com/sitemap.xml
 
 ### Běžné schema typy
 
-| Typ | Použití | Rich Result |
-|-----|---------|-------------|
-| **Organization** | Homepage | Logo v Knowledge Panel |
-| **LocalBusiness** | Lokální firmy | Mapa, hodiny, reviews |
-| **Product** | E-commerce | Cena, dostupnost, rating |
-| **Article/BlogPosting** | Blog | Datum, autor, thumbnail |
-| **FAQPage** | FAQ sekce | Rozbalitelné otázky v SERP |
-| **HowTo** | Návody | Steps v SERP |
-| **BreadcrumbList** | Navigace | Breadcrumbs v SERP |
+| Typ                     | Použití       | Rich Result                |
+| ----------------------- | ------------- | -------------------------- |
+| **Organization**        | Homepage      | Logo v Knowledge Panel     |
+| **LocalBusiness**       | Lokální firmy | Mapa, hodiny, reviews      |
+| **Product**             | E-commerce    | Cena, dostupnost, rating   |
+| **Article/BlogPosting** | Blog          | Datum, autor, thumbnail    |
+| **FAQPage**             | FAQ sekce     | Rozbalitelné otázky v SERP |
+| **HowTo**               | Návody        | Steps v SERP               |
+| **BreadcrumbList**      | Navigace      | Breadcrumbs v SERP         |
 
 ### JSON-LD šablony
 
 **Organization (homepage):**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -179,6 +185,7 @@ Sitemap: https://example.com/sitemap.xml
 ```
 
 **LocalBusiness:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -197,6 +204,7 @@ Sitemap: https://example.com/sitemap.xml
 ```
 
 **Product:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -214,19 +222,31 @@ Sitemap: https://example.com/sitemap.xml
 ```
 
 **BreadcrumbList:**
+
 ```json
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com"},
-    {"@type": "ListItem", "position": 2, "name": "Kategorie", "item": "https://example.com/kategorie"},
-    {"@type": "ListItem", "position": 3, "name": "Produkt"}
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://example.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kategorie",
+      "item": "https://example.com/kategorie"
+    },
+    { "@type": "ListItem", "position": 3, "name": "Produkt" }
   ]
 }
 ```
 
 **FAQPage:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -280,23 +300,23 @@ Claude provede:
 
 ### Security Headers
 
-| Header | Účel | Doporučená hodnota |
-|--------|------|-------------------|
-| **Strict-Transport-Security** | Force HTTPS | `max-age=31536000; includeSubDomains` |
-| **X-Content-Type-Options** | MIME sniffing prevention | `nosniff` |
-| **X-Frame-Options** | Clickjacking prevention | `SAMEORIGIN` |
-| **Content-Security-Policy** | XSS prevention | Dle aplikace |
-| **Referrer-Policy** | Referrer control | `strict-origin-when-cross-origin` |
-| **Permissions-Policy** | Feature restrictions | Dle potřeby |
+| Header                        | Účel                     | Doporučená hodnota                    |
+| ----------------------------- | ------------------------ | ------------------------------------- |
+| **Strict-Transport-Security** | Force HTTPS              | `max-age=31536000; includeSubDomains` |
+| **X-Content-Type-Options**    | MIME sniffing prevention | `nosniff`                             |
+| **X-Frame-Options**           | Clickjacking prevention  | `SAMEORIGIN`                          |
+| **Content-Security-Policy**   | XSS prevention           | Dle aplikace                          |
+| **Referrer-Policy**           | Referrer control         | `strict-origin-when-cross-origin`     |
+| **Permissions-Policy**        | Feature restrictions     | Dle potřeby                           |
 
 ### Hodnocení (securityheaders.com)
 
-| Grade | Status |
-|-------|--------|
-| A+ / A | Výborné |
-| B | Dobré, minor issues |
-| C-D | Potřebuje zlepšení |
-| F | Kritické, nutná akce |
+| Grade  | Status               |
+| ------ | -------------------- |
+| A+ / A | Výborné              |
+| B      | Dobré, minor issues  |
+| C-D    | Potřebuje zlepšení   |
+| F      | Kritické, nutná akce |
 
 ### Automated (claude-in-chrome)
 
@@ -327,7 +347,7 @@ Claude provede:
 ### Viewport meta tag
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 ```
 
 ### Hreflang (multi-language/region)
@@ -342,12 +362,12 @@ Claude provede:
 
 ### Hreflang pravidla
 
-| Pravidlo | Popis |
-|----------|-------|
-| Self-reference | Každá stránka odkazuje sama na sebe |
-| Reciproční | cs→sk a sk→cs musí existovat |
-| x-default | Fallback pro neznámé jazyky |
-| Konzistence | Buď v HTML, nebo v sitemap (ne oboje) |
+| Pravidlo       | Popis                                 |
+| -------------- | ------------------------------------- |
+| Self-reference | Každá stránka odkazuje sama na sebe   |
+| Reciproční     | cs→sk a sk→cs musí existovat          |
+| x-default      | Fallback pro neznámé jazyky           |
+| Konzistence    | Buď v HTML, nebo v sitemap (ne oboje) |
 
 ### Audit Checklist
 
@@ -398,24 +418,24 @@ keyword-research → seo-optimization → technical-seo
               google-analytics MCP (měření)
 ```
 
-| Potřeba | Skill |
-|---------|-------|
-| Jaká klíčová slova cílit? | `keyword-research` |
-| Jak optimalizovat obsah stránky? | `seo-optimization` |
-| Web je pomalý / má technické problémy | `technical-seo` |
-| Potřebuji nastavit tracking | `analytics-setup` |
+| Potřeba                               | Skill              |
+| ------------------------------------- | ------------------ |
+| Jaká klíčová slova cílit?             | `keyword-research` |
+| Jak optimalizovat obsah stránky?      | `seo-optimization` |
+| Web je pomalý / má technické problémy | `technical-seo`    |
+| Potřebuji nastavit tracking           | `analytics-setup`  |
 
 ---
 
 ## Official Documentation
 
-| Téma | URL |
-|------|-----|
-| Core Web Vitals | [web.dev/vitals](https://web.dev/vitals/) |
-| PageSpeed Insights | [developers.google.com/speed/docs/insights](https://developers.google.com/speed/docs/insights/v5/about) |
-| Robots.txt | [developers.google.com/search/docs/crawling-indexing/robots](https://developers.google.com/search/docs/crawling-indexing/robots/intro) |
-| Sitemaps | [developers.google.com/search/docs/crawling-indexing/sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview) |
-| Structured Data | [developers.google.com/search/docs/appearance/structured-data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) |
-| Schema.org | [schema.org](https://schema.org) |
-| HSTS | [developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) |
-| Hreflang | [developers.google.com/search/docs/specialty/international](https://developers.google.com/search/docs/specialty/international/localized-versions) |
+| Téma               | URL                                                                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Core Web Vitals    | [web.dev/vitals](https://web.dev/vitals/)                                                                                                                    |
+| PageSpeed Insights | [developers.google.com/speed/docs/insights](https://developers.google.com/speed/docs/insights/v5/about)                                                      |
+| Robots.txt         | [developers.google.com/search/docs/crawling-indexing/robots](https://developers.google.com/search/docs/crawling-indexing/robots/intro)                       |
+| Sitemaps           | [developers.google.com/search/docs/crawling-indexing/sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)                |
+| Structured Data    | [developers.google.com/search/docs/appearance/structured-data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)   |
+| Schema.org         | [schema.org](https://schema.org)                                                                                                                             |
+| HSTS               | [developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) |
+| Hreflang           | [developers.google.com/search/docs/specialty/international](https://developers.google.com/search/docs/specialty/international/localized-versions)            |

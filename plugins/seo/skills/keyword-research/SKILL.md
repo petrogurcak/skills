@@ -1,6 +1,9 @@
 ---
 name: keyword-research
-description: Use when researching keywords for SEO, content strategy, or new projects - systematic framework for discovering, analyzing, and prioritizing keywords using free tools
+description: Discovers, analyzes, and prioritizes keywords for SEO and content strategy using free tools (Google Keyword Planner, Ubersuggest, AlsoAsked, Google Trends). Covers seed keyword discovery, long-tail expansion, metrics analysis, and content clustering. Use when starting a new website/project needing keyword strategy, planning content calendar based on search demand, finding low-competition quick wins, analyzing competitor keyword gaps, or building topic clusters. Trigger phrases include "keyword research", "find keywords", "content strategy keywords", "what to write about". NOT for on-page optimization with existing keywords (use seo-optimization), writing content (use web-copy), or setting up analytics (use analytics-setup).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Keyword Research

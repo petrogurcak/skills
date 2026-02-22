@@ -1,6 +1,9 @@
 ---
 name: finish
-description: Use after all plan tasks are executed - orchestrates verify, demo, merge, and wrapup phases in sequence
+description: Orchestrates all post-execution phases in sequence - verify (tests, build, lint), demo (optional executable proof), merge (commit, merge to development branch, cleanup), and wrapup (context, lessons, docs). Use after all tasks from an implementation plan are complete. Trigger phrases - "finish", "done coding", "dokonči", "hotovo", "zabal to", "wrap up", "merge it". NOT for mid-implementation work or when tasks are still incomplete.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Finish
@@ -34,11 +37,13 @@ Each phase gates the next. Failures stop the flow until resolved.
 **Invoke:** `development:verify`
 
 Run full verification suite:
+
 - Tests, build, lint/types
 - Plan task completion check
 - Browser smoke test (optional, for UI features)
 
 **Gate:** ALL checks must pass before continuing.
+
 - If failures: fix, re-run verify. Do NOT proceed.
 - If pass: announce results and continue.
 
@@ -46,11 +51,11 @@ Run full verification suite:
 
 **Ask:** "Feature ma UI nebo API? Chces vytvorit demo dokument?"
 
-| Answer | Action |
-|---|---|
-| Yes / ano | **Invoke:** `development:demo` - create showboat document |
-| No / ne / skip | Skip, continue to merge |
-| Refactoring / config | Skip automatically (no visible output to demo) |
+| Answer               | Action                                                    |
+| -------------------- | --------------------------------------------------------- |
+| Yes / ano            | **Invoke:** `development:demo` - create showboat document |
+| No / ne / skip       | Skip, continue to merge                                   |
+| Refactoring / config | Skip automatically (no visible output to demo)            |
 
 ### Phase 6: Merge
 
@@ -86,11 +91,11 @@ Hotovo.
 
 ## Error Recovery
 
-| Error | Action |
-|---|---|
-| Tests fail in verify | Fix + re-run verify, don't proceed |
-| Merge conflict | Resolve conflict, re-run tests on development |
-| Tests fail on development | Fix on development, re-run, don't leave broken |
+| Error                        | Action                                          |
+| ---------------------------- | ----------------------------------------------- |
+| Tests fail in verify         | Fix + re-run verify, don't proceed              |
+| Merge conflict               | Resolve conflict, re-run tests on development   |
+| Tests fail on development    | Fix on development, re-run, don't leave broken  |
 | Demo fails (showboat/rodney) | Skip demo, continue to merge (demo is optional) |
 
 ## Rules

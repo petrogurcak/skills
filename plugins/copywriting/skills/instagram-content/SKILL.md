@@ -1,6 +1,9 @@
 ---
 name: instagram-content
-description: Use when creating Instagram Reels, Stories, or posts that need to go viral - applies Hook-Substance-Payoff framework with technical settings, engagement tactics, and caption copywriting principles from Otto Bohuš methodology
+description: Creates viral Instagram Reels, Stories, and posts using the Hook-Substance-Payoff framework, with technical recording settings, engagement tactics, caption copywriting, and hashtag strategy. Use when scripting short-form video, writing IG captions, or developing Instagram content strategy. Trigger phrases: "Instagram reel", "IG post", "social media content", "stories script", "caption for Instagram". Do NOT use for long-form blog posts (use web-copy), product descriptions (use product-copy), or email campaigns (use newsletter).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Instagram Content - Reels, Stories & Posts

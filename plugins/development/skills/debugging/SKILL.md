@@ -1,6 +1,9 @@
 ---
 name: debugging
-description: Use when user says "oprav", "nefunguje", "spadá", "chyba", "proč to", "fix", "broken", "error", "crash", "doesn't work" - wrapper for systematic-debugging
+description: Systematic debugging wrapper that investigates, hypothesizes, verifies, and fixes bugs using TDD. Use when something is broken, crashing, or producing errors. Trigger phrases - "fix", "broken", "error", "crash", "doesn't work", "debug", "oprav", "nefunguje", "spadá", "chyba", "proč to nefunguje", "nejde", "selhává". NOT for building new features or refactoring working code (use development-workflow instead).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Debugging (Czech Wrapper)
@@ -10,6 +13,7 @@ Wrapper pro `superpowers:systematic-debugging` s českými triggery.
 ## Trigger Phrases
 
 **Aktivuj tento skill když uživatel říká:**
+
 - "oprav X" / "fix X"
 - "nefunguje X" / "X doesn't work"
 - "spadá X" / "X crashes"
@@ -26,6 +30,7 @@ Wrapper pro `superpowers:systematic-debugging` s českými triggery.
 ## Action
 
 **Immediately invoke:**
+
 ```
 Skill tool: superpowers:systematic-debugging
 ```

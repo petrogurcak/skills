@@ -1,12 +1,15 @@
 ---
 name: flutter-workflow
-description: Use when working with Flutter/Dart - enforces DOCS-FIRST workflow where AI MUST fetch current documentation BEFORE proposing any implementation (workflows for widgets, state management, navigation, platform integration)
+description: Docs-first development workflow for Flutter/Dart projects covering widgets, state management, navigation, and platform integration (iOS/Android/Web). Fetches current documentation via MCP before any implementation. Use when building or modifying Flutter apps. Trigger phrases - "flutter", "dart", "flutter widget", "flutter app", "flutter navigation", "flutter state management". NOT for React Native/Expo (use expo-workflow) or web-only frontends (use frontend-app/frontend-lp).
+metadata:
+  author: Petr
+  version: 1.0.0
 hooks:
   PostToolUse:
     - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.dart$\""
       hooks:
         - type: command
-          command: "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && dart analyze --no-fatal-infos 2>&1 | tail -5'"
+          command: 'bash -c ''cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && dart analyze --no-fatal-infos 2>&1 | tail -5'''
           timeout: 30
 ---
 
@@ -23,6 +26,7 @@ This is NON-NEGOTIABLE. Every workflow below has MANDATORY MCP fetch steps that 
 ## When to Use This Skill
 
 Use this skill for ALL Flutter development tasks:
+
 - Creating widgets (Stateless/Stateful/Inherited)
 - Implementing state management
 - Setting up navigation/routing
@@ -356,6 +360,7 @@ Team familiarity?
 ### Dart 3.x+ Requirements (MANDATORY)
 
 **Language Features:**
+
 ```dart
 // ✓ CORRECT: Records for simple data
 final user = (name: 'John', age: 30);
@@ -385,6 +390,7 @@ switch (state) {
 ```
 
 **Null Safety:**
+
 ```dart
 // ✓ CORRECT: Proper null safety
 String? getName() => user?.name;
@@ -401,6 +407,7 @@ String name = possiblyNullValue; // Error
 ```
 
 **Lints & Analysis:**
+
 ```yaml
 # Must have in analysis_options.yaml
 analyzer:
@@ -421,6 +428,7 @@ linter:
 ### Flutter 3.x+ Requirements (MANDATORY)
 
 **Material Design 3:**
+
 ```dart
 // ✓ CORRECT: Material 3 theme
 MaterialApp(
@@ -435,6 +443,7 @@ MaterialApp(
 ```
 
 **Widget Construction:**
+
 ```dart
 // ✓ CORRECT: Const constructors
 const Text('Hello');
@@ -454,6 +463,7 @@ Text('Hello'); // Should be const
 ```
 
 **Accessibility:**
+
 ```dart
 // ✓ CORRECT: Semantic labels
 Semantics(
@@ -531,6 +541,7 @@ What's your team experience?
 ## Common Mistakes to Avoid
 
 **DON'T:**
+
 - Generate code without fetching docs first
 - Use deprecated Flutter 2.x APIs
 - Skip null safety
@@ -545,6 +556,7 @@ What's your team experience?
 - Forget to dispose controllers/streams
 
 **DO:**
+
 - ALWAYS fetch documentation before implementing
 - Follow workflows step-by-step
 - Use Dart 3 features (records, patterns, sealed classes)

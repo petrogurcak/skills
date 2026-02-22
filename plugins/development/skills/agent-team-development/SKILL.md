@@ -1,6 +1,9 @@
 ---
 name: agent-team-development
-description: Use when executing implementation plans with independent modules that benefit from parallel work - multiple teammates implement simultaneously via tmux split panes
+description: Executes implementation plans by spawning parallel teammates in tmux split panes, each owning a module, with a persistent review teammate for quality gates. Use when you have a plan with 3+ independent modules touching different files and want parallel execution. Trigger phrases - "execute plan in parallel", "spawn teammates", "team development", "parallel implementation", "tmux teammates". NOT for sequential single-module tasks or when modules share the same files (use development-workflow instead).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Agent Team Development
@@ -10,6 +13,7 @@ Execute plan by spawning parallel teammates, each owning a module. Lead coordina
 **Core principle:** Parallel teammates per module + persistent review teammate + shared task list = fast parallel execution with quality gates
 
 **vs. Subagent-Driven (sequential):**
+
 - Parallel execution (multiple tasks simultaneously)
 - Teammates persist (shared context across tasks in their module)
 - Teammates communicate directly (not just back to lead)
@@ -35,12 +39,14 @@ digraph when_to_use {
 ```
 
 **Use when:**
+
 - Plan has 3+ tasks that can run in parallel
 - Tasks own separate files/directories (no overlap)
 - Cross-layer work: API + frontend + tests simultaneously
 - You want to see live progress in split panes
 
 **Don't use when:**
+
 - Tasks are sequential (each depends on previous)
 - Tasks edit same files (teammates will overwrite each other)
 - Simple feature (1-2 tasks) - overhead not worth it
@@ -85,7 +91,7 @@ digraph process {
 
 ### 1. Prepare Tasks
 
-Read plan, extract all tasks. Group by module (file ownership):
+Read plan, extract all tasks **with full text**. Group by module (file ownership):
 
 ```
 Module A (src/api/):      Task 1, Task 4
@@ -94,6 +100,8 @@ Module C (tests/):        Task 3, Task 6
 ```
 
 **Rule:** No two modules may share files. If tasks overlap on files, keep them in same module (sequential within that teammate).
+
+**Context efficiency:** When creating TaskCreate entries, include the **complete task text** from the plan in the task description. Teammates should NOT need to read the full plan file — everything they need should be in their task description. This keeps teammate context windows small and focused.
 
 ### 2. Create Team
 
@@ -123,16 +131,21 @@ Task tool:
     ## Your Scope
     Files you own: [list of directories/files]
     DO NOT edit files outside your scope.
+    DO NOT read the full plan file — everything you need is in your task descriptions below.
+
+    ## Your Tasks (full text from plan)
+    [Paste complete task text here — steps, code, expected output, everything]
 
     ## How to Work
-    1. Check TaskList for available tasks assigned to you
-    2. Claim a task with TaskUpdate (set owner to your name)
-    3. Implement following TDD (RED → GREEN → REFACTOR)
-    4. Commit your work
-    5. Message the reviewer: "Task N done, ready for review"
-    6. Wait for reviewer feedback
-    7. If issues found → fix and notify reviewer again
-    8. When approved → mark task complete, claim next
+    1. Check TaskList for your next available task
+    2. Claim it with TaskUpdate (set owner to your name)
+    3. Read the task description (contains full implementation details)
+    4. Implement following TDD (RED → GREEN → REFACTOR)
+    5. Commit your work
+    6. Message the reviewer: "Task N done, ready for review"
+    7. Wait for reviewer feedback
+    8. If issues found → fix and notify reviewer again
+    9. When approved → mark task complete, claim next
 
     ## Communication
     - Message reviewer when task is ready for review
@@ -208,11 +221,11 @@ TeamDelete (after all teammates confirmed shutdown)
 
 ## Team Sizing
 
-| Plan Size | Implementers | Reviewer | Total |
-|-----------|:------------:|:--------:|:-----:|
-| 3-5 tasks, 2 modules | 2 | 1 | 3 |
-| 6-10 tasks, 3 modules | 3 | 1 | 4 |
-| 10+ tasks, 4+ modules | 3-4 | 1 | 4-5 |
+| Plan Size             | Implementers | Reviewer | Total |
+| --------------------- | :----------: | :------: | :---: |
+| 3-5 tasks, 2 modules  |      2       |    1     |   3   |
+| 6-10 tasks, 3 modules |      3       |    1     |   4   |
+| 10+ tasks, 4+ modules |     3-4      |    1     |  4-5  |
 
 **Max 5 teammates.** More = diminishing returns, higher token cost, harder coordination.
 
@@ -220,26 +233,29 @@ Use Sonnet for teammates to manage costs. Lead (your session) runs on whatever m
 
 ## Common Mistakes
 
-| Mistake | Fix |
-|---------|-----|
-| Teammates edit same files | Group tasks by file ownership before spawning |
-| Lead starts implementing | Use delegate mode (Shift+Tab) |
-| No reviewer teammate | Always spawn one - quality drops without review |
-| Too many teammates | Max 5, prefer fewer with more tasks each |
-| Forgetting cleanup | Always shutdown teammates + TeamDelete when done |
+| Mistake                       | Fix                                                |
+| ----------------------------- | -------------------------------------------------- |
+| Teammates edit same files     | Group tasks by file ownership before spawning      |
+| Lead starts implementing      | Use delegate mode (Shift+Tab)                      |
+| No reviewer teammate          | Always spawn one - quality drops without review    |
+| Too many teammates            | Max 5, prefer fewer with more tasks each           |
+| Forgetting cleanup            | Always shutdown teammates + TeamDelete when done   |
 | Not setting task dependencies | Use TaskUpdate addBlockedBy before teammates start |
-| Teammates waiting idle | Give each teammate 5-6 tasks, not just 1 |
+| Teammates waiting idle        | Give each teammate 5-6 tasks, not just 1           |
 
 ## Integration
 
 **Required workflow skills:**
+
 - **superpowers:writing-plans** - Creates the plan this skill executes
 - **superpowers:finishing-a-development-branch** - Complete development after all tasks
 
 **Teammates should follow:**
+
 - **superpowers:test-driven-development** - TDD for each task
 - Project's CLAUDE.md conventions
 
 **Alternative strategies:**
+
 - **superpowers:subagent-driven-development** - Sequential, same session, lower token cost
 - **superpowers:executing-plans** - Batch execution with human checkpoints

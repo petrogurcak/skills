@@ -1,6 +1,9 @@
 ---
 name: marketing-orchestrator
-description: Use when planning marketing, growth, or go-to-market strategy - orchestrates specialized marketing skills based on business stage and goal detection
+description: Orchestrates marketing and growth work by detecting business stage, goal type, and routing to specialized skills (offer-creation, growth-hacking, product-led-growth, saas-bootstrap, uvp-optimization). Use when planning marketing strategy, go-to-market, growth strategy for SaaS, launch planning, or asking "how do I get first customers" or "help me grow my product". NOT for when you already know the exact specialist skill needed, just copywriting (use copywriting-orchestrator), just UX (use ux-orchestrator), or just positioning (use uvp-optimization).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Marketing Orchestrator

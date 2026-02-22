@@ -1,6 +1,9 @@
 ---
 name: team-briefing
-description: Use when a brainstorming or planning session is complete and you want cross-functional perspective before implementation - activates AI personas (marketing, growth, copywriting, SEO, UX, security, product) to review the plan and provide actionable suggestions
+description: Activates virtual AI team personas (marketing, growth, copywriting, SEO, UX, security, product) to review a plan from cross-functional perspectives and provide actionable suggestions. Use after brainstorming or planning is complete, before implementation begins, when you want diverse domain perspectives on a plan. Trigger phrases include "team briefing", "review this plan with the team", "get team feedback", "cross-functional review". Not for code review (use deep-review) or single-domain feedback — this is multi-persona strategic review.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Team Briefing
@@ -21,10 +24,12 @@ After brainstorming/planning, launch virtual team personas to review the plan fr
 ### Step 1: Locate Input
 
 Find the brainstorming/plan document to review. Check in order:
+
 1. Most recent `docs/plans/YYYY-MM-DD-*-design.md`
 2. Ask user which document to review
 
 Also read project context:
+
 - `.claude/CLAUDE.md` (if exists)
 - `.claude/ACTIVE_CONTEXT.md` (if exists)
 
@@ -33,6 +38,7 @@ Also read project context:
 Launch a **single Task agent (haiku model)** to decide which personas are relevant.
 
 **Orchestrator prompt:**
+
 ```
 You are a team orchestrator. Read the plan below and decide which personas should review it.
 
@@ -56,11 +62,13 @@ Use `subagent_type: "general-purpose"` with `model: "haiku"`.
 For each persona the orchestrator selected, launch a **Task agent (haiku model)** in parallel.
 
 Each persona agent gets:
+
 1. Its persona definition (read from `personas/{name}.md` in this skill's directory)
 2. The plan content
 3. Project context
 
 **Persona agent prompt template:**
+
 ```
 {persona_definition}
 
@@ -92,20 +100,25 @@ Collect all persona responses and write to `docs/plans/YYYY-MM-DD-<topic>-team-b
 
 ```markdown
 # Team Briefing: {topic}
+
 > Generated after brainstorming on {date}
 > Personas activated: {list of activated personas}
 
 ## {Persona Name}
+
 **Relevance:** X/10
+
 - [ ] Specific actionable suggestion 1
 - [ ] Specific actionable suggestion 2
 
 ## {Next Persona}
+
 ...
 
 ---
 
 ## Top 3 Recommendations
+
 > Cross-persona priorities - most impactful actions across all domains
 
 1. {Most important suggestion from any persona}
@@ -118,6 +131,7 @@ Write the "Top 3 Recommendations" yourself by reviewing all persona outputs and 
 ### Step 5: Present to User
 
 Show a brief summary:
+
 - Which personas were activated
 - How many suggestions total
 - Top 3 recommendations
@@ -135,6 +149,7 @@ Show a brief summary:
 ## Persona Files
 
 Persona definitions live in `personas/` subdirectory of this skill:
+
 - `marketing.md` - Announcement, tracking, channel strategy
 - `growth.md` - Metrics, acquisition, retention
 - `copywriting.md` - Messaging, tone, communication

@@ -1,6 +1,9 @@
 ---
 name: copywriting-orchestrator
-description: Use when writing ANY marketing copy, content, or text - orchestrates specialized copywriting skills (Instagram, web, product, newsletter) based on content type detection
+description: Detects content type and routes to the right specialized copywriting skill (instagram-content, web-copy, product-copy, newsletter). Use when the user asks for copy but it is unclear which specialist to use, or for multi-channel campaigns spanning several formats. Trigger phrases: "write copy for", "help me with copywriting", "product launch campaign", "I need marketing text". Do NOT use when you already know the exact medium — call the specialist skill directly instead.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Copywriting Orchestrator

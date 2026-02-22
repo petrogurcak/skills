@@ -1,6 +1,9 @@
 ---
 name: newsletter
-description: Use when writing newsletters, direct emails, or email campaigns - comprehensive framework combining Otto Bohuš email principles, PROTTO methodology, psychological triggers, and conversion techniques for high-performing email marketing
+description: Writes high-converting emails — newsletters, promo campaigns, onboarding sequences, cold outreach — using a 9-step email anatomy framework with subject line techniques, personalization, PROTTO methodology, and psychological triggers. Use when creating any email that needs to drive opens, clicks, or replies. Trigger phrases: "write a newsletter", "email campaign", "subject line", "email sequence", "cold email". Do NOT use for website copy (use web-copy), product descriptions (use product-copy), or social media (use instagram-content).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Newsletter & Email Marketing

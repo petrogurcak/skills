@@ -1,6 +1,9 @@
 ---
 name: product-market-fit
-description: Use when asking "are we building the right thing?", measuring retention, evaluating churn, or deciding whether to scale - PMF Survey, PMF Engine, Crossing the Chasm
+description: Evaluates whether your product has achieved product-market fit using PMF Survey (40% test), PMF Engine, and Crossing the Chasm frameworks. Use when asking "do we have PMF", measuring retention, evaluating churn, or deciding whether to scale or invest in growth. Triggers include "are we building the right thing", "users sign up but don't stay", "should we scale". Do NOT use for understanding customer needs (use product-discovery), choosing what to build (use product-prioritization), or defining direction (use product-strategy).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product-Market Fit
@@ -16,6 +19,7 @@ Product-market fit means building something people actually want and will keep u
 ## When to Use
 
 **USE this skill:**
+
 - "Do we have product-market fit?"
 - "Should we invest in growth?"
 - "Our retention is bad"
@@ -25,6 +29,7 @@ Product-market fit means building something people actually want and will keep u
 - Churn is high despite marketing
 
 **DON'T use this skill:**
+
 - Don't know customer needs yet → `product-discovery`
 - Need to choose what to build → `product-prioritization`
 - Need long-term direction → `product-strategy`
@@ -57,13 +62,14 @@ C) Not disappointed (it's not really that useful)
 
 **The Benchmark:**
 
-| Score | Status | Action |
-|-------|--------|--------|
-| **40%+ "Very disappointed"** | PMF achieved | Scale growth |
-| **25-40%** | Getting close | Focus on core value |
-| **< 25%** | No PMF | Pivot or iterate significantly |
+| Score                        | Status        | Action                         |
+| ---------------------------- | ------------- | ------------------------------ |
+| **40%+ "Very disappointed"** | PMF achieved  | Scale growth                   |
+| **25-40%**                   | Getting close | Focus on core value            |
+| **< 25%**                    | No PMF        | Pivot or iterate significantly |
 
 **How to Run:**
+
 1. Survey users who experienced core value (used product 2+ times, recent activity)
 2. Minimum 40 responses for statistical relevance
 3. Don't survey one-time visitors or inactive users
@@ -136,6 +142,7 @@ This is counterintuitive — you're ignoring most feedback.
 **Scoring roadmap items:**
 
 For each improvement:
+
 - Does it serve the HXC? (if not, deprioritize)
 - Will it convert "Somewhat" to "Very disappointed"?
 - Does it strengthen what "Very disappointed" users already love?
@@ -175,6 +182,7 @@ Quarterly PMF tracking:
 ```
 
 **Process:**
+
 1. Verify market exists (people spend money solving this)
 2. Define target customer precisely (not "everyone")
 3. Identify underserved needs (high importance, low satisfaction)
@@ -196,21 +204,23 @@ Quarterly PMF tracking:
 ```
 
 **The Chasm:**
+
 - Early adopters buy vision, tolerate bugs, want to be first
 - Early majority wants proven solutions, references, and safety
 - The gap between them is where most products die
 
 **Crossing Strategy:**
 
-| Step | Action |
-|------|--------|
-| 1. Pick a beachhead | Choose ONE specific niche to dominate first |
-| 2. Whole product | Build everything that niche needs (not just MVP) |
-| 3. References | Get 2-3 referenceable customers in that niche |
+| Step                       | Action                                                             |
+| -------------------------- | ------------------------------------------------------------------ |
+| 1. Pick a beachhead        | Choose ONE specific niche to dominate first                        |
+| 2. Whole product           | Build everything that niche needs (not just MVP)                   |
+| 3. References              | Get 2-3 referenceable customers in that niche                      |
 | 4. Position vs alternative | "For [niche] who [pain], our product is [category] that [benefit]" |
-| 5. Dominate, then expand | Own the niche before expanding to adjacent ones |
+| 5. Dominate, then expand   | Own the niche before expanding to adjacent ones                    |
 
 **Beachhead Selection Criteria:**
+
 - Small enough to dominate (100-1000 potential customers)
 - Painful enough that they'll buy imperfect solution
 - Connected enough that word spreads (references matter)
@@ -256,24 +266,24 @@ No survey data?
 
 ## PMF Signals (Beyond Survey)
 
-| Signal | Strong PMF | Weak PMF |
-|--------|-----------|----------|
-| **Retention** | 30-day > 40% | Drops after trial |
-| **NPS** | > 50 | < 0 |
-| **Organic growth** | Word of mouth drives signups | Only paid acquisition |
-| **Usage patterns** | Users come back daily/weekly | One-time use |
+| Signal                | Strong PMF                   | Weak PMF                         |
+| --------------------- | ---------------------------- | -------------------------------- |
+| **Retention**         | 30-day > 40%                 | Drops after trial                |
+| **NPS**               | > 50                         | < 0                              |
+| **Organic growth**    | Word of mouth drives signups | Only paid acquisition            |
+| **Usage patterns**    | Users come back daily/weekly | One-time use                     |
 | **Customer requests** | "Can you add X?" (expansion) | "Can you fix Y?" (basics broken) |
-| **Sales cycle** | Short, customers seek you | Long, lots of objections |
-| **Pricing** | Can raise prices | Users churn on any price |
+| **Sales cycle**       | Short, customers seek you    | Long, lots of objections         |
+| **Pricing**           | Can raise prices             | Users churn on any price         |
 
 ## Quick Reference
 
-| Framework | Core Question | Best For |
-|---|---|---|
-| PMF Survey (Ellis) | "Would users miss us?" | Measuring PMF score |
-| PMF Engine (Vohra) | "How do we improve PMF?" | Systematic improvement |
-| PMF Pyramid (Olsen) | "Are we building on solid foundation?" | New products |
-| Crossing the Chasm (Moore) | "Why did growth stall?" | B2B, tech products |
+| Framework                  | Core Question                          | Best For               |
+| -------------------------- | -------------------------------------- | ---------------------- |
+| PMF Survey (Ellis)         | "Would users miss us?"                 | Measuring PMF score    |
+| PMF Engine (Vohra)         | "How do we improve PMF?"               | Systematic improvement |
+| PMF Pyramid (Olsen)        | "Are we building on solid foundation?" | New products           |
+| Crossing the Chasm (Moore) | "Why did growth stall?"                | B2B, tech products     |
 
 ## Common Mistakes
 

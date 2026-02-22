@@ -1,6 +1,9 @@
 ---
 name: demo
-description: Use after verification passes to create executable demo document proving the feature works - uses showboat for reproducible docs and rodney for browser automation
+description: Creates executable demo documents that prove a feature works with reproducible steps, using showboat and rodney for browser automation. Use after verification passes and the feature has visible UI, API, or CLI output worth demonstrating. Trigger phrases - "create demo", "prove it works", "udelej demo", "dokaž že to funguje", "showboat", "demo document". NOT for pure refactoring, config-only changes, or internal code reorganization with no visible output.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Demo
@@ -25,17 +28,30 @@ Create executable demo document that proves the feature works. Reproducible proo
 
 ## Process
 
+### Step 0: Verify Tools
+
+**MANDATORY — run before anything else:**
+
+```bash
+which showboat && showboat --version
+which rodney && rodney --version
+```
+
+- Both must be in PATH. Do NOT fall back to claude-in-chrome or curl.
+- If missing: tell user to install (`uv tool install showboat`, `go install github.com/simonw/rodney@latest`)
+- If PATH issue: try `~/.local/bin/showboat` and `~/go/bin/rodney` directly
+
 ### Step 1: Detect Feature Type
 
 Analyze what was built to choose demo strategy:
 
-| Feature type | Demo strategy | Tools |
-|---|---|---|
-| **Web UI** | Screenshots + interactions + accessibility | rodney + showboat |
-| **API endpoints** | curl/httpie requests + JSON responses | showboat exec |
-| **CLI tool** | Command examples + output | showboat exec |
-| **Library/SDK** | Code examples + output | showboat exec |
-| **Mixed** | Combine above as needed | both |
+| Feature type      | Demo strategy                              | Tools             |
+| ----------------- | ------------------------------------------ | ----------------- |
+| **Web UI**        | Screenshots + interactions + accessibility | rodney + showboat |
+| **API endpoints** | curl/httpie requests + JSON responses      | showboat exec     |
+| **CLI tool**      | Command examples + output                  | showboat exec     |
+| **Library/SDK**   | Code examples + output                     | showboat exec     |
+| **Mixed**         | Combine above as needed                    | both              |
 
 ### Step 2: Create Demo Document
 

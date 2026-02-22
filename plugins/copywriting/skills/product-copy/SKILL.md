@@ -1,6 +1,9 @@
 ---
 name: product-copy
-description: Use when writing product descriptions for e-commerce, e-shops, or online stores - systematic framework for creating scannable, precise, and converting product copy that sells (A/B product types, SEO, quality controls)
+description: Creates high-converting e-commerce product descriptions using a 7-step framework — product classification (Type A technical vs Type B experiential), competitive research, page structure with 11 sections, SEO elements, and quality controls. Use when writing or optimizing product pages for e-shops, marketplaces, or online stores. Trigger phrases: "product description", "e-shop copy", "product page", "e-commerce text". Do NOT use for general website copy (use web-copy), email campaigns (use newsletter), or social media posts (use instagram-content).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product Copy - E-shop Product Descriptions

@@ -1,6 +1,9 @@
 ---
 name: saas-bootstrap
-description: Use when building bootstrapped SaaS - Stair Step Method, 3 High / 3 Low Metrics from Rob Walling's The SaaS Playbook
+description: Guides bootstrapped SaaS founders using Stair Step Method and 3 High / 3 Low Metrics from Rob Walling's The SaaS Playbook. Use when evaluating a SaaS idea, deciding what to focus on as a solo founder, tracking SaaS health metrics, or growing without funding. Triggers include "should I build this SaaS", "solo founder focus", "bootstrap vs VC", "is my SaaS healthy". Do NOT use for creating offers (use offer-creation), growth experiments (use growth-hacking), product onboarding (use product-led-growth), or positioning (use uvp-optimization).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # SaaS Bootstrap
@@ -14,6 +17,7 @@ This skill helps bootstrapped founders build sustainable SaaS businesses using f
 ## When to Use
 
 **USE this skill:**
+
 - "Should I build this SaaS idea?"
 - "I'm a solo founder, what should I focus on?"
 - "What metrics should I track?"
@@ -22,6 +26,7 @@ This skill helps bootstrapped founders build sustainable SaaS businesses using f
 - Bootstrap vs VC decision
 
 **DON'T use this skill:**
+
 - Creating offers → `offer-creation`
 - Growth experiments → `growth-hacking`
 - Product onboarding → `product-led-growth`
@@ -74,24 +79,28 @@ Step 1: Simple Product + Single Channel
 ```
 
 **Step 1: First Product**
+
 - Simple product (plugin, add-on, small tool)
 - ONE organic acquisition channel (marketplace, SEO, community)
 - Goal: Learn product development, marketing, support
 - Examples: WordPress plugin, Shopify app, browser extension
 
 **Step 2: Repeat Until Free**
+
 - Build 2-3 Step 1 products
 - Goal: Income matches or exceeds salary
 - "Own your time" before taking big risks
 - Continue learning, refine skills
 
 **Step 3: Standalone SaaS**
+
 - Now you have: skills, capital, runway, confidence
 - Can survive longer without revenue
 - Know what works in marketing
 - Have support experience
 
 **Why it works:**
+
 - Lower risk at each step
 - Learning compounds
 - Capital from Step 1-2 funds Step 3
@@ -105,29 +114,30 @@ Step 1: Simple Product + Single Channel
 
 **Keep HIGH:**
 
-| Metric | What it means | Target |
-|--------|---------------|--------|
-| **ACV** (Annual Contract Value) | Average revenue per customer/year | Higher = easier growth |
-| **Expansion Revenue** | Upsells, cross-sells, upgrades | 20%+ of new MRR |
-| **Referrals** | Customers bringing customers | Track NPS, referral program |
+| Metric                          | What it means                     | Target                      |
+| ------------------------------- | --------------------------------- | --------------------------- |
+| **ACV** (Annual Contract Value) | Average revenue per customer/year | Higher = easier growth      |
+| **Expansion Revenue**           | Upsells, cross-sells, upgrades    | 20%+ of new MRR             |
+| **Referrals**                   | Customers bringing customers      | Track NPS, referral program |
 
 **Keep LOW:**
 
-| Metric | What it means | Target |
-|--------|---------------|--------|
-| **CAC** (Customer Acquisition Cost) | Cost to acquire one customer | < 1/3 of LTV |
-| **Sales Effort** | Human time per sale | Lower = more scalable |
-| **Churn** | Customers leaving | < 5% monthly (B2C), < 2% monthly (B2B) |
+| Metric                              | What it means                | Target                                 |
+| ----------------------------------- | ---------------------------- | -------------------------------------- |
+| **CAC** (Customer Acquisition Cost) | Cost to acquire one customer | < 1/3 of LTV                           |
+| **Sales Effort**                    | Human time per sale          | Lower = more scalable                  |
+| **Churn**                           | Customers leaving            | < 5% monthly (B2C), < 2% monthly (B2B) |
 
 **Health Check:**
 
-| Status | Indicators |
-|--------|------------|
-| Healthy | High ACV, Low Churn, Positive expansion |
-| Warning | Rising CAC, Flat expansion, Increasing churn |
-| Critical | CAC > ACV, High churn, No expansion |
+| Status   | Indicators                                   |
+| -------- | -------------------------------------------- |
+| Healthy  | High ACV, Low Churn, Positive expansion      |
+| Warning  | Rising CAC, Flat expansion, Increasing churn |
+| Critical | CAC > ACV, High churn, No expansion          |
 
 **Ratio to track:**
+
 ```
 LTV:CAC Ratio = Lifetime Value / Customer Acquisition Cost
 
@@ -144,21 +154,23 @@ LTV:CAC Ratio = Lifetime Value / Customer Acquisition Cost
 
 **Ideal market characteristics:**
 
-| Factor | Why it matters | What to look for |
-|--------|----------------|------------------|
-| **Niche** | Less competition | Specific vertical or use case |
-| **Willingness to pay** | Revenue potential | Already paying for solutions |
-| **Reachable** | Marketing feasibility | Clear communities, channels |
-| **Growing** | Long-term potential | Industry trends upward |
-| **No 800-lb gorilla** | Competitive landscape | No dominant player |
+| Factor                 | Why it matters        | What to look for              |
+| ---------------------- | --------------------- | ----------------------------- |
+| **Niche**              | Less competition      | Specific vertical or use case |
+| **Willingness to pay** | Revenue potential     | Already paying for solutions  |
+| **Reachable**          | Marketing feasibility | Clear communities, channels   |
+| **Growing**            | Long-term potential   | Industry trends upward        |
+| **No 800-lb gorilla**  | Competitive landscape | No dominant player            |
 
 **Red flag markets for bootstrappers:**
+
 - Consumer (low willingness to pay)
 - Heavy enterprise (long sales cycles, need team)
 - Dominated by VC-backed competitors
 - Requires network effects to work
 
 **Good bootstrap markets:**
+
 - B2B SMB (businesses with budget, clear pain)
 - Developers (will pay for tools that save time)
 - Professional services (dentists, lawyers, agencies)
@@ -188,6 +200,7 @@ Where are you now?
 ### Phase 3: Track 3H/3L Metrics
 
 Set up dashboard:
+
 ```
 HIGH Metrics:
 - ACV: $___/year
@@ -203,6 +216,7 @@ LOW Metrics:
 ### Phase 4: Health Assessment
 
 Monthly review:
+
 - [ ] Is ACV increasing or stable?
 - [ ] Is expansion happening?
 - [ ] Is CAC sustainable (<1/3 LTV)?
@@ -213,13 +227,13 @@ Monthly review:
 
 ## Quick Router
 
-| Situation | Framework to Use |
-|-----------|------------------|
+| Situation                             | Framework to Use                     |
+| ------------------------------------- | ------------------------------------ |
 | "Should I quit my job to build SaaS?" | Stair Step (probably Step 1-2 first) |
-| "Is my SaaS healthy?" | 3 High / 3 Low Metrics |
-| "What market should I target?" | Market Selection criteria |
-| "I keep failing at SaaS" | Stair Step (start simpler) |
-| "My churn is killing growth" | Focus on LOW metrics (churn) |
+| "Is my SaaS healthy?"                 | 3 High / 3 Low Metrics               |
+| "What market should I target?"        | Market Selection criteria            |
+| "I keep failing at SaaS"              | Stair Step (start simpler)           |
+| "My churn is killing growth"          | Focus on LOW metrics (churn)         |
 
 ---
 
@@ -231,52 +245,61 @@ Monthly review:
 ## Current Position
 
 ### Step 1 Products (completed or current)
+
 | Product | Channel | MRR | Status |
-|---------|---------|-----|--------|
-| | | | |
+| ------- | ------- | --- | ------ |
+|         |         |     |        |
 
 ### Step 2 Status
-- Total MRR from Step 1 products: $___
-- Monthly expenses: $___
+
+- Total MRR from Step 1 products: $\_\_\_
+- Monthly expenses: $\_\_\_
 - Own my time? [ ] Yes [ ] No
 
 ### Step 3 Readiness
+
 - [ ] Have 6+ months runway
 - [ ] Have validated idea
 - [ ] Have marketing skills
 - [ ] Have support experience
 - [ ] Have time to commit
 
-Recommendation: Focus on Step ___
+Recommendation: Focus on Step \_\_\_
 ```
 
 ### 3H/3L Dashboard
 
 ```markdown
 ## SaaS Health: [Product Name]
+
 Date: [Month/Year]
 
 ### HIGH Metrics (want these UP)
-| Metric | This Month | Last Month | Trend |
-|--------|------------|------------|-------|
-| ACV | $___ | $___ | ↑↓→ |
-| Expansion MRR | $___ | $___ | ↑↓→ |
-| Referrals | ___ | ___ | ↑↓→ |
+
+| Metric        | This Month | Last Month | Trend |
+| ------------- | ---------- | ---------- | ----- |
+| ACV           | $\_\_\_    | $\_\_\_    | ↑↓→   |
+| Expansion MRR | $\_\_\_    | $\_\_\_    | ↑↓→   |
+| Referrals     | \_\_\_     | \_\_\_     | ↑↓→   |
 
 ### LOW Metrics (want these DOWN)
-| Metric | This Month | Last Month | Trend |
-|--------|------------|------------|-------|
-| CAC | $___ | $___ | ↑↓→ |
-| Sales Effort | ___ hrs | ___ hrs | ↑↓→ |
-| Churn | ___% | ___% | ↑↓→ |
+
+| Metric       | This Month | Last Month | Trend |
+| ------------ | ---------- | ---------- | ----- |
+| CAC          | $\_\_\_    | $\_\_\_    | ↑↓→   |
+| Sales Effort | \_\_\_ hrs | \_\_\_ hrs | ↑↓→   |
+| Churn        | \_\_\_%    | \_\_\_%    | ↑↓→   |
 
 ### Key Ratio
-LTV:CAC = ___:1
+
+LTV:CAC = \_\_\_:1
 
 ### Health Status
+
 [ ] Healthy [ ] Warning [ ] Critical
 
 ### Actions
+
 1.
 2.
 3.
@@ -287,16 +310,17 @@ LTV:CAC = ___:1
 ```markdown
 ## Market: [Name]
 
-| Factor | Score (1-5) | Notes |
-|--------|-------------|-------|
-| Niche (specific) | | |
-| Willingness to pay | | |
-| Reachable (channels) | | |
-| Growing | | |
-| No dominant player | | |
-| **Total** | /25 | |
+| Factor               | Score (1-5) | Notes |
+| -------------------- | ----------- | ----- |
+| Niche (specific)     |             |       |
+| Willingness to pay   |             |       |
+| Reachable (channels) |             |       |
+| Growing              |             |       |
+| No dominant player   |             |       |
+| **Total**            | /25         |       |
 
 Score interpretation:
+
 - 20-25: Excellent bootstrap market
 - 15-19: Good, proceed with caution
 - 10-14: Challenging, reconsider
@@ -339,6 +363,7 @@ Score interpretation:
 ## Bootstrap vs VC Decision
 
 **Bootstrap if:**
+
 - Market is niche (not big enough for VC)
 - Can be profitable with small team
 - Want to own 100%
@@ -346,6 +371,7 @@ Score interpretation:
 - Have runway from other income
 
 **Consider VC if:**
+
 - Winner-take-all market
 - Network effects critical
 - Speed to market essential
@@ -357,12 +383,14 @@ Score interpretation:
 ## Integration
 
 **Works with:**
+
 - `growth-hacking` → ICE scoring for experiments
 - `offer-creation` → Value equation for pricing
 - `product-led-growth` → Self-serve optimization
 - `uvp-optimization` → Niche positioning
 
 **Sequence for new bootstrapped SaaS:**
+
 1. `saas-bootstrap` → Stair Step assessment
 2. `uvp-optimization` → Positioning for niche
 3. `offer-creation` → Compelling offer

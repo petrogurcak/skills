@@ -1,6 +1,9 @@
 ---
 name: ai-ready
-description: Use when making websites discoverable by AI agents (ChatGPT, Perplexity, Claude, Gemini) - llms.txt, robots.txt for AI crawlers, markdown serving, structured data for AI citations
+description: Makes websites discoverable and citable by AI search engines and agents (ChatGPT, Perplexity, Claude, Gemini) through llms.txt setup, robots.txt for AI crawlers, markdown serving via content negotiation, and structured data for AI citations. Use when launching a new site wanting AI discoverability, existing site not appearing in AI search results, optimizing for AI citations and referral traffic, or setting up SaaS marketing site for AI. Trigger phrases include "AI search", "llms.txt", "AI crawlers", "Perplexity citations". NOT for traditional Google SEO (use seo-optimization), technical performance audits (use technical-seo), or keyword research (use keyword-research).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # AI-Ready Website
@@ -8,17 +11,20 @@ description: Use when making websites discoverable by AI agents (ChatGPT, Perple
 Make your website discoverable and citable by AI search engines and agents.
 
 **When to use:**
+
 - Launching new website and want AI discoverability
 - Existing site not appearing in AI search results (ChatGPT, Perplexity)
 - Want to optimize for AI citations and referral traffic
 - Setting up a SaaS marketing site
 
 **When NOT to use:**
+
 - Traditional Google SEO → use `seo-optimization`
 - Technical performance audit → use `technical-seo`
 - Keyword research → use `keyword-research`
 
 **Context:**
+
 - AI referral traffic grows 357% YoY
 - 80% of AI-cited sources don't rank in Google top 100 — AI picks different sources
 - Pages with FAQPage schema get 3.4x more Perplexity citations
@@ -28,14 +34,14 @@ Make your website discoverable and citable by AI search engines and agents.
 
 ## Quick Router
 
-| User says... | Go to... |
-|---|---|
-| "chci byt v ChatGPT", "AI search" | Full Audit (all phases) |
-| "llms.txt", "jak na llms.txt" | Phase 1: llms.txt |
-| "robots.txt pro AI", "AI crawlers" | Phase 2: robots.txt |
+| User says...                           | Go to...                  |
+| -------------------------------------- | ------------------------- |
+| "chci byt v ChatGPT", "AI search"      | Full Audit (all phases)   |
+| "llms.txt", "jak na llms.txt"          | Phase 1: llms.txt         |
+| "robots.txt pro AI", "AI crawlers"     | Phase 2: robots.txt       |
 | "markdown pro agenty", "Accept header" | Phase 3: Markdown Serving |
-| "structured data pro AI", "schema" | Phase 4: Structured Data |
-| "jak merit AI traffic" | Phase 5: Monitoring |
+| "structured data pro AI", "schema"     | Phase 4: Structured Data  |
+| "jak merit AI traffic"                 | Phase 5: Monitoring       |
 
 ---
 
@@ -53,18 +59,22 @@ Make your website discoverable and citable by AI search engines and agents.
 > [One-sentence description with key info]
 
 ## Docs
+
 - [Page Name](https://example.com/page): Short description
 - [Another Page](https://example.com/other): Short description
 
 ## API
+
 - [Endpoint Docs](https://example.com/api): API reference
 
 ## Optional
+
 - [Blog](https://example.com/blog): Articles and updates
 - [About](https://example.com/about): Company info
 ```
 
 **Rules:**
+
 1. H1 = project name (required)
 2. Blockquote = short summary (optional but recommended)
 3. H2 sections with link lists
@@ -80,15 +90,18 @@ Make your website discoverable and citable by AI search engines and agents.
 > [What it does, for whom, key differentiator]
 
 ## Product
+
 - [Features](https://product.com/features): Complete feature overview
 - [Pricing](https://product.com/pricing): Plans and pricing
 - [How It Works](https://product.com/how-it-works): Step-by-step guide
 
 ## Resources
+
 - [FAQ](https://product.com/faq): Frequently asked questions
 - [Getting Started](https://product.com/docs/getting-started): Quick start guide
 
 ## Optional
+
 - [Blog](https://product.com/blog): Industry articles and updates
 - [About](https://product.com/about): Company information
 - [Contact](https://product.com/contact): Contact details
@@ -114,23 +127,23 @@ This lets agents discover your llms.txt from any page without inspecting the bod
 
 ### AI Crawler Reference
 
-| Crawler | Company | Purpose | Allow? |
-|---|---|---|---|
-| GPTBot | OpenAI | Model training | Your choice |
-| ChatGPT-User | OpenAI | Real-time browsing for users | YES |
-| OAI-SearchBot | OpenAI | Search indexing | YES |
-| ClaudeBot | Anthropic | Model training | Your choice |
-| Claude-User | Anthropic | Real-time user access | YES |
-| Claude-SearchBot | Anthropic | Search indexing | YES |
-| Google-Extended | Google | Gemini training | Your choice |
-| Gemini-Deep-Research | Google | Research agent | YES |
-| PerplexityBot | Perplexity | Answer engine | YES |
-| Perplexity-User | Perplexity | Real-time browsing | YES |
-| Meta-ExternalAgent | Meta | LLM training (Llama) | Your choice |
-| Bytespider | ByteDance | TikTok LLM training | NO (aggressive) |
-| CCBot | Common Crawl | Open archive | Your choice |
-| DuckAssistBot | DuckDuckGo | Search indexing | YES |
-| Amazonbot | Amazon | Alexa/AI services | Your choice |
+| Crawler              | Company      | Purpose                      | Allow?          |
+| -------------------- | ------------ | ---------------------------- | --------------- |
+| GPTBot               | OpenAI       | Model training               | Your choice     |
+| ChatGPT-User         | OpenAI       | Real-time browsing for users | YES             |
+| OAI-SearchBot        | OpenAI       | Search indexing              | YES             |
+| ClaudeBot            | Anthropic    | Model training               | Your choice     |
+| Claude-User          | Anthropic    | Real-time user access        | YES             |
+| Claude-SearchBot     | Anthropic    | Search indexing              | YES             |
+| Google-Extended      | Google       | Gemini training              | Your choice     |
+| Gemini-Deep-Research | Google       | Research agent               | YES             |
+| PerplexityBot        | Perplexity   | Answer engine                | YES             |
+| Perplexity-User      | Perplexity   | Real-time browsing           | YES             |
+| Meta-ExternalAgent   | Meta         | LLM training (Llama)         | Your choice     |
+| Bytespider           | ByteDance    | TikTok LLM training          | NO (aggressive) |
+| CCBot                | Common Crawl | Open archive                 | Your choice     |
+| DuckAssistBot        | DuckDuckGo   | Search indexing              | YES             |
+| Amazonbot            | Amazon       | Alexa/AI services            | Your choice     |
 
 ### Recommended robots.txt
 
@@ -256,6 +269,7 @@ add_header Content-Signal "search=yes, ai-input=yes, ai-train=no";
 ```
 
 Signals:
+
 - `search=yes` — appear in AI search results
 - `ai-input=yes` — agents can use content for user queries
 - `ai-train=no` — don't use for model training
@@ -269,6 +283,7 @@ AI engines strongly prefer structured content. GPT-4 accuracy jumps from 16% to 
 ### Priority Schemas for SaaS
 
 **1. SoftwareApplication** (product pages):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -291,6 +306,7 @@ AI engines strongly prefer structured content. GPT-4 accuracy jumps from 16% to 
 ```
 
 **2. FAQPage** (3.4x more Perplexity citations):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -309,6 +325,7 @@ AI engines strongly prefer structured content. GPT-4 accuracy jumps from 16% to 
 ```
 
 **3. Organization** (Knowledge Panel):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -324,15 +341,28 @@ AI engines strongly prefer structured content. GPT-4 accuracy jumps from 16% to 
 ```
 
 **4. HowTo** (tutorial/guide pages):
+
 ```json
 {
   "@context": "https://schema.org",
   "@type": "HowTo",
   "name": "How to set up a digital menu",
   "step": [
-    {"@type": "HowToStep", "name": "Sign up", "text": "Create account at editor.menu"},
-    {"@type": "HowToStep", "name": "Add dishes", "text": "Upload your menu items"},
-    {"@type": "HowToStep", "name": "Publish", "text": "Share QR code with customers"}
+    {
+      "@type": "HowToStep",
+      "name": "Sign up",
+      "text": "Create account at editor.menu"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add dishes",
+      "text": "Upload your menu items"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Publish",
+      "text": "Share QR code with customers"
+    }
   ]
 }
 ```
@@ -349,17 +379,18 @@ Place JSON-LD in `<script type="application/ld+json">` in `<head>`. Use Google's
 
 AI search engines add referrer data. Track these in Google Analytics:
 
-| Source | Referrer Pattern |
-|---|---|
-| ChatGPT | `chatgpt.com`, `chat.openai.com` |
-| Perplexity | `perplexity.ai` |
-| Google AI | Shows as organic with AI-related queries |
-| Claude | `claude.ai` |
-| Bing Copilot | `bing.com` (with copilot parameter) |
+| Source       | Referrer Pattern                         |
+| ------------ | ---------------------------------------- |
+| ChatGPT      | `chatgpt.com`, `chat.openai.com`         |
+| Perplexity   | `perplexity.ai`                          |
+| Google AI    | Shows as organic with AI-related queries |
+| Claude       | `claude.ai`                              |
+| Bing Copilot | `bing.com` (with copilot parameter)      |
 
 ### GA4 Setup
 
 Create a custom channel group for "AI Referral":
+
 1. GA4 → Admin → Channel Groups
 2. Add new group: "AI Search"
 3. Rules: Source matches `chatgpt.com|perplexity.ai|claude.ai|you.com`
@@ -377,6 +408,7 @@ Create a custom channel group for "AI Referral":
 Run this for each website:
 
 ### Must Have (1 evening)
+
 - [ ] `/llms.txt` exists and is well-structured
 - [ ] `robots.txt` allows AI search bots (ChatGPT-User, PerplexityBot, Claude-SearchBot)
 - [ ] `robots.txt` blocks aggressive training bots (Bytespider)
@@ -386,6 +418,7 @@ Run this for each website:
 - [ ] Link header advertising llms.txt
 
 ### Should Have (next sprint)
+
 - [ ] Content-Signal headers set
 - [ ] Markdown serving via nginx (Accept header negotiation)
 - [ ] GA4 "AI Search" channel group configured
@@ -393,6 +426,7 @@ Run this for each website:
 - [ ] HowTo schema on tutorial pages
 
 ### Content Principles for AI
+
 - [ ] Information-dense copy (facts, numbers, concrete data)
 - [ ] Content updated regularly (AI favors 48-72h freshness)
 - [ ] Clear structure (headings, lists, tables)

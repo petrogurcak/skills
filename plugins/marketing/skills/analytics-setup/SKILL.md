@@ -1,11 +1,15 @@
 ---
 name: analytics-setup
-description: Use when setting up Google Tag Manager and Google Analytics 4 for websites - includes automated setup via claude-in-chrome browser automation
+description: Sets up Google Tag Manager and Google Analytics 4 for websites with automated browser setup via claude-in-chrome. Use when launching a new site needing tracking, migrating to GTM/GA4, adding event tracking (clicks, forms, conversions), setting up e-commerce tracking, or debugging tracking issues. Trigger phrases include "set up GTM", "configure GA4", "tracking plan", "add event tracking", "debug analytics". NOT for analyzing existing data/reports (use google-analytics MCP), keyword research (use keyword-research), or SEO optimization (use seo-optimization).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Analytics Setup (GTM + GA4)
 
 **When to use this skill:**
+
 - New website needs tracking setup from scratch
 - Migrating to GTM/GA4
 - Adding event tracking (clicks, forms, conversions)
@@ -13,6 +17,7 @@ description: Use when setting up Google Tag Manager and Google Analytics 4 for w
 - Debugging tracking issues
 
 **When NOT to use:**
+
 - Analyzing data/reports → use existing `google-analytics` MCP
 - Keyword research → use `keyword-research`
 - SEO optimization → use `seo-optimization`
@@ -21,14 +26,14 @@ description: Use when setting up Google Tag Manager and Google Analytics 4 for w
 
 ## Quick Router
 
-| User says... | Go to... |
-|--------------|----------|
-| "nastav GTM", "nový container" | Phase 1: GTM Setup |
-| "nastav GA4", "analytics property" | Phase 2: GA4 Setup |
-| "tracking plan", "jaké eventy" | Phase 3: Tracking Plan |
+| User says...                       | Go to...                |
+| ---------------------------------- | ----------------------- |
+| "nastav GTM", "nový container"     | Phase 1: GTM Setup      |
+| "nastav GA4", "analytics property" | Phase 2: GA4 Setup      |
+| "tracking plan", "jaké eventy"     | Phase 3: Tracking Plan  |
 | "přidej event", "track click/form" | Phase 4: Implementation |
-| "nefunguje tracking", "debug" | Phase 5: Debug |
-| "kompletní setup od nuly" | All phases sequentially |
+| "nefunguje tracking", "debug"      | Phase 5: Debug          |
+| "kompletní setup od nuly"          | All phases sequentially |
 
 ---
 
@@ -37,12 +42,14 @@ description: Use when setting up Google Tag Manager and Google Analytics 4 for w
 **Tento skill podporuje automatizovaný setup přes browser automation.**
 
 Když uživatel řekne "nastav GTM/GA4 pro [web]", Claude:
+
 1. Otevře příslušnou Google službu
 2. Provede setup kroky
 3. Pořídí screenshots pro dokumentaci
 4. Vrátí snippety a checklist
 
 **Prerekvizity:**
+
 - [ ] Uživatel přihlášen v Chrome do Google účtu
 - [ ] Chrome browser přístupný přes claude-in-chrome
 
@@ -53,6 +60,7 @@ Když uživatel řekne "nastav GTM/GA4 pro [web]", Claude:
 ### 1.1 Vytvoření GTM Account & Container
 
 **Manuální kroky:**
+
 ```
 1. Jdi na tagmanager.google.com
 2. "Create Account"
@@ -64,6 +72,7 @@ Když uživatel řekne "nastav GTM/GA4 pro [web]", Claude:
 ```
 
 **Automated (claude-in-chrome):**
+
 ```
 Řekni: "Vytvoř GTM container pro example.com"
 
@@ -81,34 +90,49 @@ Claude provede:
 Po vytvoření získáš dva snippety:
 
 **Head snippet (před </head>):**
+
 ```html
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+<script>
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != "dataLayer" ? "&l=" + l : "";
+    j.async = true;
+    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, "script", "dataLayer", "GTM-XXXXXX");
+</script>
 <!-- End Google Tag Manager -->
 ```
 
 **Body snippet (hned za <body>):**
+
 ```html
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript
+  ><iframe
+    src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+    height="0"
+    width="0"
+    style="display:none;visibility:hidden"
+  ></iframe
+></noscript>
 <!-- End Google Tag Manager (noscript) -->
 ```
 
 ### 1.3 GTM Best Practices
 
-| Pravidlo | Popis |
-|----------|-------|
-| **1 container per website** | Nikdy nesdílej container mezi weby |
-| **Client owns container** | Klient vlastní, ne agentura |
-| **Naming convention** | `[Typ] - [Nástroj] - [Akce]` např. `GA4 - Event - CTA Click` |
-| **Use folders** | Organizuj podle: Analytics, Ads, Tracking |
-| **Version notes** | Vždy popis co změna obsahuje |
-| **Preview before publish** | Testuj každou změnu |
+| Pravidlo                    | Popis                                                        |
+| --------------------------- | ------------------------------------------------------------ |
+| **1 container per website** | Nikdy nesdílej container mezi weby                           |
+| **Client owns container**   | Klient vlastní, ne agentura                                  |
+| **Naming convention**       | `[Typ] - [Nástroj] - [Akce]` např. `GA4 - Event - CTA Click` |
+| **Use folders**             | Organizuj podle: Analytics, Ads, Tracking                    |
+| **Version notes**           | Vždy popis co změna obsahuje                                 |
+| **Preview before publish**  | Testuj každou změnu                                          |
 
 ### 1.4 GTM Folder Structure
 
@@ -139,6 +163,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ### 2.1 Vytvoření GA4 Property
 
 **Manuální kroky:**
+
 ```
 1. Jdi na analytics.google.com
 2. Admin → Create Property
@@ -152,6 +177,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ```
 
 **Automated (claude-in-chrome):**
+
 ```
 Řekni: "Vytvoř GA4 property pro example.com"
 
@@ -167,12 +193,14 @@ Claude provede:
 ### 2.2 GA4 Measurement ID
 
 Po vytvoření získáš:
+
 - **Measurement ID:** `G-XXXXXXXXXX`
 - Použij v GTM pro Google Tag
 
 ### 2.3 GA4 + GTM Integration
 
 **V GTM vytvoř Google Tag:**
+
 ```
 1. Tags → New
 2. Tag Type: Google Tag
@@ -185,14 +213,14 @@ Po vytvoření získáš:
 
 GA4 automaticky trackuje (zapni v Data Stream settings):
 
-| Event | Popis |
-|-------|-------|
-| `page_view` | Zobrazení stránky |
-| `scroll` | 90% scroll depth |
-| `click` | Outbound links |
-| `view_search_results` | Site search |
-| `video_start/progress/complete` | YouTube embeds |
-| `file_download` | PDF, docs, etc. |
+| Event                           | Popis             |
+| ------------------------------- | ----------------- |
+| `page_view`                     | Zobrazení stránky |
+| `scroll`                        | 90% scroll depth  |
+| `click`                         | Outbound links    |
+| `view_search_results`           | Site search       |
+| `video_start/progress/complete` | YouTube embeds    |
+| `file_download`                 | PDF, docs, etc.   |
 
 **Doporučení:** Zapni vše, vypni co nepotřebuješ.
 
@@ -212,38 +240,38 @@ Admin → Data Settings → Data Retention
 
 **Universal Events (každý web):**
 
-| Event | Trigger | Parametry |
-|-------|---------|-----------|
-| `page_view` | All pages | page_title, page_location |
-| `scroll` | 25%, 50%, 75%, 90% | percent_scrolled |
-| `click` | CTA buttons | link_text, link_url |
-| `form_submit` | Form submission | form_id, form_name |
-| `file_download` | PDF/doc click | file_name, file_extension |
+| Event           | Trigger            | Parametry                 |
+| --------------- | ------------------ | ------------------------- |
+| `page_view`     | All pages          | page_title, page_location |
+| `scroll`        | 25%, 50%, 75%, 90% | percent_scrolled          |
+| `click`         | CTA buttons        | link_text, link_url       |
+| `form_submit`   | Form submission    | form_id, form_name        |
+| `file_download` | PDF/doc click      | file_name, file_extension |
 
 **E-commerce Events:**
 
-| Event | Kdy | Parametry |
-|-------|-----|-----------|
-| `view_item` | Product page | item_id, item_name, price |
-| `add_to_cart` | Add to cart click | items[], value |
-| `begin_checkout` | Checkout start | items[], value |
-| `purchase` | Order complete | transaction_id, value, items[] |
+| Event            | Kdy               | Parametry                      |
+| ---------------- | ----------------- | ------------------------------ |
+| `view_item`      | Product page      | item_id, item_name, price      |
+| `add_to_cart`    | Add to cart click | items[], value                 |
+| `begin_checkout` | Checkout start    | items[], value                 |
+| `purchase`       | Order complete    | transaction_id, value, items[] |
 
 **Lead Gen Events:**
 
-| Event | Kdy | Parametry |
-|-------|-----|-----------|
-| `generate_lead` | Contact form submit | form_name, lead_type |
-| `sign_up` | Registration complete | method |
-| `login` | User login | method |
+| Event           | Kdy                   | Parametry            |
+| --------------- | --------------------- | -------------------- |
+| `generate_lead` | Contact form submit   | form_name, lead_type |
+| `sign_up`       | Registration complete | method               |
+| `login`         | User login            | method               |
 
 **SaaS Events:**
 
-| Event | Kdy | Parametry |
-|-------|-----|-----------|
-| `sign_up` | Trial/registration | plan_type |
-| `tutorial_complete` | Onboarding done | step_count |
-| `subscription` | Plan purchase | plan_name, value |
+| Event               | Kdy                | Parametry        |
+| ------------------- | ------------------ | ---------------- |
+| `sign_up`           | Trial/registration | plan_type        |
+| `tutorial_complete` | Onboarding done    | step_count       |
+| `subscription`      | Plan purchase      | plan_name, value |
 
 ### 3.2 Tracking Plan Template
 
@@ -251,25 +279,29 @@ Admin → Data Settings → Data Retention
 ## [Web Name] Tracking Plan
 
 ### Business Goals
+
 1. [Goal 1]
 2. [Goal 2]
 
 ### Key Events (Conversions)
-| Event | Description | Value |
-|-------|-------------|-------|
-| purchase | Completed order | order_value |
-| generate_lead | Contact form | $50 (estimated) |
+
+| Event         | Description     | Value           |
+| ------------- | --------------- | --------------- |
+| purchase      | Completed order | order_value     |
+| generate_lead | Contact form    | $50 (estimated) |
 
 ### Engagement Events
-| Event | Description | Trigger |
-|-------|-------------|---------|
-| cta_click | Main CTA clicked | Button class .cta-main |
-| scroll_depth | 90% page scroll | Scroll trigger |
+
+| Event        | Description      | Trigger                |
+| ------------ | ---------------- | ---------------------- |
+| cta_click    | Main CTA clicked | Button class .cta-main |
+| scroll_depth | 90% page scroll  | Scroll trigger         |
 
 ### Custom Dimensions
-| Dimension | Scope | Values |
-|-----------|-------|--------|
-| user_type | User | free, premium |
+
+| Dimension    | Scope | Values                 |
+| ------------ | ----- | ---------------------- |
+| user_type    | User  | free, premium          |
 | content_type | Event | blog, product, landing |
 ```
 
@@ -280,6 +312,7 @@ Admin → Data Settings → Data Retention
 ### 4.1 GTM Tag Types
 
 **Google Tag (Base):**
+
 ```
 Tag Type: Google Tag
 Tag ID: G-XXXXXXXXXX
@@ -287,6 +320,7 @@ Trigger: All Pages
 ```
 
 **GA4 Event Tag:**
+
 ```
 Tag Type: Google Analytics: GA4 Event
 Configuration Tag: [Google Tag]
@@ -299,6 +333,7 @@ Trigger: [Custom trigger]
 ### 4.2 Common Triggers
 
 **Click - All CTA Buttons:**
+
 ```
 Trigger Type: Click - All Elements
 Trigger fires on: Some Clicks
@@ -308,6 +343,7 @@ Conditions:
 ```
 
 **Form Submit:**
+
 ```
 Trigger Type: Form Submission
 Trigger fires on: Some Forms
@@ -316,6 +352,7 @@ Conditions:
 ```
 
 **Scroll Depth:**
+
 ```
 Trigger Type: Scroll Depth
 Vertical Scroll Depths: 25, 50, 75, 90
@@ -323,6 +360,7 @@ Percentages: checked
 ```
 
 **YouTube Video:**
+
 ```
 Trigger Type: YouTube Video
 Capture: Start, Complete, Pause, Progress
@@ -332,6 +370,7 @@ Progress: 25%, 50%, 75%
 ### 4.3 Useful Variables
 
 **Built-in Variables (Enable these):**
+
 - Click Classes, Click ID, Click URL, Click Text
 - Form ID, Form Classes, Form URL
 - Page URL, Page Path, Page Hostname
@@ -340,12 +379,14 @@ Progress: 25%, 50%, 75%
 **Custom Variables:**
 
 **Data Layer Variable:**
+
 ```
 Variable Type: Data Layer Variable
 Data Layer Variable Name: ecommerce.value
 ```
 
 **JavaScript Variable:**
+
 ```
 Variable Type: Custom JavaScript
 function() {
@@ -354,6 +395,7 @@ function() {
 ```
 
 **Lookup Table:**
+
 ```
 Variable Type: Lookup Table
 Input: {{Page Path}}
@@ -407,13 +449,13 @@ Claude provede:
 
 ### 5.3 Common Issues
 
-| Problém | Příčina | Řešení |
-|---------|---------|--------|
-| Tag se nespouští | Špatný trigger | Zkontroluj trigger podmínky |
-| Duplikátní events | Více triggerů | Zkombinuj triggery |
-| Chybí parametry | Variable nenastavená | Zkontroluj variable hodnotu |
-| GA4 neukazuje data | Consent mode | Zkontroluj consent status |
-| Preview nefunguje | Blocker extension | Vypni AdBlock |
+| Problém            | Příčina              | Řešení                      |
+| ------------------ | -------------------- | --------------------------- |
+| Tag se nespouští   | Špatný trigger       | Zkontroluj trigger podmínky |
+| Duplikátní events  | Více triggerů        | Zkombinuj triggery          |
+| Chybí parametry    | Variable nenastavená | Zkontroluj variable hodnotu |
+| GA4 neukazuje data | Consent mode         | Zkontroluj consent status   |
+| Preview nefunguje  | Blocker extension    | Vypni AdBlock               |
 
 ### 5.4 Debug Checklist
 
@@ -431,6 +473,7 @@ Claude provede:
 ### Setup pro GDPR
 
 **V GTM:**
+
 ```
 1. Přidej Consent Mode template (např. Cookiebot, Usercentrics)
 2. Nastav default consent state:
@@ -440,6 +483,7 @@ Claude provede:
 ```
 
 **Google Tag s Consent:**
+
 ```
 Tag Configuration:
   Consent Settings:
@@ -452,6 +496,7 @@ Tag Configuration:
 ## Naming Conventions
 
 ### Tags
+
 ```
 [Platform] - [Type] - [Description]
 
@@ -463,6 +508,7 @@ FB - Event - Lead
 ```
 
 ### Triggers
+
 ```
 [Type] - [Description]
 
@@ -473,6 +519,7 @@ Page View - Thank You Page
 ```
 
 ### Variables
+
 ```
 [Type] - [Description]
 
@@ -514,15 +561,15 @@ LT - Page Type Lookup
 
 ## Official Documentation
 
-| Téma | URL |
-|------|-----|
-| GTM Guide | [support.google.com/tagmanager/answer/12811173](https://support.google.com/tagmanager/answer/12811173) |
-| GTM Setup | [support.google.com/tagmanager/answer/14842164](https://support.google.com/tagmanager/answer/14842164) |
-| Google Tag in GTM | [support.google.com/tagmanager/answer/15756616](https://support.google.com/tagmanager/answer/15756616) |
-| GA4 Events | [support.google.com/analytics/answer/9322688](https://support.google.com/analytics/answer/9322688) |
-| GA4 Recommended Events | [support.google.com/analytics/answer/9267735](https://support.google.com/analytics/answer/9267735) |
-| GA4 Ecommerce | [support.google.com/analytics/answer/12200568](https://support.google.com/analytics/answer/12200568) |
-| Events in GTM | [support.google.com/tagmanager/answer/13034206](https://support.google.com/tagmanager/answer/13034206) |
+| Téma                   | URL                                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| GTM Guide              | [support.google.com/tagmanager/answer/12811173](https://support.google.com/tagmanager/answer/12811173) |
+| GTM Setup              | [support.google.com/tagmanager/answer/14842164](https://support.google.com/tagmanager/answer/14842164) |
+| Google Tag in GTM      | [support.google.com/tagmanager/answer/15756616](https://support.google.com/tagmanager/answer/15756616) |
+| GA4 Events             | [support.google.com/analytics/answer/9322688](https://support.google.com/analytics/answer/9322688)     |
+| GA4 Recommended Events | [support.google.com/analytics/answer/9267735](https://support.google.com/analytics/answer/9267735)     |
+| GA4 Ecommerce          | [support.google.com/analytics/answer/12200568](https://support.google.com/analytics/answer/12200568)   |
+| Events in GTM          | [support.google.com/tagmanager/answer/13034206](https://support.google.com/tagmanager/answer/13034206) |
 
 ---
 

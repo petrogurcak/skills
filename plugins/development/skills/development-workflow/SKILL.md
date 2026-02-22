@@ -1,6 +1,9 @@
 ---
 name: development-workflow
-description: Use when user wants to build, create, or add something new - orchestrates design, execution strategy choice, framework-specific implementation, and code review
+description: Orchestrates complete feature development from design through execution strategy selection, framework-specific implementation, and code review. Use when building, creating, or adding something new to a codebase. Trigger phrases - "build", "create", "add", "implement", "make", "set up", "I need", "I want", "přidej", "vytvoř", "udělej", "postav". NOT for fixing bugs (use debugging), finishing/merging (use finish), or purely frontend tasks with known stack (use frontend-app/frontend-lp).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Development Workflow Orchestrator

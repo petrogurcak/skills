@@ -1,6 +1,9 @@
 ---
 name: fastapi-workflow
-description: Use when working with Python + FastAPI + Pydantic v2 - enforces DOCS-FIRST workflow where AI MUST fetch current documentation BEFORE proposing any implementation (async APIs, dependency injection, SQLAlchemy)
+description: Docs-first development workflow for Python + FastAPI + Pydantic v2 projects with async APIs, dependency injection, and SQLAlchemy. Fetches current documentation via MCP before any implementation. Use when building or modifying FastAPI backends, API endpoints, Pydantic models, or database operations. Trigger phrases - "fastapi", "python api", "backend api", "pydantic", "sqlalchemy", "async api", "dependency injection". NOT for frontend work (use frontend-app/frontend-lp) or non-Python backends.
+metadata:
+  author: Petr
+  version: 1.0.0
 hooks:
   PostToolUse:
     - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.py$\""

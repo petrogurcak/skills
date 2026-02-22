@@ -1,6 +1,9 @@
 ---
 name: session-context
-description: Use at session start to load context, at session end to save progress and decisions
+description: Manages persistent context between Claude Code sessions by loading ACTIVE_CONTEXT.md and DECISIONS.md at session start and saving progress at session end. Use when user says "load context", "nacti kontext", "save context", "uloz kontext", "log decision", or automatically at session start/end. NOT for project setup (use projectsetup) or for tracking mistakes (use workflow-optimization).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Session Context Skill
@@ -54,6 +57,7 @@ Replace entire content with:
 # Aktuální stav práce
 
 ## Poslední session
+
 - **Datum:** [YYYY-MM-DD]
 - **Branch:** [current git branch]
 - **Dokončeno:** [what was completed this session]
@@ -61,21 +65,25 @@ Replace entire content with:
 - **Další krok:** [recommended next action]
 
 ## Otevřené otázky
+
 [any unresolved questions or decisions pending - or "Žádné"]
 
 ## Poznámky pro další session
+
 [important context that future Claude should know - or "Žádné"]
 ```
 
 ### Log to DECISIONS.md (if applicable)
 
 **Checklist - log if ANY is true:**
+
 - [ ] Volil jsem mezi 2+ validními přístupy
 - [ ] Rozhodnutí ovlivní více souborů
 - [ ] Rozhodnutí bude platit dlouhodobě
 - [ ] Budoucí já by se mohl ptát "proč?"
 
 **Do NOT log:**
+
 - Triviální změny (typo, formatting)
 - Rozhodnutí vynucená existujícím kódem
 - Dočasná řešení (debugování)
@@ -85,6 +93,7 @@ Replace entire content with:
 
 ```markdown
 ## [YYYY-MM-DD]: [Název rozhodnutí]
+
 **Kontext:** [Proč bylo potřeba rozhodnout]
 **Rozhodnutí:** [Co jsme zvolili]
 **Alternativy:** [Co jsme zvažovali]
@@ -98,12 +107,14 @@ Replace entire content with:
 ## Commands
 
 ### "Načti kontext" / "Load context"
+
 1. Read `.claude/ACTIVE_CONTEXT.md`
 2. Read `.claude/DECISIONS.md`
 3. Display summary of current state
 4. List recent decisions (last 3-5)
 
 ### "Ulož kontext" / "Save context"
+
 1. Ask user: "Co bylo dokončeno? Co je rozděláno? Jaký je další krok?"
 2. Update `.claude/ACTIVE_CONTEXT.md`
 3. Ask: "Bylo učiněno nějaké důležité rozhodnutí k zalogování?"
@@ -111,6 +122,7 @@ Replace entire content with:
 5. Confirm save
 
 ### "Ulož rozhodnutí" / "Log decision"
+
 1. Ask user for decision details or summarize from conversation
 2. Append to `.claude/DECISIONS.md` using format above
 3. Confirm logged
@@ -120,6 +132,7 @@ Replace entire content with:
 ## File Locations
 
 Files are stored in project's `.claude/` directory:
+
 - `.claude/ACTIVE_CONTEXT.md` - Current state, updated each session
 - `.claude/DECISIONS.md` - Architectural decisions log, append-only
 
@@ -130,12 +143,15 @@ These files are created by `projectsetup` skill or can be created manually.
 ## Integration
 
 ### With using-superpowers
+
 At session start, using-superpowers triggers context load automatically.
 
 ### With development-workflow
+
 At Phase 3 completion, development-workflow triggers context save.
 
 ### Standalone
+
 User can manually trigger load/save at any time.
 
 ---
@@ -143,6 +159,7 @@ User can manually trigger load/save at any time.
 ## Examples
 
 ### Session Start (auto-load)
+
 ```
 [Claude reads ACTIVE_CONTEXT.md]
 
@@ -155,6 +172,7 @@ Mohu pokračovat s merge, nebo potřebuješ něco jiného?
 ```
 
 ### Session End (save)
+
 ```
 User: "ulož kontext"
 
@@ -172,6 +190,7 @@ Bylo učiněno nějaké architektonické rozhodnutí k zalogování?
 ```
 
 ### Decision Logging
+
 ```
 User: "zaloguj rozhodnutí o databázi"
 

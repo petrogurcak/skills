@@ -1,6 +1,9 @@
 ---
 name: expo-workflow
-description: Use when working with React Native + Expo - enforces DOCS-FIRST workflow where AI MUST fetch current documentation BEFORE proposing any implementation (Expo SDK 54+, React Native 0.79+, iOS Premium UI with Tamagui + Liquid Glass)
+description: Docs-first development workflow for React Native + Expo projects (SDK 54+, RN 0.79+) with Tamagui and Liquid Glass for premium iOS UI. Fetches current documentation via MCP before any implementation. Use when building or modifying Expo/React Native mobile apps. Trigger phrases - "expo", "react native", "mobile app", "tamagui", "liquid glass", "iOS app", "Android app". NOT for web-only frontends (use frontend-app/frontend-lp) or Flutter apps (use flutter-workflow).
+metadata:
+  author: Petr
+  version: 1.0.0
 hooks:
   PostToolUse:
     - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\""
@@ -33,6 +36,7 @@ This is NON-NEGOTIABLE. Every workflow below has MANDATORY MCP fetch steps that 
 ## When to Use This Skill
 
 Use this skill for ALL React Native + Expo development tasks:
+
 - Creating components (functional components with hooks)
 - Implementing navigation (Expo Router / React Navigation v7)
 - Using Expo SDK modules (expo-camera, expo-image, expo-video, etc.)
@@ -45,6 +49,7 @@ Use this skill for ALL React Native + Expo development tasks:
 ## Current Stack (SDK 54+)
 
 **Required Versions:**
+
 - Expo SDK 54+ (New Architecture is default)
 - React Native 0.79+
 - React 19+
@@ -53,6 +58,7 @@ Use this skill for ALL React Native + Expo development tasks:
 - Android SDK 24+ (minSdk), 35+ (compileSdk)
 
 **Key SDK 54 Features:**
+
 - expo-video (stable) - replaces expo-av Video
 - expo-audio (stable) - replaces expo-av Audio
 - expo-image v2 - useImage hook for preloading
@@ -61,6 +67,7 @@ Use this skill for ALL React Native + Expo development tasks:
 - React Navigation v7 (via Expo Router)
 
 **DEPRECATED in SDK 54:**
+
 - expo-av is no longer maintained - use expo-video + expo-audio
 
 ## Project Detection (MANDATORY FIRST STEP)
@@ -86,12 +93,14 @@ Use this skill for ALL React Native + Expo development tasks:
 ```
 
 **Tamagui Project Indicators:**
+
 - `@tamagui/core` in dependencies
 - `tamagui.config.ts` file exists
 - `TamaguiProvider` in app layout
 - Uses `styled()` function or `$token` syntax
 
 **When Tamagui is detected, ALWAYS:**
+
 1. Fetch Tamagui docs BEFORE implementation
 2. Use Tamagui primitives (Stack, Text, Button) instead of RN View/Text
 3. Use design tokens ($space, $color, $radius)
@@ -178,8 +187,8 @@ const ProfileCard = () => <View>...</View>;
 // 4. Called: fetch_expo_sdk("expo-image")
 // 5. Now implementing with current API:
 
-import { View, Text, StyleSheet } from 'react-native';
-import { Image } from 'expo-image';
+import { View, Text, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 
 interface ProfileCardProps {
   name: string;
@@ -189,7 +198,11 @@ interface ProfileCardProps {
 
 export function ProfileCard({ name, avatarUrl, onPress }: ProfileCardProps) {
   return (
-    <View style={styles.container} accessibilityRole="button" onTouchEnd={onPress}>
+    <View
+      style={styles.container}
+      accessibilityRole="button"
+      onTouchEnd={onPress}
+    >
       <Image
         source={avatarUrl}
         style={styles.avatar}
@@ -202,9 +215,9 @@ export function ProfileCard({ name, avatarUrl, onPress }: ProfileCardProps) {
 }
 
 const styles = StyleSheet.create({
-  container: { flexDirection: 'row', alignItems: 'center', padding: 16 },
+  container: { flexDirection: "row", alignItems: "center", padding: 16 },
   avatar: { width: 48, height: 48, borderRadius: 24 },
-  name: { marginLeft: 12, fontSize: 16, fontWeight: '600' },
+  name: { marginLeft: 12, fontSize: 16, fontWeight: "600" },
 });
 ```
 
@@ -212,7 +225,7 @@ const styles = StyleSheet.create({
 
 ```tsx
 // WRONG: Using StyleSheet in Tamagui project
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from "react-native";
 const Card = () => <View style={styles.card}>...</View>;
 
 // CORRECT: Workflow followed (Tamagui)
@@ -223,14 +236,14 @@ const Card = () => <View style={styles.card}>...</View>;
 // 5. Called: fetch_expo_sdk("expo-image")
 // 6. Now implementing with Tamagui:
 
-import { styled, XStack, Text, GetProps } from '@tamagui/core';
-import { Image } from 'expo-image';
+import { styled, XStack, Text, GetProps } from "@tamagui/core";
+import { Image } from "expo-image";
 
 const CardContainer = styled(XStack, {
-  alignItems: 'center',
-  padding: '$md',
-  backgroundColor: '$card',
-  borderRadius: '$lg',
+  alignItems: "center",
+  padding: "$md",
+  backgroundColor: "$card",
+  borderRadius: "$lg",
 
   variants: {
     pressable: {
@@ -247,7 +260,12 @@ type ProfileCardProps = GetProps<typeof CardContainer> & {
   onPress?: () => void;
 };
 
-export function ProfileCard({ name, avatarUrl, onPress, ...props }: ProfileCardProps) {
+export function ProfileCard({
+  name,
+  avatarUrl,
+  onPress,
+  ...props
+}: ProfileCardProps) {
   return (
     <CardContainer
       pressable={!!onPress}
@@ -340,16 +358,16 @@ app/
 
 ```tsx
 // app/(tabs)/_layout.tsx
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: '#007AFF' }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: "#007AFF" }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -358,7 +376,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="search"
         options={{
-          title: 'Search',
+          title: "Search",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" size={size} color={color} />
           ),
@@ -424,9 +442,9 @@ export default function TabLayout() {
 // 2. Called: fetch_expo_sdk("expo-camera")
 // 3. Reviewed current CameraView API (not legacy Camera)
 
-import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { CameraView, useCameraPermissions } from "expo-camera";
+import { useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export function QRScanner({ onScan }: { onScan: (data: string) => void }) {
   const [permission, requestPermission] = useCameraPermissions();
@@ -449,11 +467,15 @@ export function QRScanner({ onScan }: { onScan: (data: string) => void }) {
     <CameraView
       style={styles.camera}
       facing="back"
-      barcodeScannerSettings={{ barcodeTypes: ['qr'] }}
-      onBarcodeScanned={scanned ? undefined : ({ data }) => {
-        setScanned(true);
-        onScan(data);
-      }}
+      barcodeScannerSettings={{ barcodeTypes: ["qr"] }}
+      onBarcodeScanned={
+        scanned
+          ? undefined
+          : ({ data }) => {
+              setScanned(true);
+              onScan(data);
+            }
+      }
     />
   );
 }
@@ -527,9 +549,9 @@ Need persistence?
 
 ```tsx
 // stores/cartStore.ts
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface CartItem {
   id: string;
@@ -540,7 +562,7 @@ interface CartItem {
 
 interface CartStore {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
+  addItem: (item: Omit<CartItem, "quantity">) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
   total: () => number;
@@ -550,28 +572,31 @@ export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
-      addItem: (item) => set((state) => {
-        const existing = state.items.find((i) => i.id === item.id);
-        if (existing) {
-          return {
-            items: state.items.map((i) =>
-              i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-            ),
-          };
-        }
-        return { items: [...state.items, { ...item, quantity: 1 }] };
-      }),
-      removeItem: (id) => set((state) => ({
-        items: state.items.filter((i) => i.id !== id),
-      })),
+      addItem: (item) =>
+        set((state) => {
+          const existing = state.items.find((i) => i.id === item.id);
+          if (existing) {
+            return {
+              items: state.items.map((i) =>
+                i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i,
+              ),
+            };
+          }
+          return { items: [...state.items, { ...item, quantity: 1 }] };
+        }),
+      removeItem: (id) =>
+        set((state) => ({
+          items: state.items.filter((i) => i.id !== id),
+        })),
       clearCart: () => set({ items: [] }),
-      total: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
+      total: () =>
+        get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
     }),
     {
-      name: 'cart-storage',
+      name: "cart-storage",
       storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
+    },
+  ),
 );
 ```
 
@@ -619,11 +644,11 @@ export const useCartStore = create<CartStore>()(
 **Example - StyleSheet with Platform:**
 
 ```tsx
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform } from "react-native";
 
 export const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 12,
     padding: 16,
     marginHorizontal: 16,
@@ -631,7 +656,7 @@ export const styles = StyleSheet.create({
     // Shadow for iOS
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -684,6 +709,7 @@ export const styles = StyleSheet.create({
 **Use for:** Building beautiful, iOS-native UI with premium feel, glass effects, and micro-interactions
 
 **iOS Design Philosophy:**
+
 - **Clarity** - Every element is easy to understand
 - **Deference** - UI helps users focus on content, not chrome
 - **Depth** - Layers, blur, and visual hierarchy guide the user
@@ -818,38 +844,38 @@ export const styles = StyleSheet.create({
 
 ```tsx
 // tamagui.config.ts
-import { createTamagui, createTokens } from '@tamagui/core';
-import { createAnimations } from '@tamagui/animations-react-native';
+import { createTamagui, createTokens } from "@tamagui/core";
+import { createAnimations } from "@tamagui/animations-react-native";
 
 const tokens = createTokens({
   color: {
     // Brand
-    primary: '#22C55E',
-    primaryLight: '#4ADE80',
-    primaryDark: '#16A34A',
+    primary: "#22C55E",
+    primaryLight: "#4ADE80",
+    primaryDark: "#16A34A",
 
     // Semantic
-    success: '#22C55E',
-    warning: '#F59E0B',
-    error: '#EF4444',
+    success: "#22C55E",
+    warning: "#F59E0B",
+    error: "#EF4444",
 
     // Light theme
-    background: '#FAFAFA',
-    card: '#FFFFFF',
-    text: '#0F172A',
-    textSecondary: '#64748B',
-    border: '#E2E8F0',
+    background: "#FAFAFA",
+    card: "#FFFFFF",
+    text: "#0F172A",
+    textSecondary: "#64748B",
+    border: "#E2E8F0",
 
     // Dark theme
-    backgroundDark: '#0F172A',
-    cardDark: '#1E293B',
-    textDark: '#FFFFFF',
-    textSecondaryDark: '#94A3B8',
-    borderDark: '#334155',
+    backgroundDark: "#0F172A",
+    cardDark: "#1E293B",
+    textDark: "#FFFFFF",
+    textSecondaryDark: "#94A3B8",
+    borderDark: "#334155",
 
     // Glass
-    glassTint: 'rgba(255, 255, 255, 0.1)',
-    glassTintDark: 'rgba(0, 0, 0, 0.2)',
+    glassTint: "rgba(255, 255, 255, 0.1)",
+    glassTintDark: "rgba(0, 0, 0, 0.2)",
   },
 
   space: {
@@ -858,7 +884,7 @@ const tokens = createTokens({
     md: 16,
     lg: 24,
     xl: 32,
-    '2xl': 48,
+    "2xl": 48,
   },
 
   size: {
@@ -879,17 +905,17 @@ const tokens = createTokens({
 
 const animations = createAnimations({
   fast: {
-    type: 'spring',
+    type: "spring",
     damping: 20,
     stiffness: 250,
   },
   medium: {
-    type: 'spring',
+    type: "spring",
     damping: 15,
     stiffness: 200,
   },
   slow: {
-    type: 'spring',
+    type: "spring",
     damping: 12,
     stiffness: 150,
   },
@@ -920,7 +946,7 @@ export const config = createTamagui({
 
 export type AppConfig = typeof config;
 
-declare module '@tamagui/core' {
+declare module "@tamagui/core" {
   interface TamaguiCustomConfig extends AppConfig {}
 }
 ```
@@ -929,26 +955,26 @@ declare module '@tamagui/core' {
 
 ```tsx
 // components/ui/GlassCard.tsx
-import { styled, Stack, Text, GetProps } from '@tamagui/core';
-import { BlurView } from 'expo-blur';
-import { Platform, useColorScheme } from 'react-native';
-import * as Haptics from 'expo-haptics';
-import { useCallback } from 'react';
+import { styled, Stack, Text, GetProps } from "@tamagui/core";
+import { BlurView } from "expo-blur";
+import { Platform, useColorScheme } from "react-native";
+import * as Haptics from "expo-haptics";
+import { useCallback } from "react";
 
 // For iOS 26+, use LiquidGlassView instead
 // import { LiquidGlassView } from '@callstack/liquid-glass';
 
 const GlassContainer = styled(Stack, {
-  borderRadius: '$lg',
-  overflow: 'hidden',
+  borderRadius: "$lg",
+  overflow: "hidden",
   borderWidth: 1,
-  borderColor: 'rgba(255, 255, 255, 0.2)',
+  borderColor: "rgba(255, 255, 255, 0.2)",
 
   variants: {
     size: {
-      sm: { padding: '$sm' },
-      md: { padding: '$md' },
-      lg: { padding: '$lg' },
+      sm: { padding: "$sm" },
+      md: { padding: "$md" },
+      lg: { padding: "$lg" },
     },
     pressable: {
       true: {
@@ -961,7 +987,7 @@ const GlassContainer = styled(Stack, {
   } as const,
 
   defaultVariants: {
-    size: 'md',
+    size: "md",
   },
 });
 
@@ -978,7 +1004,7 @@ export function GlassCard({
   ...props
 }: GlassCardProps) {
   const colorScheme = useColorScheme();
-  const tint = colorScheme === 'dark' ? 'dark' : 'light';
+  const tint = colorScheme === "dark" ? "dark" : "light";
 
   const handlePress = useCallback(() => {
     if (onPress) {
@@ -988,17 +1014,13 @@ export function GlassCard({
   }, [onPress]);
 
   return (
-    <GlassContainer
-      pressable={!!onPress}
-      onPress={handlePress}
-      {...props}
-    >
-      {Platform.OS === 'ios' && (
+    <GlassContainer pressable={!!onPress} onPress={handlePress} {...props}>
+      {Platform.OS === "ios" && (
         <BlurView
           intensity={intensity}
           tint={tint}
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
             right: 0,
@@ -1016,19 +1038,19 @@ export function GlassCard({
 
 ```tsx
 // components/ui/PremiumButton.tsx
-import { styled, GetProps } from '@tamagui/core';
-import { Button as TamaguiButton } from '@tamagui/button';
-import * as Haptics from 'expo-haptics';
-import { useCallback } from 'react';
-import { AccessibilityInfo } from 'react-native';
+import { styled, GetProps } from "@tamagui/core";
+import { Button as TamaguiButton } from "@tamagui/button";
+import * as Haptics from "expo-haptics";
+import { useCallback } from "react";
+import { AccessibilityInfo } from "react-native";
 
 const StyledButton = styled(TamaguiButton, {
-  fontFamily: '$body',
-  fontWeight: '600',
-  borderRadius: '$md',
-  minHeight: '$touchTarget',
+  fontFamily: "$body",
+  fontWeight: "600",
+  borderRadius: "$md",
+  minHeight: "$touchTarget",
 
-  animation: 'fast',
+  animation: "fast",
   pressStyle: {
     scale: 0.97,
     opacity: 0.9,
@@ -1037,61 +1059,61 @@ const StyledButton = styled(TamaguiButton, {
   variants: {
     variant: {
       primary: {
-        backgroundColor: '$primary',
-        color: '#FFFFFF',
+        backgroundColor: "$primary",
+        color: "#FFFFFF",
       },
       secondary: {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderWidth: 1,
-        borderColor: '$primary',
-        color: '$primary',
+        borderColor: "$primary",
+        color: "$primary",
       },
       ghost: {
-        backgroundColor: 'transparent',
-        color: '$primary',
+        backgroundColor: "transparent",
+        color: "$primary",
       },
     },
     size: {
       sm: {
-        paddingHorizontal: '$md',
-        paddingVertical: '$sm',
+        paddingHorizontal: "$md",
+        paddingVertical: "$sm",
         fontSize: 14,
       },
       md: {
-        paddingHorizontal: '$lg',
-        paddingVertical: '$md',
+        paddingHorizontal: "$lg",
+        paddingVertical: "$md",
         fontSize: 16,
       },
       lg: {
-        paddingHorizontal: '$xl',
-        paddingVertical: '$lg',
+        paddingHorizontal: "$xl",
+        paddingVertical: "$lg",
         fontSize: 18,
       },
     },
     fullWidth: {
       true: {
-        width: '100%',
+        width: "100%",
       },
     },
   } as const,
 
   defaultVariants: {
-    variant: 'primary',
-    size: 'md',
+    variant: "primary",
+    size: "md",
   },
 });
 
 type PremiumButtonProps = GetProps<typeof StyledButton> & {
-  haptic?: 'light' | 'medium' | 'heavy' | 'none';
+  haptic?: "light" | "medium" | "heavy" | "none";
 };
 
 export function PremiumButton({
   onPress,
-  haptic = 'light',
+  haptic = "light",
   ...props
 }: PremiumButtonProps) {
   const handlePress = useCallback(async () => {
-    if (haptic !== 'none') {
+    if (haptic !== "none") {
       const style = {
         light: Haptics.ImpactFeedbackStyle.Light,
         medium: Haptics.ImpactFeedbackStyle.Medium,
@@ -1105,11 +1127,7 @@ export function PremiumButton({
   }, [onPress, haptic]);
 
   return (
-    <StyledButton
-      onPress={handlePress}
-      accessibilityRole="button"
-      {...props}
-    />
+    <StyledButton onPress={handlePress} accessibilityRole="button" {...props} />
   );
 }
 ```
@@ -1118,16 +1136,20 @@ export function PremiumButton({
 
 ```tsx
 // components/ui/GlassSheet.tsx
-import { Sheet, SheetProps } from '@tamagui/sheet';
-import { BlurView } from 'expo-blur';
-import * as Haptics from 'expo-haptics';
-import { useColorScheme, useReducedMotion } from 'react-native';
+import { Sheet, SheetProps } from "@tamagui/sheet";
+import { BlurView } from "expo-blur";
+import * as Haptics from "expo-haptics";
+import { useColorScheme, useReducedMotion } from "react-native";
 
 type GlassSheetProps = SheetProps & {
   children: React.ReactNode;
 };
 
-export function GlassSheet({ children, onOpenChange, ...props }: GlassSheetProps) {
+export function GlassSheet({
+  children,
+  onOpenChange,
+  ...props
+}: GlassSheetProps) {
   const colorScheme = useColorScheme();
   const reducedMotion = useReducedMotion();
 
@@ -1142,7 +1164,7 @@ export function GlassSheet({ children, onOpenChange, ...props }: GlassSheetProps
     <Sheet
       modal
       dismissOnSnapToBottom
-      animation={reducedMotion ? undefined : 'medium'}
+      animation={reducedMotion ? undefined : "medium"}
       onOpenChange={handleOpenChange}
       {...props}
     >
@@ -1161,7 +1183,7 @@ export function GlassSheet({ children, onOpenChange, ...props }: GlassSheetProps
       >
         <BlurView
           intensity={40}
-          tint={colorScheme === 'dark' ? 'dark' : 'light'}
+          tint={colorScheme === "dark" ? "dark" : "light"}
           style={{ flex: 1 }}
         >
           <Sheet.Handle backgroundColor="$colorSecondary" opacity={0.5} />
@@ -1263,7 +1285,7 @@ const styles = StyleSheet.create({
 
 ```tsx
 // ✓ CORRECT: expo-image v2 with useImage
-import { Image, useImage } from 'expo-image';
+import { Image, useImage } from "expo-image";
 
 function Avatar({ uri }: { uri: string }) {
   const image = useImage(uri);
@@ -1281,12 +1303,12 @@ function Avatar({ uri }: { uri: string }) {
 }
 
 // ✓ CORRECT: expo/fetch for streaming
-import { fetch } from 'expo/fetch';
+import { fetch } from "expo/fetch";
 
 async function streamAIResponse(prompt: string) {
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt, stream: true }),
   });
 
@@ -1356,6 +1378,7 @@ Need audio?
 ## Common Mistakes to Avoid
 
 **DON'T:**
+
 - Generate code without fetching docs first
 - Use class components (use functional + hooks)
 - Use deprecated APIs (Camera → CameraView, etc.)
@@ -1368,6 +1391,7 @@ Need audio?
 - Store sensitive data in AsyncStorage (use SecureStore)
 
 **DO:**
+
 - ALWAYS fetch documentation before implementing
 - Follow workflows step-by-step
 - Use Expo SDK 52 modern APIs
@@ -1437,6 +1461,7 @@ This skill enforces a DOCS-FIRST development process for React Native + Expo:
 5. **Verify** → Check against quality checklist
 
 **Workflows:**
+
 - **1-6**: Core Expo development (components, navigation, SDK, state, styling, deps)
 - **7**: iOS Premium UI (Tamagui + Liquid Glass + haptics + iOS HIG)
 

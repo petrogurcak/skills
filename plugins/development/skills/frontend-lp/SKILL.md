@@ -1,6 +1,9 @@
 ---
 name: frontend-lp
-description: Use when building landing pages, marketing websites, or product showcases with React/Vite/Tailwind/shadcn/Magic UI. NOT for web apps (use frontend-app instead). Enforces DOCS-FIRST workflow with animated components and premium UI.
+description: Docs-first development workflow for landing pages, marketing websites, and product showcases using React/Vite/Tailwind/shadcn/Magic UI with animated components and premium UI. Use when building static marketing pages, product showcases, or conversion-focused landing pages. Trigger phrases - "landing page", "marketing site", "product showcase", "LP", "homepage", "sales page", "launch page". NOT for web applications with auth/state/CRUD (use frontend-app instead) or mobile apps (use expo-workflow/flutter-workflow).
+metadata:
+  author: Petr
+  version: 1.0.0
 hooks:
   PostToolUse:
     - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\""
@@ -53,6 +56,7 @@ This is NON-NEGOTIABLE for all landing page development tasks.
 ## When to Use This Skill
 
 Use this skill for:
+
 - Product landing pages (SaaS, apps, physical products)
 - Marketing websites with animated sections
 - Launch pages (pre-launch, coming soon)
@@ -60,20 +64,21 @@ Use this skill for:
 - One-page sites with scroll-based sections
 
 Do NOT use for:
+
 - Web applications with routing, auth, state management (use frontend-app)
 - E-commerce with cart/checkout logic (use frontend-workflow)
 - Mobile apps (use expo-workflow or flutter-workflow)
 
 ## Tech Stack
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| Build | Vite 6.x | Fast dev server, optimized builds |
-| Framework | React 19 + TypeScript | Component architecture |
-| Styling | Tailwind CSS 4.x | Utility-first CSS |
-| Components | shadcn/ui | 70+ accessible base components (copy-paste, you own the code) |
-| Animations | Magic UI | 150+ animated components built on shadcn |
-| Motion | Framer Motion | Custom animations and transitions |
+| Layer      | Technology            | Purpose                                                       |
+| ---------- | --------------------- | ------------------------------------------------------------- |
+| Build      | Vite 6.x              | Fast dev server, optimized builds                             |
+| Framework  | React 19 + TypeScript | Component architecture                                        |
+| Styling    | Tailwind CSS 4.x      | Utility-first CSS                                             |
+| Components | shadcn/ui             | 70+ accessible base components (copy-paste, you own the code) |
+| Animations | Magic UI              | 150+ animated components built on shadcn                      |
+| Motion     | Framer Motion         | Custom animations and transitions                             |
 
 ---
 
@@ -250,8 +255,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-muted-foreground md:text-xl"
         >
-          The modern stack for building landing pages that convert.
-          React, Tailwind, and beautiful animated components.
+          The modern stack for building landing pages that convert. React,
+          Tailwind, and beautiful animated components.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -281,12 +286,14 @@ import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 const features = [
   {
     name: "Lightning Fast",
-    description: "Built on Vite for instant HMR and optimized production builds.",
+    description:
+      "Built on Vite for instant HMR and optimized production builds.",
     className: "col-span-1 md:col-span-2",
   },
   {
     name: "Beautiful Components",
-    description: "70+ accessible components from shadcn/ui, ready to customize.",
+    description:
+      "70+ accessible components from shadcn/ui, ready to customize.",
     className: "col-span-1",
   },
   {
@@ -305,9 +312,7 @@ export function Features() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-24">
       <div className="mb-12 text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">
-          Everything you need
-        </h2>
+        <h2 className="text-3xl font-bold md:text-4xl">Everything you need</h2>
         <p className="mt-4 text-lg text-muted-foreground">
           A complete toolkit for shipping landing pages fast.
         </p>
@@ -350,26 +355,26 @@ Component type?
 
 **Magic UI Component Reference:**
 
-| Component | Use Case | Install |
-|-----------|----------|---------|
-| Globe | Hero background for global/international products | `pnpm dlx shadcn@latest add "https://magicui.design/r/globe"` |
-| Marquee | Scrolling logos, testimonials, social proof | `pnpm dlx shadcn@latest add "https://magicui.design/r/marquee"` |
-| Particles | Hero/section backgrounds with floating particles | `pnpm dlx shadcn@latest add "https://magicui.design/r/particles"` |
-| Bento Grid | Feature showcase in asymmetric grid | `pnpm dlx shadcn@latest add "https://magicui.design/r/bento-grid"` |
-| Animated Beam | Connection/flow visualizations | `pnpm dlx shadcn@latest add "https://magicui.design/r/animated-beam"` |
-| Meteor | Decorative falling meteor effect | `pnpm dlx shadcn@latest add "https://magicui.design/r/meteors"` |
-| Ripple | Button/click ripple effects | `pnpm dlx shadcn@latest add "https://magicui.design/r/ripple"` |
-| Orbiting Circles | Orbiting icons around a central element | `pnpm dlx shadcn@latest add "https://magicui.design/r/orbiting-circles"` |
-| Number Ticker | Animated counting numbers for stats | `pnpm dlx shadcn@latest add "https://magicui.design/r/number-ticker"` |
-| Animated Gradient Text | Gradient text with animation | `pnpm dlx shadcn@latest add "https://magicui.design/r/animated-gradient-text"` |
-| Shine Border | Shining border effect on cards | `pnpm dlx shadcn@latest add "https://magicui.design/r/shine-border"` |
-| Border Beam | Moving light beam around card borders | `pnpm dlx shadcn@latest add "https://magicui.design/r/border-beam"` |
-| Cool Mode | Confetti/emoji explosion on click | `pnpm dlx shadcn@latest add "https://magicui.design/r/cool-mode"` |
-| Sparkles | Sparkle effect on text or elements | `pnpm dlx shadcn@latest add "https://magicui.design/r/sparkles-text"` |
-| Dock | macOS-style dock navigation | `pnpm dlx shadcn@latest add "https://magicui.design/r/dock"` |
-| Blur Fade | Blur-to-focus scroll reveal | `pnpm dlx shadcn@latest add "https://magicui.design/r/blur-fade"` |
-| Word Rotate | Rotating words in headlines | `pnpm dlx shadcn@latest add "https://magicui.design/r/word-rotate"` |
-| Typing Animation | Typewriter text effect | `pnpm dlx shadcn@latest add "https://magicui.design/r/typing-animation"` |
+| Component              | Use Case                                          | Install                                                                        |
+| ---------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Globe                  | Hero background for global/international products | `pnpm dlx shadcn@latest add "https://magicui.design/r/globe"`                  |
+| Marquee                | Scrolling logos, testimonials, social proof       | `pnpm dlx shadcn@latest add "https://magicui.design/r/marquee"`                |
+| Particles              | Hero/section backgrounds with floating particles  | `pnpm dlx shadcn@latest add "https://magicui.design/r/particles"`              |
+| Bento Grid             | Feature showcase in asymmetric grid               | `pnpm dlx shadcn@latest add "https://magicui.design/r/bento-grid"`             |
+| Animated Beam          | Connection/flow visualizations                    | `pnpm dlx shadcn@latest add "https://magicui.design/r/animated-beam"`          |
+| Meteor                 | Decorative falling meteor effect                  | `pnpm dlx shadcn@latest add "https://magicui.design/r/meteors"`                |
+| Ripple                 | Button/click ripple effects                       | `pnpm dlx shadcn@latest add "https://magicui.design/r/ripple"`                 |
+| Orbiting Circles       | Orbiting icons around a central element           | `pnpm dlx shadcn@latest add "https://magicui.design/r/orbiting-circles"`       |
+| Number Ticker          | Animated counting numbers for stats               | `pnpm dlx shadcn@latest add "https://magicui.design/r/number-ticker"`          |
+| Animated Gradient Text | Gradient text with animation                      | `pnpm dlx shadcn@latest add "https://magicui.design/r/animated-gradient-text"` |
+| Shine Border           | Shining border effect on cards                    | `pnpm dlx shadcn@latest add "https://magicui.design/r/shine-border"`           |
+| Border Beam            | Moving light beam around card borders             | `pnpm dlx shadcn@latest add "https://magicui.design/r/border-beam"`            |
+| Cool Mode              | Confetti/emoji explosion on click                 | `pnpm dlx shadcn@latest add "https://magicui.design/r/cool-mode"`              |
+| Sparkles               | Sparkle effect on text or elements                | `pnpm dlx shadcn@latest add "https://magicui.design/r/sparkles-text"`          |
+| Dock                   | macOS-style dock navigation                       | `pnpm dlx shadcn@latest add "https://magicui.design/r/dock"`                   |
+| Blur Fade              | Blur-to-focus scroll reveal                       | `pnpm dlx shadcn@latest add "https://magicui.design/r/blur-fade"`              |
+| Word Rotate            | Rotating words in headlines                       | `pnpm dlx shadcn@latest add "https://magicui.design/r/word-rotate"`            |
+| Typing Animation       | Typewriter text effect                            | `pnpm dlx shadcn@latest add "https://magicui.design/r/typing-animation"`       |
 
 **Framer Motion Patterns for Landing Pages:**
 
@@ -806,6 +811,7 @@ Section type?
 ## Common Mistakes to Avoid
 
 **DON'T:**
+
 - Use too many Magic UI animations on one page (max 3-4 animated sections)
 - Animate everything - footer, nav links, body text should be static
 - Forget `prefers-reduced-motion` media query
@@ -821,6 +827,7 @@ Section type?
 - Forget to set explicit dimensions on images (causes CLS)
 
 **DO:**
+
 - ALWAYS fetch documentation before implementing
 - Follow workflows step-by-step
 - Use shadcn/ui for all base components (buttons, cards, inputs)

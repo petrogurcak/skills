@@ -1,6 +1,9 @@
 ---
 name: workflow-optimization
-description: Adds Anthropic-inspired workflow optimization to existing projects - mistakes tracking, verification checklists, context pruning, code quality hooks, pattern learning, and build error resolution
+description: Adds modular workflow optimizations to existing projects including mistakes tracking, verification checklists, context pruning, code quality hooks, pattern learning, checkpoints, build error resolver, project summaries, and enforcement hooks. Use when user says "optimize workflow", "add mistakes tracking", "setup verification", or after running projectsetup to enhance the development workflow. NOT for initial project setup (use projectsetup first) or for creating CLAUDE.md from scratch.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Workflow Optimization Skill

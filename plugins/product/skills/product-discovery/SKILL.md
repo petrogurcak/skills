@@ -1,6 +1,9 @@
 ---
 name: product-discovery
-description: Use when you need to understand customer needs, validate ideas, or decide what to build - customer interviews, JTBD, Opportunity Solution Tree, The Mom Test
+description: Guides customer research and idea validation using JTBD, Opportunity Solution Trees, and The Mom Test. Use when you need to understand customer needs, validate ideas, run user interviews, or decide what to build. Triggers include "do customers want this", "how do I validate", "user research", "what should we build". Do NOT use for prioritizing known opportunities (use product-prioritization), defining long-term direction (use product-strategy), or measuring product health (use product-metrics).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product Discovery
@@ -16,6 +19,7 @@ Product discovery reduces risk around what to build. It answers: "Are we solving
 ## When to Use
 
 **USE this skill:**
+
 - "What should we build next?"
 - "Do customers actually want this?"
 - "How do I validate this idea?"
@@ -25,6 +29,7 @@ Product discovery reduces risk around what to build. It answers: "Are we solving
 - Building features nobody uses
 
 **DON'T use this skill:**
+
 - Prioritizing known opportunities → `product-prioritization`
 - Defining long-term direction → `product-strategy`
 - Measuring product health → `product-metrics`
@@ -60,6 +65,7 @@ so I can [expected outcome].
 | Emotional | "Feel secure about my data" | Listen for feelings |
 
 **Classic Example (Christensen's Milkshake):**
+
 - Fast food chain wanted to sell more milkshakes
 - Asked customers what they wanted → bigger, cheaper, more flavors → nothing worked
 - Observed: 40% of milkshakes bought before 8AM, alone, to-go
@@ -68,6 +74,7 @@ so I can [expected outcome].
 - Solution: thicker milkshake, flavor chunks, longer straw → sales up
 
 **How to Apply:**
+
 1. Pick a customer segment
 2. Observe their behavior (don't ask what they want)
 3. Identify the job they're hiring your product for
@@ -95,6 +102,7 @@ so I can [expected outcome].
 ```
 
 **How to Apply:**
+
 1. **Set desired outcome** — one measurable metric (not "improve everything")
 2. **Map opportunities** — customer needs, pains, desires from interviews
 3. **Break big opportunities into smaller ones** — smaller = more testable
@@ -102,6 +110,7 @@ so I can [expected outcome].
 5. **Design experiments** — test assumptions before building
 
 **Key Rules:**
+
 - Start from outcome, NOT from solution ideas
 - Opportunities come from customer research, not brainstorming
 - Compare solutions within same opportunity (apples to apples)
@@ -112,26 +121,29 @@ so I can [expected outcome].
 **Purpose:** How to talk to customers without getting lied to. People are polite — they'll say your idea is great even when it's not.
 
 **The Three Rules:**
+
 1. **Talk about their life, not your idea** — "Tell me about the last time you..." not "Would you use a product that..."
 2. **Ask about specifics in the past, not generics about the future** — "What did you do?" not "What would you do?"
 3. **Talk less, listen more** — they should be talking 80% of the time
 
 **Good vs Bad Questions:**
 
-| Bad Question | Why Bad | Good Alternative |
-|---|---|---|
-| "Would you use this?" | Hypothetical, invites politeness | "How do you solve this today?" |
-| "Would you pay for this?" | Everyone says yes | "How much do you currently spend on this?" |
-| "Do you think this is a good idea?" | Opinion, not data | "Tell me about the last time you had this problem" |
-| "What features would you want?" | Leading, solution-focused | "Walk me through your workflow" |
-| "Would this be useful?" | Hypothetical | "What happened after you tried X?" |
+| Bad Question                        | Why Bad                          | Good Alternative                                   |
+| ----------------------------------- | -------------------------------- | -------------------------------------------------- |
+| "Would you use this?"               | Hypothetical, invites politeness | "How do you solve this today?"                     |
+| "Would you pay for this?"           | Everyone says yes                | "How much do you currently spend on this?"         |
+| "Do you think this is a good idea?" | Opinion, not data                | "Tell me about the last time you had this problem" |
+| "What features would you want?"     | Leading, solution-focused        | "Walk me through your workflow"                    |
+| "Would this be useful?"             | Hypothetical                     | "What happened after you tried X?"                 |
 
 **Commitment Signals (real validation):**
+
 - Time: "Can I follow up next week?" (they say yes and show up)
 - Reputation: "Would you introduce me to [colleague]?"
 - Money: "Can I pre-sell you this?" (or letter of intent)
 
 **When to Stop Interviewing:**
+
 - No new information emerging (usually 15-20 interviews)
 - Patterns are clear and repeated
 - You can predict what the next person will say
@@ -141,11 +153,13 @@ so I can [expected outcome].
 **Purpose:** Make discovery an ongoing habit, not a one-time project.
 
 **The Product Trio:**
+
 - Product Manager + Designer + Tech Lead
 - All three participate in discovery together
 - Shared understanding, no handoffs
 
 **Weekly Cadence:**
+
 ```
 Week rhythm:
 ├── Mon-Tue: Interview 1-2 customers (30 min each)
@@ -162,6 +176,7 @@ Week rhythm:
 | Traction metric | Feature adoption rate | Feature goals |
 
 **Key Habits:**
+
 1. Interview at least 1 customer per week
 2. Maintain a living Opportunity Solution Tree
 3. Test at least 1 assumption per week
@@ -182,6 +197,7 @@ What metric are we trying to move?
 ### Step 2: Interview Customers (Mom Test style)
 
 **Interview structure (30 minutes):**
+
 1. Context (5 min): "Tell me about your role and what you're working on"
 2. Current behavior (15 min): "Walk me through how you currently handle [problem area]"
 3. Specific stories (10 min): "Tell me about the last time [specific situation]"
@@ -191,6 +207,7 @@ What metric are we trying to move?
 ### Step 3: Map Opportunities (OST)
 
 After 5-10 interviews, patterns emerge:
+
 1. List all needs/pains/desires mentioned
 2. Group into themes (opportunities)
 3. Place on Opportunity Solution Tree under your outcome
@@ -199,6 +216,7 @@ After 5-10 interviews, patterns emerge:
 ### Step 4: Generate Solutions
 
 For each top opportunity:
+
 - Brainstorm 3-5 possible solutions
 - Include "do nothing" as a baseline
 - Mix build vs buy vs process change
@@ -208,21 +226,21 @@ For each top opportunity:
 
 Before building, identify riskiest assumption and test it:
 
-| Risk Type | Question | Test Method |
-|-----------|----------|-------------|
-| Value | Will customers want this? | Fake door test, landing page |
-| Usability | Can they figure it out? | Prototype test (5 users) |
-| Feasibility | Can we build it? | Spike/proof of concept |
-| Viability | Does the business model work? | Unit economics calculation |
+| Risk Type   | Question                      | Test Method                  |
+| ----------- | ----------------------------- | ---------------------------- |
+| Value       | Will customers want this?     | Fake door test, landing page |
+| Usability   | Can they figure it out?       | Prototype test (5 users)     |
+| Feasibility | Can we build it?              | Spike/proof of concept       |
+| Viability   | Does the business model work? | Unit economics calculation   |
 
 ## Quick Reference
 
-| Framework | Core Question | When to Use |
-|---|---|---|
-| JTBD | "What job are they hiring us for?" | Understanding motivation |
-| OST | "What opportunities connect to our outcome?" | Structuring discovery |
-| Mom Test | "How do I get honest feedback?" | Customer interviews |
-| Continuous Discovery | "How do I make this ongoing?" | Building habits |
+| Framework            | Core Question                                | When to Use              |
+| -------------------- | -------------------------------------------- | ------------------------ |
+| JTBD                 | "What job are they hiring us for?"           | Understanding motivation |
+| OST                  | "What opportunities connect to our outcome?" | Structuring discovery    |
+| Mom Test             | "How do I get honest feedback?"              | Customer interviews      |
+| Continuous Discovery | "How do I make this ongoing?"                | Building habits          |
 
 ## Common Mistakes
 

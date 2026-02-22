@@ -1,6 +1,9 @@
 ---
 name: verify
-description: Use after all plan tasks are complete - runs full verification (tests, build, lint, plan checklist) with evidence before claiming success
+description: Runs full project verification suite (tests, build, lint/typecheck, plan task checklist, optional browser smoke test) and presents results with actual command output as evidence. Use after all plan tasks are complete, when user says "verify", "zverifikuj", or before merging to confirm everything works. NOT for running a single test file or for debugging failures (use systematic-debugging).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Verify
@@ -34,7 +37,8 @@ Run full verification after plan execution. Evidence before claims.
 
 4. **Browser smoke test** (optional, for UI features):
 
-   Only if feature has web UI AND `rodney` is installed:
+   Only if feature has web UI AND `rodney` is in PATH (check: `which rodney || which ~/go/bin/rodney`).
+   Do NOT fall back to claude-in-chrome or curl — use rodney or skip:
 
    ```bash
    rodney start

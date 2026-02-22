@@ -1,6 +1,9 @@
 ---
 name: offer-creation
-description: Use when creating irresistible offers, pricing, or value propositions - Grand Slam Offer, Value Equation, M-A-G-I-C Headline from Alex Hormozi's $100M Offers
+description: Creates compelling, high-value offers using Grand Slam Offer, Value Equation, and M-A-G-I-C Headline frameworks from Alex Hormozi's $100M Offers. Use when creating a new product/service offer, designing pricing and value stacking, making an offer stand out from competition, naming offers and headlines, or when conversion rate is low. Trigger phrases include "irresistible offer", "value stacking", "offer naming", "my offer doesn't convert". NOT for positioning strategy (use uvp-optimization), growth experiments (use growth-hacking), or onboarding optimization (use product-led-growth).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Offer Creation

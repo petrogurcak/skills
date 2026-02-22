@@ -1,6 +1,9 @@
 ---
 name: product-prioritization
-description: Use when deciding what features to build first, ranking backlog items, or aligning stakeholders on priorities - RICE, ICE, MoSCoW, Kano frameworks
+description: Provides structured frameworks (RICE, ICE, MoSCoW, Kano) to rank features and decide what to build first. Use when prioritizing a backlog, resolving stakeholder disagreements, or handling feature request overload. Triggers include "what should we build next", "how do I prioritize", "CEO wants X but data says Y", "20 ideas and 3 developers". Do NOT use for understanding customer needs (use product-discovery), defining long-term direction (use product-strategy), or measuring impact (use product-metrics).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product Prioritization
@@ -16,6 +19,7 @@ Prioritization replaces gut feelings and politics with structured decision-makin
 ## When to Use
 
 **USE this skill:**
+
 - "What should we build next?"
 - "How do I prioritize my backlog?"
 - "CEO wants X, but data says Y"
@@ -24,6 +28,7 @@ Prioritization replaces gut feelings and politics with structured decision-makin
 - Feature request overload
 
 **DON'T use this skill:**
+
 - Don't know customer needs yet → `product-discovery`
 - Need long-term direction → `product-strategy`
 - Need to measure impact → `product-metrics`
@@ -46,12 +51,12 @@ Never prioritize by who shouts loudest.
 
 **Formula:** `RICE Score = (Reach × Impact × Confidence) / Effort`
 
-| Factor | Definition | Scale |
-|--------|-----------|-------|
-| **Reach** | How many users affected per quarter | Actual number (e.g., 500 users/quarter) |
-| **Impact** | How much it affects each user | 3 = massive, 2 = high, 1 = medium, 0.5 = low, 0.25 = minimal |
-| **Confidence** | How sure are we about R, I, E | 100% = high, 80% = medium, 50% = low |
-| **Effort** | Person-months to build | Actual estimate (e.g., 2 person-months) |
+| Factor         | Definition                          | Scale                                                        |
+| -------------- | ----------------------------------- | ------------------------------------------------------------ |
+| **Reach**      | How many users affected per quarter | Actual number (e.g., 500 users/quarter)                      |
+| **Impact**     | How much it affects each user       | 3 = massive, 2 = high, 1 = medium, 0.5 = low, 0.25 = minimal |
+| **Confidence** | How sure are we about R, I, E       | 100% = high, 80% = medium, 50% = low                         |
+| **Effort**     | Person-months to build              | Actual estimate (e.g., 2 person-months)                      |
 
 **Example:**
 
@@ -73,13 +78,14 @@ RICE = (2000 × 2 × 0.8) / 3 = 1067
 
 **Formula:** `ICE Score = Impact × Confidence × Ease`
 
-| Factor | Scale |
-|--------|-------|
-| **Impact** | 1-10 (how much will it move the metric?) |
-| **Confidence** | 1-10 (how sure are we?) |
-| **Ease** | 1-10 (how easy to implement?) |
+| Factor         | Scale                                    |
+| -------------- | ---------------------------------------- |
+| **Impact**     | 1-10 (how much will it move the metric?) |
+| **Confidence** | 1-10 (how sure are we?)                  |
+| **Ease**       | 1-10 (how easy to implement?)            |
 
 **When to use ICE over RICE:**
+
 - Early-stage, less data available
 - Growth experiments (fast iterations)
 - Quick triage of long backlog
@@ -88,14 +94,15 @@ RICE = (2000 × 2 × 0.8) / 3 = 1067
 
 **Best for:** Scope definition, MVP planning, stakeholder alignment on what's in/out.
 
-| Category | Definition | Rule |
-|----------|-----------|------|
-| **Must have** | Product fails without this | Non-negotiable. If missing, don't launch. |
-| **Should have** | Important but not critical | Include if possible. Workarounds exist. |
-| **Could have** | Nice to have | Only if time allows. First to cut. |
-| **Won't have** | Explicitly excluded | Not now. Maybe later. Clear boundary. |
+| Category        | Definition                 | Rule                                      |
+| --------------- | -------------------------- | ----------------------------------------- |
+| **Must have**   | Product fails without this | Non-negotiable. If missing, don't launch. |
+| **Should have** | Important but not critical | Include if possible. Workarounds exist.   |
+| **Could have**  | Nice to have               | Only if time allows. First to cut.        |
+| **Won't have**  | Explicitly excluded        | Not now. Maybe later. Clear boundary.     |
 
 **How to apply:**
+
 1. List all requirements/features
 2. For each, ask: "If we launch WITHOUT this, does the product still work?"
 3. YES → not Must. NO → Must.
@@ -123,13 +130,14 @@ Satisfaction ↑
      │
 ```
 
-| Category | If Present | If Absent | Example |
-|----------|-----------|-----------|---------|
-| **Basic** | No reaction | Anger/frustration | Login works, page loads fast |
-| **Performance** | Satisfaction increases linearly | Dissatisfaction | Speed, storage, features count |
-| **Excitement** | Delight, wow factor | No reaction | Unexpected feature, magical UX |
+| Category        | If Present                      | If Absent         | Example                        |
+| --------------- | ------------------------------- | ----------------- | ------------------------------ |
+| **Basic**       | No reaction                     | Anger/frustration | Login works, page loads fast   |
+| **Performance** | Satisfaction increases linearly | Dissatisfaction   | Speed, storage, features count |
+| **Excitement**  | Delight, wow factor             | No reaction       | Unexpected feature, magical UX |
 
 **How to discover category (Kano survey):**
+
 - Ask two questions per feature:
   1. "How would you feel if this feature IS present?" (functional)
   2. "How would you feel if this feature IS NOT present?" (dysfunctional)
@@ -137,6 +145,7 @@ Satisfaction ↑
 - Cross-reference answers to categorize
 
 **Strategic implications:**
+
 - **Basics**: Must have. Fix if broken. No competitive advantage.
 - **Performance**: Where you compete. More = better.
 - **Excitement**: Where you differentiate. Surprise and delight.
@@ -161,6 +170,7 @@ Satisfaction ↑
 ```
 
 **Action per quadrant:**
+
 - **Quick Wins** (high value, low effort): Do these first
 - **Big Bets** (high value, high effort): Plan carefully, validate first
 - **Fill-ins** (low value, low effort): Only if capacity allows
@@ -188,6 +198,7 @@ Quick team workshop?
 ### Step 2: List Items
 
 Collect all candidates from:
+
 - Discovery findings (opportunities from OST)
 - Customer requests
 - Stakeholder asks
@@ -216,13 +227,13 @@ Collect all candidates from:
 
 ## Quick Reference
 
-| Framework | Best For | Speed | Data Needed |
-|---|---|---|---|
-| RICE | Default scoring | Medium | Reach, impact data |
-| ICE | Quick triage, experiments | Fast | Estimates only |
-| MoSCoW | MVP scope, stakeholder alignment | Fast | Requirements list |
-| Kano | Feature categorization, strategy | Slow | Customer survey |
-| Value/Effort | Team workshops, visual | Fast | Team estimates |
+| Framework    | Best For                         | Speed  | Data Needed        |
+| ------------ | -------------------------------- | ------ | ------------------ |
+| RICE         | Default scoring                  | Medium | Reach, impact data |
+| ICE          | Quick triage, experiments        | Fast   | Estimates only     |
+| MoSCoW       | MVP scope, stakeholder alignment | Fast   | Requirements list  |
+| Kano         | Feature categorization, strategy | Slow   | Customer survey    |
+| Value/Effort | Team workshops, visual           | Fast   | Team estimates     |
 
 ## Stakeholder Alignment
 

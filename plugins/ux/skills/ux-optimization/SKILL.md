@@ -1,6 +1,9 @@
 ---
 name: ux-optimization
-description: Use when optimizing any web interface - diagnoses UX issues and provides concrete, code-ready solutions from 213 case studies; covers forms, e-commerce, design, mobile, A/B testing, performance, accessibility
+description: Diagnoses UX issues and provides concrete, code-ready solutions based on 213 real case studies, covering forms, e-commerce, design, mobile, A/B testing, performance, accessibility, admin dashboards, data tables, CRUD operations, navigation, persuasion patterns, and micro-interactions. Use when form conversion is below 50%, cart abandonment exceeds 70%, users miss CTAs, mobile UX is frustrating, or you need to set up A/B tests. Trigger phrases include "improve conversion", "optimize forms", "fix checkout", "A/B test", "UX audit". NOT for value proposition clarity issues (use uvp-optimization), expert design critique sessions (use ux-expert-dialogue), or writing copy (use web-copy).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # UX Optimization

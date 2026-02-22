@@ -1,6 +1,9 @@
 ---
 name: projectsetup
-description: Use when user says "Setup this project" - creates CLAUDE.md and .claude/ with development principles (Generic/Nette/Flutter/Frontend)
+description: Creates CLAUDE.md and .claude/ directory with development principles (TDD, Git safety, verification, checkpoints), session context files, and MCP server configuration. Supports Generic, Nette, Flutter, and Frontend variants. Use when user says "setup this project", "initialize project", or when starting a new project without CLAUDE.md. NOT for adding workflow optimizations to an existing setup (use workflow-optimization) or for framework-specific implementation (use framework workflow skills).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # 🚀 Project Setup Skill
@@ -8,6 +11,7 @@ description: Use when user says "Setup this project" - creates CLAUDE.md and .cl
 ## When to Use
 
 Use this skill when:
+
 - User says "Setup this project" or "Initialize this project"
 - User says "Configure development environment"
 - User says "Setup Claude for this project"
@@ -16,6 +20,7 @@ Use this skill when:
 ## What This Skill Does
 
 **Creates development principles structure:**
+
 - `CLAUDE.md` - Entry point with quick reference + **development-workflow** skill reference
 - `.claude/CORE_PRINCIPLES.md` - 11 core principles (TDD, Git, Verification, etc.)
 - `.claude/WORKFLOWS.md` - TDD workflow, Bug Fix, Git operations
@@ -25,11 +30,13 @@ Use this skill when:
 - `.claude/DECISIONS.md` - Architectural decisions log
 
 **Integrates with workflow orchestration:**
+
 - `CLAUDE.md` includes reference to `development-workflow` skill
 - This skill orchestrates: Brainstorming → Planning → Framework-specific implementation → Review
 - Ensures proper skill sequence for all feature implementations
 
 **Supports 4 variants:**
+
 - **Generic** - Framework-free, pure principles (TDD, Git, Verification)
 - **Nette** - Integrates with nette-workflow.skill + principles
 - **Flutter** - Integrates with flutter-workflow.skill + principles
@@ -38,6 +45,7 @@ Use this skill when:
 ## Important Notes
 
 **This skill creates PRINCIPLES, not framework workflows:**
+
 - ✅ TDD (Test-Driven Development)
 - ✅ Git Safety (Branch first, ask before commit)
 - ✅ Verification (Tests + Static analysis mandatory)
@@ -45,6 +53,7 @@ Use this skill when:
 - ✅ False Positive Prevention
 
 **Framework-specific workflows are in separate skills:**
+
 - `nette-workflow.skill` - Nette development + MANDATORY docs-first
 - `flutter-workflow.skill` - Flutter development + MANDATORY docs-first
 - `frontend-workflow.skill` - Frontend development + MANDATORY docs-first
@@ -56,6 +65,7 @@ Use this skill when:
 ### Step 1: Detect Context
 
 Check if setup is needed:
+
 ```
 Is there CLAUDE.md in current directory?
 ├─ NO → Continue to Step 2
@@ -134,6 +144,7 @@ Is there CLAUDE.md in current directory?
 ```
 
 **Important:** Phase-based servers are NOT added during setup. User activates them on-demand:
+
 ```bash
 ~/.claude/scripts/mcp-activate.sh add google-analytics   # when doing analytics
 ~/.claude/scripts/mcp-activate.sh remove google-analytics # when done
@@ -144,12 +155,14 @@ Is there CLAUDE.md in current directory?
 Based on choice, copy template files from skill directory:
 
 **Template source locations:**
+
 - Generic: `~/.claude/skills/project-setup/templates/generic/`
 - Nette: `~/.claude/skills/project-setup/templates/nette/`
 - Flutter: `~/.claude/skills/project-setup/templates/flutter/`
 - Frontend: `~/.claude/skills/project-setup/templates/frontend/`
 
 **Files to copy for each variant:**
+
 1. `CLAUDE.md` → Current directory
 2. `.claude/CORE_PRINCIPLES.md` → Create `.claude/` directory first
 3. `.claude/WORKFLOWS.md`
@@ -159,6 +172,7 @@ Based on choice, copy template files from skill directory:
 7. `.claude/DECISIONS.md` → Decisions log template
 
 **Process:**
+
 ```
 1. Create `.claude/` directory if it doesn't exist
 2. Read template files from appropriate variant directory
@@ -228,6 +242,7 @@ User: "Use development-workflow skill to implement [feature]"
 ## Summary
 
 This skill:
+
 - ✅ Creates `.claude/` structure with TDD, Git safety, Verification principles
 - ✅ Integrates with `development-workflow` skill for orchestration
 - ✅ Supports 4 variants: Generic (framework-free), Nette, Flutter, Frontend
@@ -241,6 +256,7 @@ This skill:
 **Usage:** User says "Setup this project" → AI creates CLAUDE.md + .claude/ → Ready to develop with workflow orchestration!
 
 **Workflow Architecture:**
+
 ```
 Project Setup (Constitutional Law - this skill)
        ↓ creates principles + references
@@ -252,6 +268,7 @@ Superpowers (Support - brainstorming, planning, review)
 ```
 
 **Template files:**
+
 - Generic: Pure TDD principles, no framework rules + workflow reference
 - Nette: + Nette critical rules (DI, Latte, Database patterns) + workflow reference
 - Flutter: + Flutter critical rules (immutable widgets, state management, null safety) + workflow reference

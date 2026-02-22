@@ -1,6 +1,9 @@
 ---
 name: deep-review
-description: Use after completing significant code changes - orchestrates specialized review skills (security, database, API, UX) based on auto-detected stack and scope
+description: Orchestrates comprehensive code review by auto-detecting stack and routing to specialized review skills (security, database, API, UX, business). Use after completing significant code changes, before deploy to production, or when you want a thorough multi-perspective audit. Trigger phrases include "deep review", "review my changes", "code audit", "hloubkova analyza". Not for quick spot checks — use individual specialist skills (security-review, database-review, api-design-review) directly for focused single-domain reviews.
+metadata:
+  author: Petr
+  version: 1.0.0
 context: fork
 agent: general-purpose
 ---
@@ -12,6 +15,7 @@ agent: general-purpose
 This skill orchestrates comprehensive code review by auto-detecting stack and routing to specialized review skills. It does NOT implement reviews itself - it coordinates specialists.
 
 **Philosophy:**
+
 ```
 Orchestrator = Conductor
 Specialized Skills = Musicians
@@ -24,6 +28,7 @@ The conductor coordinates, musicians play.
 ## When to Use
 
 **USE this skill:**
+
 - After completing larger piece of work
 - Before deploy to production
 - When `/deep-review` command issued
@@ -31,6 +36,7 @@ The conductor coordinates, musicians play.
 - Code audit requested
 
 **DON'T use this skill:**
+
 - Quick spot check (use specialist directly)
 - Just security review → `security-review`
 - Just database review → `database-review`
@@ -59,6 +65,7 @@ digraph deep_review_flow {
 ### Step 1: Scope Detection
 
 **If no argument:**
+
 ```bash
 git diff --name-only  # Changed files
 ```
@@ -74,37 +81,37 @@ git diff --name-only  # Changed files
 
 ### Step 2: Stack Detection
 
-| Indicator | Detected Stack |
-|-----------|---------------|
-| `pyproject.toml`, `requirements.txt` | Python |
-| `FastAPI` imports | FastAPI |
-| `composer.json`, `.neon` | PHP/Nette |
-| `package.json` + React/Vue | Frontend |
-| `.latte` files | Nette templates |
-| `checkout`, `cart`, `product` | E-commerce |
-| REST endpoints | API |
-| SQL files, migrations | Database |
+| Indicator                            | Detected Stack  |
+| ------------------------------------ | --------------- |
+| `pyproject.toml`, `requirements.txt` | Python          |
+| `FastAPI` imports                    | FastAPI         |
+| `composer.json`, `.neon`             | PHP/Nette       |
+| `package.json` + React/Vue           | Frontend        |
+| `.latte` files                       | Nette templates |
+| `checkout`, `cart`, `product`        | E-commerce      |
+| REST endpoints                       | API             |
+| SQL files, migrations                | Database        |
 
 ### Step 3: Route to Specialists
 
 **Technical specialists:**
 
-| Detected Stack | Skills to Invoke |
-|----------------|------------------|
-| Python/FastAPI | `fastapi-workflow`, `security-review`, `database-review` |
-| PHP/Nette | `nette-framework`, `security-review` |
-| Frontend | `frontend-workflow`, `ux-optimization` |
-| E-commerce | `ux-optimization` (e-commerce practices) |
-| API endpoints | `api-design-review`, `security-review` |
-| Database changes | `database-review` |
-| Any code | `security-review` (always) |
+| Detected Stack   | Skills to Invoke                                         |
+| ---------------- | -------------------------------------------------------- |
+| Python/FastAPI   | `fastapi-workflow`, `security-review`, `database-review` |
+| PHP/Nette        | `nette-framework`, `security-review`                     |
+| Frontend         | `frontend-workflow`, `ux-optimization`                   |
+| E-commerce       | `ux-optimization` (e-commerce practices)                 |
+| API endpoints    | `api-design-review`, `security-review`                   |
+| Database changes | `database-review`                                        |
+| Any code         | `security-review` (always)                               |
 
 **Perspective checks (auto-detected):**
 
-| Scope Signal | Perspective | What It Checks |
-|-------------|-------------|----------------|
-| UI/frontend files changed (`.tsx`, `.vue`, `.latte`, templates, CSS) | **UX Perspective** | Usability, flow clarity, error states, accessibility |
-| New feature (not a fix/refactor) | **Business Perspective** | Does it solve a real problem? Is scope right? Edge cases? |
+| Scope Signal                                                         | Perspective              | What It Checks                                            |
+| -------------------------------------------------------------------- | ------------------------ | --------------------------------------------------------- |
+| UI/frontend files changed (`.tsx`, `.vue`, `.latte`, templates, CSS) | **UX Perspective**       | Usability, flow clarity, error states, accessibility      |
+| New feature (not a fix/refactor)                                     | **Business Perspective** | Does it solve a real problem? Is scope right? Edge cases? |
 
 These run IN ADDITION to technical specialists, in parallel.
 
@@ -113,6 +120,7 @@ These run IN ADDITION to technical specialists, in parallel.
 For each invoked skill, run its checklist and record findings.
 
 **Priority order:**
+
 1. **CRITICAL** - Security vulnerabilities, data loss risks
 2. **HIGH** - Performance issues, missing validation
 3. **MEDIUM** - Code quality, missing tests
@@ -131,8 +139,8 @@ For each invoked skill, run its checklist and record findings.
 
 ### 🔴 CRITICAL (blocks deploy)
 
-| File:line | Issue | Fix |
-|-----------|-------|-----|
+| File:line      | Issue         | Fix                     |
+| -------------- | ------------- | ----------------------- |
 | api/auth.py:45 | SQL injection | Use parameterized query |
 
 ---
@@ -140,8 +148,8 @@ For each invoked skill, run its checklist and record findings.
 ### 🟠 HIGH (technical debt)
 
 | File:line | Issue | Recommendation |
-|-----------|-------|----------------|
-| ... | ... | ... |
+| --------- | ----- | -------------- |
+| ...       | ...   | ...            |
 
 ---
 
@@ -159,30 +167,33 @@ For each invoked skill, run its checklist and record findings.
 
 ### Checklist Summary
 
-| Skill | Issues Found | Critical | High |
-|-------|--------------|----------|------|
-| security-review | 3 | 1 | 2 |
-| database-review | 2 | 0 | 1 |
-| api-design-review | 1 | 0 | 0 |
-| ux-perspective | 1 | 0 | 1 |
-| business-perspective | 0 | 0 | 0 |
+| Skill                | Issues Found | Critical | High |
+| -------------------- | ------------ | -------- | ---- |
+| security-review      | 3            | 1        | 2    |
+| database-review      | 2            | 0        | 1    |
+| api-design-review    | 1            | 0        | 0    |
+| ux-perspective       | 1            | 0        | 1    |
+| business-perspective | 0            | 0        | 0    |
 ```
 
 ## Specialist Skills
 
 ### Security Review (`security-review`)
+
 - OWASP Top 10 checklist
 - SQL injection, XSS, CSRF
 - Auth/session handling
 - Sensitive data exposure
 
 ### Database Review (`database-review`)
+
 - N+1 queries
 - Missing indexes
 - Transaction handling
 - Connection pooling
 
 ### API Design Review (`api-design-review`)
+
 - REST conventions
 - Error handling
 - Pagination
@@ -190,11 +201,13 @@ For each invoked skill, run its checklist and record findings.
 - Versioning
 
 ### Framework-Specific
+
 - `fastapi-workflow` - FastAPI patterns
 - `nette-framework` - Nette patterns
 - `frontend-workflow` - Frontend patterns
 
 ### UX Review
+
 - `ux-optimization` - For frontend/e-commerce
 
 ### UX Perspective (inline - auto-triggered when UI files change)
@@ -211,6 +224,7 @@ For each invoked skill, run its checklist and record findings.
 6. **Mobile:** Does it work on mobile? Touch targets large enough?
 
 **Output format:**
+
 ```
 ### UX Perspective
 
@@ -237,6 +251,7 @@ For each invoked skill, run its checklist and record findings.
 5. **Reversibility:** Can this be easily changed/removed if it doesn't work out?
 
 **Output format:**
+
 ```
 ### Business Perspective
 
@@ -266,17 +281,17 @@ These require IMMEDIATE attention:
 
 ## Quick Reference
 
-| Review Type | Specialist Skill | Focus |
-|-------------|------------------|-------|
-| Security | `security-review` | OWASP Top 10 |
-| Database | `database-review` | N+1, indexes, transactions |
-| API | `api-design-review` | REST, errors, pagination |
-| FastAPI | `fastapi-workflow` | Pydantic, async, DI |
-| Nette | `nette-framework` | DI, Latte, Tracy |
-| Frontend | `frontend-workflow` | Components, state |
-| UX | `ux-optimization` | Forms, e-commerce |
-| UX Perspective | inline (auto) | Flow, errors, empty states, a11y |
-| Business Perspective | inline (auto) | Problem fit, scope, edge cases |
+| Review Type          | Specialist Skill    | Focus                            |
+| -------------------- | ------------------- | -------------------------------- |
+| Security             | `security-review`   | OWASP Top 10                     |
+| Database             | `database-review`   | N+1, indexes, transactions       |
+| API                  | `api-design-review` | REST, errors, pagination         |
+| FastAPI              | `fastapi-workflow`  | Pydantic, async, DI              |
+| Nette                | `nette-framework`   | DI, Latte, Tracy                 |
+| Frontend             | `frontend-workflow` | Components, state                |
+| UX                   | `ux-optimization`   | Forms, e-commerce                |
+| UX Perspective       | inline (auto)       | Flow, errors, empty states, a11y |
+| Business Perspective | inline (auto)       | Problem fit, scope, edge cases   |
 
 ## Common Mistakes
 
@@ -295,11 +310,13 @@ Check multiple indicators, not just one file.
 ## Integration Notes
 
 **Triggering deep-review:**
+
 - Manual: `/deep-review` or "review my changes"
 - After significant code completion
 - Before merge/deploy
 
 **After review:**
+
 - Fix CRITICAL immediately
 - Create tickets for HIGH/MEDIUM
 - Track LOW in tech debt backlog

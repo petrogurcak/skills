@@ -1,6 +1,9 @@
 ---
 name: frontend-app
-description: Use when building web applications with Vite/TypeScript/Tailwind/Alpine.js - server-rendered apps, dashboards, admin panels, e-commerce backends. NOT for landing pages (use frontend-lp instead). Enforces DOCS-FIRST workflow.
+description: Docs-first development workflow for web applications using Vite/TypeScript/Tailwind/Alpine.js - dashboards, admin panels, CRUD apps, e-commerce backends. Use when building interactive web apps with auth, state management, and server-side rendering. Trigger phrases - "web app", "dashboard", "admin panel", "CRUD app", "e-commerce backend", "vite app", "alpine.js app". NOT for landing pages or marketing sites (use frontend-lp instead) or mobile apps (use expo-workflow/flutter-workflow).
+metadata:
+  author: Petr
+  version: 1.0.0
 hooks:
   PostToolUse:
     - matcher: "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\""
@@ -39,6 +42,7 @@ This is NON-NEGOTIABLE for all frontend development tasks.
 ## When to Use This Skill
 
 Use this skill for ALL modern frontend development with:
+
 - Vite build tool
 - TypeScript configuration
 - Tailwind CSS styling
@@ -103,7 +107,9 @@ Use this skill for ALL modern frontend development with:
 <!-- 4. Reviewed current Tailwind grid utilities -->
 <!-- 5. Now implementing with current utilities: -->
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4"
+>
   <!-- Product cards -->
 </div>
 ```
@@ -168,12 +174,15 @@ Use this skill for ALL modern frontend development with:
 <!-- 4. Reviewed Alpine 3.x docs -->
 <!-- 5. Implementing with current Alpine syntax: -->
 
-<div x-data="{
+<div
+  x-data="{
   cart: [],
   addToCart(product) {
     this.cart.push(product);
   }
-}" x-cloak>
+}"
+  x-cloak
+>
   <button
     @click="addToCart({ id: 1, name: 'Product' })"
     class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
@@ -329,7 +338,7 @@ Use this skill for ALL modern frontend development with:
     alt="Product name"
     loading="lazy"
     class="w-full h-48 object-cover"
-  >
+  />
 
   <!-- Content -->
   <div class="p-4">
@@ -399,6 +408,7 @@ Use this skill for ALL modern frontend development with:
 ### TypeScript 5.7+ Requirements (MANDATORY)
 
 **tsconfig.json essentials:**
+
 ```json
 {
   "compilerOptions": {
@@ -415,6 +425,7 @@ Use this skill for ALL modern frontend development with:
 ```
 
 **Code patterns:**
+
 ```typescript
 // ✓ CORRECT: Strict types
 interface Product {
@@ -440,6 +451,7 @@ function formatPrice(price) {
 ### Tailwind 4.1 Best Practices (MANDATORY)
 
 **Utility-first approach:**
+
 ```html
 <!-- ✓ CORRECT: Tailwind utilities -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -454,27 +466,33 @@ function formatPrice(price) {
 </div>
 
 <style>
-.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-.product-card { background: white; padding: 1rem; }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .product-card {
+    background: white;
+    padding: 1rem;
+  }
 </style>
 ```
 
 **Responsive mobile-first:**
+
 ```html
 <!-- ✓ CORRECT: Mobile-first responsive -->
 <div class="text-sm md:text-base lg:text-lg">
-  <img class="w-full md:w-1/2 lg:w-1/3" src="..." alt="...">
+  <img class="w-full md:w-1/2 lg:w-1/3" src="..." alt="..." />
 </div>
 
 <!-- ✗ WRONG: Desktop-first -->
-<div class="text-lg md:text-base sm:text-sm">
-  Content
-</div>
+<div class="text-lg md:text-base sm:text-sm">Content</div>
 ```
 
 ### Alpine.js 3.x Patterns (MANDATORY)
 
 **Reactive state:**
+
 ```html
 <!-- ✓ CORRECT: Alpine 3 reactivity -->
 <div x-data="{ open: false, count: 0 }">
@@ -489,21 +507,22 @@ function formatPrice(price) {
   <button onclick="toggleOpen()">Toggle</button>
 </div>
 <script>
-let open = false;
-function toggleOpen() {
-  open = !open;
-  document.querySelector('#content').style.display = open ? 'block' : 'none';
-}
+  let open = false;
+  function toggleOpen() {
+    open = !open;
+    document.querySelector("#content").style.display = open ? "block" : "none";
+  }
 </script>
 ```
 
 ### Vite 6.x Configuration
 
 **Optimized config:**
+
 ```typescript
 // ✓ CORRECT: vite.config.ts
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   plugins: [dts()],
@@ -511,14 +530,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['alpine', 'autocomplete'],
+          vendor: ["alpine", "autocomplete"],
         },
       },
     },
   },
   resolve: {
     alias: {
-      '@': '/src',
+      "@": "/src",
     },
   },
 });
@@ -597,6 +616,7 @@ Can Tailwind utilities do it?
 ## Common Mistakes to Avoid
 
 **DON'T:**
+
 - Generate code without fetching docs first
 - Use Tailwind 3.x or older syntax (old JIT mode, old config format)
 - Use Alpine 2.x syntax (old x-spread, old $refs patterns)
@@ -609,6 +629,7 @@ Can Tailwind utilities do it?
 - Forget lazy loading for images
 
 **DO:**
+
 - ALWAYS fetch documentation before implementing
 - Follow workflows step-by-step
 - Use Tailwind 4.1 CSS-first configuration and utilities

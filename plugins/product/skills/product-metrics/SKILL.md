@@ -1,6 +1,9 @@
 ---
 name: product-metrics
-description: Use when deciding what to measure, defining KPIs, choosing a North Star metric, or evaluating product health - North Star, AARRR, HEART frameworks
+description: Helps define what to measure and how using North Star Metric, AARRR Pirate Metrics, and HEART frameworks. Use when choosing KPIs, defining success criteria, building analytics strategy, or evaluating product health. Triggers include "what metrics should we track", "what's our North Star", "are we measuring the right things", "how do I set up KPIs". Do NOT use for understanding customers (use product-discovery), prioritizing features (use product-prioritization), or defining long-term direction (use product-strategy).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product Metrics
@@ -16,6 +19,7 @@ Metrics tell you whether you're winning. Without the right metrics, you're flyin
 ## When to Use
 
 **USE this skill:**
+
 - "What metrics should we track?"
 - "What's our North Star metric?"
 - "Are we measuring the right things?"
@@ -25,6 +29,7 @@ Metrics tell you whether you're winning. Without the right metrics, you're flyin
 - Building analytics strategy
 
 **DON'T use this skill:**
+
 - Need to understand customers → `product-discovery`
 - Need to prioritize features → `product-prioritization`
 - Need long-term direction → `product-strategy`
@@ -49,6 +54,7 @@ A metric without an action plan is just a number.
 **Definition:** The single metric that best captures the core value your product delivers to customers.
 
 **Properties of a Good North Star:**
+
 1. **Reflects customer value** (not revenue — revenue is a lagging indicator)
 2. **Leading indicator of revenue** (if North Star grows, revenue follows)
 3. **Measurable** (can track weekly/daily)
@@ -57,13 +63,13 @@ A metric without an action plan is just a number.
 
 **Examples:**
 
-| Company Type | North Star Metric | Why |
-|-------------|-------------------|-----|
-| Marketplace | # of transactions/week | Both sides getting value |
+| Company Type  | North Star Metric      | Why                           |
+| ------------- | ---------------------- | ----------------------------- |
+| Marketplace   | # of transactions/week | Both sides getting value      |
 | SaaS (collab) | # of active teams/week | Teams = retention + expansion |
-| Media/content | Total reading time/day | Engagement = ad revenue |
-| E-commerce | # of purchases/month | Direct value exchange |
-| Fintech | $ managed on platform | Trust + engagement |
+| Media/content | Total reading time/day | Engagement = ad revenue       |
+| E-commerce    | # of purchases/month   | Direct value exchange         |
+| Fintech       | $ managed on platform  | Trust + engagement            |
 
 **North Star + Supporting Inputs:**
 
@@ -89,6 +95,7 @@ A metric without an action plan is just a number.
 ```
 
 **How to Choose:**
+
 1. What is the core value your product delivers?
 2. What action by the user indicates they received that value?
 3. Can you measure that action? How often does it happen?
@@ -110,21 +117,23 @@ R - Referral:     Do they tell others?
 
 **Metrics per Stage:**
 
-| Stage | Key Metric | Example | Benchmark |
-|-------|-----------|---------|-----------|
-| **Acquisition** | Visitors, signups | Monthly new signups | Growing month-over-month |
-| **Activation** | % completing key action | % who complete onboarding | 25-60% (varies) |
-| **Retention** | Day 1/7/30 retention | % active after 30 days | 40%+ = good |
-| **Revenue** | ARPU, conversion rate | % free → paid | 2-5% freemium, 15-30% trial |
-| **Referral** | Viral coefficient | Invites sent per user | K > 1 = viral growth |
+| Stage           | Key Metric              | Example                   | Benchmark                   |
+| --------------- | ----------------------- | ------------------------- | --------------------------- |
+| **Acquisition** | Visitors, signups       | Monthly new signups       | Growing month-over-month    |
+| **Activation**  | % completing key action | % who complete onboarding | 25-60% (varies)             |
+| **Retention**   | Day 1/7/30 retention    | % active after 30 days    | 40%+ = good                 |
+| **Revenue**     | ARPU, conversion rate   | % free → paid             | 2-5% freemium, 15-30% trial |
+| **Referral**    | Viral coefficient       | Invites sent per user     | K > 1 = viral growth        |
 
 **How to Use AARRR:**
+
 1. Map your funnel with actual numbers
 2. Find the biggest drop-off (that's your bottleneck)
 3. Focus on ONE stage at a time
 4. Fix retention before acquisition (leaky bucket principle)
 
 **Stage Priority Order:**
+
 ```
 1. Retention (users coming back?)
    └── No → Fix product value (→ product-market-fit)
@@ -144,17 +153,18 @@ R - Referral:     Do they tell others?
 
 **Five Dimensions:**
 
-| Dimension | Measures | Example Metric |
-|-----------|---------|---------------|
-| **Happiness** | Satisfaction, NPS | CSAT score, NPS |
-| **Engagement** | Depth of usage | Sessions/week, features used |
-| **Adoption** | New users/features | Signups, feature adoption rate |
-| **Retention** | Users coming back | D7/D30 retention |
+| Dimension        | Measures                  | Example Metric                   |
+| ---------------- | ------------------------- | -------------------------------- |
+| **Happiness**    | Satisfaction, NPS         | CSAT score, NPS                  |
+| **Engagement**   | Depth of usage            | Sessions/week, features used     |
+| **Adoption**     | New users/features        | Signups, feature adoption rate   |
+| **Retention**    | Users coming back         | D7/D30 retention                 |
 | **Task success** | Can users complete goals? | Task completion rate, error rate |
 
 **Goals-Signals-Metrics Process:**
 
 For each HEART dimension:
+
 1. **Goal:** What do you want to achieve? (qualitative)
 2. **Signal:** What user behavior indicates success? (observable)
 3. **Metric:** How do you measure the signal? (quantifiable)
@@ -169,6 +179,7 @@ Metric: % completing onboarding within first session
 ```
 
 **When to Use HEART vs AARRR:**
+
 - HEART: Evaluating UX quality, feature-level metrics
 - AARRR: Business-level funnel, growth metrics
 - Both can coexist (AARRR for business, HEART for product quality)
@@ -177,13 +188,13 @@ Metric: % completing onboarding within first session
 
 **Best for:** Choosing metrics based on product/company stage. What matters at pre-PMF is different from growth stage.
 
-| Stage | Focus Metric | Why |
-|-------|-------------|-----|
-| **Empathy** (pre-product) | # of customer interviews | Do you understand the problem? |
-| **Stickiness** (MVP) | Retention, engagement | Are users coming back? |
-| **Virality** (PMF achieved) | Viral coefficient, NPS | Are users spreading the word? |
-| **Revenue** (monetization) | ARPU, LTV, CAC | Is the business model working? |
-| **Scale** (growth) | CAC payback, margins | Can you grow profitably? |
+| Stage                       | Focus Metric             | Why                            |
+| --------------------------- | ------------------------ | ------------------------------ |
+| **Empathy** (pre-product)   | # of customer interviews | Do you understand the problem? |
+| **Stickiness** (MVP)        | Retention, engagement    | Are users coming back?         |
+| **Virality** (PMF achieved) | Viral coefficient, NPS   | Are users spreading the word?  |
+| **Revenue** (monetization)  | ARPU, LTV, CAC           | Is the business model working? |
+| **Scale** (growth)          | CAC payback, margins     | Can you grow profitably?       |
 
 **Key insight:** Don't optimize for revenue metrics before you have retention. Don't optimize for virality before you have PMF.
 
@@ -223,6 +234,7 @@ Do you have a product?
 ### Step 4: Set Targets
 
 For each metric:
+
 - **Current baseline** (measured, not guessed)
 - **Target** (specific number, specific timeframe)
 - **Action plan** (what will we do to move it?)
@@ -241,38 +253,38 @@ Maximum 10-15 metrics total. More = noise.
 
 ## Vanity vs Actionable Metrics
 
-| Vanity Metric | Why Bad | Actionable Alternative |
-|---|---|---|
-| Total users | Always goes up | Active users (DAU/MAU) |
-| Page views | Doesn't mean engagement | Session duration, pages per session |
-| Total signups | Says nothing about value | Activation rate |
-| App downloads | Installs ≠ usage | D7 retention |
-| Total revenue | Hides churn | Net revenue retention |
-| Social followers | Vanity | Engagement rate |
+| Vanity Metric    | Why Bad                  | Actionable Alternative              |
+| ---------------- | ------------------------ | ----------------------------------- |
+| Total users      | Always goes up           | Active users (DAU/MAU)              |
+| Page views       | Doesn't mean engagement  | Session duration, pages per session |
+| Total signups    | Says nothing about value | Activation rate                     |
+| App downloads    | Installs ≠ usage         | D7 retention                        |
+| Total revenue    | Hides churn              | Net revenue retention               |
+| Social followers | Vanity                   | Engagement rate                     |
 
 **Rule of thumb:** If the metric always goes up regardless of what you do, it's vanity.
 
 ## Key Metric Definitions
 
-| Metric | Formula | Good Benchmark |
-|--------|---------|---------------|
-| **DAU/MAU ratio** | Daily active / Monthly active | 20%+ (engagement) |
-| **D1/D7/D30 retention** | Users returning after N days | D30 > 40% |
-| **Activation rate** | % completing key first action | 25-60% |
-| **Churn rate** | % users lost per month | < 5% monthly (SaaS) |
-| **NPS** | Promoters - Detractors | > 50 = excellent |
-| **LTV/CAC** | Lifetime value / Acquisition cost | > 3:1 |
-| **ARPU** | Revenue / Active users | Depends on business |
-| **Viral coefficient (K)** | Invites × conversion rate | K > 1 = viral |
+| Metric                    | Formula                           | Good Benchmark      |
+| ------------------------- | --------------------------------- | ------------------- |
+| **DAU/MAU ratio**         | Daily active / Monthly active     | 20%+ (engagement)   |
+| **D1/D7/D30 retention**   | Users returning after N days      | D30 > 40%           |
+| **Activation rate**       | % completing key first action     | 25-60%              |
+| **Churn rate**            | % users lost per month            | < 5% monthly (SaaS) |
+| **NPS**                   | Promoters - Detractors            | > 50 = excellent    |
+| **LTV/CAC**               | Lifetime value / Acquisition cost | > 3:1               |
+| **ARPU**                  | Revenue / Active users            | Depends on business |
+| **Viral coefficient (K)** | Invites × conversion rate         | K > 1 = viral       |
 
 ## Quick Reference
 
-| Framework | Core Question | Best For |
-|---|---|---|
-| North Star | "What single metric captures value?" | Company alignment |
-| AARRR | "Where are we losing users?" | Funnel analysis |
-| HEART | "How good is the user experience?" | UX measurement |
-| Stage-Based | "What should we focus on now?" | Metric selection |
+| Framework   | Core Question                        | Best For          |
+| ----------- | ------------------------------------ | ----------------- |
+| North Star  | "What single metric captures value?" | Company alignment |
+| AARRR       | "Where are we losing users?"         | Funnel analysis   |
+| HEART       | "How good is the user experience?"   | UX measurement    |
+| Stage-Based | "What should we focus on now?"       | Metric selection  |
 
 ## Common Mistakes
 

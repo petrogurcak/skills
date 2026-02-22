@@ -1,6 +1,9 @@
 ---
 name: brand-voice
-description: Use when defining, documenting, or enforcing brand voice and style guidelines. Covers brand personality, voice attributes, tone adaptation, style rules, and terminology management for consistent communication across all channels.
+description: Guides you through creating a complete Brand Voice document — personality, voice attributes, tone adaptation, style rules, and terminology management. Use when defining a new brand voice, auditing existing voice for consistency, or documenting voice guidelines for AI/copywriters/team. Trigger phrases: "define brand voice", "brand guidelines", "how should my brand sound", "voice consistency". Do NOT use for writing actual copy (use copywriting skills) or positioning/UVP work (use uvp-optimization).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Brand Voice - Definice a Prosazeni Hlasu Znacky

@@ -1,6 +1,9 @@
 ---
 name: aso-optimization
-description: Use when optimizing App Store or Google Play listings - keywords, screenshots, icons, descriptions, A/B testing. Based on Advanced ASO Book (Phiture + AppTweak).
+description: Optimizes App Store and Google Play listings for maximum visibility and conversion, covering keyword optimization, screenshot design, icon testing, description writing, and A/B testing (PPO, Store Listing Experiments). Based on Advanced ASO Book by Phiture and AppTweak. Use when an app is not appearing in search results, has low impression-to-download conversion, planning app store listing optimization, creating/updating screenshots and icons, or launching a new app. Trigger phrases include "app store optimization", "ASO", "app keywords", "app screenshots". NOT for web SEO (use seo-optimization), in-app conversion optimization, or app review/ratings management.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # ASO Optimization Skill

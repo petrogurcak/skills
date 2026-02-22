@@ -1,6 +1,9 @@
 ---
 name: product-strategy
-description: Use when defining product vision, setting OKRs, building roadmaps, or deciding long-term direction - Product Operating Model, OKRs, roadmapping
+description: Connects company vision to execution using Product Operating Model, OKRs, and outcome-driven roadmapping. Use when defining product vision, setting goals, building roadmaps, or aligning teams on long-term direction. Triggers include "what's our product vision", "how do I set OKRs", "we need a roadmap", "where are we going". Do NOT use for deciding what to build specifically (use product-discovery), deciding build order (use product-prioritization), validating PMF (use product-market-fit), or choosing metrics (use product-metrics).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Product Strategy
@@ -16,6 +19,7 @@ Product strategy connects company vision to what teams build. It answers: "Where
 ## When to Use
 
 **USE this skill:**
+
 - "What's our product vision?"
 - "How do I set OKRs for my product?"
 - "We need a roadmap"
@@ -24,6 +28,7 @@ Product strategy connects company vision to what teams build. It answers: "Where
 - Stakeholders asking "where are we going?"
 
 **DON'T use this skill:**
+
 - What to build specifically → `product-discovery`
 - What to build first → `product-prioritization`
 - Are we on the right track → `product-market-fit`
@@ -49,27 +54,30 @@ Roadmap without strategy is just a feature factory.
 
 **Key Elements:**
 
-| Element | Feature Team (old) | Empowered Team (new) |
-|---------|-------------------|---------------------|
-| **Input** | Feature roadmap from stakeholders | Strategic context + problems to solve |
-| **Team role** | Deliver features on time | Discover and deliver solutions |
-| **Success** | Shipped on schedule | Outcome achieved |
-| **PM role** | Project manager, backlog admin | Product owner with real authority |
-| **Discovery** | None or minimal | Continuous (weekly customer contact) |
+| Element       | Feature Team (old)                | Empowered Team (new)                  |
+| ------------- | --------------------------------- | ------------------------------------- |
+| **Input**     | Feature roadmap from stakeholders | Strategic context + problems to solve |
+| **Team role** | Deliver features on time          | Discover and deliver solutions        |
+| **Success**   | Shipped on schedule               | Outcome achieved                      |
+| **PM role**   | Project manager, backlog admin    | Product owner with real authority     |
+| **Discovery** | None or minimal                   | Continuous (weekly customer contact)  |
 
 **Strategic Context (what leadership provides):**
+
 1. Company mission and vision
 2. Product strategy (where to focus)
 3. Specific team objectives (problems to solve)
 4. Key results (how to measure success)
 
 **What leadership does NOT provide:**
+
 - Feature lists
 - Solutions
 - Detailed requirements
 - Implementation timelines
 
 **How to Apply:**
+
 1. Define clear product vision (see below)
 2. Create product strategy (focus areas)
 3. Assign problems to teams via OKRs (not features)
@@ -110,6 +118,7 @@ our product will [key differentiator].
 ```
 
 **Good Vision Characteristics:**
+
 - Inspiring (people want to work toward it)
 - Ambitious but achievable (stretches, doesn't break)
 - Customer-centric (about value, not technology)
@@ -130,6 +139,7 @@ Objective: [Qualitative, inspiring goal]
 ```
 
 **Rules:**
+
 - 2-4 Objectives per quarter
 - 2-4 Key Results per Objective
 - Key Results are measurable outcomes, NOT tasks/outputs
@@ -138,14 +148,15 @@ Objective: [Qualitative, inspiring goal]
 
 **Good vs Bad OKRs:**
 
-| Bad OKR | Why Bad | Good Alternative |
-|---------|---------|-----------------|
-| O: Launch feature X | Output, not outcome | O: Make onboarding effortless |
-| KR: Ship by March 15 | Task, not result | KR: Activation rate 30% → 50% |
-| KR: Build 3 integrations | Output count | KR: Users with integrations 10% → 40% |
-| O: Improve product | Too vague | O: Become the fastest option for [job] |
+| Bad OKR                  | Why Bad             | Good Alternative                       |
+| ------------------------ | ------------------- | -------------------------------------- |
+| O: Launch feature X      | Output, not outcome | O: Make onboarding effortless          |
+| KR: Ship by March 15     | Task, not result    | KR: Activation rate 30% → 50%          |
+| KR: Build 3 integrations | Output count        | KR: Users with integrations 10% → 40%  |
+| O: Improve product       | Too vague           | O: Become the fastest option for [job] |
 
 **OKR Cadence:**
+
 ```
 Annual: Company-level objectives (strategic themes)
    │
@@ -170,6 +181,7 @@ End of Quarter: Score and retrospect
    - What are market trends?
 
 2. **Define focus areas (2-4 max)**
+
    ```
    We will focus on:
    1. [Area 1] because [evidence]
@@ -220,12 +232,14 @@ NOW (this quarter)      NEXT (next quarter)     LATER (future)
 **Confidence decreases left to right:** NOW items are concrete, LATER items are directional.
 
 **Feature-Based Roadmap (avoid if possible):**
+
 - Lists specific features with dates
 - Creates false commitments
 - Removes team empowerment
 - Use only if stakeholders absolutely require it
 
 **Roadmap Rules:**
+
 1. Communicate direction, not commitments
 2. Show outcomes, not features (when possible)
 3. Update quarterly (at minimum)
@@ -271,13 +285,13 @@ Where are we today?
 
 ## Quick Reference
 
-| Framework | Core Question | Timeframe |
-|---|---|---|
-| Product Operating Model | "How should we organize?" | Permanent |
-| Product Vision | "Where are we going?" | 3-5 years |
-| Product Strategy | "Where do we focus?" | 1 year |
-| OKRs | "What do we achieve this quarter?" | Quarterly |
-| Roadmap | "What are we working on?" | Rolling |
+| Framework               | Core Question                      | Timeframe |
+| ----------------------- | ---------------------------------- | --------- |
+| Product Operating Model | "How should we organize?"          | Permanent |
+| Product Vision          | "Where are we going?"              | 3-5 years |
+| Product Strategy        | "Where do we focus?"               | 1 year    |
+| OKRs                    | "What do we achieve this quarter?" | Quarterly |
+| Roadmap                 | "What are we working on?"          | Rolling   |
 
 ## Common Mistakes
 

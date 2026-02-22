@@ -1,6 +1,9 @@
 ---
 name: merge
-description: Use after verification passes - commits, merges to development branch, verifies, and cleans up feature branch/worktree
+description: Commits current work, merges feature branch into development, re-runs tests on merged result, and cleans up the feature branch and worktree. Use after verification passes, when user says "merge", "mergni", or when the verify skill confirms all checks pass. NOT for merging to main/production or for creating pull requests.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Merge
@@ -12,12 +15,14 @@ Commit, merge to development, verify, cleanup.
 ## Process
 
 1. **Commit current work** (if uncommitted changes exist):
+
    ```bash
    git add [relevant files]
    git commit -m "feat: [description]"
    ```
 
 2. **Switch to development and merge:**
+
    ```bash
    git checkout development
    git pull
@@ -34,6 +39,7 @@ Commit, merge to development, verify, cleanup.
    - Remove worktree if used: `git worktree remove <path>`
 
 5. **Report:**
+
    ```
    Merge hotovy:
    - Branch: <feature-branch> merged do development

@@ -1,6 +1,9 @@
 ---
 name: planning
-description: Use when user says "plán", "naplánuj", "plan", or wants to plan a new feature/change before coding - combines exploration, brainstorming, and plan writing into one flow
+description: Explores requirements, brainstorms approaches, writes a detailed TDD implementation plan, and reviews it with adversarial agents before handing off to execution. Use when user says "plan", "naplanuj", "plan na X", or wants to plan a new feature or change before coding. NOT for bug fixes (use debugging), trivial changes under 3 steps, or when a plan file already exists.
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Planning
@@ -93,12 +96,19 @@ tasks_done: 0
 - Modify: `exact/path/to/existing.py:123-145`
 - Test: `tests/exact/path/to/test.py`
 
+**Step 0: Create skeleton modules** (only if new files)
+Create empty files with minimal exports so imports don't fail during testing:
+
+```
+[Empty class/function stubs with correct signatures, raise NotImplementedError]
+```
+
 **Step 1: Write the failing test**
-[Complete test code]
+[Complete test code — imports should resolve thanks to skeletons]
 
 **Step 2: Run test to verify it fails**
 Run: `[exact command]`
-Expected: FAIL with "[message]"
+Expected: FAIL with "[message]" (not ImportError/ModuleNotFoundError)
 
 **Step 3: Write minimal implementation**
 [Complete implementation code]

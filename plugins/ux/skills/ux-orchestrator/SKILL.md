@@ -1,6 +1,9 @@
 ---
 name: ux-orchestrator
-description: Use when improving any user experience - orchestrates specialized UX skills (optimization, expert dialogue, UVP) based on problem type detection
+description: Orchestrates UX work by detecting problem type and routing to specialized skills (ux-optimization, ux-expert-dialogue, uvp-optimization) based on keywords, context, and business goals. Use for any UX improvement request where the right specialist is unclear, vague requests like "make it better" or "improve conversion", new website/landing page projects, UX audit requests, or multi-aspect UX work. Trigger phrases include "improve UX", "UX audit", "make it convert better". NOT for when you already know the exact specialist skill needed, just A/B testing (use ux-optimization), just expert critique (use ux-expert-dialogue), or just positioning (use uvp-optimization).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # UX Orchestrator

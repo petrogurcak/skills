@@ -1,6 +1,9 @@
 ---
 name: growth-hacking
-description: Use when you need systematic experimentation for growth - Growth Process, ICE Scoring, Must-Have Survey from Sean Ellis's Hacking Growth
+description: Provides systematic, data-driven growth experimentation using Growth Process, ICE Scoring, and Must-Have Survey from Sean Ellis's Hacking Growth. Use when prioritizing growth experiments, setting up a growth process, or measuring if your product is must-have. Triggers include "how do I grow faster", "which channel first", "growth experiments", "do I have product-market fit". Do NOT use for creating offers (use offer-creation), positioning (use uvp-optimization), product onboarding (use product-led-growth), or SaaS metrics (use saas-bootstrap).
+metadata:
+  author: Petr
+  version: 1.0.0
 ---
 
 # Growth Hacking

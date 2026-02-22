@@ -1,36 +1,23 @@
 # Aktuální stav práce
 
 ## Poslední session
-
-- **Datum:** 2026-02-14
+- **Datum:** 2026-02-22
 - **Branch:** main
 - **Dokončeno:**
-  - **Claude-pilot inspired enforcement hooks** (inspirace z maxritter/claude-pilot)
-  - **4 nové hook skripty** v `~/.claude/hooks/`:
-    - `plan-utils.sh` — shared utilities pro plan-aware hooks
-    - `context-monitor.sh` — tool call tracking (120/170/220 thresholds)
-    - `tdd-enforcer.sh` — detekce chybějících testů po Write/Edit
-    - `notify.sh` — macOS notifikace (osascript + Glass sound)
-  - **2 upravené hooky**: `stop-verify.sh` (plan-aware stop guard), `drift-detection.sh` (plan-utils integrace)
-  - **3 noví agenti** v `~/.claude/agents/`:
-    - `plan-challenger.md` — adversarial plan review
-    - `compliance-reviewer.md` — kód vs plán
-    - `quality-reviewer.md` — kvalita kódu + TDD
-  - **3 updatnuté skills**: planning (YAML frontmatter lifecycle), development-workflow (dual review), workflow-optimization (options J-O)
-  - **settings.json** updatnutý s novými hooky (12 PostToolUse, 4 SessionEnd)
-  - Commit `4ad7027`, pushed + cache updatnutý
-- **Rozděláno:** Žádné
-- **Další krok:** Žádný specifický
+  - **Anthropic Skills Guide audit — všech 59 skills aktualizováno:**
+    - Descriptions: nový formát `[What] + [When/triggers] + [NOT when]` (Anthropic guide pattern)
+    - Metadata: `author: Petr` + `version: 1.0.0` přidáno ke všem 59 skills
+    - web-copy split: 6088 → 1755 slov, detaily do `references/` (3 soubory)
+  - **Inbox zpracován:** 7 položek (picobot, OpenClaw, approval fatigue, console.log, Anthropic guide, MCP code execution)
+  - **Memory uložena:** `anthropic-skills-guide.md` — principy pro budoucí skills
+  - **Claude Code cache aktualizován** pro všech 10 pluginů
+- **Rozděláno:** Změny NEJSOU commitnuté ani pushnuté
+- **Další krok:** `git add` + commit + push do GitHub, update Claude Code cache na dalších strojích
 
 ## Otevřené otázky
-
-- Žádné
+- Plán `2026-02-22-semantic-memory.md` (status: pending, 0/6) — nesouvisí s touto session
 
 ## Poznámky pro další session
-
-- Hooks jsou mimo git repo (~/.claude/hooks/) — spravovat ručně
-- Plan lifecycle: pending → in_progress → complete → verified (YAML frontmatter)
-- Deep review odhalil 4 CRITICAL + 7 WARNING bugů PŘED implementací — všechny opraveny
-- Klíčový fix: `status` je readonly v zsh → přejmenováno na `plan_status`
-- Context monitor funguje přes /tmp/claude-context-counter (static path, bez PID)
-- Stop guard escape hatch: dvojitý stop do 60s → approve
+- Anthropic guide principy: `~/.claude/projects/-Users-petrogurcak-Projects-skills/memory/anthropic-skills-guide.md`
+- web-copy references: `plugins/copywriting/skills/web-copy/references/` (3 soubory)
+- 6 background agentů editovalo frontmatter paralelně — výsledek ověřen (59/59 OK)
