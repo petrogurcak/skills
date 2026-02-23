@@ -1,6 +1,6 @@
 ---
 name: copywriting-orchestrator
-description: Detects content type and routes to the right specialized copywriting skill (instagram-content, web-copy, product-copy, newsletter). Use when the user asks for copy but it is unclear which specialist to use, or for multi-channel campaigns spanning several formats. Trigger phrases: "write copy for", "help me with copywriting", "product launch campaign", "I need marketing text". Do NOT use when you already know the exact medium — call the specialist skill directly instead.
+description: Detects content type and routes to the right specialized copywriting skill (instagram-content, web-copy, product-copy, newsletter, storytelling). Use when the user asks for copy but it is unclear which specialist to use, or for multi-channel campaigns spanning several formats. Trigger phrases - "write copy for", "help me with copywriting", "product launch campaign", "I need marketing text", "make it more compelling", "tell a story". Do NOT use when you already know the exact medium — call the specialist skill directly instead.
 metadata:
   author: Petr
   version: 1.0.0
@@ -47,6 +47,7 @@ The conductor doesn't play instruments, but coordinates who plays when.
 | `homepage`, `web`, `landing`, `about us`, `sales page`, `website` | Web Copy      | `web-copy`          |
 | `produkt`, `e-shop`, `product description`, `e-commerce`, `popis` | Product Copy  | `product-copy`      |
 | `email`, `newsletter`, `mailing`, `campaign`, `sequence`          | Email         | `newsletter`        |
+| `story`, `narrative`, `compelling`, `pitch deck`, `founder story` | Storytelling  | `storytelling`      |
 
 ### Step 2: Context Clues
 
@@ -97,8 +98,11 @@ copywriting-orchestrator
         ├── product-copy
         │   └── 7-step framework, Type A/B products
         │
-        └── newsletter
-            └── 9-step email anatomy, subject lines
+        ├── newsletter
+        │   └── 9-step email anatomy, subject lines
+        │
+        └── storytelling
+            └── ABT, SB7, Strategic Narrative, Sparkline, SUCCESs
 ```
 
 ### Shared Resources (loaded by specialists):
@@ -213,6 +217,7 @@ digraph copywriting_flow {
 | Website/Landing  | `web-copy`          | Blueprint, Triáda, PROTTO |
 | E-shop Products  | `product-copy`      | 7-step, Type A/B          |
 | Email/Newsletter | `newsletter`        | 9-step anatomy            |
+| Story/Narrative  | `storytelling`      | ABT, SB7, Sparkline       |
 
 ## Common Mistakes
 
@@ -241,3 +246,4 @@ If specialist needs input from another (e.g., UVP for web copy), orchestrator co
 - Instagram hooks can inform email subject lines
 - Product copy microbenefits can become web headlines
 - Newsletter CTAs follow same principles as web CTAs
+- Storytelling frameworks enhance ALL content types — apply ABT everywhere, SB7 for LPs, Strategic Narrative for decks
