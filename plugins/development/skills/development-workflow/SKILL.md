@@ -170,7 +170,7 @@ Use Skill tool: superpowers:executing-plans
 
 - Loads plan, executes 3 tasks per batch
 - Reports between batches, waits for feedback
-- Includes finishing-branch at the end
+- After completion → Phase 3 (security review + finish branch)
 
 **C) Subagent-Driven:**
 
@@ -182,7 +182,7 @@ Use Skill tool: superpowers:subagent-driven-development
 - Fresh subagent per task
 - Auto code review after each task
 - Continuous progress without human-in-loop
-- Includes finishing-branch at the end
+- After completion → Phase 3 (security review + finish branch)
 
 **D) Agent Team:**
 
@@ -195,7 +195,7 @@ Use Skill tool: development:agent-team-development
 - Each teammate owns a module (separate files)
 - Reviewer teammate validates continuously
 - Lead coordinates via shared task list
-- Includes finishing-branch at the end
+- After completion → Phase 3 (security review + finish branch)
 
 **Step 4: Verify (for Manual TDD only)**
 
@@ -211,13 +211,11 @@ Note: Options B, C, and D include verification in their workflows.
 
 ### Phase 3: Finalize
 
-**For Manual TDD (option A) only:**
+**Step 1: Code Review (Manual TDD only)**
 
-Options B, C, and D include finalization in their workflows. For Manual TDD:
+Options B, C, and D include code review in their workflows. For Manual TDD (option A):
 
-**1. Code Review (Dual):**
-
-Launch TWO review agents in parallel for comprehensive coverage:
+Launch review agents in parallel:
 
 a) **Compliance Review** (code vs plan):
 
@@ -234,13 +232,8 @@ b) **Quality Review** (code quality):
 Use quality-reviewer agent to review [changed files]
 ```
 
-- TDD compliance, error handling, security
+- TDD compliance, error handling
 - Independent of plan — focuses on code itself
-
-c) **Process findings:**
-
-- If either returns CRITICAL → fix and re-review (max 3 iterations)
-- Both must APPROVE before proceeding to merge
 
 **Fallback:** If no plan file exists, use single review:
 
@@ -249,7 +242,25 @@ Announce: "I'm using superpowers:requesting-code-review"
 Use Skill tool: superpowers:requesting-code-review
 ```
 
-**2. Finish Branch:**
+**Step 2: Security Review (ALL options A/B/C/D)**
+
+MANDATORY for all execution strategies, after code review passes:
+
+```
+Announce: "I'm using review:security-review for security audit."
+Use Skill tool: review:security-review
+```
+
+- SQL injection, XSS, CSRF, broken auth
+- Sensitive data exposure, access control
+- Runs on all changed files in the branch (`git diff main...HEAD`)
+
+**Process findings (code review + security):**
+
+- If any review returns CRITICAL → fix and re-review (max 3 iterations)
+- All must APPROVE before proceeding to finish
+
+**Step 3: Finish Branch (ALL options A/B/C/D)**
 
 ```
 Announce: "I'm using superpowers:finishing-a-development-branch"
@@ -313,18 +324,20 @@ User: "Implement feature X"
  Manual Batch Sub  Agent
   TDD  Exec  agent Team
     │    │    │    │
-    │    │    │    └──→ [auto: parallel + review + finish]
-    │    │    └──→ [auto: review + finish]
-    │    └───────→ [auto: review + finish]
+    │    │    │    └──→ [auto: parallel + review]
+    │    │    └──→ [auto: review]
+    │    └───────→ [auto: review]
     │
     ▼
  [Framework skill]
  [Verify]
+ [Code Review]
     │
-    ▼
+    ▼◄──── B,C,D rejoin here
+    │
  [Phase 3: Finalize]
- code-review
- finishing-branch
+ security-review (ALL)
+ finishing-branch (ALL)
     │
     ▼
  [Phase 4: Session Context]
@@ -359,6 +372,7 @@ This skill orchestrates superpowers skills:
 | 2     | subagent-driven-development    | Fast iteration (option C)     |
 | 2     | agent-team-development         | Parallel execution (option D) |
 | 3     | requesting-code-review         | Quality gate                  |
+| 3     | security-review                | OWASP Top 10 audit            |
 | 3     | finishing-a-development-branch | Git completion                |
 | 4     | session-context                | Save progress & decisions     |
 
@@ -422,7 +436,7 @@ Superpowers (Support Layer)
 1. **Detect** → Check for existing plan, redirect if bug
 2. **Design** → Brainstorm + Plan (skip if plan exists)
 3. **Implement** → ASK execution strategy (Manual/Batch/Subagent/Agent Team)
-4. **Finalize** → Review + Finish (auto for B/C/D, manual for A)
+4. **Finalize** → Code review (auto for B/C/D, manual for A) + Security review (ALL) + Finish (ALL)
 5. **Context** → Update session context + log decisions
 
 **This skill orchestrates, other skills execute.**

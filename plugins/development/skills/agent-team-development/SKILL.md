@@ -210,7 +210,12 @@ When all tasks are complete and approved:
 
 1. Lead runs full test suite to verify integration
 2. Lead checks for any cross-module issues
-3. Use `superpowers:finishing-a-development-branch` to complete
+3. Lead runs security review on all changed files:
+   ```
+   Announce: "I'm using review:security-review for security audit."
+   Use Skill tool: review:security-review
+   ```
+4. Use `superpowers:finishing-a-development-branch` to complete
 
 ### 6. Cleanup
 
