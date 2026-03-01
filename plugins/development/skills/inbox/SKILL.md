@@ -1,14 +1,14 @@
 ---
 name: inbox
-description: Fetches and processes items queued from mobile via email (articles, GitHub repos, links). Use when user says "inbox", "zkontroluj inbox", "check inbox", "co je noveho", or at session start to review new items. NOT for general email management or reading unrelated emails.
+description: Fetches and processes items queued from mobile via email (articles, GitHub repos, links, newsletters). Use when user says "inbox", "zkontroluj inbox", "check inbox", "co je noveho", or at session start to review new items. NOT for general email management or reading unrelated emails.
 metadata:
   author: Petr
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Inbox — Mobile-to-Claude Queue
 
-Process items sent from mobile via email. Articles, GitHub repos, links — anything worth reviewing.
+Process items sent from mobile via email. Articles, GitHub repos, links, newsletters — anything worth reviewing.
 
 ## Process
 
@@ -23,16 +23,57 @@ python3 ~/.claude/scripts/inbox-fetch.py
 Read `~/.claude/inbox/queue.json` and show summary:
 
 ```
-Inbox: X novych polozek
+Inbox: X novych polozek (Y articles, Z newsletters)
 
 1. [subject] — 2 URLs
-2. [subject] — text (1200 znaku)
+2. [subject] — newsletter (15 URLs)
 3. [subject] — 1 URL + poznamka
 ```
 
-### 3. Process each item
+### 3. Classify each item
 
-For each item, based on content type:
+Before processing, classify each item:
+
+**Newsletter detection** — item is a newsletter if ANY of:
+
+- Body > 500 chars AND 3+ URLs
+- Subject contains: newsletter, weekly, digest, roundup, briefing, issue #, issue No
+- Known newsletter sender (learn from past items)
+- Multiple distinct article links with short descriptions
+
+**Regular items** — everything else (single article, repo, pasted text, note)
+
+### 4. Process newsletters (AUTO-FILTER MODE)
+
+Newsletters do NOT use the interactive per-item flow. Instead:
+
+1. Read `~/.claude/NOW.md` for current projects, interests, and queue
+2. Read the newsletter body in full
+3. For links that look relevant, fetch them (WebFetch) to verify
+4. **Filter ruthlessly** using these criteria:
+   - Directly relevant to our active projects (menu-editor, shiftstreak, hr, erp, agents, skills)
+   - Relevant to our tech stack (Nette, PHP, Python, Expo, React Native, Flutter, Claude API)
+   - Relevant to our interests (SaaS, AI agents, gastro tech, automation, productivity)
+   - Genuinely novel insight or pattern (not rehashed advice)
+5. **Kill:** SEO spam, AI hype without substance, "10 things" listicles, product announcements for tools we don't use, generic tutorials
+6. Output a brief:
+
+```
+Newsletter: [name/subject]
+
+Relevantni:
+- [Title](url) — 1-2 sentence why it matters for us
+- [Title](url) — 1-2 sentence why it matters for us
+
+Zbytek (X items): skip — [one-line reason, e.g. "generic AI news, nothing actionable"]
+```
+
+7. Ask user: "Chces neco z toho rozebrat vic, nebo je brief dostatecny?"
+8. Mark as processed
+
+### 5. Process regular items (INTERACTIVE MODE)
+
+For each non-newsletter item, based on content type:
 
 **URL to article/blog:**
 
@@ -57,7 +98,7 @@ For each item, based on content type:
 - The subject line is the user's context/question
 - Process the URL with that question in mind
 
-### 4. After processing each item
+### 6. After processing each regular item
 
 Ask user what to do:
 
@@ -67,7 +108,7 @@ Ask user what to do:
 
 Update item status in queue.json to "processed" when done.
 
-### 5. Cleanup
+### 7. Cleanup
 
 After all items processed:
 
@@ -103,6 +144,7 @@ python3 ~/.claude/scripts/inbox-fetch.py --clear
    }
    ```
 4. Test: `python3 ~/.claude/scripts/inbox-fetch.py`
+5. Subscribe to newsletters using `claudecode@etapa20.cz`
 
 ## Commands
 
