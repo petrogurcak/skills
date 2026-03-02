@@ -10,7 +10,7 @@ metadata:
 
 Orchestrate all post-execution phases. One command to go from "done coding" to "merged and wrapped up".
 
-**Announce:** "Spoustim finish - verify, demo, merge, wrapup."
+**Announce:** "Spoustim finish - verify, demo, merge, QA kroky, wrapup."
 
 ## When to Use
 
@@ -25,6 +25,7 @@ Orchestrate all post-execution phases. One command to go from "done coding" to "
   ├─ Phase 5:  Verify    → tests, build, lint, plan checklist, browser smoke
   ├─ Phase 5b: Demo      → executable demo document (optional)
   ├─ Phase 6:  Merge     → commit, merge to development, cleanup
+  ├─ Phase 6b: QA Steps  → automatic manual testing checklist
   └─ Phase 7:  Wrapup    → context, mistakes, lessons, docs
 ```
 
@@ -68,6 +69,61 @@ Run full verification suite:
 
 **Gate:** Merge + verification on development must succeed.
 
+### Phase 6b: QA Steps (automatic)
+
+**No asking — always generate after successful merge.**
+
+Generate practical manual testing steps based on:
+
+1. **Read the plan** — `docs/plans/*.md` or `~/.claude/plans/*.md` for the feature
+2. **Read the diff** — `git log development --oneline -5` + `git diff HEAD~1..HEAD --stat` to see what changed
+3. **Read ARCHITECTURE.md** — for app URLs, ports, access info
+
+**Output format:**
+
+```
+## Jak otestovat
+
+**Feature:** <co bylo implementovano>
+**Kde:** <URL / CLI command / app location>
+
+### Kroky
+
+1. <konkretni akce — klikni, otevri, zadej>
+   → Ocekavany vysledek: <co by se melo stat>
+
+2. <dalsi akce>
+   → Ocekavany vysledek: <...>
+
+3. ...
+
+### Edge cases
+
+- <co zkusit navic — prazdny input, refresh, jiny jazyk, mobilni pohled>
+
+### Regrese
+
+- <co overit ze se nerozbilo — existujici funkce ktere mohly byt dotcene>
+```
+
+**Rules for QA steps:**
+
+- **Max 5-8 kroků** — hlavní happy path, ne exhaustivni test suite
+- **Konkrétní** — "klikni na 'Uložit'" ne "otestuj uložení"
+- **Včetně URL/portu** — "otevři http://localhost:5173/settings"
+- **Edge cases** — 2-3 důležité, ne každý možný
+- **Regrese** — jen pokud diff ukazuje změny v sdíleném kódu
+- **Jazyk** — česky (matching user preference)
+
+**Save to file:** `docs/qa/YYYY-MM-DD-<feature-name>.md`
+
+```bash
+mkdir -p docs/qa
+# Write QA steps to file
+```
+
+**Also output to terminal** — user sees it immediately without opening a file.
+
 ### Phase 7: Wrapup
 
 **Invoke:** `development:wrapup`
@@ -84,6 +140,7 @@ Finish kompletni:
 - Verify: PASS (testy X/X, build OK, lint OK)
 - Demo: [vytvoreno: docs/demos/... / preskoceno]
 - Merge: <branch> merged do development, branch smazan
+- QA kroky: docs/qa/YYYY-MM-DD-<feature>.md (X kroku, Y edge cases)
 - Wrapup: kontext ulozen, [mistakes/lessons: zadne | zapsano]
 
 Hotovo.
