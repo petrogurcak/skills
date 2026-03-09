@@ -51,7 +51,36 @@ Use this skill for ALL modern frontend development with:
 
 ## Core Workflows
 
-### Workflow 1: Tailwind Layout & Styling
+### Workflow 1: Visual Design & Logic (Gemini 3.1)
+
+**Use for:** Turning sketches, diagrams, or flow charts into interactive Alpine.js components.
+
+**MANDATORY CHECKLIST:**
+
+```
+[1] MANDATORY: Analyze visual input FIRST
+    - Upload sketch/diagram.
+    - Ask Gemini to map visual flow to x-data state machine.
+
+[2] Logic-to-UI (Alpine Machine):
+    - Use x-data="{ step: 1, totalSteps: 3 }" for wizard flows.
+    - x-show="step === N" for conditional rendering of steps.
+    - Ensure 'Next' buttons validate state before incrementing 'step'.
+
+[3] Interactive SVGs (Alpine controlled):
+    - Use @mousemove to update CSS variables for parallax (e.g., --mouse-x).
+    - SVG elements use style="transform: translate(calc(var(--mouse-x) * 1px), ...)"
+    - Security: STRIP all <script> tags from SVGs.
+    - Accessibility: Include <title>, role="img", and aria-label.
+
+[4] VERIFY Interactivity:
+    ✓ UI transitions correctly between steps.
+    ✓ SVG effects are performant and accessible.
+```
+
+---
+
+## Workflow 2: Tailwind Layout & Styling
 
 **Use for:** Any layout or styling with Tailwind CSS
 

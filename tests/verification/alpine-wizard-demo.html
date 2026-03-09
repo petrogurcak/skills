@@ -1,0 +1,120 @@
+<!-- 
+  Verification: Alpine.js Mortgage Wizard 
+  Patterns used: frontend-app Workflow 1 (Logic-to-UI Alpine Machine)
+  Features: x-data state machine, x-show conditional rendering, validation, x-transition
+-->
+<div
+  x-data="{
+    step: 1,
+    totalSteps: 3,
+    formData: {
+      name: '',
+      amount: 5000000,
+      term: 30
+    },
+    get isStep1Valid() {
+      return this.formData.name.length > 2;
+    },
+    get isStep2Valid() {
+      return this.formData.amount >= 100000 && this.formData.amount <= 20000000;
+    },
+    nextStep() {
+      if (this.step === 1 && this.isStep1Valid) this.step++;
+      else if (this.step === 2 && this.isStep2Valid) this.step++;
+    },
+    prevStep() {
+      if (this.step > 1) this.step--;
+    },
+    submitForm() {
+      alert('Odesláno pro: ' + this.formData.name + ' na částku ' + this.formData.amount + ' Kč');
+    }
+  }"
+  class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg border border-zinc-200 font-sans"
+>
+  <!-- Progress Bar -->
+  <div class="mb-8">
+    <div class="flex justify-between mb-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+      <span x-text="'Krok ' + step + ' z ' + totalSteps"></span>
+      <span x-text="Math.round((step/totalSteps)*100) + '% hotovo'"></span>
+    </div>
+    <div class="h-2 w-full bg-zinc-100 rounded-full overflow-hidden">
+      <div 
+        class="h-full bg-blue-600 transition-all duration-500" 
+        :style="'width: ' + (step/totalSteps)*100 + '%'"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Step 1: Personal Info -->
+  <div x-show="step === 1" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4">
+    <h2 class="text-xl font-bold mb-4">Osobní údaje</h2>
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-zinc-700 mb-1">Celé jméno</label>
+        <input 
+          type="text" 
+          x-model="formData.name" 
+          placeholder="Jan Novák"
+          class="w-full p-2 border border-zinc-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Mortgage Details -->
+  <div x-show="step === 2" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4">
+    <h2 class="text-xl font-bold mb-4">Výše hypotéky</h2>
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-zinc-700 mb-1" x-text="'Částka: ' + Number(formData.amount).toLocaleString() + ' Kč'"></label>
+        <input 
+          type="range" 
+          x-model="formData.amount" 
+          min="100000" 
+          max="20000000" 
+          step="100000"
+          class="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Summary -->
+  <div x-show="step === 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4">
+    <h2 class="text-xl font-bold mb-4">Souhrn žádosti</h2>
+    <div class="bg-zinc-50 p-4 rounded-lg space-y-2 text-sm">
+      <p><strong>Jméno:</strong> <span x-text="formData.name"></span></p>
+      <p><strong>Výše hypotéky:</strong> <span x-text="Number(formData.amount).toLocaleString() + ' Kč'"></span></p>
+      <p><strong>Doba splácení:</strong> <span x-text="formData.term + ' let'"></span></p>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="mt-8 flex justify-between gap-4">
+    <button 
+      @click="prevStep" 
+      x-show="step > 1"
+      class="px-4 py-2 text-zinc-600 hover:bg-zinc-100 rounded-md transition-colors"
+    >
+      Zpět
+    </button>
+    <div class="flex-1"></div>
+    
+    <button 
+      x-show="step < totalSteps"
+      @click="nextStep"
+      :disabled="(step === 1 && !isStep1Valid) || (step === 2 && !isStep2Valid)"
+      class="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-zinc-300 disabled:cursor-not-allowed transition-all"
+    >
+      Pokračovat
+    </button>
+
+    <button 
+      x-show="step === totalSteps"
+      @click="submitForm"
+      class="w-full sm:w-auto px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all"
+    >
+      Odeslat žádost
+    </button>
+  </div>
+</div>

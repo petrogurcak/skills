@@ -1335,6 +1335,33 @@ initBottomCTA();
 
 ---
 
+## Practice #76: Gemini 3.1 Advanced Interaction Prompts
+
+**Use for:** Generating premium micro-interactions, complex dashboards, and logic-driven UI directly from Gemini 3.1 Pro.
+
+### 1. Interactive Animated SVGs (Premium Feeling)
+**Prompt (EN):**
+> Generate a pure SVG code for an interactive 3D-looking credit card. When I hover over it, the card should tilt slightly (parallax effect), and the holographic logo in the corner should shimmer. Keep the file size under 50kb.
+> **Constraint:** Use CSS variables for mouse position and MUST include <title>, <desc>, and role="img" for A11y. STRIP all <script> tags.
+
+### 2. Logic-to-UI (Wizard from Diagram)
+**Prompt (EN):**
+> [Attach logic flow / FigJam diagram]
+> Build a multi-step 'Wizard' UI in React (or Alpine.js) that follows this exact decision tree. Include a progress bar at the top and ensure the 'Next' button is disabled until all required fields on a page are filled.
+> **Constraint:** Use Framer Motion (React) or x-transition (Alpine) for step transitions. Ensure focus-management between steps.
+
+### 3. Dynamic Data Visualization (Telemetry Dashboard)
+**Prompt (EN):**
+> Design a real-time telemetry dashboard for [Project Name]. Use a dark theme with neon-blue accents. Create a central map visualization and three sidebar widgets for key metrics. Use mock JSON data to simulate the live feed.
+> **Constraint:** Use Tailwind CSS for layout and D3.js or pure SVG for charts. Ensure mobile responsiveness.
+
+### 4. Visual-to-Code (Sketch to Prototype)
+**Prompt (EN):**
+> [Attach hand-drawn sketch]
+> Turn this sketch into a high-fidelity landing page for [Brand Name]. The vibe should be [Describe Vibe: e.g., moody, minimalist, playful]. Translate the layout accurately but use modern UI components (shadcn/ui style).
+
+---
+
 ## Summary
 
 **5 Micro-Interaction Practices:**

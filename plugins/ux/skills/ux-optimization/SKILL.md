@@ -76,6 +76,8 @@ You MUST complete each phase before proceeding to the next.
    - Heatmaps (Hotjar, Clarity) - where do they click?
    - Session recordings - what do they do?
    - Form analytics (Zuko) - which fields cause abandonment?
+   - **Gemini Vision Diagnosis:** Upload screenshots of heatmaps/recordings.
+   - **MANDATORY: Anonymize screenshots (remove PII) before uploading.**
 
 2. **Identify Symptoms**
 

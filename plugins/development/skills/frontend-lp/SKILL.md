@@ -146,7 +146,34 @@ Do NOT use for:
 
 ---
 
-## Workflow 2: Landing Page Layout
+## Workflow 2: Visual Design Prompting (Gemini 3.1)
+
+**Use for:** Turning sketches, wireframes, or logic diagrams into code prototypes.
+
+**MANDATORY CHECKLIST:**
+
+```
+[1] MANDATORY: Analyze the visual input FIRST
+    - Upload sketch, FigJam diagram, or lo-fi wireframe.
+    - Ask Gemini to identify: Layout structure, Key sections, CTA placement.
+
+[2] Set the Visual "Feeling":
+    - Describe the vibe (e.g., "moody, Victorian, but modern").
+    - Specify: Color palette (e.g., "deep charcoals"), Fonts (serif/sans), Motion effects.
+
+[3] Logic-to-UI (Wizard Pattern):
+    - If uploading a logic flow → build a multi-step 'Wizard' in React.
+    - MUST include: Progress bar, 'Next' button validation, Framer Motion transitions (AnimatePresence).
+
+[4] VERIFY Visual Prototype:
+    ✓ Layout matches the sketch/diagram.
+    ✓ Component styling follows the described "feeling".
+    ✓ Interactive elements (buttons, inputs) work as expected.
+```
+
+---
+
+## Workflow 3: Landing Page Layout
 
 **Use for:** Building the complete landing page section by section
 
@@ -177,6 +204,7 @@ Do NOT use for:
     - Optional: secondary CTA (variant="outline")
     - Background: Magic UI component (Particles, Grid Pattern, Dot Pattern)
     - Animated entrance (Framer Motion fade-in + slide-up)
+    - Visual Prompting: Use Gemini 3.1 to translate "feeling" into Tailwind choices.
 
 [4] Implement Features section:
     - Section heading + description
@@ -184,32 +212,38 @@ Do NOT use for:
     - Feature cards with icons, title, description
     - Responsive: 1 col mobile, 2 cols tablet, 3-4 cols desktop
 
-[5] Implement Social Proof section:
+[5] Implement Logic-to-UI Wizard (if needed):
+    - Map diagram steps to React components.
+    - Use Framer Motion for step transitions (AnimatePresence).
+    - Manage state with React 'useState' or 'useReducer'.
+    - Accessibility: Ensure focus management between steps (aria-live).
+
+[6] Implement Social Proof section:
     - Logo marquee (Magic UI Marquee for client logos)
     - Testimonial cards (shadcn Card)
     - Stats/numbers (Magic UI NumberTicker for animated counters)
     - Trust badges
 
-[6] Implement Pricing section:
+[7] Implement Pricing section:
     - Pricing cards (shadcn Card with Badge for "Popular")
     - Feature comparison list
     - CTA button per tier
     - Monthly/yearly toggle (shadcn Switch or Tabs)
     - Highlight recommended tier (ring-2 ring-primary)
 
-[7] Implement CTA section:
+[8] Implement CTA section:
     - Compelling headline
     - Single focused action
     - Optional: urgency element (limited time, spots left)
     - Background contrast (bg-primary text-primary-foreground)
 
-[8] Implement Footer:
+[9] Implement Footer:
     - Link columns (Product, Company, Resources, Legal)
     - Social media links
     - Copyright
     - Responsive grid: stacked on mobile, columns on desktop
 
-[9] VERIFY layout:
+[10] VERIFY layout:
     ✓ All sections render correctly
     ✓ Responsive on mobile, tablet, desktop
     ✓ Navigation works (scroll to section)
@@ -351,6 +385,21 @@ Component type?
 │  └─ NO: static, no animations
 └─ Navigation
    └─ NO: functional only (smooth scroll, backdrop blur)
+├─ Custom Interactive Effect (e.g., tilting card)
+│  └─ USE: Interactive SVG pattern
+
+**Interactive SVG Pattern (Gemini 3.1):**
+
+```
+Rules for generating code-based SVG animations:
+[1] Pure SVG code: No external JS unless using Framer Motion for control.
+[2] Parallax/Tilting: Use CSS transform-style: preserve-3d and perspective.
+[3] Shimmer/Holographic: Use SVG filters (feSpecularLighting, feComposite) + CSS animations.
+[4] Security: STRIP all <script> tags from generated SVGs.
+[5] Accessibility: MUST include <title>, <desc>, and role="img" on the <svg> tag.
+[6] Mobile Fallback: Ensure interactivity is not purely hover-based (use tap-to-trigger).
+[7] Performance: Keep file size < 50kb per SVG.
+```
 ```
 
 **Magic UI Component Reference:**

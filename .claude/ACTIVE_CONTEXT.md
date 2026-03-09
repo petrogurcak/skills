@@ -1,23 +1,30 @@
-# Aktuální stav práce
+# Aktualni stav prace
 
-## Poslední session
-- **Datum:** 2026-02-22
+## Posledni session
+
+- **Datum:** 2026-03-03
 - **Branch:** main
-- **Dokončeno:**
-  - **Anthropic Skills Guide audit — všech 59 skills aktualizováno:**
-    - Descriptions: nový formát `[What] + [When/triggers] + [NOT when]` (Anthropic guide pattern)
-    - Metadata: `author: Petr` + `version: 1.0.0` přidáno ke všem 59 skills
-    - web-copy split: 6088 → 1755 slov, detaily do `references/` (3 soubory)
-  - **Inbox zpracován:** 7 položek (picobot, OpenClaw, approval fatigue, console.log, Anthropic guide, MCP code execution)
-  - **Memory uložena:** `anthropic-skills-guide.md` — principy pro budoucí skills
-  - **Claude Code cache aktualizován** pro všech 10 pluginů
-- **Rozděláno:** Změny NEJSOU commitnuté ani pushnuté
-- **Další krok:** `git add` + commit + push do GitHub, update Claude Code cache na dalších strojích
+- **Dokonceno:**
+  - **Stop hook upraven:** Odstranen plan guard (blokoval stop kvuli planum z jinych sessions). Ponechana verification gate (testy/lint pred stopem).
+  - **Worktree pravidlo v CLAUDE.md:** Pridano globalni pravidlo — nabizet worktree pri branchingu, subagent dispatch, a teamech. Resi file conflicts mezi paralelnimi sessions.
+  - **Novy skill `ux:ui`:** Kombinuje UX + copywriting pro UI praci. Thin orchestrator — Phase 1 understand, Phase 2 UX analysis (vola ux-orchestrator), Phase 3 copy (vola copywriting-orchestrator), Phase 4 integration check.
+- **Skills count:** 50 skills v 9 pluginech (z 49)
 
-## Otevřené otázky
-- Plán `2026-02-22-semantic-memory.md` (status: pending, 0/6) — nesouvisí s touto session
+## Poznamky pro dalsi session
 
-## Poznámky pro další session
-- Anthropic guide principy: `~/.claude/projects/-Users-petrogurcak-Projects-skills/memory/anthropic-skills-guide.md`
-- web-copy references: `plugins/copywriting/skills/web-copy/references/` (3 soubory)
-- 6 background agentů editovalo frontmatter paralelně — výsledek ověřen (59/59 OK)
+- **Cowork symlinky:** `ui` symlink vytvoren. Stale chybi 5 starych (4 z 2026-02-27 + sentry-fix).
+- **Push pending:** Commit `6f8624c` (sentry-fix) + dnesni zmeny jeste nepushnuto.
+- **Sentry fix agent:** Bezi 3 dny, overit logy.
+
+## Dalsi kroky
+
+### Priorita 1 — Okamzite
+
+1. **Push vsechny zmeny** + update Claude Code cache
+2. **Cowork symlinky** pro zbylych 5 skills
+3. **Overit sentry-fix logy** po 3 dnech behu
+
+### Priorita 2 — Pristi tyden
+
+4. **Event-driven skill activation** — `docs/plans/2026-02-27-event-driven-skill-activation.md`
+5. **Nahradit slabe brand-advisor zdroje** (Creative Bloq, UnderConsideration)

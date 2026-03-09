@@ -4,6 +4,33 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-02-28: Sentry Auto-Fix Agent — bash poller + headless claude -p
+
+**Kontext:** Chceme automaticky detekovat a opravovat Sentry issues bez lidske intervence.
+**Rozhodnuti:** Bash poller (launchd, 2 min) → curl Sentry API → python3 JSON parser → `claude -p` headless per issue s Sentry MCP. State management pres flat files (last-check.txt, processed.txt, lockfile). Safety: $1 budget, 10 min timeout, 1 concurrent agent, only development branch.
+**Alternativy:** 1) Sentry webhook → server (slozita infra), 2) Cron s custom fixovacim skriptem (mene flexibilni nez LLM), 3) GitHub Actions triggered by Sentry (externi dependency)
+**Duvod:** Bash poller je nejjednodussi autonomni loop. `claude -p` s MCP je plne schopny investigovat stacktrace, cist kod, fixovat, testovat. Flat file state = zero dependencies. Lockfile = bezpecna serialization.
+
+---
+
+## 2026-02-25: AGENT.md pattern pro dual-CLI (Claude Code + Gemini CLI)
+
+**Kontext:** Chteli jsme stridat Claude Code a Gemini CLI na stejnych projektech se sdilenou konfiguraci.
+**Rozhodnuti:** AGENT.md jako single source of truth pro project instructions. CLAUDE.md a GEMINI.md jsou symlinky na AGENT.md. MCP servery sdilene pres sync-mcp.sh (YAML → .mcp.json + .gemini/settings.json).
+**Alternativy:** 1) Dve separatni konfigurace (duplikace), 2) Jen CLAUDE.md a Gemini ho cte primo (nefunguje — Gemini hleda GEMINI.md), 3) Copy script misto symlinku (out of sync risk)
+**Duvod:** Symlinky = zero-maintenance, zmena v AGENT.md se projevi vsude. Public repo `petrogurcak/dual-cli` jako template pro dalsi projekty.
+
+---
+
+## 2026-02-25: Learning Advisor — headless agent architektura
+
+**Kontext:** Potreba automaticky skenovat externi zdroje a navrhovat co se AI agenty maji naucit.
+**Rozhodnuti:** Headless `claude -p` agent s RSS-first scanning, 2 typy proposals (read/buy), approval workflow pres filesystem (pending → approved → archive). Sonnet model, domain-restricted WebFetch, max 50 turns.
+**Alternativy:** 1) Cron s custom skriptem (mene flexibilni), 2) MCP server (overkill), 3) Full autonomie bez approval (risk nekvalitních zmen)
+**Duvod:** `claude -p` je nejjednodussi forma headless agenta. Human-in-the-loop approval pres mv souboru = zero overhead. RSS-first = strukturovana data s daty, homepage fallback pro robustnost.
+
+---
+
 ## 2026-02-20: Nový plugin "product" pro product management skills
 
 **Kontext:** Potřeba PM skills pokrývajících celý product lifecycle - discovery, prioritizace, strategie, PMF, metriky
