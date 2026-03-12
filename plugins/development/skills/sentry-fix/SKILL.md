@@ -1,11 +1,21 @@
 ---
 name: sentry-fix
 description: Use when asked to fix Sentry issues, check Sentry errors, or auto-fix bugs from error monitoring. Fetches unresolved issues, investigates root cause, creates fix branch, tests, and merges.
+context: fork
+agent: general-purpose
 ---
 
 # Sentry Auto-Fix
 
 Fix Sentry issues interactively — investigate, branch, fix, test, merge, resolve.
+
+## Project Config (auto-injected)
+
+**Branch:** !`git branch --show-current`
+
+### Sentry projects
+
+!`cat ~/.claude/scripts/sentry-projects.yaml 2>/dev/null`
 
 ## Triggers
 
@@ -24,6 +34,7 @@ Use Sentry MCP to get unresolved issues:
 ```
 
 If no project specified, check all projects from config:
+
 ```bash
 cat ~/.claude/scripts/sentry-projects.yaml
 ```
@@ -32,8 +43,8 @@ cat ~/.claude/scripts/sentry-projects.yaml
 
 Show a table with:
 
-| # | Short ID | Project | Title | Events | Users | First Seen |
-|---|----------|---------|-------|--------|-------|------------|
+| #   | Short ID | Project | Title | Events | Users | First Seen |
+| --- | -------- | ------- | ----- | ------ | ----- | ---------- |
 
 Ask user: "Which issues to fix? (number, 'all', or 'skip')"
 
@@ -92,9 +103,9 @@ Use Sentry MCP to mark issue as resolved.
 ```markdown
 ## Sentry Fix Report — {date}
 
-| Issue | Project | Status | Root Cause |
-|-------|---------|--------|------------|
-| {SHORT_ID} | {project} | FIXED/SKIPPED/FAILED | {cause} |
+| Issue      | Project   | Status               | Root Cause |
+| ---------- | --------- | -------------------- | ---------- |
+| {SHORT_ID} | {project} | FIXED/SKIPPED/FAILED | {cause}    |
 
 Files modified: {count}
 Tests: {passed}/{total}
@@ -120,6 +131,7 @@ Tests: {passed}/{total}
 The same logic runs autonomously via `~/.claude/scripts/sentry-fix-poller.sh` (launchd, every 2 min). Config: `~/.claude/scripts/sentry-projects.yaml`.
 
 Management:
+
 ```bash
 # Check status
 launchctl list | grep sentry-fix

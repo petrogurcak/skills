@@ -12,6 +12,18 @@ Orchestrate all post-execution phases. One command to go from "done coding" to "
 
 **Announce:** "Spoustim finish - verify, demo, merge, QA kroky, wrapup."
 
+## Project State (auto-injected)
+
+**Branch:** !`git branch --show-current`
+
+### Latest plan
+
+!`ls -t docs/plans/*.md 2>/dev/null | head -1`
+
+### Uncommitted changes
+
+!`git diff --stat HEAD`
+
 ## When to Use
 
 - After all tasks from implementation plan are complete

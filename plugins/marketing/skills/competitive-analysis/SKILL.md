@@ -3,7 +3,9 @@ name: competitive-analysis
 description: Analyzes competitors systematically covering landscape mapping, messaging comparison, feature matrices, content gap analysis, positioning strategy, and battlecard creation. Use when entering a new market, comparing positioning against competitors, building feature comparison matrices, creating sales battlecards, identifying content gaps, or preparing competitive pitch slides. Trigger phrases include "who are my competitors", "competitive landscape", "feature comparison", "battlecard". NOT for defining your own value proposition (use uvp-optimization), creating offers (use offer-creation), setting pricing (use pricing), or writing copy (use web-copy).
 metadata:
   author: Petr
-  version: 1.0.0
+  version: 1.1.0
+context: fork
+agent: general-purpose
 ---
 
 # Competitive Analysis

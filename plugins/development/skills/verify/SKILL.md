@@ -12,13 +12,19 @@ Run full verification after plan execution. Evidence before claims.
 
 **Announce:** "Spoustim verifikaci."
 
+## Project State (auto-injected)
+
+**Branch:** !`git branch --show-current`
+
+### Latest plan
+
+!`ls -t docs/plans/*.md 2>/dev/null | head -1`
+
+### Git status
+
+!`git status --short`
+
 ## Process
-
-1. **Find the plan file:**
-
-   ```bash
-   ls -t docs/plans/*.md | head -1
-   ```
 
 2. **Run project verification suite** (detect stack automatically):
 

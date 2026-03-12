@@ -25,6 +25,22 @@ The conductor coordinates, musicians play.
 
 **Announce:** "I'm using deep-review to analyze your code changes."
 
+## Current Changes (auto-injected)
+
+**Branch:** !`git branch --show-current`
+
+### Staged changes
+
+!`git diff --cached --name-only`
+
+### Unstaged changes
+
+!`git diff --name-only`
+
+### Diff summary
+
+!`git diff HEAD --stat`
+
 ## When to Use
 
 **USE this skill:**
@@ -64,13 +80,9 @@ digraph deep_review_flow {
 
 ### Step 1: Scope Detection
 
-**If no argument:**
+Changed files are auto-injected above (staged + unstaged). Use them directly.
 
-```bash
-git diff --name-only  # Changed files
-```
-
-**If argument provided:**
+**If argument provided, narrow scope:**
 | Argument | Scope |
 |----------|-------|
 | `backend`, `api` | Server-side focus |
