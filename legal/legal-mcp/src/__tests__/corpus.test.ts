@@ -1,7 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { parseMarkdown, loadAnnotations, loadCorpus, type LawMeta } from "../corpus.js";
+import {
+  parseMarkdown,
+  loadAnnotations,
+  loadCorpus,
+  type LawMeta,
+} from "../corpus.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const fixtureDir = join(__dirname, "..", "..", "corpus", "test-fixture");
@@ -121,17 +126,20 @@ describe("loadCorpus", () => {
   it("attaches annotations to matching blocks", () => {
     const { blocks } = loadCorpus(corpusDir);
 
-    const para2 = blocks.find((b) => b.section === "§ 2");
+    // Find blocks specifically from the test-fixture law
+    const fixtureBlocks = blocks.filter((b) => b.lawNumber === "999/2026 Sb.");
+    const para2 = fixtureBlocks.find((b) => b.section === "§ 2");
     expect(para2?.annotation).toContain("flexinovela");
 
-    const art4 = blocks.find((b) => b.section === "Článek 4");
+    const art4 = fixtureBlocks.find((b) => b.section === "Článek 4");
     expect(art4?.annotation).toContain("DPIA");
   });
 
   it("blocks without annotations have no annotation field", () => {
     const { blocks } = loadCorpus(corpusDir);
 
-    const para1 = blocks.find((b) => b.section === "§ 1");
+    const fixtureBlocks = blocks.filter((b) => b.lawNumber === "999/2026 Sb.");
+    const para1 = fixtureBlocks.find((b) => b.section === "§ 1");
     expect(para1?.annotation).toBeUndefined();
   });
 
