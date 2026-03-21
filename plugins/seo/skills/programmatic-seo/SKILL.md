@@ -1,6 +1,6 @@
 ---
 name: programmatic-seo
-description: Builds and scales programmatic SEO — auto-generated landing pages from templates + structured data targeting thousands of long-tail keywords. Use when planning database-driven page generation (integration pages, comparison pages, city/location pages, template galleries, directory/aggregator pages), scaling organic traffic with repeatable patterns, or building product-led SEO experiences. Trigger phrases include "programmatic SEO", "pSEO", "auto-generate pages", "template pages at scale", "database-driven pages", "long-tail at scale". NOT for hand-written editorial content (use seo-optimization), keyword research phase (use keyword-research), fixing crawl/speed/indexing issues (use technical-seo), or optimizing for AI search engines (use ai-ready).
+description: Builds and scales programmatic SEO — auto-generated landing pages from templates + structured data targeting thousands of long-tail keywords. Use when planning database-driven page generation (integration pages, comparison pages, city/location pages, template galleries, directory/aggregator pages), scaling organic traffic with repeatable patterns, or building product-led SEO experiences. Trigger phrases include "programmatic SEO", "pSEO", "auto-generate pages", "template pages at scale", "database-driven pages", "long-tail at scale". NOT for hand-written editorial content (use on-page-seo), keyword research phase (use keyword-research), fixing crawl/speed/indexing issues (use technical-seo), or optimizing for AI search engines (use ai-ready).
 metadata:
   author: Petr
   version: 1.0.0
@@ -19,25 +19,25 @@ metadata:
 
 **When NOT to use:**
 
-- Writing individual editorial content or blog posts --> use `seo-optimization`
+- Writing individual editorial content or blog posts --> use `on-page-seo`
 - Keyword research and opportunity analysis --> use `keyword-research`
 - Fixing crawl errors, site speed, Core Web Vitals --> use `technical-seo`
 - Optimizing content for AI search (ChatGPT, Perplexity) --> use `ai-ready`
-- General on-page optimization for existing pages --> use `seo-optimization`
+- General on-page optimization for existing pages --> use `on-page-seo`
 
 ---
 
 ## Quick Router
 
-| User says... | Go to... |
-|---|---|
-| "should I do programmatic SEO?", "is pSEO right for us?" | Qualification Check |
-| "what type of pages?", "template ideas" | Playbook Types |
-| "how to implement", "build pSEO pages" | Implementation Workflow |
-| "data sources", "where to get data" | Data Enrichment Pipeline |
-| "avoid penalties", "Google safe?", "thin content" | Quality Gate |
-| "tech stack", "what tools" | Tech Stack Options |
-| "examples", "case studies", "who does this well" | Case Studies |
+| User says...                                             | Go to...                 |
+| -------------------------------------------------------- | ------------------------ |
+| "should I do programmatic SEO?", "is pSEO right for us?" | Qualification Check      |
+| "what type of pages?", "template ideas"                  | Playbook Types           |
+| "how to implement", "build pSEO pages"                   | Implementation Workflow  |
+| "data sources", "where to get data"                      | Data Enrichment Pipeline |
+| "avoid penalties", "Google safe?", "thin content"        | Quality Gate             |
+| "tech stack", "what tools"                               | Tech Stack Options       |
+| "examples", "case studies", "who does this well"         | Case Studies             |
 
 ---
 
@@ -45,15 +45,15 @@ metadata:
 
 Before building anything, answer these five questions. All must be YES.
 
-| # | Question | Requirement |
-|---|----------|-------------|
-| 1 | Do people search for your topic with variable modifiers? | e.g., "[tool A] + [tool B] integration", "[city] + [category]" |
-| 2 | Can you generate unique, valuable data per page? | Not just swapping city names in the same text |
-| 3 | Is total search volume worth the effort? | 1,000+ keyword variations with combined 10K+ monthly searches |
-| 4 | Can each page serve genuine user intent? | User finds what they need, not a doorway to your real product |
-| 5 | Do you have (or can you build) a structured dataset? | Database, API, scraped data, UGC, or proprietary data |
+| #   | Question                                                 | Requirement                                                    |
+| --- | -------------------------------------------------------- | -------------------------------------------------------------- |
+| 1   | Do people search for your topic with variable modifiers? | e.g., "[tool A] + [tool B] integration", "[city] + [category]" |
+| 2   | Can you generate unique, valuable data per page?         | Not just swapping city names in the same text                  |
+| 3   | Is total search volume worth the effort?                 | 1,000+ keyword variations with combined 10K+ monthly searches  |
+| 4   | Can each page serve genuine user intent?                 | User finds what they need, not a doorway to your real product  |
+| 5   | Do you have (or can you build) a structured dataset?     | Database, API, scraped data, UGC, or proprietary data          |
 
-**If any answer is NO:** Stop. Use editorial SEO via `seo-optimization` instead.
+**If any answer is NO:** Stop. Use editorial SEO via `on-page-seo` instead.
 
 **The core test (Eli Schwartz):** "The ideal Product-Led SEO strategy is programmatic and scalable, creates something new, and addresses untapped search demand." Your pSEO pages should be product experiences, not thin content wrappers.
 
@@ -69,14 +69,14 @@ Every pSEO project starts with this pattern:
 
 **Real examples:**
 
-| Company | Head Term | Modifier A | Modifier B | Pages |
-|---------|-----------|------------|------------|-------|
-| Wise | "convert" | currency A | currency B | 10K+ |
-| Zapier | "connect" | app A | app B | 50K+ |
-| TripAdvisor | "best" + category | city | -- | 7M+ |
-| NomadList | "live in" | city | -- | 2K+ |
-| G2 | "vs" | software A | software B | 100K+ |
-| Canva | template type | use case | -- | 100K+ |
+| Company     | Head Term         | Modifier A | Modifier B | Pages |
+| ----------- | ----------------- | ---------- | ---------- | ----- |
+| Wise        | "convert"         | currency A | currency B | 10K+  |
+| Zapier      | "connect"         | app A      | app B      | 50K+  |
+| TripAdvisor | "best" + category | city       | --         | 7M+   |
+| NomadList   | "live in"         | city       | --         | 2K+   |
+| G2          | "vs"              | software A | software B | 100K+ |
+| Canva       | template type     | use case   | --         | 100K+ |
 
 **Finding your pattern:** List every variable dimension your product touches. Cross-multiply. If the matrix produces 500+ unique combinations with search demand, you have a pSEO opportunity.
 
@@ -96,9 +96,16 @@ Every pSEO project starts with this pattern:
 
 **Pattern:** "[Product A] vs [Product B]" or "[Product] alternatives"
 **Example:** G2 -- 6M+ monthly organic, covers every B2B software category
-**Data needed:** Feature matrices, pricing, user ratings, screenshots
-**Why it works:** High commercial intent. Users are actively deciding between options.
-**Best for:** SaaS, review sites, marketplaces
+
+**For content strategy, schema markup, fairness guidelines, and conversion optimization → see `competitor-pages` skill.**
+
+This playbook covers the **programmatic scaling aspects** only:
+
+- **Data layer:** Competitor database with structured attributes (features, pricing, ratings, screenshots)
+- **Template infrastructure:** Shared template with dynamic feature matrix, conditional content blocks
+- **Unique editorial:** 200-400 words of unique per-page content (switching stories, use-case scenarios, unique G2/Capterra quotes)
+- **Quality gate:** Every page must provide distinctive value beyond template text
+- **Scaling limits:** Warning at 50+ pages, manual QA sample at each batch
 
 ### 3. Location / City Pages
 
@@ -161,14 +168,14 @@ Build your dataset. Every page needs enough unique data to avoid thin content.
 
 **Data sources by type:**
 
-| Source | Examples | Cost |
-|--------|----------|------|
-| APIs | Currency rates, weather, stock prices | Free-$$ |
-| Scraping | Product specs, pricing, reviews | Free (respect robots.txt) |
-| Public databases | Census, government data, open datasets | Free |
-| User-generated | Reviews, ratings, photos, Q&A | Requires user base |
-| Proprietary | Your product data, analytics, calculations | Your competitive moat |
-| AI-generated | Descriptions, analysis, summaries | API costs |
+| Source           | Examples                                   | Cost                      |
+| ---------------- | ------------------------------------------ | ------------------------- |
+| APIs             | Currency rates, weather, stock prices      | Free-$$                   |
+| Scraping         | Product specs, pricing, reviews            | Free (respect robots.txt) |
+| Public databases | Census, government data, open datasets     | Free                      |
+| User-generated   | Reviews, ratings, photos, Q&A              | Requires user base        |
+| Proprietary      | Your product data, analytics, calculations | Your competitive moat     |
+| AI-generated     | Descriptions, analysis, summaries          | API costs                 |
 
 **Enrichment pipeline (layer these for uniqueness):**
 
@@ -263,15 +270,15 @@ Never publish everything at once. Follow this sequence:
 
 **Key metrics:**
 
-| Metric | Tool | Target |
-|--------|------|--------|
-| Pages indexed | Google Search Console | > 90% of published pages |
-| Impressions per page | GSC | > 0 within 30 days |
-| Avg CTR | GSC | > 2% for long-tail |
-| Organic traffic (pSEO segment) | GA4 | Month-over-month growth |
-| Crawl budget utilization | GSC Crawl Stats | No wasted crawls on low-value pages |
-| Thin content flags | GSC Coverage | Zero "Discovered - not indexed" for quality pages |
-| Conversion rate | GA4 | pSEO pages converting at > 50% of editorial pages |
+| Metric                         | Tool                  | Target                                            |
+| ------------------------------ | --------------------- | ------------------------------------------------- |
+| Pages indexed                  | Google Search Console | > 90% of published pages                          |
+| Impressions per page           | GSC                   | > 0 within 30 days                                |
+| Avg CTR                        | GSC                   | > 2% for long-tail                                |
+| Organic traffic (pSEO segment) | GA4                   | Month-over-month growth                           |
+| Crawl budget utilization       | GSC Crawl Stats       | No wasted crawls on low-value pages               |
+| Thin content flags             | GSC Coverage          | Zero "Discovered - not indexed" for quality pages |
+| Conversion rate                | GA4                   | pSEO pages converting at > 50% of editorial pages |
 
 **Monthly optimization cycle:**
 
@@ -302,15 +309,15 @@ Google's Helpful Content system penalizes sites with high percentages of search-
 
 ### Red Flags That Trigger Penalties
 
-| Red Flag | Why It's Dangerous | Fix |
-|----------|-------------------|-----|
-| Swapping only city/product name in identical text | Duplicate content at scale | Unique data + AI enrichment per page |
-| Thousands of pages with < 200 words | Thin content signal | Minimum 500 unique words, add data layers |
-| No functional purpose beyond ranking | Doorway page pattern | Embed product functionality in the page |
-| Massive page count with low avg quality | Helpful Content system flags entire site | Quality > quantity. Prune ruthlessly. |
-| Publishing 10K+ pages overnight | Unnatural growth pattern | Batch publishing over weeks/months |
-| Auto-generated text without human review | Spam signal | QA sample of every template variation |
-| Orphan pages with no internal linking | Crawl waste, low authority | Hub-spoke architecture |
+| Red Flag                                          | Why It's Dangerous                       | Fix                                       |
+| ------------------------------------------------- | ---------------------------------------- | ----------------------------------------- |
+| Swapping only city/product name in identical text | Duplicate content at scale               | Unique data + AI enrichment per page      |
+| Thousands of pages with < 200 words               | Thin content signal                      | Minimum 500 unique words, add data layers |
+| No functional purpose beyond ranking              | Doorway page pattern                     | Embed product functionality in the page   |
+| Massive page count with low avg quality           | Helpful Content system flags entire site | Quality > quantity. Prune ruthlessly.     |
+| Publishing 10K+ pages overnight                   | Unnatural growth pattern                 | Batch publishing over weeks/months        |
+| Auto-generated text without human review          | Spam signal                              | QA sample of every template variation     |
+| Orphan pages with no internal linking             | Crawl waste, low authority               | Hub-spoke architecture                    |
 
 ### The 10-Page Test
 
@@ -322,46 +329,46 @@ Before scaling, ask: "If I randomly pick 10 pages from my pSEO set, would a huma
 
 ### No-Code Stack (~$100-450/month)
 
-| Component | Tool | Purpose |
-|-----------|------|---------|
-| CMS | Webflow | Template design + hosting |
-| Database | Airtable | Content data management |
-| Sync | Whalesync | Bi-directional Airtable <> Webflow sync |
+| Component | Tool      | Purpose                                 |
+| --------- | --------- | --------------------------------------- |
+| CMS       | Webflow   | Template design + hosting               |
+| Database  | Airtable  | Content data management                 |
+| Sync      | Whalesync | Bi-directional Airtable <> Webflow sync |
 
 **Best for:** Non-technical founders, < 10K pages, rapid prototyping.
 **Limitation:** Webflow CMS limit is 10K items. Beyond that, need custom solution.
 
 ### WordPress Stack (~$100-400/year)
 
-| Component | Tool | Purpose |
-|-----------|------|---------|
-| CMS | WordPress | Page generation + hosting |
+| Component | Tool                                             | Purpose                        |
+| --------- | ------------------------------------------------ | ------------------------------ |
+| CMS       | WordPress                                        | Page generation + hosting      |
 | Generator | MPG (Multi Page Generator) or Page Generator Pro | Template-based page generation |
-| Import | WP All Import | Bulk CSV/API data import |
+| Import    | WP All Import                                    | Bulk CSV/API data import       |
 
 **Best for:** Existing WordPress sites, SEO-heavy operations, 1K-100K pages.
 **Limitation:** Performance degrades at very large scale without caching.
 
 ### Developer Stack (hosting costs only)
 
-| Component | Tool | Purpose |
-|-----------|------|---------|
-| Framework | Next.js (SSG/ISR) | Static generation with incremental builds |
-| CMS/API | Strapi, PayloadCMS, or Sanity | Content API + admin |
-| Database | PostgreSQL / Supabase | Structured data storage |
-| Deploy | Vercel or Netlify | Edge CDN, fast builds |
+| Component | Tool                          | Purpose                                   |
+| --------- | ----------------------------- | ----------------------------------------- |
+| Framework | Next.js (SSG/ISR)             | Static generation with incremental builds |
+| CMS/API   | Strapi, PayloadCMS, or Sanity | Content API + admin                       |
+| Database  | PostgreSQL / Supabase         | Structured data storage                   |
+| Deploy    | Vercel or Netlify             | Edge CDN, fast builds                     |
 
 **Best for:** Technical founders, 10K+ pages, custom data pipelines, maximum control.
 **Key advantage:** ISR (Incremental Static Regeneration) lets you rebuild individual pages without regenerating the entire site.
 
 ### AI Content Tools (supplement, not replace)
 
-| Tool | Use For | Cost |
-|------|---------|------|
-| Byword.ai | Bulk AI content generation, 9 languages | $5+/mo |
-| SEOmatic | Full pSEO platform with CMS integrations | $49+/mo |
-| SurferSEO | Content optimization scoring | $89+/mo |
-| Clearscope | Content quality scoring | Premium |
+| Tool       | Use For                                  | Cost    |
+| ---------- | ---------------------------------------- | ------- |
+| Byword.ai  | Bulk AI content generation, 9 languages  | $5+/mo  |
+| SEOmatic   | Full pSEO platform with CMS integrations | $49+/mo |
+| SurferSEO  | Content optimization scoring             | $89+/mo |
+| Clearscope | Content quality scoring                  | Premium |
 
 **Warning:** AI tools generate content, not pages. You still need the template, data pipeline, and technical infrastructure. AI enriches -- it does not replace your unique data.
 
@@ -413,7 +420,7 @@ Before scaling, ask: "If I randomly pick 10 pages from my pSEO set, would a huma
 
 2. **Launching too big too fast.** Publishing 10K pages on day one triggers quality filters. Batch in groups of 50-100 over weeks.
 
-3. **No functional value.** If the page is just text about a topic (not a tool, calculator, or interactive experience), editorial content via `seo-optimization` will outperform pSEO.
+3. **No functional value.** If the page is just text about a topic (not a tool, calculator, or interactive experience), editorial content via `on-page-seo` will outperform pSEO.
 
 4. **Ignoring crawl budget.** 100K low-quality pages consume crawl budget that prevents your important pages from indexing. Prune aggressively.
 
@@ -468,9 +475,10 @@ Before generating pages, map every topic and subtopic in your domain. This preve
 ## Related Skills
 
 - **Keyword research phase:** `keyword-research` -- find your head term + modifier patterns
-- **On-page and general SEO:** `seo-optimization` -- for editorial content and on-page optimization
+- **On-page and general SEO:** `on-page-seo` -- for editorial content and on-page optimization
 - **Technical foundation:** `technical-seo` -- crawling, indexing, Core Web Vitals, site architecture
 - **AI search optimization:** `ai-ready` -- structure pSEO content for ChatGPT, Perplexity, AI Overviews
+- **Comparison page content strategy:** `competitor-pages` -- content structure, schema, fairness guidelines, conversion
 
 ---
 

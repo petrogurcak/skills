@@ -1,8 +1,17 @@
 {
   "name": "seo",
-  "version": "1.0.0",
-  "description": "SEO skills - search engine optimization, technical SEO, keyword research, ASO",
-  "author": {"name": "Petr"},
-  "keywords": ["seo", "keywords", "technical-seo", "aso"],
+  "version": "2.0.0",
+  "description": "SEO skills - 13 specialist skills with orchestrator covering on-page, technical, schema, images, sitemaps, i18n, keywords, links, competitors, programmatic, AI search, ASO",
+  "author": { "name": "Petr" },
+  "keywords": [
+    "seo",
+    "keywords",
+    "technical-seo",
+    "aso",
+    "schema",
+    "hreflang",
+    "image-seo",
+    "link-building"
+  ],
   "skills": "./skills/"
 }

@@ -1,6 +1,6 @@
 ---
 name: ai-ready
-description: Makes websites discoverable and citable by AI search engines and agents (ChatGPT, Perplexity, Claude, Gemini) through llms.txt setup, robots.txt for AI crawlers, markdown serving via content negotiation, and structured data for AI citations. Use when launching a new site wanting AI discoverability, existing site not appearing in AI search results, optimizing for AI citations and referral traffic, or setting up SaaS marketing site for AI. Trigger phrases include "AI search", "llms.txt", "AI crawlers", "Perplexity citations". NOT for traditional Google SEO (use seo-optimization), technical performance audits (use technical-seo), or keyword research (use keyword-research).
+description: Makes websites discoverable and citable by AI search engines and agents (ChatGPT, Perplexity, Claude, Gemini) through llms.txt setup, robots.txt for AI crawlers, markdown serving via content negotiation, and structured data for AI citations. Use when launching a new site wanting AI discoverability, existing site not appearing in AI search results, optimizing for AI citations and referral traffic, or setting up SaaS marketing site for AI. Trigger phrases include "AI search", "llms.txt", "AI crawlers", "Perplexity citations". NOT for traditional Google SEO (use on-page-seo), technical performance audits (use technical-seo), or keyword research (use keyword-research).
 metadata:
   author: Petr
   version: 1.0.0
@@ -19,7 +19,7 @@ Make your website discoverable and citable by AI search engines and agents.
 
 **When NOT to use:**
 
-- Traditional Google SEO → use `seo-optimization`
+- Traditional Google SEO → use `on-page-seo`
 - Technical performance audit → use `technical-seo`
 - Keyword research → use `keyword-research`
 
@@ -27,21 +27,21 @@ Make your website discoverable and citable by AI search engines and agents.
 
 - AI referral traffic grows 357% YoY
 - 80% of AI-cited sources don't rank in Google top 100 — AI picks different sources
-- Pages with FAQPage schema get 3.4x more Perplexity citations
+- Pages with FAQPage schema get 3.4x more Perplexity citations (AI search, not Google rich results — see note in Phase 4)
 - AI engines favor information-dense, structured, frequently updated content
 
 ---
 
 ## Quick Router
 
-| User says...                           | Go to...                  |
-| -------------------------------------- | ------------------------- |
-| "chci byt v ChatGPT", "AI search"      | Full Audit (all phases)   |
-| "llms.txt", "jak na llms.txt"          | Phase 1: llms.txt         |
-| "robots.txt pro AI", "AI crawlers"     | Phase 2: robots.txt       |
-| "markdown pro agenty", "Accept header" | Phase 3: Markdown Serving |
-| "structured data pro AI", "schema"     | Phase 4: Structured Data  |
-| "jak merit AI traffic"                 | Phase 5: Monitoring       |
+| User says...                           | Go to...                                                       |
+| -------------------------------------- | -------------------------------------------------------------- |
+| "chci byt v ChatGPT", "AI search"      | Full Audit (all phases)                                        |
+| "llms.txt", "jak na llms.txt"          | Phase 1: llms.txt                                              |
+| "robots.txt pro AI", "AI crawlers"     | Phase 2: robots.txt                                            |
+| "markdown pro agenty", "Accept header" | Phase 3: Markdown Serving                                      |
+| "structured data pro AI", "schema"     | Phase 4 (AI strategy) + `schema-markup` skill (implementation) |
+| "jak merit AI traffic"                 | Phase 5: Monitoring                                            |
 
 ---
 
@@ -278,98 +278,29 @@ Signals:
 
 ## Phase 4: Structured Data for AI
 
-AI engines strongly prefer structured content. GPT-4 accuracy jumps from 16% to 54% with proper structured data.
+AI engines strongly prefer structured content. GPT-4 accuracy jumps from 16% to 54% with proper structured data (SchemaApp/Data World research). This is no longer just a Google-ranking signal — it is an AI visibility requirement.
 
-### Priority Schemas for SaaS
+### Why Schema Helps AI Engines
 
-**1. SoftwareApplication** (product pages):
+LLMs use JSON-LD to build entity understanding. When GPT-4 or Perplexity reads your page, structured data tells them definitively: what your product is, who made it, what it costs, what questions it answers. Without schema, the model infers — and inference is less accurate and less likely to generate a citation.
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Editor.menu",
-  "description": "Digital menu editor for restaurants",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "CZK"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "ratingCount": "120"
-  }
-}
-```
+The 16% → 54% accuracy improvement means AI engines are twice as likely to cite your page correctly (and at all) when structured data is present.
 
-**2. FAQPage** (3.4x more Perplexity citations):
+### Priority Schema Types for AI (SaaS)
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I create a digital menu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sign up at editor.menu, upload your dishes, and publish. Takes under 5 minutes."
-      }
-    }
-  ]
-}
-```
+**1. SoftwareApplication** — highest priority for SaaS product pages. Tells AI engines your product name, category, pricing, and ratings in a machine-readable format. AI Overviews and ChatGPT product recommendations pull directly from this.
 
-**3. Organization** (Knowledge Panel):
+**2. FAQPage** — 3.4x more Perplexity citations. Each Q&A pair becomes a citable snippet. AI engines extract and surface individual answers, not just the page URL.
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Company Name",
-  "url": "https://example.com",
-  "logo": "https://example.com/logo.png",
-  "sameAs": [
-    "https://instagram.com/company",
-    "https://linkedin.com/company/company"
-  ]
-}
-```
+**Note:** Google restricted FAQPage rich results to government/health sites (August 2023). However, AI engines (Perplexity, ChatGPT) still read and cite FAQPage markup. The 3.4x citation boost is for AI search, not Google rich results. Implement FAQPage for AI visibility even though it no longer generates Google rich snippets. For implementation → see `schema-markup` skill.
 
-**4. HowTo** (tutorial/guide pages):
+**3. Organization** — critical for Knowledge Panel and entity disambiguation. Lets AI engines link your brand across sources (LinkedIn, Twitter, Crunchbase) via `sameAs`. Without this, AI may confuse you with a similarly named company.
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How to set up a digital menu",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "name": "Sign up",
-      "text": "Create account at editor.menu"
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Add dishes",
-      "text": "Upload your menu items"
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Publish",
-      "text": "Share QR code with customers"
-    }
-  ]
-}
-```
+**4. HowTo** — for tutorial and guide pages. AI engines (especially Perplexity) surface step-by-step answers directly from HowTo markup. Each step is a potential citation unit.
 
-### Implementation
+### For JSON-LD Code Examples and Implementation Details
 
-Place JSON-LD in `<script type="application/ld+json">` in `<head>`. Use Google's Rich Results Test to validate: https://search.google.com/test/rich-results
+→ See `schema-markup` skill. It covers: required properties per type, validation workflow, Rich Results Test, common errors, @id entity graphs, and video schema.
 
 ---
 

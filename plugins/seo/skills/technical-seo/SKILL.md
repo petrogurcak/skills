@@ -1,9 +1,9 @@
 ---
 name: technical-seo
-description: Audits and sets up technical SEO foundations covering Core Web Vitals (LCP, INP, CLS), structured data (JSON-LD schema), crawlability (robots.txt, sitemaps, canonicals), security headers, and mobile-first optimization, with automated audits via claude-in-chrome. Use when auditing an existing website for technical SEO issues, setting up correct technical foundation for a new site, fixing Core Web Vitals problems, adding structured data, or debugging crawlability issues. Trigger phrases include "technical SEO audit", "Core Web Vitals", "structured data", "robots.txt", "page speed". NOT for on-page content optimization (use seo-optimization), keyword research (use keyword-research), or analytics setup (use analytics-setup).
+description: "Audits and sets up technical SEO foundations covering Core Web Vitals (LCP, INP, CLS), crawlability (robots.txt, sitemaps, canonicals), security headers, and mobile-first optimization, with automated audits via claude-in-chrome. Use when auditing for technical SEO issues, setting up technical foundation, fixing Core Web Vitals, or debugging crawlability issues. Trigger phrases: 'technical SEO audit', 'Core Web Vitals', 'robots.txt', 'page speed', 'crawlability', 'security headers'. NOT for structured data (use schema-markup), international/hreflang (use hreflang-i18n), on-page content (use on-page-seo), or keyword research (use keyword-research)."
 metadata:
   author: Petr
-  version: 1.0.0
+  version: 2.0.0
 ---
 
 # Technical SEO
@@ -13,12 +13,13 @@ metadata:
 - Auditing existing website for technical SEO issues
 - Setting up correct technical foundation for new website
 - Fixing Core Web Vitals problems
-- Adding structured data (JSON-LD schema)
 - Debugging crawlability issues
 
 **When NOT to use:**
 
-- On-page content optimization → use `seo-optimization`
+- Structured data / JSON-LD → use `schema-markup`
+- International SEO / hreflang → use `hreflang-i18n`
+- On-page content optimization → use `on-page-seo`
 - Keyword research → use `keyword-research`
 - Analytics setup → use `analytics-setup`
 
@@ -31,9 +32,10 @@ metadata:
 | "audit webu", "technické SEO check"             | Full Audit (all phases)  |
 | "core web vitals", "rychlost webu", "PageSpeed" | Phase 1: Performance     |
 | "robots.txt", "sitemap", "crawl"                | Phase 2: Crawlability    |
-| "schema", "structured data", "rich snippets"    | Phase 3: Structured Data |
-| "HTTPS", "security headers"                     | Phase 4: Security        |
-| "mobile", "hreflang", "viewport"                | Phase 5: Mobile & i18n   |
+| "HTTPS", "security headers"                     | Phase 3: Security        |
+| "mobile", "viewport", "responsive"              | Phase 4: Mobile          |
+| "schema", "structured data"                     | → Use `schema-markup` skill |
+| "hreflang", "international"                     | → Use `hreflang-i18n` skill |
 
 ---
 
@@ -50,8 +52,6 @@ metadata:
 | --------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------- |
 | **PageSpeed Insights**      | Core Web Vitals, performance     | [pagespeed.web.dev](https://pagespeed.web.dev)                                           |
 | **Google Search Console**   | Crawl errors, indexing, sitemaps | [search.google.com/search-console](https://search.google.com/search-console)             |
-| **Schema Markup Validator** | Validace structured data         | [validator.schema.org](https://validator.schema.org)                                     |
-| **Rich Results Test**       | Test rich snippets v Google      | [search.google.com/test/rich-results](https://search.google.com/test/rich-results)       |
 | **Mobile-Friendly Test**    | Mobile usability                 | [search.google.com/test/mobile-friendly](https://search.google.com/test/mobile-friendly) |
 | **Security Headers**        | HTTP security headers check      | [securityheaders.com](https://securityheaders.com)                                       |
 | **SSL Labs**                | HTTPS/SSL konfigurace            | [ssllabs.com/ssltest](https://www.ssllabs.com/ssltest)                                   |
@@ -152,143 +152,13 @@ Sitemap: https://example.com/sitemap.xml
 
 ---
 
-## Phase 3: Structured Data
+## Structured Data
 
-### Běžné schema typy
-
-| Typ                     | Použití       | Rich Result                |
-| ----------------------- | ------------- | -------------------------- |
-| **Organization**        | Homepage      | Logo v Knowledge Panel     |
-| **LocalBusiness**       | Lokální firmy | Mapa, hodiny, reviews      |
-| **Product**             | E-commerce    | Cena, dostupnost, rating   |
-| **Article/BlogPosting** | Blog          | Datum, autor, thumbnail    |
-| **FAQPage**             | FAQ sekce     | Rozbalitelné otázky v SERP |
-| **HowTo**               | Návody        | Steps v SERP               |
-| **BreadcrumbList**      | Navigace      | Breadcrumbs v SERP         |
-
-### JSON-LD šablony
-
-**Organization (homepage):**
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Název firmy",
-  "url": "https://example.com",
-  "logo": "https://example.com/logo.png",
-  "sameAs": [
-    "https://facebook.com/example",
-    "https://linkedin.com/company/example"
-  ]
-}
-```
-
-**LocalBusiness:**
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Název firmy",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Ulice 123",
-    "addressLocality": "Praha",
-    "postalCode": "110 00",
-    "addressCountry": "CZ"
-  },
-  "telephone": "+420123456789",
-  "openingHours": "Mo-Fr 09:00-17:00"
-}
-```
-
-**Product:**
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Název produktu",
-  "image": "https://example.com/product.jpg",
-  "description": "Popis produktu",
-  "offers": {
-    "@type": "Offer",
-    "price": "1299",
-    "priceCurrency": "CZK",
-    "availability": "https://schema.org/InStock"
-  }
-}
-```
-
-**BreadcrumbList:**
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://example.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Kategorie",
-      "item": "https://example.com/kategorie"
-    },
-    { "@type": "ListItem", "position": 3, "name": "Produkt" }
-  ]
-}
-```
-
-**FAQPage:**
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Otázka 1?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Odpověď na otázku 1."
-      }
-    }
-  ]
-}
-```
-
-### Audit Checklist
-
-- [ ] Organization/LocalBusiness na homepage
-- [ ] BreadcrumbList na všech stránkách
-- [ ] Product schema na produktových stránkách
-- [ ] Article schema na blogu
-- [ ] Validace bez errors (warnings ok)
-- [ ] Žádné spammy schema (fake reviews, hidden content)
-
-### Automated (claude-in-chrome)
-
-```
-Řekni: "Vygeneruj schema pro e-shop example.com"
-
-Claude provede:
-1. Analyzuje typ webu
-2. Vygeneruje příslušné JSON-LD
-3. Validuje přes Rich Results Test
-4. Screenshot výsledků
-5. Vrátí ready-to-use kód
-```
+→ Moved to dedicated `schema-markup` skill. See that skill for JSON-LD implementation, validation, video schema, deprecations, and AI visibility.
 
 ---
 
-## Phase 4: Security
+## Phase 3: Security
 
 ### HTTPS Checklist
 
@@ -332,7 +202,7 @@ Claude provede:
 
 ---
 
-## Phase 5: Mobile & Internationalization
+## Phase 4: Mobile
 
 ### Mobile-First Checklist
 
@@ -350,33 +220,9 @@ Claude provede:
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 ```
 
-### Hreflang (multi-language/region)
+### Internationalization (hreflang)
 
-```html
-<!-- Na každé jazykové verzi -->
-<link rel="alternate" hreflang="cs" href="https://example.com/cs/" />
-<link rel="alternate" hreflang="sk" href="https://example.com/sk/" />
-<link rel="alternate" hreflang="en" href="https://example.com/en/" />
-<link rel="alternate" hreflang="x-default" href="https://example.com/" />
-```
-
-### Hreflang pravidla
-
-| Pravidlo       | Popis                                 |
-| -------------- | ------------------------------------- |
-| Self-reference | Každá stránka odkazuje sama na sebe   |
-| Reciproční     | cs→sk a sk→cs musí existovat          |
-| x-default      | Fallback pro neznámé jazyky           |
-| Konzistence    | Buď v HTML, nebo v sitemap (ne oboje) |
-
-### Audit Checklist
-
-- [ ] Mobile-Friendly Test pass
-- [ ] Viewport správně nastaven
-- [ ] Touch targets dostatečně velké
-- [ ] Hreflang reciproční (pokud multi-lang)
-- [ ] Hreflang x-default definován
-- [ ] Žádné hreflang conflicts
+→ Moved to dedicated `hreflang-i18n` skill for implementation, validation, cross-domain, and country targeting.
 
 ---
 
@@ -391,17 +237,17 @@ CRAWLABILITY
 □ robots.txt validní | □ sitemap.xml v robots
 □ Canonical na všech stránkách | □ Žádné broken links
 
-STRUCTURED DATA
-□ Organization/LocalBusiness | □ BreadcrumbList
-□ Validace bez errors
-
 SECURITY
 □ HTTPS + redirect | □ Security headers grade B+
 □ Žádný mixed content
 
-MOBILE & I18N
+MOBILE
 □ Mobile-Friendly pass | □ Viewport správný
-□ Hreflang reciproční (pokud multi-lang)
+□ Touch targets ≥ 48x48px | □ Mobile PageSpeed > 70
+
+See also:
+□ Structured data → schema-markup skill
+□ Hreflang / international SEO → hreflang-i18n skill
 ```
 
 ---
@@ -409,20 +255,25 @@ MOBILE & I18N
 ## Integration
 
 ```
-keyword-research → seo-optimization → technical-seo
-       ↓                 ↓                  ↓
-  (co cílit)      (on-page SEO)    (technický základ)
-                         ↓
-                  analytics-setup
-                         ↓
-              google-analytics MCP (měření)
+keyword-research → on-page-seo → technical-seo
+       ↓               ↓               ↓
+  (co cílit)    (on-page SEO)   (technický základ)
+                                       ↓
+                              schema-markup (structured data)
+                              hreflang-i18n (international)
+                                       ↓
+                               analytics-setup
+                                       ↓
+                           google-analytics MCP (měření)
 ```
 
 | Potřeba                               | Skill              |
 | ------------------------------------- | ------------------ |
 | Jaká klíčová slova cílit?             | `keyword-research` |
-| Jak optimalizovat obsah stránky?      | `seo-optimization` |
+| Jak optimalizovat obsah stránky?      | `on-page-seo`      |
 | Web je pomalý / má technické problémy | `technical-seo`    |
+| Structured data / JSON-LD             | `schema-markup`    |
+| International SEO / hreflang          | `hreflang-i18n`    |
 | Potřebuji nastavit tracking           | `analytics-setup`  |
 
 ---
@@ -435,7 +286,6 @@ keyword-research → seo-optimization → technical-seo
 | PageSpeed Insights | [developers.google.com/speed/docs/insights](https://developers.google.com/speed/docs/insights/v5/about)                                                      |
 | Robots.txt         | [developers.google.com/search/docs/crawling-indexing/robots](https://developers.google.com/search/docs/crawling-indexing/robots/intro)                       |
 | Sitemaps           | [developers.google.com/search/docs/crawling-indexing/sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)                |
-| Structured Data    | [developers.google.com/search/docs/appearance/structured-data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)   |
-| Schema.org         | [schema.org](https://schema.org)                                                                                                                             |
 | HSTS               | [developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) |
-| Hreflang           | [developers.google.com/search/docs/specialty/international](https://developers.google.com/search/docs/specialty/international/localized-versions)            |
+
+_See also: `schema-markup` skill for Structured Data docs. `hreflang-i18n` skill for Hreflang / International SEO docs._
