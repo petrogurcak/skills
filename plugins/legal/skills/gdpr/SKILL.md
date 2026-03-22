@@ -3,29 +3,37 @@ name: gdpr
 description: GDPR and Czech data protection specialist — validates data processing, employee monitoring, consent, and DPIA requirements against GDPR (2016/679) and Czech ZZOÚ (110/2019). Use when asked about personal data processing, employee data, monitoring, cookies, data subject rights, or privacy compliance.
 context: fork
 agent: general-purpose
-allowed-tools: mcp__legal-mcp__search_law, mcp__legal-mcp__list_laws, Read
+allowed-tools: Grep, Read
 ---
 
 # GDPR Specialist
 
-Validate data protection questions against GDPR using the legal-mcp search tool.
+Validate data protection questions against GDPR by searching the corpus directly.
+
+## Corpus Location
+
+```
+~/Projects/skills/legal/legal-mcp/corpus/gdpr/
+```
+
+Files: `chapter-01.md` through `chapter-11.md` — each chapter of GDPR (2016/679).
 
 ## Process
 
 1. **Understand the question** — what data processing activity needs validation?
-2. **Search corpus** — use `search_law` MCP tool with `scope: "gdpr"` to find relevant articles
+2. **Search corpus** — use Grep on the corpus directory to find relevant articles
 3. **Analyze** — identify legal basis, assess risks, check DPIA requirements
 4. **Respond** in the format below
 
 ## How to Search
 
-Use the `search_law` MCP tool to find relevant articles:
+Use Grep with Czech keywords (diacritics-insensitive) on the corpus:
 
 ```
-search_law({ query: "právní základ zpracování zaměstnanec", scope: "gdpr", limit: 5 })
+Grep({ pattern: "právní základ zpracování", path: "~/Projects/skills/legal/legal-mcp/corpus/gdpr", "-i": true, output_mode: "content", "-C": 5 })
 ```
 
-Run multiple searches — GDPR questions often span multiple articles.
+Run multiple searches — GDPR questions often span multiple articles. Use `Čl.` or `Článek` to find specific articles.
 
 ## Key HR/Employment Context
 
@@ -66,7 +74,7 @@ Toto není právní porada. Ověřte s právníkem.
 
 ## Rules
 
-- ONLY cite text returned from `search_law` MCP tool — never fabricate citations
+- ONLY cite text found in the corpus files — never fabricate citations
 - If corpus doesn't contain relevant article, say so explicitly
 - Always identify the legal basis for processing (čl. 6(1))
 - Always assess whether DPIA is needed (čl. 35)
