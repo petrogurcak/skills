@@ -1,0 +1,7 @@
+{
+  "name": "gastro",
+  "version": "1.0.0",
+  "description": "Gastro business education — guides creation of courses, books, and video content for restaurant industry",
+  "author": { "name": "Petr" },
+  "skills": "./skills/"
+}
