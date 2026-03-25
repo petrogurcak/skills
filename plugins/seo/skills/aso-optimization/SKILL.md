@@ -1,6 +1,6 @@
 ---
 name: aso-optimization
-description: Optimizes App Store and Google Play listings for maximum visibility and conversion, covering keyword optimization, screenshot design, icon testing, description writing, and A/B testing (PPO, Store Listing Experiments). Based on Advanced ASO Book by Phiture and AppTweak. Use when an app is not appearing in search results, has low impression-to-download conversion, planning app store listing optimization, creating/updating screenshots and icons, or launching a new app. Trigger phrases include "app store optimization", "ASO", "app keywords", "app screenshots". NOT for web SEO (use seo-optimization), in-app conversion optimization, or app review/ratings management.
+description: Optimizes App Store and Google Play listings for maximum visibility and conversion, covering keyword optimization, screenshot design, icon testing, description writing, and A/B testing (PPO, Store Listing Experiments). Based on Advanced ASO Book by Phiture and AppTweak. Use when an app is not appearing in search results, has low impression-to-download conversion, planning app store listing optimization, creating/updating screenshots and icons, or launching a new app. Trigger phrases include "app store optimization", "ASO", "app keywords", "app screenshots". NOT for web SEO (use on-page-seo), in-app conversion optimization, or app review/ratings management.
 metadata:
   author: Petr
   version: 1.0.0
@@ -36,7 +36,7 @@ Unlike web SEO, you can A/B test everything.
 
 **DON'T use this skill:**
 
-- Web SEO (use `seo-optimization` instead)
+- Web SEO (use `on-page-seo` instead)
 - In-app conversion (that's product, not ASO)
 - App reviews/ratings management (separate discipline)
 
@@ -432,7 +432,7 @@ Apply these 3 psychological layers to all creative assets:
 | ------------------ | -------------------------------------------- |
 | `product-copy`     | Writing App Store descriptions               |
 | `keyword-research` | Initial keyword discovery (adapt for mobile) |
-| `seo-optimization` | Cross-reference web SEO keywords             |
+| `on-page-seo`      | Cross-reference web SEO keywords             |
 | `ux-optimization`  | Screenshot UX principles                     |
 
 ## Sources

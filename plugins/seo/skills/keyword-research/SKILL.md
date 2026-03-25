@@ -1,6 +1,6 @@
 ---
 name: keyword-research
-description: Discovers, analyzes, and prioritizes keywords for SEO and content strategy using free tools (Google Keyword Planner, Ubersuggest, AlsoAsked, Google Trends). Covers seed keyword discovery, long-tail expansion, metrics analysis, and content clustering. Use when starting a new website/project needing keyword strategy, planning content calendar based on search demand, finding low-competition quick wins, analyzing competitor keyword gaps, or building topic clusters. Trigger phrases include "keyword research", "find keywords", "content strategy keywords", "what to write about". NOT for on-page optimization with existing keywords (use seo-optimization), writing content (use web-copy), or setting up analytics (use analytics-setup).
+description: Discovers, analyzes, and prioritizes keywords for SEO and content strategy using free tools (Google Keyword Planner, Ubersuggest, AlsoAsked, Google Trends). Covers seed keyword discovery, long-tail expansion, metrics analysis, and content clustering. Use when starting a new website/project needing keyword strategy, planning content calendar based on search demand, finding low-competition quick wins, analyzing competitor keyword gaps, or building topic clusters. Trigger phrases include "keyword research", "find keywords", "content strategy keywords", "what to write about". NOT for on-page optimization with existing keywords (use on-page-seo), writing content (use web-copy), or setting up analytics (use analytics-setup).
 metadata:
   author: Petr
   version: 1.0.0
@@ -18,7 +18,7 @@ metadata:
 
 **When NOT to use:**
 
-- Already have keywords, need to optimize page → use `seo-optimization`
+- Already have keywords, need to optimize page → use `on-page-seo`
 - Writing content → use `web-copy`
 - Setting up analytics → use `analytics-setup`
 
@@ -364,7 +364,7 @@ PILLAR: "Vegetarian Diet Guide"
 
 ## Integration
 
-- **Po keyword research:** `seo-optimization` pro on-page SEO
+- **Po keyword research:** `on-page-seo` pro on-page SEO
 - **Pro psaní obsahu:** `web-copy`
 - **Pro měření výsledků:** `analytics-setup` + Google Search Console
 
