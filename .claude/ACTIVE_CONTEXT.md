@@ -2,29 +2,31 @@
 
 ## Posledni session
 
-- **Datum:** 2026-03-03
+- **Datum:** 2026-03-25
 - **Branch:** main
 - **Dokonceno:**
-  - **Stop hook upraven:** Odstranen plan guard (blokoval stop kvuli planum z jinych sessions). Ponechana verification gate (testy/lint pred stopem).
-  - **Worktree pravidlo v CLAUDE.md:** Pridano globalni pravidlo — nabizet worktree pri branchingu, subagent dispatch, a teamech. Resi file conflicts mezi paralelnimi sessions.
-  - **Novy skill `ux:ui`:** Kombinuje UX + copywriting pro UI praci. Thin orchestrator — Phase 1 understand, Phase 2 UX analysis (vola ux-orchestrator), Phase 3 copy (vola copywriting-orchestrator), Phase 4 integration check.
-- **Skills count:** 50 skills v 9 pluginech (z 49)
+  - **Fix seo-optimization references** — 6 nahrazeni v keyword-research a aso-optimization (seo-optimization → on-page-seo). Commit: `4d5f7a3`
+  - **Git push** — pushnuty vsechny commity az po `826b747`
+  - **Cowork symlinky** — overeno, vsechny SEO (13) + legal (3) symlinky uz existovaly
+  - **Gastro plugin + gastro-education skill** — novy plugin s personou pro tvorbu gastro vzdelavaciho obsahu (kurzy, knihy, videa). 43 zdroju v NotebookLM ("Gastro Education — kurzy, knihy, obsah"). Commit: `826b747`
+  - **Cowork symlink** pro gastro-education vytvoren
+- **Rozdelano:** Nic
 
 ## Poznamky pro dalsi session
 
-- **Cowork symlinky:** `ui` symlink vytvoren. Stale chybi 5 starych (4 z 2026-02-27 + sentry-fix).
-- **Push pending:** Commit `6f8624c` (sentry-fix) + dnesni zmeny jeste nepushnuto.
-- **Sentry fix agent:** Bezi 3 dny, overit logy.
+- **Gastro-education skill** je v1 — otestovat na realnem obsahu (napr. napsat kapitolu o menu engineeringu) a iterovat
+- **Claude Code instalace** gastro pluginu — `/plugins` UI, zatim jen Cowork symlink
+- **NotebookLM notebook:** "Gastro Education — kurzy, knihy, obsah" (ID: 70e579b7-ef70-460c-a9d2-2baeabbb3907), 43 zdroju
 
 ## Dalsi kroky
 
 ### Priorita 1 — Okamzite
 
-1. **Push vsechny zmeny** + update Claude Code cache
-2. **Cowork symlinky** pro zbylych 5 skills
-3. **Overit sentry-fix logy** po 3 dnech behu
+1. **Otestovat gastro-education** na realnem use case v Cowork
+2. **Claude Code instalace** gastro pluginu pres `/plugins`
 
-### Priorita 2 — Pristi tyden
+### Priorita 2
 
+3. **SEO MCP servery** pridat do mcp-registry.yaml (GSC + PageSpeed = free)
 4. **Event-driven skill activation** — `docs/plans/2026-02-27-event-driven-skill-activation.md`
-5. **Nahradit slabe brand-advisor zdroje** (Creative Bloq, UnderConsideration)
+5. **Skill Creator** otestovat na jednom SEO skillu (eval run)
