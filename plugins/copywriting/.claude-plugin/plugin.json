@@ -8,7 +8,9 @@
     "content",
     "newsletter",
     "instagram",
-    "brand-voice"
+    "brand-voice",
+    "knowledge-book",
+    "book"
   ],
   "skills": "./skills/"
 }
