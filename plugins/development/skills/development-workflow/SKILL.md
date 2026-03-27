@@ -258,9 +258,23 @@ Use Skill tool: review:security-review
 **Process findings (code review + security):**
 
 - If any review returns CRITICAL → fix and re-review (max 3 iterations)
-- All must APPROVE before proceeding to finish
+- All must APPROVE before proceeding to simplify
 
-**Step 3: Finish Branch (ALL options A/B/C/D)**
+**Step 3: Simplify (ALL options A/B/C/D)**
+
+After reviews pass, simplify changed code before merging:
+
+```
+Announce: "I'm using simplify to clean up code before merge."
+Use Skill tool: simplify
+```
+
+- Reduces nesting, redundancy, unnecessary abstractions
+- Improves clarity and consistency
+- Scoped to recently modified code only
+- Does NOT change functionality
+
+**Step 4: Finish Branch (ALL options A/B/C/D)**
 
 ```
 Announce: "I'm using superpowers:finishing-a-development-branch"
@@ -337,6 +351,7 @@ User: "Implement feature X"
     │
  [Phase 3: Finalize]
  security-review (ALL)
+ simplify (ALL)
  finishing-branch (ALL)
     │
     ▼
@@ -373,6 +388,7 @@ This skill orchestrates superpowers skills:
 | 2     | agent-team-development         | Parallel execution (option D) |
 | 3     | requesting-code-review         | Quality gate                  |
 | 3     | security-review                | OWASP Top 10 audit            |
+| 3     | simplify                       | Code cleanup before merge     |
 | 3     | finishing-a-development-branch | Git completion                |
 | 4     | session-context                | Save progress & decisions     |
 
@@ -436,7 +452,7 @@ Superpowers (Support Layer)
 1. **Detect** → Check for existing plan, redirect if bug
 2. **Design** → Brainstorm + Plan (skip if plan exists)
 3. **Implement** → ASK execution strategy (Manual/Batch/Subagent/Agent Team)
-4. **Finalize** → Code review (auto for B/C/D, manual for A) + Security review (ALL) + Finish (ALL)
+4. **Finalize** → Code review (auto for B/C/D, manual for A) + Security review (ALL) + Simplify (ALL) + Finish (ALL)
 5. **Context** → Update session context + log decisions
 
 **This skill orchestrates, other skills execute.**
