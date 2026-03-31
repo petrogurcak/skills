@@ -18,22 +18,22 @@ Personal use (Beatka 4, Gretka younger) with publication-ready quality for Czech
 
 Three modes:
 
-| Mode | Purpose | Input | Output |
-|------|---------|-------|--------|
-| **blueprint** | World, characters, series, voice, age calibration | Questions to author | `story-blueprint.md` |
-| **write** | One story per invocation (standalone or series episode) | Blueprint + theme/episode | `stories/XX-slug.md` |
-| **test** | Read-aloud checklist + iterative rewrite loop | Finished text + feedback from children | Revised text |
+| Mode          | Purpose                                                 | Input                                  | Output               |
+| ------------- | ------------------------------------------------------- | -------------------------------------- | -------------------- |
+| **blueprint** | World, characters, series, voice, age calibration       | Questions to author                    | `story-blueprint.md` |
+| **write**     | One story per invocation (standalone or series episode) | Blueprint + theme/episode              | `stories/XX-slug.md` |
+| **test**      | Read-aloud checklist + iterative rewrite loop           | Finished text + feedback from children | Revised text         |
 
 If `story-blueprint.md` exists in project root, default to write mode. Otherwise, start with blueprint.
 
 ### Integration
 
-| Skill | When | How |
-|-------|------|-----|
-| **storytelling** | Write mode — narrative arc | SB7 for journey stories, ABT for shorter forms |
-| **writing-clearly-and-concisely** | Self-edit pass | Strip qualifiers, active verbs, kill throat-clearing |
-| **brand-voice** | Blueprint — voice calibration | Load existing voice doc if available |
-| **NotebookLM** | Blueprint + Write | Query notebook for reference materials |
+| Skill                             | When                          | How                                                  |
+| --------------------------------- | ----------------------------- | ---------------------------------------------------- |
+| **storytelling**                  | Write mode — narrative arc    | SB7 for journey stories, ABT for shorter forms       |
+| **writing-clearly-and-concisely** | Self-edit pass                | Strip qualifiers, active verbs, kill throat-clearing |
+| **brand-voice**                   | Blueprint — voice calibration | Load existing voice doc if available                 |
+| **NotebookLM**                    | Blueprint + Write             | Query notebook for reference materials               |
 
 ---
 
@@ -45,17 +45,17 @@ Walk the author through 6 steps. Ask one question at a time. Save output as `sto
 
 Author chooses target age group. Skill sets all parameters automatically:
 
-| Parameter | 3-5 years | 6-8 years |
-|-----------|-----------|-----------|
-| Receptive vocabulary | 2,000-10,000 | 10,000-20,000 |
-| Words per sentence | 3-10 | 8-18 |
-| Total word count | 200-800 | 800-10,000 |
-| Characters | 1-2 | 3-5 |
-| Scenes | 3-5 | 7-12 |
-| Structure | Linear, rule of three | Linear + minor subplot |
-| False-belief plots | No | Yes (from 7+) |
-| Themes | Security, fear, big emotions, magical thinking | Fairness, friendship, competence, moral complexity |
-| Format options | Picture book (32pp) | Picture book / early reader / chapter book |
+| Parameter            | 3-5 years                                      | 6-8 years                                          |
+| -------------------- | ---------------------------------------------- | -------------------------------------------------- |
+| Receptive vocabulary | 2,000-10,000                                   | 10,000-20,000                                      |
+| Words per sentence   | 3-10                                           | 8-18                                               |
+| Total word count     | 200-800                                        | 800-10,000                                         |
+| Characters           | 1-2                                            | 3-5                                                |
+| Scenes               | 3-5                                            | 7-12                                               |
+| Structure            | Linear, rule of three                          | Linear + minor subplot                             |
+| False-belief plots   | No                                             | Yes (from 7+)                                      |
+| Themes               | Security, fear, big emotions, magical thinking | Fairness, friendship, competence, moral complexity |
+| Format options       | Picture book (32pp)                            | Picture book / early reader / chapter book         |
 
 **Source data:**
 
@@ -67,12 +67,12 @@ Author chooses target age group. Skill sets all parameters automatically:
 
 ### Step 2: Format
 
-| Format | Pages | Words | Description |
-|--------|-------|-------|-------------|
-| **Picture book** | 32 | 200-800 | 12-14 spreads, illustrations dominate |
-| **Verse book** | 32 | 200-500 | Rhyming text, consistent meter |
-| **Early reader** | 32-64 | 300-1,500 | Levels (Level 1-3), independent reading |
-| **Bedtime story** | — | 1,000-3,000 | Read aloud, text-only format |
+| Format            | Pages | Words       | Description                             |
+| ----------------- | ----- | ----------- | --------------------------------------- |
+| **Picture book**  | 32    | 200-800     | 12-14 spreads, illustrations dominate   |
+| **Verse book**    | 32    | 200-500     | Rhyming text, consistent meter          |
+| **Early reader**  | 32-64 | 300-1,500   | Levels (Level 1-3), independent reading |
+| **Bedtime story** | —     | 1,000-3,000 | Read aloud, text-only format            |
 
 ### Step 3: Standalone vs Series
 
@@ -88,6 +88,7 @@ Author chooses target age group. Skill sets all parameters automatically:
 - **Per-book tracking:** Color-code entries by book
 
 Plus world-bible:
+
 - World rules (what is possible, what is not)
 - Locations (start small, expand per book)
 - Recurring elements: opening/closing rituals, running gags, visual identifiers
@@ -99,23 +100,23 @@ Plus world-bible:
 
 **Archetypes** (author picks one or skill suggests based on theme):
 
-| Archetype | Core | Classic Examples |
-|-----------|------|-----------------|
-| **Journey** | Going out and coming back, changed | Where the Wild Things Are, The Snowy Day |
-| **Challenge** | Overcoming obstacles | Whistle for Willie, The Most Magnificent Thing |
-| **Discovery** | Finding something new about self/world | Last Stop on Market Street, Frederick |
-| **Friendship** | Building or repairing a relationship | Frog and Toad, Enemy Pie |
+| Archetype      | Core                                   | Classic Examples                               |
+| -------------- | -------------------------------------- | ---------------------------------------------- |
+| **Journey**    | Going out and coming back, changed     | Where the Wild Things Are, The Snowy Day       |
+| **Challenge**  | Overcoming obstacles                   | Whistle for Willie, The Most Magnificent Thing |
+| **Discovery**  | Finding something new about self/world | Last Stop on Market Street, Frederick          |
+| **Friendship** | Building or repairing a relationship   | Frog and Toad, Enemy Pie                       |
 
 **Structural patterns** (how the story is built):
 
-| Pattern | How It Works | Best For |
-|---------|-------------|----------|
-| **Cumulative** | Each page adds element, repeats whole chain | Ages 3-5, rhythm/mastery |
-| **Circular** | Ends where it began, character changed | Security and growth |
-| **Pattern with variation** | Repeating structure, variation each time | Ages 3-5, participation |
-| **Three attempts** | Fail, fail, succeed (with twist) | Persistence, ages 4-7 |
-| **Parallel** | Two storylines mirror/contrast | Ages 5-8, perspective |
-| **Problem-escalation-resolution** | Attempts make it worse, then resolution | Workhorse structure, all ages |
+| Pattern                           | How It Works                                | Best For                      |
+| --------------------------------- | ------------------------------------------- | ----------------------------- |
+| **Cumulative**                    | Each page adds element, repeats whole chain | Ages 3-5, rhythm/mastery      |
+| **Circular**                      | Ends where it began, character changed      | Security and growth           |
+| **Pattern with variation**        | Repeating structure, variation each time    | Ages 3-5, participation       |
+| **Three attempts**                | Fail, fail, succeed (with twist)            | Persistence, ages 4-7         |
+| **Parallel**                      | Two storylines mirror/contrast              | Ages 5-8, perspective         |
+| **Problem-escalation-resolution** | Attempts make it worse, then resolution     | Workhorse structure, all ages |
 
 ### Step 5: Voice Calibration
 
@@ -169,13 +170,13 @@ Save blueprint as `story-blueprint.md` in project root.
 
 Before writing text — lay out on 14 spreads (for 32-page picture book):
 
-| Spreads | Function |
-|---------|----------|
-| 1-2 | Character, world, conflict setup |
-| 3-8 | Rising action, attempts to solve problem |
-| 9-11 | Climax sequence |
-| 12-13 | Resolution |
-| 14 | Final image / button ending |
+| Spreads | Function                                 |
+| ------- | ---------------------------------------- |
+| 1-2     | Character, world, conflict setup         |
+| 3-8     | Rising action, attempts to solve problem |
+| 9-11    | Climax sequence                          |
+| 12-13   | Resolution                               |
+| 14      | Final image / button ending              |
 
 Author approves storyboard before writing begins.
 
@@ -256,11 +257,11 @@ Save as `stories/XX-slug.md`:
 ---
 story: 1
 title: "Story Title"
-series: "Series Name"  # or null
-episode: 1  # or null
+series: "Series Name" # or null
+episode: 1 # or null
 age: "3-5"
 format: "picture-book"
-verse: false  # or meter + scheme
+verse: false # or meter + scheme
 words: 487
 language: "cs"
 status: draft
@@ -290,12 +291,14 @@ Two regimes — checklist (before first reading) and iteration (after reading).
 Skill reads finished text and generates **observation points specific to this story**.
 
 **Per-spread checkpoints:**
+
 - "Spread 3: tension moment — watch if she holds her breath or laughs"
 - "Spread 7: onomatopoeia 'bác!' — say it loud, watch if she repeats it"
 - "Spread 10: climax — watch if she leans closer"
 - "Spread 12: refrain third time — watch if she finishes the sentence herself"
 
 **Overall metrics:**
+
 - Did she want it again? (ultimate test)
 - Where did attention drop? (= text too long or abstract)
 - Where did she interrupt? (= predictable OR so good she wants to continue)
@@ -310,6 +313,7 @@ Skill reads finished text and generates **observation points specific to this st
 After reading to children, author provides feedback. Skill suggests specific changes.
 
 **Input from author** (free form):
+
 > "Na straně 3 ztratila zájem, prostředek se jí líbil ale konec byl moc rychlý. Refrén na straně 8 opakovala sama."
 
 **Skill analyzes and proposes:**
@@ -330,28 +334,28 @@ Integrated into blueprint and write mode — skill automatically complies, no ex
 
 ### Czech Market
 
-| Parameter | Value |
-|-----------|-------|
-| Formats | A4, square (21×21, 24×24), board books (leporelo) |
-| Picture book | 32 pages, 200-800 words |
-| Publishers | Albatros, Baobab, Meander, Host, Paseka |
-| Age labeling | "od 3 let", "3-6 let" on cover |
-| Submission | Complete manuscript, direct to publisher (no agent) |
-| Illustration notes | Separate from text, minimal |
-| Awards | Zlatá stuha (Czech IBBY section) |
+| Parameter          | Value                                               |
+| ------------------ | --------------------------------------------------- |
+| Formats            | A4, square (21×21, 24×24), board books (leporelo)   |
+| Picture book       | 32 pages, 200-800 words                             |
+| Publishers         | Albatros, Baobab, Meander, Host, Paseka             |
+| Age labeling       | "od 3 let", "3-6 let" on cover                      |
+| Submission         | Complete manuscript, direct to publisher (no agent) |
+| Illustration notes | Separate from text, minimal                         |
+| Awards             | Zlatá stuha (Czech IBBY section)                    |
 
 ### English Market
 
-| Parameter | Value |
-|-----------|-------|
-| Picture book | 32 pages, under 500 words (ideal), max 800 |
-| Early reader | 32-64 pages, levels (I Can Read, Step into Reading) |
-| Manuscript | 12pt Times New Roman/Arial, double-spaced, 1" margins |
-| Submission | Query letter + complete manuscript (for picture books) |
-| Organization | SCBWI ($80/year) |
-| Page breaks | Mark in manuscript with `[Page break]` |
+| Parameter          | Value                                                      |
+| ------------------ | ---------------------------------------------------------- |
+| Picture book       | 32 pages, under 500 words (ideal), max 800                 |
+| Early reader       | 32-64 pages, levels (I Can Read, Step into Reading)        |
+| Manuscript         | 12pt Times New Roman/Arial, double-spaced, 1" margins      |
+| Submission         | Query letter + complete manuscript (for picture books)     |
+| Organization       | SCBWI ($80/year)                                           |
+| Page breaks        | Mark in manuscript with `[Page break]`                     |
 | Illustration notes | Minimal, inline in brackets, don't count toward word count |
-| Awards | Caldecott (illustration), Newbery (text) |
+| Awards             | Caldecott (illustration), Newbery (text)                   |
 
 ### Export Command
 
@@ -404,4 +408,6 @@ project/
 
 **Series:** Writer's Digest (5 lessons on developing PB series), Lobel (Frog and Toad — complementary opposites), Willems (Elephant & Piggie — 25 standalone-in-series books), Miler (Krteček — 49 episodes, consistent world rules), Němečk (Čtyřlístek — 600+ issues, fixed personality archetypes)
 
-**NotebookLM reference notebook:** TBD (to be created with key source books)
+**Narrative structure:** Pixar (22 Rules of Storytelling, Story Spine: "Once upon a time... Every day... One day... Because of that... Until finally...")
+
+**NotebookLM reference notebook:** `3a99bf34-ed1d-4abf-a932-32789965ac7b` ("Writing children books" — 5 books + 4 articles + 3 research summaries)
