@@ -313,12 +313,24 @@ because [reasoning/data].
 - Changes needed: [List]
 - Effort estimate: [Hours/days]
 
-### Results
+### Results — Dual Threshold Evaluation
 
-- Outcome: [Win/Loss/Inconclusive]
 - Actual lift: [X]%
-- Statistical significance: [Yes/No]
+- Statistical significance: p=[value] (need p < 0.05)
+- Practical significance: lift >= 15%? [Yes/No]
+- Verdikt: [WINNER / MARGINAL / TRENDING / NO EFFECT]
 - Key learning: [What we learned]
+
+**Verdikt pravidla:**
+
+| Stat. signif. (p < 0.05) | Lift >= 15% | Verdikt       | Akce                                               |
+| ------------------------ | ----------- | ------------- | -------------------------------------------------- |
+| Ano                      | Ano         | **WINNER**    | Implementuj natrvalo.                              |
+| Ano                      | Ne          | **MARGINAL**  | Statisticky real, ale nestoji za effort. Archivuj. |
+| Ne                       | Ano         | **TRENDING**  | Slibne, ale malo dat. Pokracuj v experimentu.      |
+| Ne                       | Ne          | **NO EFFECT** | Zastav. Presmeruj effort jinam.                    |
+
+Ne jen "je to lepsi" — musí to být DOST lepsi na to, aby se vyplatila implementace.
 ```
 
 ---
@@ -333,6 +345,9 @@ Increasing signups while ignoring activation → Vanity metrics.
 
 **Not running experiments long enough:**
 Stopping at 2 days → No statistical significance.
+
+**Declaring winner too early:**
+"Varianta B má +5% po 3 dnech!" → Potřebuješ p < 0.05 AND lift >= 15%. Jinak je to šum.
 
 **HiPPO decisions:**
 "CEO thinks we should..." → Use ICE scoring objectively.
