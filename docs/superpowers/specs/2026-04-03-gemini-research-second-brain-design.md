@@ -2,8 +2,8 @@
 
 **Date:** 2026-04-03
 **Author:** Petr + Symbiotic Agent
-**Plugin:** development (research, second-opinion), superpowers (brainstorming), team (team-briefing)
-**Status:** Approved design
+**Plugin:** development (research, second-opinion), team (team-briefing)
+**Status:** Approved design (revised after plan-challenger + Gemini review)
 
 ---
 
@@ -30,11 +30,12 @@ Two new skills and three skill upgrades that integrate Gemini CLI as a research 
 
 ### Modified Skills
 
-| Skill                       | Change                                                                      |
-| --------------------------- | --------------------------------------------------------------------------- |
-| `superpowers:brainstorming` | +research step after context explore, +second-opinion step after spec write |
-| `development:planning`      | +research step in Phase 1, +second-opinion in Phase 3                       |
-| `team:team-briefing`        | +engine choice (Claude/Gemini/both), +4 new personas                        |
+| Skill                  | Change                                                      |
+| ---------------------- | ----------------------------------------------------------- |
+| `development:planning` | +research step in Phase 1, +second-opinion in Phase 3       |
+| `team:team-briefing`   | +engine choice (Claude/Gemini/both), +1 new persona (Legal) |
+
+**Note on `superpowers:brainstorming`:** This is an official marketplace plugin (read-only cache at `~/.claude/plugins/cache/claude-plugins-official/superpowers/`). Cannot be edited directly. Instead, the `research` and `second-opinion` skill descriptions are written so the `using-superpowers` auto-trigger mechanism invokes them during brainstorming naturally. No edit to brainstorming SKILL.md required.
 
 ---
 
@@ -43,7 +44,8 @@ Two new skills and three skill upgrades that integrate Gemini CLI as a research 
 ### Trigger
 
 - Manual: `/development:research <topic>`
-- Called from other skills: brainstorming (Step 1b), planning (Phase 1)
+- Auto-triggered via skill description during brainstorming (using-superpowers mechanism)
+- Called from planning skill (Phase 1)
 - Standalone use anytime
 
 ### Flow
@@ -53,7 +55,7 @@ Two new skills and three skill upgrades that integrate Gemini CLI as a research 
 2. Ask: "Claude / Gemini / oba?"
    - Claude = Agent tool with WebSearch/WebFetch
    - Gemini = `gemini -y` with web grounding
-   - Both = parallel execution, merged into one document
+   - Both = sequential execution (Claude first, then Gemini), merged into one document
 3. Engine gets structured research prompt (see below)
 4. Save output to `docs/research/YYYY-MM-DD-<topic-slug>.md`
 5. Load output into calling skill's context
@@ -210,25 +212,17 @@ File: `docs/reviews/YYYY-MM-DD-<topic-slug>-gemini-review.md`
 
 ## Integration: Brainstorming
 
-Current flow with new steps marked:
+`superpowers:brainstorming` is a read-only official plugin. Integration happens via skill descriptions that trigger auto-invocation through the `using-superpowers` mechanism:
 
-```
-1.  Explore project context
-1b. NEW — Research: "Potrebujes externi research?" → development:research
-2.  Offer visual companion
-3.  Ask clarifying questions (now informed by research if done)
-4.  Propose 2-3 approaches
-5.  Present design
-6.  Write design doc
-7.  Spec self-review
-7b. NEW — Second opinion: "Chces Gemini second opinion na specku?" → development:second-opinion
-8.  User reviews spec (with Gemini findings available)
-9.  Transition to writing-plans
-```
+- **`development:research`** description includes: "Use when starting brainstorming on new topics, unfamiliar domains, or skill creation — provides external knowledge before design decisions."
+- **`development:second-opinion`** description includes: "Use after writing a design spec or plan — provides Gemini's perspective before user review."
 
-Step 1b fires after local context exploration, before any questions. This means research findings inform the entire brainstorming conversation.
+The using-superpowers skill checks all available skill descriptions against the current task and invokes matching skills. This means:
 
-Step 7b fires after the spec is written and self-reviewed, before user review. This means the user sees both the spec and Gemini's perspective at the same time.
+1. When brainstorming starts and the topic involves research, the agent naturally invokes `development:research` after exploring project context and clarifying the scope (Step 3+).
+2. When a spec is written (Step 6-7), the agent naturally offers `development:second-opinion` before user review.
+
+**Research timing:** Research fires after clarifying questions (not before), because the scope must be defined before we know what to research. This avoids generic, unfocused research.
 
 ---
 
@@ -266,18 +260,15 @@ At briefing start, after persona selection:
 - Both = each persona runs on both engines, findings grouped per persona (Claude says X, Gemini says Y)
 ```
 
-### New Personas (4 added to existing 7)
+### New Persona (1 added to existing 10)
 
-| Persona        | Skill Basis                                                 | Perspective                                     |
-| -------------- | ----------------------------------------------------------- | ----------------------------------------------- |
-| **Legal/GDPR** | `legal:gdpr`, `legal:labor-law`                             | Compliance, data protection, employment law     |
-| **Branding**   | `branding:brand-strategy`, `branding:brand-voice`           | Brand consistency, naming, voice alignment      |
-| **Pricing**    | `marketing:pricing`                                         | Monetization, tier design, value communication  |
-| **Analytics**  | `development:analytics-report`, `marketing:analytics-setup` | Measurability, tracking plan, data architecture |
+Existing personas (already implemented): Marketing, Growth, Copywriting, SEO, UX, Security, Product, Analytics, Pricing, Brand.
 
-Total personas: 11 (Marketing, Growth, Copywriting, SEO, UX, Security, Product, Legal, Branding, Pricing, Analytics).
+| Persona        | Skill Basis                     | Perspective                                 |
+| -------------- | ------------------------------- | ------------------------------------------- |
+| **Legal/GDPR** | `legal:gdpr`, `legal:labor-law` | Compliance, data protection, employment law |
 
-Orchestrator selects relevant subset per briefing — not all 11 run every time.
+Total personas: 11. Orchestrator selects relevant subset per briefing.
 
 ### Persona Prompt (updated for Gemini engine)
 
@@ -302,24 +293,32 @@ Use web grounding if current market/industry data supports your point.
 ### Gemini CLI Invocation
 
 ```bash
-gemini -y "prompt here"
+# Non-interactive mode with -p flag (supports stdin piping)
+cat docs/specs/my-spec.md | gemini -y -p "Review this document as a second opinion..."
+
+# Simple prompt without file input
+gemini -y -p "Research topic X with web grounding"
 ```
 
-The `-y` flag auto-approves tool use. Gemini CLI reads `GEMINI.md` (symlinked to `AGENT.md`) and has access to shared skills via `~/.gemini/skills/` symlinks.
+The `-y` flag auto-approves tool use. The `-p` flag runs in non-interactive (headless) mode and appends stdin content to the prompt. Gemini CLI reads `GEMINI.md` (symlinked to `AGENT.md`) and has access to shared skills via `~/.gemini/skills/` symlinks.
 
-For file content, pass via stdin or temp file to avoid shell escaping issues:
+### Error Handling / Fallback
 
-```bash
-cat docs/specs/my-spec.md | gemini -y "Review this document as a second opinion..."
-```
+If `gemini -y -p` exits non-zero (auth expired, rate limit, CLI unavailable):
 
-### Parallel Execution (Both Engines)
+1. Log the error
+2. Inform user: "Gemini neni dostupny. Pokracujem jen s Claude, nebo chces to zkusit znovu?"
+3. Never block the parent workflow on an optional Gemini step
 
-When user chooses "both":
+### Sequential Execution (Both Engines)
 
-- Claude research runs via Agent tool (background)
-- Gemini research runs via Bash `gemini -y` (background)
-- Both complete, results merged into single output file with clear attribution
+When user chooses "both", execution is sequential (not parallel — Claude Code tool calls within a single skill run are sequential):
+
+1. Claude research runs first via Agent tool with WebSearch/WebFetch
+2. Gemini research runs second via Bash `gemini -y -p`
+3. Both results merged into single output file with clear `## Claude` / `## Gemini` attribution
+
+This takes roughly 2x the time of a single engine. The tradeoff is two perspectives vs speed.
 
 ### File Organization
 
@@ -347,10 +346,24 @@ docs/
 
 ## Scope Summary
 
-| Deliverable                  | Type      | Files                                                |
-| ---------------------------- | --------- | ---------------------------------------------------- |
-| `development:research`       | New skill | `plugins/development/skills/research/SKILL.md`       |
-| `development:second-opinion` | New skill | `plugins/development/skills/second-opinion/SKILL.md` |
-| Brainstorming integration    | Edit      | `superpowers:brainstorming` SKILL.md                 |
-| Planning integration         | Edit      | `development:planning` SKILL.md                      |
-| Team-briefing upgrade        | Edit      | `team:team-briefing` SKILL.md + 4 new persona files  |
+| Deliverable                  | Type      | Files                                                         |
+| ---------------------------- | --------- | ------------------------------------------------------------- |
+| `development:research`       | New skill | `plugins/development/skills/research/SKILL.md`                |
+| `development:second-opinion` | New skill | `plugins/development/skills/second-opinion/SKILL.md`          |
+| Planning integration         | Edit      | `plugins/development/skills/planning/SKILL.md`                |
+| Team-briefing upgrade        | Edit      | `plugins/team/skills/team-briefing/SKILL.md` + 1 persona file |
+
+**Not edited:** `superpowers:brainstorming` (read-only official plugin — integration via skill descriptions and using-superpowers auto-trigger).
+
+## Review Findings Incorporated
+
+From plan-challenger, Gemini second opinion, and fact-checking:
+
+| Finding                                        | Resolution                                                              |
+| ---------------------------------------------- | ----------------------------------------------------------------------- |
+| C1: brainstorming is read-only official plugin | Integration via skill descriptions + using-superpowers auto-trigger     |
+| C2: 3 of 4 "new" personas already exist        | Corrected to 1 new persona (Legal)                                      |
+| C3: gemini CLI stdin invocation unvalidated    | Validated: `cat file \| gemini -y -p "prompt"` works (-p appends stdin) |
+| W1: no Gemini fallback                         | Added error handling section — never block workflow                     |
+| W2: "parallel" execution misleading            | Corrected to sequential with 2x time tradeoff documented                |
+| Gemini: research before questions is premature | Moved research to after clarifying questions (scope-first)              |
