@@ -1,9 +1,6 @@
 ---
 name: mac-cleanup
 description: Safely free up Mac storage by finding and cleaning storage hogs — Docker (images, containers, build cache, volumes), Xcode (simulators, DerivedData, DeviceSupport), app caches, Homebrew cache, unused app data, and logs. Interactive — always asks before deleting. Use when user says "cleanup", "free space", "disk full", "storage", "uvolni misto", "maz disk", "malo mista", "kolik mam mista", or when disk space is running low.
-metadata:
-  author: Petr
-  version: 1.0.0
 ---
 
 # Mac Cleanup
@@ -36,6 +33,7 @@ du -sh ~/Projects 2>/dev/null
 Then drill into the biggest ones (run in parallel):
 
 **Docker** (often 30-60GB):
+
 ```bash
 # Container data
 du -sh ~/Library/Containers/com.docker.docker/ 2>/dev/null
@@ -51,6 +49,7 @@ docker system df
 ```
 
 **Xcode / iOS** (often 20-40GB):
+
 ```bash
 du -sh ~/Library/Developer/CoreSimulator/Devices/ \
   ~/Library/Developer/CoreSimulator/Caches/ \
@@ -60,11 +59,13 @@ du -sh ~/Library/Developer/CoreSimulator/Devices/ \
 ```
 
 **Application Support** (often 10-30GB):
+
 ```bash
 du -sh ~/Library/Application\ Support/*/ 2>/dev/null | sort -rh | head -15
 ```
 
 **Caches** (often 5-20GB):
+
 ```bash
 du -sh ~/Library/Caches/*/ 2>/dev/null | sort -rh | head -15
 ```
@@ -72,6 +73,7 @@ du -sh ~/Library/Caches/*/ 2>/dev/null | sort -rh | head -15
 ### Phase 2: Present and Ask
 
 Present findings as a summary table, grouped by category. For each item show:
+
 - What it is (plain language, not just path)
 - Size
 - Whether it's safe to delete, and what the consequence is
@@ -87,11 +89,13 @@ Example format:
 ```
 
 **Classify each item:**
+
 - **Safe** — caches, build artifacts, old versions (regenerated automatically)
 - **Ask first** — app data, downloaded models, project-specific containers
 - **Don't touch** — active project data, running containers, things user hasn't confirmed
 
 **Ask the user about unclear items:**
+
 - Which Docker projects are active vs abandoned?
 - Which apps with large data are still in use?
 - Is iOS/Xcode development active right now?
@@ -102,6 +106,7 @@ Example format:
 Only after user confirms each category. Run cleanup commands for confirmed items.
 
 **Docker cleanup commands:**
+
 ```bash
 # Remove specific stopped containers
 docker rm <container_names>
@@ -120,6 +125,7 @@ docker volume prune -f
 ```
 
 **Xcode cleanup commands:**
+
 ```bash
 # Delete all simulators (recreated on next Xcode build)
 xcrun simctl delete unavailable
@@ -133,6 +139,7 @@ rm -rf ~/Library/Developer/Xcode/iOS\ DeviceSupport/
 ```
 
 **Other cleanup commands:**
+
 ```bash
 # Homebrew cache
 brew cleanup --prune=all
@@ -171,15 +178,15 @@ List what was cleaned with sizes.
 
 These are typical storage hogs on a developer Mac, ordered by usual size:
 
-| Category | Typical Size | Safety |
-|---|---|---|
-| Docker (images + build cache) | 20-60 GB | Safe to prune old/unused |
-| iOS Simulators | 10-30 GB | Safe — recreated on demand |
-| Xcode DerivedData | 3-10 GB | Safe — rebuilt on next build |
-| Xcode iOS DeviceSupport | 3-8 GB | Safe — old iOS version symbols |
-| Homebrew cache | 1-5 GB | Safe — packages already installed |
-| npm/pip/CocoaPods cache | 1-5 GB | Safe — re-downloaded on install |
-| Xcode Archives | 1-10 GB | Ask — old app builds, may want to keep |
-| Application data (Whisper models, AI apps) | varies | Ask — depends on usage |
-| ~/.Trash | varies | Safe — already "deleted" |
-| ~/Downloads | varies | Ask — user files |
+| Category                                   | Typical Size | Safety                                 |
+| ------------------------------------------ | ------------ | -------------------------------------- |
+| Docker (images + build cache)              | 20-60 GB     | Safe to prune old/unused               |
+| iOS Simulators                             | 10-30 GB     | Safe — recreated on demand             |
+| Xcode DerivedData                          | 3-10 GB      | Safe — rebuilt on next build           |
+| Xcode iOS DeviceSupport                    | 3-8 GB       | Safe — old iOS version symbols         |
+| Homebrew cache                             | 1-5 GB       | Safe — packages already installed      |
+| npm/pip/CocoaPods cache                    | 1-5 GB       | Safe — re-downloaded on install        |
+| Xcode Archives                             | 1-10 GB      | Ask — old app builds, may want to keep |
+| Application data (Whisper models, AI apps) | varies       | Ask — depends on usage                 |
+| ~/.Trash                                   | varies       | Safe — already "deleted"               |
+| ~/Downloads                                | varies       | Ask — user files                       |
