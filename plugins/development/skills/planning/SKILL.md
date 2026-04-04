@@ -35,6 +35,9 @@ Explore, brainstorm, and write implementation plan in one flow. Saves plan to pr
    - Read CLAUDE.md, ACTIVE_CONTEXT.md
    - Look at relevant code, recent commits
    - Identify tech stack, patterns, conventions
+   - **Offer research (optional):** "Tohle téma vyžaduje externí research? (Doporučeno pro nová témata, neznámé technologie, tvorbu skills.)"
+     - If yes → invoke `development:research` skill with topic from context; findings inform questions, approaches, and design
+     - If no → continue normally
 
 2. **Ask questions one at a time:**
    - Purpose: What problem does this solve?
@@ -178,6 +181,9 @@ After saving the plan:
    - Task ordering and dependencies
    - Missing tests or test scenarios
 6. **Present review findings** to user, incorporate feedback, update plan
+   - **Offer Gemini second opinion (optional):** "Chceš i Gemini second opinion na plán? (Doporučeno — jiný AI model = jiné blind spots.)"
+     - If yes → invoke `development:second-opinion` skill with plan file path; optionally ask which domain skills to apply (e.g., "ux", "security"); present Gemini findings alongside other findings
+     - If no → continue to user confirmation
 
 7. **User confirms:** "Plan je OK, jdeme implementovat"
 8. **Update plan status** to `in_progress` when user confirms
@@ -342,11 +348,11 @@ Neco dalsiho, nebo koncime?
 
 ```
 Phase 1: Explore & Understand
-  └─ Check context → Ask questions → Explore approaches → Present design
+  └─ Check context → [Research?] → Ask questions → Explore approaches → Present design
 Phase 2: Write Plan
   └─ TDD tasks with bite-sized steps → Save to docs/plans/
 Phase 3: Review Plan
-  └─ Deep review → Present findings → Incorporate feedback → User confirms
+  └─ Plan-challenger → [Deep-review?] → [Gemini second opinion?] → User confirms
 Phase 4: Execution Handoff
   └─ Choose strategy (subagent/session/team) → Choose workspace (branch/worktree/current)
   └─ Hand off to execution skill
@@ -373,4 +379,6 @@ Phase 7: Wrap-up & Reflect
 | `development:demo`                           | Phase 5b demo (showboat + rodney) |
 | `superpowers:test-driven-development`        | Used during execution             |
 | `development:session-context`                | Phase 7 context save              |
+| `development:research`                       | Phase 1 optional research         |
+| `development:second-opinion`                 | Phase 3 optional Gemini review    |
 ````
