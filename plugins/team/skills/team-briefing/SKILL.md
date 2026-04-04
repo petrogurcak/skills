@@ -1,6 +1,6 @@
 ---
 name: team-briefing
-description: Activates virtual AI team personas (marketing, growth, copywriting, SEO, UX, security, product) to review a plan from cross-functional perspectives and provide actionable suggestions. Use after brainstorming or planning is complete, before implementation begins, when you want diverse domain perspectives on a plan. Trigger phrases include "team briefing", "review this plan with the team", "get team feedback", "cross-functional review". Not for code review (use deep-review) or single-domain feedback — this is multi-persona strategic review.
+description: Activates virtual AI team personas (marketing, growth, copywriting, SEO, UX, security, product, analytics, pricing, brand, legal) to review a plan from cross-functional perspectives and provide actionable suggestions. Use after brainstorming or planning is complete, before implementation begins, when you want diverse domain perspectives on a plan. Trigger phrases include "team briefing", "review this plan with the team", "get team feedback", "cross-functional review". Not for code review (use deep-review) or single-domain feedback — this is multi-persona strategic review.
 metadata:
   author: Petr
   version: 1.1.0
@@ -52,7 +52,7 @@ Launch a **single Task agent (haiku model)** to decide which personas are releva
 ```
 You are a team orchestrator. Read the plan below and decide which personas should review it.
 
-Available personas: marketing, growth, copywriting, seo, ux, security, product, analytics, pricing, brand
+Available personas: marketing, growth, copywriting, seo, ux, security, product, analytics, pricing, brand, legal
 
 For each persona, assess relevance (1-10). Return ONLY personas with relevance >= 4.
 
@@ -66,6 +66,46 @@ Project context:
 ```
 
 Use `subagent_type: "general-purpose"` with `model: "haiku"`.
+
+### Step 2.1: Choose Engine
+
+Ask user: **"Jaký engine pro briefing? Claude / Gemini / oba?"**
+
+| Engine     | How it works                                                      | Best for                           |
+| ---------- | ----------------------------------------------------------------- | ---------------------------------- |
+| **Claude** | Current behavior — persona agents via Task tool (haiku)           | Fast, parallel, cheap              |
+| **Gemini** | Each persona runs via `gemini -y -p` with persona + skill context | Web grounding, current market data |
+| **Oba**    | Each persona runs on both engines, findings grouped per persona   | Maximum coverage. ~2x time.        |
+
+**Claude engine** (default): Continue with existing Step 3 logic (Task agents, haiku model, parallel).
+
+**Gemini engine:** In Step 3, instead of Task agents, run each persona sequentially via Bash tool:
+
+```bash
+cat /tmp/persona-prompt.md | gemini -y -p "Review the plan as instructed."
+```
+
+Where `/tmp/persona-prompt.md` contains the persona definition (from `personas/{name}.md`), agent memory (if available), plan content, project context, and the standard persona agent prompt template.
+
+If `gemini -y -p` exits non-zero for any persona: log error, skip that persona, continue with remaining. Inform user which personas failed.
+
+**Both engines:** For each persona, run Claude (Task agent) first, then Gemini (Bash). Group output per persona:
+
+```markdown
+## {Persona Name}
+
+### Claude
+
+**Relevance:** X/10
+
+- [ ] Suggestion 1
+
+### Gemini
+
+**Relevance:** X/10
+
+- [ ] Suggestion 1
+```
 
 ### Step 2.5: Load Agent Memory (if available)
 
@@ -83,6 +123,7 @@ For each selected persona, check if an agent memory file exists in the project's
 | pricing     | `.claude/agents/pricing.md`     | pricing-advisor         |
 | marketing   | `.claude/agents/marketing.md`   | marketing-advisor       |
 | brand       | `.claude/agents/brand.md`       | brand-advisor           |
+| legal       | `.claude/agents/legal.md`       | legal-reviewer          |
 
 Read each memory file if it exists. These contain trends, flags, and learned knowledge from the learning advisor's monthly scans. Pass the content to the persona agent as additional context.
 
@@ -197,3 +238,4 @@ Persona definitions live in `personas/` subdirectory of this skill:
 - `analytics.md` - GA4 tracking, funnels, measurement strategy
 - `pricing.md` - Pricing models, packaging, value metrics
 - `brand.md` - Visual identity, design system, brand voice
+- `legal.md` - GDPR, data protection, labor law compliance
