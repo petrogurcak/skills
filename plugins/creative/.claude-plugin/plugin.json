@@ -1,0 +1,7 @@
+{
+  "name": "creative",
+  "version": "1.0.0",
+  "description": "Image generation orchestration — Ideogram 3.0, Luma Dream Machine, nanobanana (Gemini Imagen). Tool selection, prompting, character/style consistency.",
+  "author": { "name": "Petr" },
+  "skills": "./skills/"
+}

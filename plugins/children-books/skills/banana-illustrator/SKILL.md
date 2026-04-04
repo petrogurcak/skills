@@ -1,82 +1,79 @@
 ---
 name: banana-illustrator
-description: Specializovaný sub-agent pro vizuální produkci dětské knihy "Mlsné tlapky" ve stylu Andrea Tachezy. Zajišťuje stylovou kontinuitu, kompozici spreadů a generování promptů pro MJ/Imagen.
+description: Vizualni produkce detske knihy "Mlsne tlapky" ve stylu Andrea Tachezy. Character bible, style locking, spread kompozice. Pro generovani obrazku pouziva creative:image-generation skill.
 ---
 
-# Banana Illustrator 🍌🎨
+# Banana Illustrator
 
-Tento skill slouží k orchestraci vizuální stránky projektu "Mlsné tlapky". Tvým úkolem je zajistit, aby všech 14 spreadů knihy vypadalo jako od jedné autorky (Andrea Tachezy) a bylo připraveno pro sazbu textu.
+Orchestrace vizualni stranky projektu "Mlsne tlapky". Zajistuje, aby vsech 14 spreadu vypadalo jako od jedne autorky (Andrea Tachezy) a bylo pripraveno pro sazbu textu.
 
-## 1. Vizuální pasy (Visual Character Bible)
-Definuj fixní znaky pro postavy (Míla, Šedík, Fous, Lap):
-- **Šedík:** Šedý kocourek, bílé tlapky, tečkované oči, zvědavý výraz.
-- **Fous:** Celý bílý, trčící vousy na všechny strany, línější postoj.
-- **Lap:** Rezavý kocourek, aktivní, stále v pohybu, máchá tlapkami.
-- **Míla (Máma):** Černobílá kočka, výrazné fleky, klidná, pečující.
-- **Máňa (Ještěrka):** Zelený ještěr, pruhovaný ocásek, minimalistické linie.
+**Prerekvizita:** Pro tool selection a generovani pouzij `creative:image-generation` skill. Tento skill definuje CO generovat a v jakem stylu.
 
-**Úkol:** Pro každou novou postavu vytvoř "Visual ID" a vygeneruj stabilní `seed` prompt pro udržení konzistence.
+## 1. Vizualni pasy (Character Bible)
 
-## 2. Scene Composer (Vignetní kompozice)
-Každý spread musí respektovat:
-- **Off-white/Cream background:** Nikdy ne čistě bílá, vždy s lehkou texturou papíru (vzor: Andrea Tachezy).
-- **Negative Space:** Minimálně 40-50 % plochy musí být prázdné pro budoucí sazbu textu (vlevo/vpravo nebo nahoře).
-- **Vignette Style:** Objekty "plavou" v prostoru, nejsou ohraničeny rámečkem (bleed-to-edge pouze u země/stolu).
-- **Grounding:** Postavy stojí na jemné linkě země nebo mají pod sebou měkký stín/vlnku.
+Fixni znaky pro postavy:
 
-## 3. Style Locking (Master Prompt)
-Při generování promptů VŽDY používej tyto klíčové prvky:
-`Minimalist pencil lines, soft watercolor textures, off-white paper grain background, naive art style, children's book illustration, fine graphite pencil details, soft color washes, muted pastel palette, whimsical character design, Andrea Tachezy style inspiration, plenty of white space.`
+| Postava | Popis | Klicove vizualni prvky |
+|---------|-------|----------------------|
+| **Sedik** | Sedy kocourek | Bile tlapky, teckovane oci, zvědavy vyraz |
+| **Fous** | Cely bily kocour | Trcici vousy na vsechny strany, linejsi postoj |
+| **Lap** | Rezavy kocourek | Aktivni, stale v pohybu, macha tlapkami |
+| **Mila (Mama)** | Cernobila kocka | Vyrazne fleky, klidna, pecujici |
+| **Mana (Jesterka)** | Zeleny jester | Pruhovany ocasek, minimalisticke linie |
+
+Pro kazdou novou postavu vytvor "Visual ID" a vygeneruj stabilni seed prompt.
+
+## 2. Style Locking (Master Prompt)
+
+Pri generovani promptu VZDY pouzivej tyto klicove prvky:
+
+```
+Minimalist pencil lines, soft watercolor textures, off-white paper grain background,
+naive art style, children's book illustration, fine graphite pencil details,
+soft color washes, muted pastel palette, whimsical character design,
+Andrea Tachezy style inspiration, plenty of white space.
+```
+
+Tento string vloz jako `style_reference` popis do kazdeho promptu. Pokud mas referecni obrazek stylu Tachezy, pouzij `style_reference_image_url` v Ideogram.
+
+## 3. Scene Composer (Vignetni kompozice)
+
+Kazdy spread musi respektovat:
+
+- **Off-white/Cream background:** Nikdy ne ciste bila, vzdy s lehkou texturou papiru.
+- **Negative Space:** Min. 40-50 % plochy prazdne pro budouci sazbu textu.
+- **Vignette Style:** Objekty "plavou" v prostoru, nejsou ohraniceny rameckem (bleed-to-edge pouze u zeme/stolu).
+- **Grounding:** Postavy stoji na jemne lince zeme nebo maji pod sebou mekky stin/vlnku.
 
 ## 4. Batch Prompting Workflow
-Generuj prompty v tabulce se sloupci:
-- **Spread #:** Číslo spreadu (1-14).
-- **Text Scene:** Krátký popis děje z textu.
-- **Composition Layout:** Kde bude postava a kde text (např. "Ilustrace vpravo dole, text vlevo nahoře").
-- **Midjourney/Imagen Prompt:** Kompletní technický prompt (včetně `--cref` pro kontinuitu a `--ar 2:1` pro spready).
 
-## 5. Nanobanana Extension 🍌🛠️
-Tento skill využívá oficiální rozšíření `nanobanana`, které umožňuje přímé generování a úpravu obrázků pomocí Gemini.
+Generuj prompty v tabulce:
 
-**Dostupné příkazy:**
-- `/generate "prompt" --ar 2:1`: Vygeneruje nový spread.
-- `/edit "změna"`: Upraví stávající ilustraci.
-- `/restore`: Vylepší kvalitu staršího generátu.
+| Spread # | Text Scene | Composition Layout | Tool | Full Prompt |
+|----------|-----------|-------------------|------|-------------|
+| 1 | ... | Ilustrace vpravo dole, text vlevo nahore | Ideogram | [master style] + [scene] |
 
-## 6. Výběr nástroje pro generování 🛠️
-Před každým generováním se zeptej uživatele, který nástroj chce použít, nebo navrhni nejlepší variantu podle kontextu:
+- **Aspect ratio:** `--ar 2:1` pro spready (double page).
+- **Character consistency:** Pouzij `character_reference_image_url` s master image kazde postavy.
+- **Tool vyber:** Viz `creative:image-generation` decision tree.
 
-1. **Midjourney/Imagen (přes `nanobanana`):** Nejlepší pro textury, "uměleckost" a rychlé skici.
-2. **Ideogram 3.0 (přes `ideogram_generate`):** Absolutní špička pro **typografii** (texty v obrázku), **komplexní layouty** a silnou **konzistenci postav** bez nutnosti videa.
-3. **Luma Dream Machine (přes `luma_generate_video`):** Použij pro tvorbu **referenčních otoček postav** (turnarounds), když Ideogram nebo MJ nestačí.
+## 5. Bedtime Typography
 
-## 7. Pokročilá konzistence (Ideogram & Luma) 🚀
-### A. Ideogram 3.0 (Character & Style Reference)
-1. **Character Lock:** Použij nástroj `ideogram_generate` s parametrem `character_reference_image_url`. Ideogram 3.0 udrží identitu postavy (včetně dioptrií nebo specifických fleků) napříč scénami.
-2. **Artistic Style:** Vlož odkaz na ukázku stylu Andrey Tachezy do `style_reference_image_url`.
-3. **Typography:** Pokud scéna obsahuje nápisy (např. "Mlsné tlapky" na misce), Ideogram je vyrenderuje bez chyb.
+Pro maximalni citelnost pri usínani (v seru/pri lampicce):
 
-### B. Luma Dream Machine (Video Turnarounds)
-1. **Vytvoř Master Image:** Vygeneruj jeden dokonalý obrázek postavy (MJ/Ideogram).
-2. **Luma Image-to-Video:** Použij nástroj `luma_generate_video` s parametrem `frame0_url` a promptem pro otočku (např. "character turnaround, rotating 360 degrees").
-3. **Reference Sheets:** Po dokončení (kontrola přes `luma_get_generation`) vytáhni z videa snímky z různých úhlů jako `--cref` pro další generování.
+- **Kontrast:** Tmave sedy text (#424242) na kremovem podkladu (#FCFBF9). Pro nocni sceny bily/kremovy text Bold.
+- **Narration font:** Montserrat/Andika, 16-18pt, leading 1.5-1.6.
+- **Emotion/Bubbles:** Rucne psany font (Gloria Hallelujah) ladici s linkou ilustrace.
+- **Jmena postav:** Pri prvnim vyskytu na spreadu pis tucne (**Sedik, Fous, Lap, Mila**).
 
+## Pracovni postup
 
-## 7. Bedtime Typography & Layout Mandates 🌙📖
-Pro zajištění maximální čitelnosti při usínání (v šeru/při lampičce) musí každý spread splňovat:
-- **High Readability Contrast:** Používej tmavě šedý/grafitový text (#424242) na krémovém podkladu (#FCFBF9). Pro "noční" (tmavé) scény použij bílý/krémový text v tučném řezu (**Bold**).
-- **Font Strategy:** 
-    - **Narration:** Čitelný bezpatkový font (Montserrat/Andika), velikost 16-18pt, proklad (leading) 1.5-1.6.
-    - **Emotion/Bubbles:** Ručně psaný font (např. Gloria Hallelujah) ladící s linkou ilustrace.
-- **Negative Space Allocation:** Textové bloky nesmí být "vytopené" v ilustraci. Musí mít 40-50 % čisté plochy s dostatečným okrajem (margin).
-- **Character Highlighting:** Při prvním výskytu na spreadu piš jména postav (**Šedík, Fous, Lap, Míla**) tučně.
-
-## Pracovní postup (Workflow)
-1. **Analýza textu:** Přečti si text spreadu.
-2. **Navržení kompozice:** Urči, kde bude těžiště obrázku, aby nepřekáželo textu (dodržuj Mandáty pro Typography).
-3. **Draft Promptu:** Vytvoř prompt pomocí Style Lockingu a přidej specifické akce postav.
-4. **Generování:** Použij `/generate` k vytvoření vizuálu.
-5. **Validace:** Zkontroluj výsledek a případně iteruj pomocí `/edit`.
+1. **Analyzuj text spreadu**
+2. **Navrhni kompozici** — kde bude teziste obrazku, aby neprekazelo textu
+3. **Draft promptu** — master style string + specificka akce postav
+4. **Generuj** — pouzij `creative:image-generation` skill pro vyber nastroje
+5. **Validuj** — zkontroluj vysledek, iteruj
 
 ---
-Vždy měj na paměti Petrův cíl: *Ship over perfect.* Produkuj prompty, které jsou hned použitelné, vizuálně čisté a v souladu s poetikou knihy.
+
+*Ship over perfect. Produkuj prompty, ktere jsou hned pouzitelne, vizualne ciste a v souladu s poetikou knihy.*

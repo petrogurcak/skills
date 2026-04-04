@@ -42,6 +42,11 @@
       "category": "creative"
     },
     {
+      "name": "creative",
+      "source": "./plugins/creative",
+      "category": "creative"
+    },
+    {
       "name": "utilities",
       "source": "./plugins/utilities",
       "category": "tools"
