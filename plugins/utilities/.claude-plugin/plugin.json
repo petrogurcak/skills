@@ -1,0 +1,7 @@
+{
+  "name": "utilities",
+  "version": "1.0.0",
+  "description": "System utilities — disk cleanup, maintenance tools",
+  "author": { "name": "Petr" },
+  "skills": "./skills/"
+}

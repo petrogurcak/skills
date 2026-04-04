@@ -40,6 +40,11 @@
       "name": "children-books",
       "source": "./plugins/children-books",
       "category": "creative"
+    },
+    {
+      "name": "utilities",
+      "source": "./plugins/utilities",
+      "category": "tools"
     }
   ]
 }
