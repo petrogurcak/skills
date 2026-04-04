@@ -1,6 +1,6 @@
 ---
 name: image-generation
-description: Orchestrates image generation across Ideogram 3.0, Luma Dream Machine, and nanobanana (Gemini Imagen). Handles tool selection, prompting best practices, character/style consistency, and batch workflows. Use when generating images for any project — product photos, brand visuals, illustrations, social media, presentations.
+description: Orchestrates image generation across Ideogram 3.0, Luma Dream Machine, and nanobanana (Gemini Imagen). Handles tool selection, prompting best practices, character/style consistency, and batch workflows. Use this skill whenever the user wants to generate, create, or produce any image — product photos, brand visuals, illustrations, social media graphics, presentations, logos, mockups, book covers, posters, icons, or any visual content. Also use when the user mentions Ideogram, Luma, nanobanana, Imagen, or asks about which image generation tool to use. Even if the user just says "make me an image" or "generate a picture" or "create a visual", this skill applies.
 ---
 
 # Image Generation Orchestrator
