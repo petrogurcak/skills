@@ -1,9 +1,9 @@
 ---
 name: brand-voice
-description: Guides you through creating a complete Brand Voice document — personality, voice attributes, tone adaptation, style rules, and terminology management. Use when defining a new brand voice, auditing existing voice for consistency, or documenting voice guidelines for AI/copywriters/team. Trigger phrases: "define brand voice", "brand guidelines", "how should my brand sound", "voice consistency". Do NOT use for writing actual copy (use copywriting skills) or positioning/UVP work (use uvp-optimization).
+description: Guides you through creating a complete Brand Voice document — personality, voice attributes, tone adaptation, style rules, terminology, brand codes (recurring language signals), e-shop touchpoint mapping, and strategic word exclusion. Use when defining a new brand voice, auditing existing voice for consistency, auditing e-shop language across all touchpoints, or documenting voice guidelines for AI/copywriters/team. Trigger phrases: "define brand voice", "brand guidelines", "how should my brand sound", "voice consistency", "e-shop voice audit", "brand codes". Do NOT use for writing actual copy (use copywriting skills) or positioning/UVP work (use uvp-optimization).
 metadata:
   author: Petr
-  version: 1.0.0
+  version: 2.0.0
 ---
 
 # Brand Voice - Definice a Prosazeni Hlasu Znacky
@@ -312,6 +312,28 @@ Slova, ktera NIKDY nepouzivame (plati pro vsechny znacky):
 
 **Pravidlo:** Pokud slovo muze pouzit kazda firma v tvem oboru, je prilis obecne. Bud specificky.
 
+#### Strategic Exclusion -- Kategoriova Analyza
+
+Univerzalni banned words nestaci. Kazda kategorie ma vlastni "saturovane" terminy -- slova, ktera pouziva KAZDY konkurent a uz nic neznamenaji.
+
+**Proces:**
+
+1. **Poslechni trh:** Otevri 5-10 konkurentu ve sve kategorii. Projdi homepage, produkty, CTA.
+2. **Vyextrahuj opakovana slova:** Ktere faze se opakuji u vsech? ("kvalita", "spolehlivost", "reseni", "budoucnost")
+3. **Rozhodnutí o vylouceni:** Vedome se rozhodni, ktera z tech slov NEBUDS pouzivat -- ne protoze jsou spatna, ale protoze **uz nic nerikaji**.
+4. **Zvol vlastni jazykovy prostor:** Pokud cely segment mluvi o "budoucnosti", ukotvi se v pritomnosti. Pokud konkurenti slibuji "nejlepsi reseni", nabidni jasne odpovedi misto superlativu.
+
+**Priklad -- E-shop s kavou:**
+
+| Saturovane v kategorii | Nase alternativa                       | Proc               |
+| ---------------------- | -------------------------------------- | ------------------ |
+| "kvalitni zrna"        | "etiopska Yirgacheffe, prazena 12. 3." | Konkretni > obecne |
+| "pro narocne"          | "pro lidi co si merou gramy"           | Specificky segment |
+| "siroky vyber"         | "23 single-origin z 8 fariem"          | Cisla > vague      |
+| "rychle doruceni"      | "do 24h, prazeno na objednavku"        | Fakt > slib        |
+
+**Test:** Precti si svoji homepage. Kolik slov bys mohl vymenit za JAKEKOLIV jine v oboru, a nikdo by nepoznal rozdil? Tohle jsou slova k vylouceni.
+
 #### Inclusive Language
 
 | Misto                            | Pouzij                                                                            |
@@ -364,6 +386,99 @@ Slova, ktera NIKDY nepouzivame (plati pro vsechny znacky):
 
 ---
 
+### Step 8: Brand Codes -- Jazykove Signaly Znacky
+
+**Cil:** Definovat opakovane jazykove signaly, ktere delaji znacku rozpoznatelnou i BEZ loga.
+
+**Co jsou brand codes:**
+
+Brand codes jsou slova, metafory, postoje a vyrazy, ktere se OPAKOVANE objevuji napric webem, produkty, headlines, CTA a microcopy. Nejsou to slogany ani popisky tonu ("pratelsky", "profesionalni"). Jsou to konkretni jazykove vzory, ktere zakaznik po case zacne podvedome spojovat s tvoji znackou.
+
+**Rozdil oproti Terminology (Step 7):**
+
+- Terminology = co rikam a co nerikam (slovnik)
+- Brand codes = jake VYZNAMY opakovane komunikuju (vzory)
+
+**Typy brand codes:**
+
+| Typ               | Popis                           | Priklad (Flat White)             |
+| ----------------- | ------------------------------- | -------------------------------- |
+| **Klicova slova** | Slova, ktera opakovane pouzivas | "presnost", "kontrola", "recept" |
+| **Metafory**      | Obrazy, ktere se vraceji        | Kava jako "craft" / rucni prace  |
+| **Postoj**        | Typicka reakce/nazor            | "Cisla nelzou" (data > nazory)   |
+| **Struktura**     | Opakovany format vety           | "X sekund. Y gramu. Hotovo."     |
+| **Ritualy**       | Faze spojene s opakovanou akci  | "Pondeli rano. Mlynek jede."     |
+
+**Exercise: Najdi sve brand codes**
+
+1. **Projdi svoji stavajici komunikaci** (web, emaily, Instagram, popisy produktu)
+2. **Oznac slova a faze, ktere se opakuji** -- ne nahodou, ale protoze vyjadrují to, cemu veris
+3. **Zapis 5-10 brand codes** do tabulky:
+
+| Brand Code | Kde se objevuje | Proc je dulezity |
+| ---------- | --------------- | ---------------- |
+|            |                 |                  |
+
+**Priklad -- Flat White:**
+
+| Brand Code          | Kde se objevuje        | Proc je dulezity           |
+| ------------------- | ---------------------- | -------------------------- |
+| "X sekund, Y gramu" | Produkty, IG, emaily   | Presnost jako identita     |
+| "Cisla nelzou"      | Blog, edukace          | Data-driven pristup        |
+| "Pondeli rano"      | IG stories, newsletter | Ritualni moment = komunita |
+| "Hotovo."           | CTA, navody, popisy    | Strucnost, zadne omacky    |
+| "Od zrna po salek"  | Homepage, about        | Celistvost procesu         |
+
+**Test: Poznal by zakaznik tvoji znacku bez loga?**
+
+Seber 5 vet z ruznych kanalu (web, email, IG, produkt, podpora). Smichej je s 5 vetami konkurenta. Ukaz to kolegovi/kamaradovi.
+
+- Pozna, ktere jsou tvoje? → Brand codes funguji.
+- Nepozna? → Tve texty jsou zamenitelne. Vrat se k tomuto kroku.
+
+**Pravidlo:** Znacka se nebuduje originalitou, ale OPAKOVANIM vyznamu. Nemas se bat, ze se opakujes -- mas se bat, ze jsi zamenitelny.
+
+---
+
+### Step 9: E-shop Touchpoints -- Kde Vsude Musi Znit Vas Hlas
+
+**Cil:** Namapovat brand voice na 6 klicovych mist e-shopu, kde vetsina znacek selhava.
+
+**Proc:** Vetsina e-shopu resi brand voice jen na homepage a v kampanich. Ale kategorie, produkty, CTA, checkout a chybove hlasky zustavaji genericke. Vysledek: zakaznik pozna znacku na Instagramu, ale na webu ji nepozna.
+
+| Touchpoint    | Role hlasu                                                      | Co vetsina dela spatne                     | Jak na to                                                                            |
+| ------------- | --------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| **Homepage**  | Nastavuje jazykove ocekavani                                    | Generic "Vitejte v nasem obchode"          | Prvni veta = brand code. Zakaznik musi do 3 sekund vedet, KDO mluvi.                 |
+| **Kategorie** | Pomaha s orientaci, snizuje kognitivni zatez                    | Zadny text, nebo SEO-optimalizovany blabol | Konzistentni jazyk mezi kategoriemi. Neprodava, ale naviguje.                        |
+| **Produkty**  | Prodava jazykem znacky, ne jen parametry                        | Kopie od vyrobce, zadna osobnost           | Ne kazdy produkt potrebuje unikatni text, ale KAZDY musi mluvit stejnym jazykem.     |
+| **CTA**       | Potvrzuje identitu v malem prostoru                             | "Pridat do kosiku", "Pokracovat"           | I jednoduche "pokracovat" / "vybrat" / "pridat" muze potvrdit identitu.              |
+| **Checkout**  | Buduje duveru v rozhodujicim momentu                            | Suchy, systemovy jazyk                     | Konzistentni komunikace snizuje stres a posiluje pocit kontroly.                     |
+| **Microcopy** | Nejvyssi potencial -- chybove hlasky, prazdne stavy, notifikace | "Nastala chyba. Zkuste to znovu."          | Kdyz znacka zni konzistentne i v detailech, web se stava zazitkem s vlastnim hlasem. |
+
+**Exercise: E-shop Voice Audit**
+
+Pro kazdy touchpoint:
+
+1. Otevri svuj e-shop
+2. Screenshotni aktualni text
+3. Ohodnot: Poznam z tohoto textu, JAKA znacka mluvi? (1-5)
+4. Prepis slabe mista s pouzitim brand codes (Step 8) a voice attributes (Step 2)
+
+**Priklad -- Flat White e-shop:**
+
+| Touchpoint                | Pred                                    | Po                                                               |
+| ------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
+| Homepage                  | "Vitejte v nasem e-shopu s kavou"       | "Vsechno pro domaci kavu. Od zrna po salek."                     |
+| Kategorie (Mlynky)        | "Mlynky na kavu"                        | "Presnost zacina tady. Mlynky pro lidi, co meri gramy."          |
+| Produkt                   | "Kvalitni mlynek s keramickymi kaminky" | "Comandante C40. 64mm kaminky. Mleci cas 25s. Retence pod 0.5g." |
+| CTA                       | "Pridat do kosiku"                      | "Chci ho" / "Pridat"                                             |
+| Checkout                  | "Zkontrolujte objednavku"               | "Vsechno sedi? Posledni krok."                                   |
+| Microcopy (prazdny kosik) | "Vas kosik je prazdny"                  | "Nic tu neni. Jeste. Zacni tady →"                               |
+
+**Dulezite:** Design muze byt moderni, SEO technicky perfektni, UX bezchybny. Ale pokud web nema vlastni jazyk, zustane jen dalsi e-shop v rade.
+
+---
+
 ## Brand Voice Document -- Sablona
 
 Po dokonceni workshopu vytvor tento dokument (uloz ho tam, kde ho najdes -- Notion, Google Doc, repo):
@@ -403,6 +518,14 @@ Po dokonceni workshopu vytvor tento dokument (uloz ho tam, kde ho najdes -- Noti
 
 [Pokud relevantni]
 
+## Brand Codes
+
+[5-10 opakovanych jazykovych signalu z Step 8]
+
+## E-shop Touchpoints
+
+[Audit 6 touchpointu z Step 9, pokud relevantni]
+
 ---
 
 Posledni aktualizace: [DATUM]
@@ -434,6 +557,10 @@ Po vytvoreni dokumentu (nebo pri revizi) projdi tento checklist:
 [ ] Style: Mam jasna pravidla pro formatovani a gramatiku?
 [ ] Slovnik: Vim, co rikam a co nerikam?
 [ ] CZ/EN: Mam paralelni terminologii (ne preklady)?
+[ ] Exclusion: Mam kategorove saturovane terminy k vylouceni (ne jen univerzalni)?
+[ ] Brand codes: Mam 5-10 opakovanych jazykovych signalu?
+[ ] Brand codes: Prosly "logo testem" -- pozna je kolega bez kontextu?
+[ ] E-shop: Prosel jsem 6 touchpointu a kazdy zni jako moje znacka?
 [ ] Dokument: Je ulozeny tam, kde ho najdu?
 [ ] Dokument: Ma datum a termin revize?
 ```
@@ -471,16 +598,18 @@ Po vytvoreni dokumentu (nebo pri revizi) projdi tento checklist:
 
 ## Quick Reference
 
-| Krok        | Cas     | Output                   |
-| ----------- | ------- | ------------------------ |
-| 1. Osobnost | 15 min  | 3-5 vet                  |
-| 2. Atributy | 20 min  | Tabulka 3-5 paru         |
-| 3. Publikum | 15 min  | Segmenty                 |
-| 4. Pillars  | 20 min  | 3-5 temat                |
-| 5. Ton      | 20 min  | Tabulka kanal/situace    |
-| 6. Style    | 15 min  | Pravidla                 |
-| 7. Slovnik  | 15 min  | Tabulky termin           |
-| **Celkem**  | **~2h** | **Brand Voice Document** |
+| Krok             | Cas         | Output                          |
+| ---------------- | ----------- | ------------------------------- |
+| 1. Osobnost      | 15 min      | 3-5 vet                         |
+| 2. Atributy      | 20 min      | Tabulka 3-5 paru                |
+| 3. Publikum      | 15 min      | Segmenty                        |
+| 4. Pillars       | 20 min      | 3-5 temat                       |
+| 5. Ton           | 20 min      | Tabulka kanal/situace           |
+| 6. Style         | 15 min      | Pravidla                        |
+| 7. Slovnik       | 15 min      | Tabulky termin + exclusion list |
+| 8. Brand Codes   | 20 min      | 5-10 codes + logo test          |
+| 9. E-shop Touchp | 20 min      | Audit 6 touchpointu             |
+| **Celkem**       | **~2.5-3h** | **Brand Voice Document**        |
 
 ---
 
