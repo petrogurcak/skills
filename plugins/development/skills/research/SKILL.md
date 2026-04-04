@@ -10,7 +10,7 @@ description: >
 
 # Research Skill
 
-Použivam research skill — zvolte engine a tema.
+**Announce:** "Používám research skill — zvolte engine a téma."
 
 ---
 
@@ -47,11 +47,11 @@ If called from another skill, extract topic and context from the parent task aut
 
 Ask: **"Ktery engine? Claude / Gemini / oba?"**
 
-| Engine | How it works | Best for |
-|--------|-------------|----------|
-| **Claude** | Agent tool with WebSearch + WebFetch | Real-time web, structured analysis |
-| **Gemini** | `gemini -y -p` with web grounding | Broad crawl, alternative perspective |
-| **Oba** | Claude first, then Gemini, outputs merged | Maximum coverage, cross-validation |
+| Engine     | How it works                              | Best for                             |
+| ---------- | ----------------------------------------- | ------------------------------------ |
+| **Claude** | Agent tool with WebSearch + WebFetch      | Real-time web, structured analysis   |
+| **Gemini** | `gemini -y -p` with web grounding         | Broad crawl, alternative perspective |
+| **Oba**    | Claude first, then Gemini, outputs merged | Maximum coverage, cross-validation   |
 
 Default to **Claude** if the user doesn't specify or is in a hurry.
 
@@ -95,9 +95,11 @@ Never block the parent workflow. If called from another skill, fall back to Clau
 
 ```markdown
 ## Claude
+
 <Claude output>
 
 ## Gemini
+
 <Gemini output>
 ```
 
@@ -127,15 +129,19 @@ context: <context summary or "none">
 ---
 
 ## Key Findings
+
 <5–10 specific facts, patterns, numbers, names, dates>
 
 ## Actionable Insights
+
 <concrete recommendations for our work>
 
 ## Gaps
+
 <what couldn't be found or confirmed>
 
 ## Sources
+
 <URLs with one-line descriptions>
 ```
 
