@@ -43,18 +43,24 @@ Tento skill využívá oficiální rozšíření `nanobanana`, které umožňuje
 - `/edit "změna"`: Upraví stávající ilustraci.
 - `/restore`: Vylepší kvalitu staršího generátu.
 
-## 6. Pokročilá konzistence (Luma AI Workflow) 🚀
-Pokud bojujeme s konzistencí postav (např. Šedík vypadá na každé straně trochu jinak), použij tento workflow s **Luma Labs (lumalabs.ai)**:
+## 6. Výběr nástroje pro generování 🛠️
+Před každým generováním se zeptej uživatele, který nástroj chce použít, nebo navrhni nejlepší variantu podle kontextu:
 
-### A. Dream Machine (Character Reference)
-1. **Vytvoř Master Image:** Vygeneruj jeden dokonalý obrázek postavy v neutrální póze (pomocí `/generate`).
-2. **Luma Image-to-Video:** Použij nástroj `luma_generate_video` s parametrem `frame0_url` (odkaz na tvou ilustraci) a promptem pro otočku (např. "character turnaround, rotating 360 degrees").
-3. **Reference Sheets:** Po dokončení (kontrola přes `luma_get_generation`) vytáhni z videa snímky (stills) z různých úhlů. Tyto snímky pak vkládej do Midjourney/Imagen jako `--cref` pro další spready.
+1. **Midjourney/Imagen (přes `nanobanana`):** Nejlepší pro textury, "uměleckost" a rychlé skici.
+2. **Ideogram 3.0 (přes `ideogram_generate`):** Absolutní špička pro **typografii** (texty v obrázku), **komplexní layouty** a silnou **konzistenci postav** bez nutnosti videa.
+3. **Luma Dream Machine (přes `luma_generate_video`):** Použij pro tvorbu **referenčních otoček postav** (turnarounds), když Ideogram nebo MJ nestačí.
 
-### B. Genie (3D Spatial Blueprint)
-1. **Modeluj scénu:** Pokud se děj odehrává v jedné místnosti (např. kočičí kuchyně), vytvoř v Luma Genie 3D model tohoto prostoru.
-2. **Konzistentní úhly:** Otáčej 3D modelem, abys získal přesný "layout" pro různé spready. To zajistí, že okno, miska a židle budou vždy na stejném místě vůči sobě.
-3. **Lighting Reference:** Použij 3D model jako vodítko pro to, jak na postavy dopadá světlo v daném prostoru.
+## 7. Pokročilá konzistence (Ideogram & Luma) 🚀
+### A. Ideogram 3.0 (Character & Style Reference)
+1. **Character Lock:** Použij nástroj `ideogram_generate` s parametrem `character_reference_image_url`. Ideogram 3.0 udrží identitu postavy (včetně dioptrií nebo specifických fleků) napříč scénami.
+2. **Artistic Style:** Vlož odkaz na ukázku stylu Andrey Tachezy do `style_reference_image_url`.
+3. **Typography:** Pokud scéna obsahuje nápisy (např. "Mlsné tlapky" na misce), Ideogram je vyrenderuje bez chyb.
+
+### B. Luma Dream Machine (Video Turnarounds)
+1. **Vytvoř Master Image:** Vygeneruj jeden dokonalý obrázek postavy (MJ/Ideogram).
+2. **Luma Image-to-Video:** Použij nástroj `luma_generate_video` s parametrem `frame0_url` a promptem pro otočku (např. "character turnaround, rotating 360 degrees").
+3. **Reference Sheets:** Po dokončení (kontrola přes `luma_get_generation`) vytáhni z videa snímky z různých úhlů jako `--cref` pro další generování.
+
 
 ## 7. Bedtime Typography & Layout Mandates 🌙📖
 Pro zajištění maximální čitelnosti při usínání (v šeru/při lampičce) musí každý spread splňovat:

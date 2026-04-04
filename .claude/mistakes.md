@@ -1,5 +1,13 @@
 # Mistakes Log
 
+## 2026-04-04: git add -A s embedded git repos
+
+**Co se stalo:** `git add -A` failnul s "error: 'flutter/' does not have a commit checked out" a pridaval embedded git repos jako submoduly.
+**Proc:** V repo byly 3 adresare s vlastnim `.git/` (code-mode, flutter, postmark) — `git add -A` je neumi zpracovat.
+**Oprava:** `git rm --cached` pro uz pridane + pridani do `.gitignore`.
+**Pouceni:** Pred `git add -A` na repo s hodne untracked soubory zkontrolovat embedded git repos: `find . -name .git -not -path './.git' -type d`.
+**Tags:** #git #gitignore
+
 ## 2026-02-28: Sentry API JSON s control chars rozbije jq
 
 **Co se stalo:** Sentry API odpovedi obsahuji literal control characters (U+0000-U+001F) uvnitr JSON stringu. `jq` je odmita parsovat, `jq -c '.[]'` failne s "Invalid string: control characters".

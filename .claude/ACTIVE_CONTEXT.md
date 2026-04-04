@@ -1,36 +1,35 @@
-# Aktuální stav práce
+# Aktualni stav prace
 
-## Poslední session
+## Posledni session
 
 - **Datum:** 2026-04-04
 - **Branch:** main
-- **Dokončeno:**
-  - **Gemini Research & Second Brain** — kompletní implementace:
-    1. `development:research` skill — Claude/Gemini/both engine choice, structured output to `docs/research/`
-    2. `development:second-opinion` skill — Gemini review specs/plans with optional skill context
-    3. Planning integration — research v Phase 1, second-opinion v Phase 3
-    4. Team-briefing upgrade — engine choice (Claude/Gemini/both) + Legal/GDPR persona (11 person celkem)
-  - Spec: `docs/superpowers/specs/2026-04-03-gemini-research-second-brain-design.md`
-  - Plan: `docs/superpowers/plans/2026-04-03-gemini-research-second-brain.md`
-  - 3 reviews (plan-challenger, Gemini second opinion, fact-check) zapracovány do specky
-  - Pushed to remote, Claude Code cache updated
+- **Dokonceno:**
+  - **Velky commit** — 171 souboru: vsechny untracked skills, MCP servery, plany, pluginy commitnuty a pushnuty
+  - **Utilities plugin** — pridan do marketplace.json + plugin.json, nainstalovan
+  - **mac-cleanup SKILL.md** — odstranen `metadata` blok z frontmatteru
+  - **.gitignore** — pridany: `.env`, `.mcp.json`, `pricing/*.pdf/*.epub`, embedded git repos (`code-mode/`, `flutter/`, `postmark/`)
+  - **children-books plugin** — nainstalovan do Claude Code
 
-## Poznámky pro další session
+## Otevrene problemy
 
-- **Otestovat research skill** — `/development:research` na reálném tématu (nejlépe při příští tvorbě skillu)
-- **Otestovat second-opinion** — při příštím brainstormingu/planningu ověřit auto-trigger
-- **Otestovat team-briefing engine choice** — pustit briefing s Gemini engine
-- **Cowork symlinky** — nové skills (research, second-opinion) potřebují symlinky do Cowork
-- **Stále neotestováno z minula:** brand-strategy, children-stories, finance-ops
+- **utilities:mac-cleanup** — skill je nacteny (funguje pres Skill tool), ale NEOBJEVUJE se v `/` autocomplete menu. Restart Claude Code nepomohl. Frontmatter je ciste (jen name + description). Mozny bug v Claude Code plugin systemu — dalsi pluginy ze `skills` marketplace funguji.
 
-## Další kroky
+## Poznamky pro dalsi session
+
+- Otestovat research, second-opinion, team-briefing engine choice
+- Cowork symlinky pro research + second-opinion
+- Stale neotestovano: brand-strategy, children-stories, finance-ops
+- Debug proc `/utilities:mac-cleanup` neni v autocomplete (ostatni skills z toho marketplace funguji)
+
+## Dalsi kroky
 
 ### Priorita 1
 
-1. Otestovat nové skills při příležitosti (research, second-opinion, team-briefing engine)
-2. Cowork symlinky pro research + second-opinion
+1. Debug utilities:mac-cleanup autocomplete issue
+2. Otestovat nove skills pri prilezitosti
 
 ### Priorita 2
 
 3. Otestovat brand-strategy, children-stories, finance-ops
-4. Spustit copywriting-reviewer na reálném projektu
+4. Spustit copywriting-reviewer na realnem projektu
