@@ -174,37 +174,14 @@ This document outlines the 12 core principles that guide all development work in
 
 ## 8. Project-Specific Conventions
 
-**This section is for YOUR project's specific rules.**
-
-Examples of what goes here:
-- File naming conventions
-- Directory structure standards
-- Code style preferences
-- Technology-specific patterns
-- API design guidelines
-- Database patterns
-
-**To customize:**
-Edit this section with your project's conventions. Everything above (Principles 1-7) should stay unchanged.
-
-```
-# Example customizations:
-
-## File Naming
-- Components: PascalCase (UserProfile.tsx)
-- Utilities: camelCase (formatDate.ts)
-- Tests: *.test.ts or *.spec.ts
-
-## Architecture
-- Frontend: React + TypeScript + Vite
-- Backend: Python + FastAPI
-- Database: SQLite (dev) / PostgreSQL (prod)
-
-## Code Style
-- Use TypeScript strict mode
-- Prefer functional components
-- Use async/await over .then()
-```
+**Mlsné tlapky: Bedtime Typography & Layout Mandates** 🌙📖
+Pro zajištění maximální čitelnosti při usínání (v šeru/při lampičce) musí každý spread splňovat:
+- **High Readability Contrast:** Používej tmavě šedý/grafitový text (#424242) na krémovém podkladu (#FCFBF9). Pro "noční" (tmavé) scény použij bílý/krémový text v tučném řezu (**Bold**).
+- **Font Strategy:** 
+    - **Narration:** Čitelný bezpatkový font (Montserrat/Andika), velikost 16-18pt, proklad (leading) 1.5-1.6.
+    - **Emotion/Bubbles:** Ručně psaný font (např. Gloria Hallelujah) ladící s linkou ilustrace.
+- **Negative Space Allocation:** Textové bloky nesmí být "vytopené" v ilustraci. Musí mít 40-50 % čisté plochy s dostatečným okrajem (margin).
+- **Character Highlighting:** Při prvním výskytu na spreadu piš jména postav (**Šedík, Fous, Lap, Míla**) tučně.
 
 ---
 

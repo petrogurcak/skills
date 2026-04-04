@@ -1,0 +1,764 @@
+---
+name: nette-framework
+description: Use when working with Nette Framework, Latte templates, Tracy debugger, or Nette DI container - enforces modern patterns, best practices, and Nette 3.x+ conventions for PHP 8.1+
+---
+
+# Nette Framework Development Skill
+
+## When to Use This Skill
+
+Use this skill when:
+- Creating or modifying Nette presenters, components, or services
+- Writing Latte templates
+- Working with Tracy debugger
+- Configuring Nette DI container
+- Any task involving Nette Framework ecosystem
+
+## Core Principles
+
+**Modern PHP First:**
+- PHP 8.1+ features required (attributes, constructor promotion, enums)
+- `declare(strict_types=1)` in every file
+- Type hints everywhere: parameters, return types, properties
+- No legacy annotations - use attributes
+
+**Nette Way:**
+- Follow framework conventions strictly
+- Leverage dependency injection
+- Use component model properly
+- Security by default (Latte auto-escaping, CSRF, etc.)
+
+**Code Quality:**
+- Explicit over implicit
+- No magic where avoidable
+- Clean separation of concerns
+- Test-friendly architecture
+
+## Presenter Patterns
+
+### Creating a New Presenter
+
+**Checklist:**
+```
+☐ File starts with: declare(strict_types=1);
+☐ Extends Nette\Application\UI\Presenter
+☐ Namespace matches directory structure
+☐ Constructor uses typed dependency injection
+☐ action* methods for logic, render* for rendering
+☐ Type hints on all method parameters and returns
+☐ Template files exist in templates/<Presenter>/<view>.latte
+```
+
+**Pattern:**
+```php
+declare(strict_types=1);
+
+namespace App\Presenters;
+
+use Nette\Application\UI\Presenter;
+
+final class UserPresenter extends Presenter
+{
+    public function __construct(
+        private UserRepository $userRepository,
+        private Authenticator $authenticator,
+    ) {
+        parent::__construct();
+    }
+
+    public function actionEdit(int $id): void
+    {
+        $this->template->user = $this->userRepository->find($id);
+        if (!$this->template->user) {
+            $this->error('User not found', 404);
+        }
+    }
+
+    public function renderEdit(int $id): void
+    {
+        // Additional data for template if needed
+    }
+}
+```
+
+### Presenter Lifecycle
+
+**Order of execution:**
+1. `startup()` - initialization, user check
+2. `action*()` - load data, handle logic
+3. `beforeRender()` - common data for all views
+4. `render*()` - view-specific data
+5. `shutdown()` - cleanup
+
+**Signal handling:**
+```php
+public function handleDelete(int $id): void
+{
+    $this->userRepository->delete($id);
+    $this->flashMessage('User deleted');
+
+    if ($this->isAjax()) {
+        $this->redrawControl('userList');
+    } else {
+        $this->redirect('this');
+    }
+}
+```
+
+### Common Patterns
+
+**Persistent parameters:**
+```php
+use Nette\Application\Attributes\Persistent;
+
+#[Persistent]
+public int $page = 1;
+```
+
+**Required login:**
+```php
+protected function startup(): void
+{
+    parent::startup();
+
+    if (!$this->getUser()->isLoggedIn()) {
+        $this->redirect('Sign:in');
+    }
+}
+```
+
+**AJAX snippets:**
+```php
+// In presenter
+$this->redrawControl('snippetName');
+
+// In template
+{snippet snippetName}
+    Content that will be redrawn
+{/snippet}
+```
+
+## Component Patterns
+
+### Creating Components
+
+**Pattern:**
+```php
+// In presenter
+protected function createComponentUserGrid(): UserGrid
+{
+    return $this->userGridFactory->create();
+}
+
+// Component class
+declare(strict_types=1);
+
+namespace App\Components;
+
+use Nette\Application\UI\Control;
+
+final class UserGrid extends Control
+{
+    public function __construct(
+        private UserRepository $userRepository,
+    ) {}
+
+    public function render(): void
+    {
+        $this->template->users = $this->userRepository->findAll();
+        $this->template->render(__DIR__ . '/UserGrid.latte');
+    }
+
+    public function handleSort(string $column): void
+    {
+        // Handle sorting
+        $this->redrawControl();
+    }
+}
+```
+
+**Component Factory Pattern:**
+```php
+// Interface
+interface UserGridFactory
+{
+    public function create(): UserGrid;
+}
+
+// In config.neon
+services:
+    - UserGridFactory
+```
+
+### Component Signals
+
+```php
+public function handleAction(int $id): void
+{
+    // Handle signal
+    $this->flashMessage('Action completed');
+
+    if ($this->isAjax()) {
+        $this->redrawControl();
+    }
+}
+```
+
+## Latte Templates
+
+### Security Rules
+
+**ALWAYS:**
+- Use n:attributes for HTML attributes
+- Trust auto-escaping (it's on by default)
+- Use `|noescape` only when absolutely necessary and data is sanitized
+
+**NEVER:**
+- Disable escaping without reason
+- Put user input directly in `<script>` tags
+- Use {syntax} for HTML attributes
+
+**Examples:**
+```latte
+{* CORRECT *}
+<a n:href="Product:detail $product->id">Link</a>
+<div n:if="$user->isLoggedIn()">Welcome</div>
+<input type="text" name="search" value="{$query}">
+
+{* WRONG *}
+<a href="{link Product:detail $product->id}">Link</a>
+<div {if $user->isLoggedIn()}>Welcome</div>
+```
+
+### Common Patterns
+
+**Template inheritance:**
+```latte
+{* @layout.latte *}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{block title}Default Title{/block}</title>
+</head>
+<body>
+    {include content}
+</body>
+</html>
+
+{* @home.latte *}
+{block title}Homepage{/block}
+
+{block content}
+    <h1>Welcome</h1>
+{/block}
+```
+
+**Loops:**
+```latte
+{foreach $users as $user}
+    {if $iterator->first}<ul>{/if}
+
+    <li>
+        {$user->name}
+        {if $iterator->last} (last){/if}
+    </li>
+
+    {if $iterator->last}</ul>{/if}
+{else}
+    <p>No users found</p>
+{/foreach}
+```
+
+**Blocks and includes:**
+```latte
+{* Define reusable block *}
+{define userCard}
+    <div class="card">
+        <h3>{$user->name}</h3>
+        <p>{$user->email}</p>
+    </div>
+{/define}
+
+{* Use block *}
+{include userCard, user: $currentUser}
+
+{* Include another template *}
+{include 'components/header.latte'}
+```
+
+**Filters:**
+```latte
+{$text|truncate:100}
+{$price|number:2}
+{$date|date:'Y-m-d H:i'}
+{$text|lower|firstUpper}
+{$html|noescape}  {* Only if safe! *}
+```
+
+### Custom Filters
+
+**Registration in config.neon:**
+```neon
+latte:
+    filters:
+        phone: App\Filters::formatPhone
+```
+
+**Implementation:**
+```php
+namespace App;
+
+class Filters
+{
+    public static function formatPhone(string $phone): string
+    {
+        return preg_replace(
+            '/(\d{3})(\d{3})(\d{3})/',
+            '$1 $2 $3',
+            $phone
+        );
+    }
+}
+```
+
+## Tracy Debugger
+
+### Development Usage
+
+**Debugging:**
+```php
+// In presenter/service
+\Tracy\Debugger::barDump($variable, 'Variable Name');
+dump($simpleVariable);
+
+// Logging
+\Tracy\Debugger::log('Important message');
+\Tracy\Debugger::log($exception, \Tracy\ILogger::EXCEPTION);
+```
+
+**When to use what:**
+- `barDump()` - Complex variables, want to keep in Tracy bar
+- `dump()` - Quick simple dumps during development
+- `log()` - Production errors, important events
+- `bdump()` - Deprecated, use `barDump()`
+
+### Production vs Development
+
+**Mode detection:**
+```php
+// In Bootstrap.php
+$configurator->setDebugMode(['127.0.0.1', '::1']);
+// Or
+$configurator->setDebugMode(true); // Always debug (dev only!)
+```
+
+**Email notifications:**
+```neon
+# config.neon
+tracy:
+    email: admin@example.com
+    fromEmail: noreply@example.com
+```
+
+### Custom Tracy Panel
+
+```php
+use Tracy\IBarPanel;
+
+final class DatabasePanel implements IBarPanel
+{
+    private int $queryCount = 0;
+
+    public function incrementQueries(): void
+    {
+        $this->queryCount++;
+    }
+
+    public function getTab(): string
+    {
+        return '<span title="Database Queries">DB: ' . $this->queryCount . '</span>';
+    }
+
+    public function getPanel(): string
+    {
+        return '<h1>Database Queries</h1><p>Total: ' . $this->queryCount . '</p>';
+    }
+}
+
+// Register in config.neon or Bootstrap
+\Tracy\Debugger::getBar()->addPanel(new DatabasePanel());
+```
+
+## Nette DI Container
+
+### Service Registration
+
+**Basic service:**
+```neon
+services:
+    - App\Model\UserRepository
+    - App\Model\ArticleRepository(%appDir%/storage/articles)
+
+    userManager:
+        factory: App\Model\UserManager
+        setup:
+            - setLogger(@logger)
+```
+
+**Constructor injection (autowiring):**
+```php
+final class UserPresenter extends Presenter
+{
+    // Automatically injected from DI
+    public function __construct(
+        private UserRepository $userRepository,
+        private Authenticator $authenticator,
+    ) {
+        parent::__construct();
+    }
+}
+```
+
+**Inject properties (avoid if possible, use constructor):**
+```php
+use Nette\DI\Attributes\Inject;
+
+#[Inject]
+public UserRepository $userRepository;
+```
+
+### Factories
+
+**Generated factories:**
+```neon
+services:
+    - UserGridFactory
+
+# Automatically generates factory for components
+```
+
+**Manual factory:**
+```neon
+services:
+    userGridFactory:
+        implement: UserGridFactory
+        arguments: [%tempDir%]
+```
+
+### Decorators
+
+```neon
+decorator:
+    App\Model\ICache:
+        setup:
+            - setCache(@cache.storage)
+```
+
+### Extensions
+
+**Loading extensions:**
+```neon
+extensions:
+    api: App\DI\ApiExtension
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+```
+
+## Forms
+
+### Creating Forms
+
+```php
+use Nette\Application\UI\Form;
+
+protected function createComponentSignInForm(): Form
+{
+    $form = new Form;
+
+    $form->addText('username', 'Username:')
+        ->setRequired('Please enter username');
+
+    $form->addPassword('password', 'Password:')
+        ->setRequired('Please enter password');
+
+    $form->addSubmit('send', 'Sign in');
+
+    $form->onSuccess[] = $this->signInFormSucceeded(...);
+
+    return $form;
+}
+
+private function signInFormSucceeded(Form $form, \stdClass $data): void
+{
+    try {
+        $this->getUser()->login($data->username, $data->password);
+        $this->redirect('Homepage:');
+    } catch (Nette\Security\AuthenticationException $e) {
+        $form->addError('Invalid credentials');
+    }
+}
+```
+
+**Rendering:**
+```latte
+{control signInForm}
+
+{* Or manual *}
+{form signInForm}
+    <div>
+        {label username /}
+        {input username}
+    </div>
+    <div>
+        {label password /}
+        {input password}
+    </div>
+    {input send}
+{/form}
+```
+
+## Database
+
+### Nette Database
+
+```php
+use Nette\Database\Explorer;
+
+final class UserRepository
+{
+    public function __construct(
+        private Explorer $database,
+    ) {}
+
+    public function findAll(): array
+    {
+        return $this->database
+            ->table('users')
+            ->where('active', true)
+            ->order('name')
+            ->fetchAll();
+    }
+
+    public function find(int $id): ?ActiveRow
+    {
+        return $this->database
+            ->table('users')
+            ->get($id);
+    }
+
+    public function insert(array $data): ActiveRow
+    {
+        return $this->database
+            ->table('users')
+            ->insert($data);
+    }
+}
+```
+
+**Transactions:**
+```php
+$this->database->beginTransaction();
+try {
+    $this->database->table('users')->insert($userData);
+    $this->database->table('profiles')->insert($profileData);
+    $this->database->commit();
+} catch (\Exception $e) {
+    $this->database->rollBack();
+    throw $e;
+}
+```
+
+## Code Style Checklist
+
+### Every PHP File Must Have:
+
+```
+☐ declare(strict_types=1); as first line
+☐ Proper namespace declaration
+☐ Type hints on all parameters
+☐ Return type declarations
+☐ Property type declarations (PHP 7.4+)
+☐ Final classes (unless designed for inheritance)
+☐ No unused imports
+```
+
+### Modern PHP Features to Use:
+
+```php
+// Constructor property promotion (PHP 8.0+)
+public function __construct(
+    private UserRepository $userRepository,
+    private readonly string $appDir,
+) {}
+
+// Attributes instead of annotations (PHP 8.0+)
+#[Persistent]
+public int $page = 1;
+
+// Named arguments (PHP 8.0+)
+$this->redirect('Article:show', id: 123);
+
+// Null-safe operator (PHP 8.0+)
+$city = $user?->address?->city;
+
+// Match expression (PHP 8.0+)
+$message = match($status) {
+    'pending' => 'Waiting',
+    'approved' => 'Done',
+    default => 'Unknown',
+};
+```
+
+### Naming Conventions:
+
+- **Classes:** PascalCase, final by default
+- **Methods:** camelCase
+- **Properties:** camelCase
+- **Constants:** UPPER_SNAKE_CASE
+- **Database tables:** snake_case
+
+## Common Mistakes to Avoid
+
+**DON'T:**
+- Use `@inject` annotations (use attributes or constructor injection)
+- Create services with `new` (use DI)
+- Access `$_GET`, `$_POST`, `$_SESSION` directly (use framework abstractions)
+- Disable CSRF protection without good reason
+- Use global state or static properties for application state
+- Put business logic in presenters (use services)
+- Skip type hints
+- Use array instead of objects for data transfer
+
+**DO:**
+- Use dependency injection everywhere
+- Type everything
+- Keep presenters thin (logic in services)
+- Use components for reusable UI
+- Follow single responsibility principle
+- Write tests
+- Use strict mode
+
+## Decision Trees
+
+### "I need to create..."
+
+**New page/endpoint:**
+```
+→ Presenter
+  ├─ action*() for logic
+  ├─ render*() for view data
+  └─ Template file
+```
+
+**Reusable UI element:**
+```
+→ Component
+  ├─ Extends Control
+  ├─ render() method
+  ├─ Own template
+  └─ Factory in presenter
+```
+
+**Business logic:**
+```
+→ Service
+  ├─ Register in DI
+  ├─ Inject dependencies
+  └─ Pure PHP class
+```
+
+**Data access:**
+```
+→ Repository
+  ├─ Inject Database\Explorer
+  ├─ Methods for queries
+  └─ Return typed results
+```
+
+### "I need to render..."
+
+**HTML with data:**
+```
+→ Latte template
+  ├─ Use n:attributes
+  ├─ Trust auto-escaping
+  └─ {block} for structure
+```
+
+**Form:**
+```
+→ Component with Form
+  ├─ createComponent*()
+  ├─ Define fields
+  ├─ onSuccess handler
+  └─ {control formName}
+```
+
+**AJAX update:**
+```
+→ Signal + Snippet
+  ├─ handle*() method
+  ├─ {snippet} in template
+  └─ redrawControl()
+```
+
+## Quick Reference
+
+**Routing:**
+```php
+// In RouterFactory
+$router->addRoute('article/<id \d+>', 'Article:show');
+$router->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
+```
+
+**Redirect patterns:**
+```php
+$this->redirect('Article:show', $id);           // Internal
+$this->redirectUrl('https://example.com');       // External
+$this->redirect('this');                         // Refresh
+```
+
+**Flash messages:**
+```php
+$this->flashMessage('Saved successfully', 'success');
+$this->flashMessage('Error occurred', 'error');
+
+// In template
+{foreach $flashes as $flash}
+    <div class="alert-{$flash->type}">{$flash->message}</div>
+{/foreach}
+```
+
+**User & Security:**
+```php
+$user = $this->getUser();
+$user->login($username, $password);
+$user->logout();
+$user->isLoggedIn();
+$user->isInRole('admin');
+$user->getId();
+$user->getIdentity();
+```
+
+## When to Use MCP Server
+
+If you need:
+- Exact API documentation for less common features
+- Latest syntax for newly added features
+- Detailed examples from official docs
+- Edge case handling documentation
+
+Otherwise, use patterns from this skill for fast, correct code.
+
+## Summary
+
+This skill provides:
+- ✓ Modern Nette 3.x+ patterns
+- ✓ PHP 8.1+ best practices
+- ✓ Security-first approach
+- ✓ Clean, maintainable code structure
+- ✓ DI container usage
+- ✓ Latte templating patterns
+- ✓ Tracy debugging techniques
+- ✓ Common patterns and anti-patterns
+
+Follow these patterns for consistent, high-quality Nette applications.

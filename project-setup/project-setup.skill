@@ -1,0 +1,752 @@
+---
+name: project-setup
+description: Use when setting up new project for development - creates CLAUDE.md and .claude/ configuration with TDD, Git safety, Verification, and Checkpoints principles (supports Generic/Nette/Flutter/Frontend/Expo/FastAPI). Optionally adds workflow-optimization (mistakes.md, verification.md, context pruning).
+---
+
+# 🚀 Project Setup Skill
+
+## When to Use
+
+Use this skill when:
+- User says "Setup this project" or "Initialize this project"
+- User says "Configure development environment"
+- User says "Setup Claude for this project"
+- Empty or new project directory (no CLAUDE.md exists)
+
+## What This Skill Does
+
+**Creates development principles structure:**
+- `CLAUDE.md` - Entry point with quick reference
+- `.claude/CORE_PRINCIPLES.md` - 11 core principles (TDD, Git, Verification, etc.)
+- `.claude/WORKFLOWS.md` - TDD workflow, Bug Fix, Git operations
+- `.claude/CHECKPOINTS.md` - When to ask vs auto
+- `.claude/settings.local.json` - Project permissions
+
+**Supports 6 variants:**
+- **Generic** - Framework-free, pure principles (TDD, Git, Verification)
+- **Nette** - Integrates with nette-workflow.skill + principles
+- **Flutter** - Integrates with flutter-workflow.skill + principles
+- **Frontend** - Integrates with frontend-workflow.skill + principles
+- **Expo** - React Native + Expo SDK 52+ with expo-workflow.skill
+- **FastAPI** - Python + FastAPI + Pydantic v2 with fastapi-workflow.skill
+
+## Important Notes
+
+**This skill creates PRINCIPLES, not framework workflows:**
+- ✅ TDD (Test-Driven Development)
+- ✅ Git Safety (Branch first, ask before commit)
+- ✅ Verification (Tests + Static analysis mandatory)
+- ✅ Checkpoints (When to ask vs auto)
+- ✅ False Positive Prevention
+
+**Framework-specific workflows are in separate skills:**
+- `nette-workflow.skill` - Nette development + MANDATORY docs-first
+- `flutter-workflow.skill` - Flutter development + MANDATORY docs-first
+- `frontend-workflow.skill` - Frontend development + MANDATORY docs-first
+
+---
+
+## Process
+
+### Step 1: Detect Context
+
+Check if setup is needed:
+```
+Is there CLAUDE.md in current directory?
+├─ NO → Continue to Step 2
+└─ YES → Ask: "CLAUDE.md exists. Overwrite? (yes/no)"
+           ├─ yes → Continue to Step 2
+           └─ no → Stop
+```
+
+### Step 2: Ask Variant
+
+```
+❓ Which project type?
+
+   A) Generic (Framework-free)
+      → Pure principles: TDD, Git safety, Verification
+      → No framework-specific rules
+      → Works with ANY tech stack
+
+   B) Nette (PHP + Latte + Tracy)
+      → Principles + Nette critical rules
+      → Integration with nette-workflow.skill
+      → Commands: composer test, phpstan
+
+   C) Flutter (Dart + Flutter)
+      → Principles + Flutter critical rules
+      → Integration with flutter-workflow.skill
+      → Commands: flutter test, flutter analyze
+
+   D) Frontend (Vite + TypeScript + Tailwind + Alpine)
+      → Principles + Frontend critical rules
+      → Integration with frontend-workflow.skill
+      → Commands: npm test, npm run lint
+
+   E) Expo (React Native + Expo SDK 52+)
+      → Principles + Expo/RN critical rules
+      → Integration with expo-workflow.skill
+      → Commands: npm test, npx expo lint
+
+   F) FastAPI (Python + Pydantic v2 + SQLAlchemy)
+      → Principles + FastAPI critical rules
+      → Integration with fastapi-workflow.skill
+      → Commands: pytest, mypy
+
+   Choice (A/B/C/D/E/F):
+
+[WAIT FOR ANSWER]
+```
+
+### Step 3: Create Files
+
+Based on choice, create appropriate files:
+
+**All variants get:**
+1. `CLAUDE.md` (customized per variant)
+2. `.claude/CORE_PRINCIPLES.md` (11 principles + Section 8 customized)
+3. `.claude/WORKFLOWS.md` (TDD workflow + commands customized)
+4. `.claude/CHECKPOINTS.md` (when to ask - same for all)
+5. `.claude/settings.local.json` (permissions customized)
+
+**File contents are defined in templates below.**
+
+### Step 4: Inform User
+
+```
+✅ Project setup complete!
+
+Created files:
+- CLAUDE.md
+- .claude/CORE_PRINCIPLES.md
+- .claude/WORKFLOWS.md
+- .claude/CHECKPOINTS.md
+- .claude/settings.local.json
+
+Project type: [Generic/Nette/Flutter/Frontend/Expo/FastAPI]
+```
+
+### Step 5: Offer Workflow Optimization
+
+```
+❓ Add workflow optimization? (Anthropic best practices)
+
+   This adds:
+   - mistakes.md - Learn from errors (2-3x quality improvement)
+   - verification.md - Pre-commit checklist (2-3x quality)
+   - CHECKPOINTS.md update - Auto-detect mistakes at session end
+   - [MAJOR]/[MINOR] context format - Better context management
+
+   Add workflow optimization? (yes/no)
+
+   [WAIT FOR ANSWER]
+```
+
+**If yes:** Invoke `workflow-optimization` skill with option A (Full optimization)
+
+**If no:** Continue to Step 6
+
+### Step 6: Final Summary
+
+```
+✅ Setup complete!
+
+[If workflow-optimization was added:]
+Additional files created:
+- .claude/mistakes.md
+- .claude/verification.md
+- .claude/archive/ (for context pruning)
+
+Active skills:
+- project-setup ← Setup complete
+- [framework-workflow] ← Use for development
+- workflow-optimization ← Quality patterns active
+
+[Standard next steps:]
+Next steps:
+1. Read CLAUDE.md for quick reference
+2. Customize Section 8 in CORE_PRINCIPLES.md if needed
+3. Start developing!
+
+Development workflow:
+User: "Create [feature]"
+→ Framework skill activates
+→ Uses principles from .claude/
+→ Enforces TDD + Git safety + Verification
+→ Uses verification.md before commits
+→ Logs mistakes to mistakes.md
+```
+
+---
+
+## Templates
+
+### TEMPLATE: Generic CLAUDE.md
+
+```markdown
+# 🎯 Development Guide
+
+This project follows structured development principles.
+
+## 🚀 Quick Start
+
+**Before any code:**
+1. Read `.claude/CORE_PRINCIPLES.md` - 11 core principles
+2. Understand `.claude/WORKFLOWS.md` - TDD workflow
+3. Check `.claude/CHECKPOINTS.md` - When to ask vs auto
+
+## 📋 Core Principles Summary
+
+1. **TDD IS MANDATORY** - Tests before code (RED → GREEN → REFACTOR)
+2. **GIT BRANCH FIRST** - Create branch before any implementation
+3. **VERIFICATION RULES** - Tests + Static analysis = 0 errors
+4. **NEVER AUTO** - Ask before destructive actions
+5. **MINIMAL CHANGE** - Only relevant files
+6. **FALSE POSITIVE PREVENTION** - Real proof required
+
+## 🔄 Quick Workflow
+
+**For new features:**
+```
+1. Git Branch First 🌿
+   └─ Ask: "Create branch? (yes/no)"
+
+2. TDD Cycle
+   ├─ RED: Write failing test ❌
+   ├─ GREEN: Implement ✅
+   └─ REFACTOR: Improve 🔧
+
+3. Verify ✅
+   ├─ Run tests → All passed
+   ├─ Run static analysis → 0 errors
+   └─ Run application → App starts
+
+4. Ask to commit
+   └─ "Commit? (yes/no)"
+```
+
+**For bugs:**
+```
+1. Git Branch First 🌿
+2. Reproduction test → Must fail
+3. Fix → Minimal change
+4. Verify → Test passes + All tests pass
+5. Ask to commit
+```
+
+## 🛠 Tech Stack
+
+**Customize this section for your project:**
+- Language: [Your language]
+- Framework: [Your framework]
+- Test command: [Your test command]
+- Linter: [Your linter]
+
+## ⚠️ Critical Rules
+
+**Customize `.claude/CORE_PRINCIPLES.md` Section 8 for project-specific rules.**
+
+Examples:
+- Multi-tenancy: Every query must filter by tenant_id
+- Security: All user input must be validated
+- Architecture: Follow repository pattern
+
+## 🔗 Documentation
+
+- `.claude/CORE_PRINCIPLES.md` - Complete principles
+- `.claude/WORKFLOWS.md` - Detailed workflows
+- `.claude/CHECKPOINTS.md` - When to ask vs auto
+
+---
+
+**Ready to develop! Start with: "Implement [feature]"**
+```
+
+---
+
+### TEMPLATE: Nette CLAUDE.md
+
+```markdown
+# 🎯 Nette Development Guide
+
+This project uses Nette Framework with TDD and docs-first principles.
+
+## 🚀 Quick Start
+
+**Before any code:**
+1. Read `.claude/CORE_PRINCIPLES.md` - 11 core principles + Nette rules
+2. Understand `.claude/WORKFLOWS.md` - TDD workflow with Nette
+3. Check `.claude/CHECKPOINTS.md` - When to ask vs auto
+
+## 📋 Nette Workflow
+
+**For new features (e.g., "Create ProductPresenter"):**
+```
+1. Git Branch First 🌿
+   └─ Ask: "Create branch? (yes/no)"
+
+2. Docs-First ⚠️ MANDATORY
+   ├─ fetch_nette_docs(topic: "presenter")
+   └─ fetch_di_pattern(pattern: "constructor-injection")
+
+3. TDD Cycle
+   ├─ RED: Write failing test ❌
+   ├─ GREEN: Implement using docs ✅
+   └─ REFACTOR: Improve 🔧
+
+4. Verify ✅
+   ├─ composer test → All passed
+   ├─ vendor/bin/phpstan → 0 errors
+   └─ php -S localhost:8000 → App starts
+
+5. Ask to commit
+   └─ "Commit? (yes/no)"
+```
+
+## 🛠 Tech Stack
+
+- **Nette Framework 3.x+**
+- **PHP 8.1+**
+- **Latte Templates**
+- **Tracy Debugger**
+- **Test**: `composer test`
+- **Analysis**: `vendor/bin/phpstan`
+
+## 📚 MCP Tools (Docs-First)
+
+Available via `nette-workflow.skill`:
+- `fetch_nette_docs(topic)` - Presenters, routing, components, forms, database
+- `fetch_latte_syntax(feature)` - n-attributes, blocks, loops, filters, security
+- `fetch_tracy_feature(feature)` - Debugging, logging, panels, production
+- `fetch_di_pattern(pattern)` - Service registration, factories, decorators
+
+## ⚠️ Critical Nette Rules
+
+From `.claude/CORE_PRINCIPLES.md` Section 8:
+
+1. **Every presenter MUST:**
+   - Use constructor DI (not `new`)
+   - Extend `Nette\Application\UI\Presenter`
+   - Have `declare(strict_types=1)`
+
+2. **Every template MUST:**
+   - Use n:attributes (not {link})
+   - Trust auto-escaping
+   - Never disable escaping without reason
+
+3. **Every database query MUST:**
+   - Use `Nette\Database\Explorer`
+   - Type return values
+   - Handle errors
+
+## 🔗 Active Skills
+
+- **project-setup** - Initial setup (done!)
+- **nette-workflow** - Development workflows + MANDATORY docs-first
+
+## 📖 Documentation
+
+- `.claude/CORE_PRINCIPLES.md` - Complete principles + Nette rules
+- `.claude/WORKFLOWS.md` - TDD with Nette commands
+- `.claude/CHECKPOINTS.md` - When to ask
+
+---
+
+**Ready! Try: "Create ProductPresenter for product listing"**
+```
+
+---
+
+### TEMPLATE: Flutter CLAUDE.md
+
+```markdown
+# 🎯 Flutter Development Guide
+
+This project uses Flutter/Dart with TDD and docs-first principles.
+
+## 🚀 Quick Start
+
+**Before any code:**
+1. Read `.claude/CORE_PRINCIPLES.md` - 11 core principles + Flutter rules
+2. Understand `.claude/WORKFLOWS.md` - TDD workflow with Flutter
+3. Check `.claude/CHECKPOINTS.md` - When to ask
+
+## 📋 Flutter Workflow
+
+**For new features (e.g., "Create ProductListWidget"):**
+```
+1. Git Branch First 🌿
+   └─ Ask: "Create branch? (yes/no)"
+
+2. Docs-First ⚠️ MANDATORY
+   ├─ fetch_widget_docs(widget: "StatefulWidget")
+   └─ fetch_state_management(pattern: "provider")
+
+3. TDD Cycle
+   ├─ RED: Write failing test ❌
+   ├─ GREEN: Implement using docs ✅
+   └─ REFACTOR: Improve 🔧
+
+4. Verify ✅
+   ├─ flutter test → All passed
+   ├─ flutter analyze → 0 issues
+   └─ flutter run → App starts
+
+5. Ask to commit
+   └─ "Commit? (yes/no)"
+```
+
+## 🛠 Tech Stack
+
+- **Flutter 3.x+**
+- **Dart 3.x+**
+- **State Management**: Provider/Riverpod/BLoC
+- **Test**: `flutter test`
+- **Analysis**: `flutter analyze`
+
+## 📚 MCP Tools (Docs-First)
+
+Available via `flutter-workflow.skill`:
+- `fetch_widget_docs(widget)` - StatefulWidget, StatelessWidget, etc.
+- `fetch_state_management(pattern)` - Provider, Riverpod, BLoC, GetX
+- `fetch_flutter_api(query)` - Search Flutter API
+- `fetch_package_docs(package)` - pub.dev packages
+
+## ⚠️ Critical Flutter Rules
+
+From `.claude/CORE_PRINCIPLES.md` Section 8:
+
+1. **Every widget MUST:**
+   - Be immutable (`@immutable` or const)
+   - Have proper key usage
+   - Handle null safety
+
+2. **State management MUST:**
+   - Follow chosen pattern consistently
+   - Dispose resources properly
+   - Handle async correctly
+
+3. **Tests MUST:**
+   - Use widget tests for UI
+   - Use unit tests for logic
+   - Mock dependencies
+
+## 🔗 Active Skills
+
+- **project-setup** - Initial setup (done!)
+- **flutter-workflow** - Development workflows + MANDATORY docs-first
+
+## 📖 Documentation
+
+- `.claude/CORE_PRINCIPLES.md` - Complete principles + Flutter rules
+- `.claude/WORKFLOWS.md` - TDD with Flutter commands
+- `.claude/CHECKPOINTS.md` - When to ask
+
+---
+
+**Ready! Try: "Create ProductListWidget with state management"**
+```
+
+---
+
+### TEMPLATE: Frontend CLAUDE.md
+
+```markdown
+# 🎯 Frontend Development Guide
+
+This project uses Vite + TypeScript + Tailwind + Alpine.js with TDD and docs-first principles.
+
+## 🚀 Quick Start
+
+**Before any code:**
+1. Read `.claude/CORE_PRINCIPLES.md` - 11 core principles + Frontend rules
+2. Understand `.claude/WORKFLOWS.md` - TDD workflow with Frontend
+3. Check `.claude/CHECKPOINTS.md` - When to ask
+
+## 📋 Frontend Workflow
+
+**For new features (e.g., "Create product grid"):**
+```
+1. Git Branch First 🌿
+   └─ Ask: "Create branch? (yes/no)"
+
+2. Docs-First ⚠️ MANDATORY
+   ├─ fetch_tailwind_docs(topic: "grid")
+   ├─ fetch_alpine_patterns(directive: "x-for")
+   └─ get_ecommerce_ui_pattern(pattern: "product-grid")
+
+3. TDD Cycle
+   ├─ RED: Write failing test ❌
+   ├─ GREEN: Implement using docs ✅
+   └─ REFACTOR: Improve 🔧
+
+4. Verify ✅
+   ├─ npm test → All passed
+   ├─ npm run lint → 0 errors
+   └─ npm run dev → App starts
+
+5. Ask to commit
+   └─ "Commit? (yes/no)"
+```
+
+## 🛠 Tech Stack
+
+- **Vite 6.x**
+- **TypeScript 5.7+**
+- **Tailwind CSS 4.1+**
+- **Alpine.js 3.x**
+- **Test**: `npm test`
+- **Lint**: `npm run lint`
+
+## 📚 MCP Tools (Docs-First)
+
+Available via `frontend-workflow.skill`:
+- `fetch_tailwind_docs(topic)` - Grid, flex, responsive, colors
+- `fetch_alpine_patterns(directive)` - x-data, x-model, x-show, x-if, x-for
+- `fetch_vite_config(topic)` - Plugins, optimization, build
+- `fetch_typescript_config(topic)` - Strict mode, path aliases
+- `search_tailwind_utilities(query)` - Search specific utilities
+- `get_ecommerce_ui_pattern(pattern)` - Production-ready e-commerce components
+
+## ⚠️ Critical Frontend Rules
+
+From `.claude/CORE_PRINCIPLES.md` Section 8:
+
+1. **TypeScript MUST:**
+   - Use strict mode
+   - Type everything (no `any`)
+   - Use interfaces for data
+
+2. **Tailwind MUST:**
+   - Use utility classes (no custom CSS)
+   - Follow responsive patterns
+   - Use Tailwind 4.1+ CSS-first config
+
+3. **Alpine.js MUST:**
+   - Use n:attributes equivalent patterns
+   - Keep state close to usage
+   - Follow reactive patterns
+
+## 🔗 Active Skills
+
+- **project-setup** - Initial setup (done!)
+- **frontend-workflow** - Development workflows + MANDATORY docs-first
+
+## 📖 Documentation
+
+- `.claude/CORE_PRINCIPLES.md` - Complete principles + Frontend rules
+- `.claude/WORKFLOWS.md` - TDD with Frontend commands
+- `.claude/CHECKPOINTS.md` - When to ask
+
+---
+
+**Ready! Try: "Create product grid with Tailwind and Alpine"**
+```
+
+---
+
+### TEMPLATE: Expo CLAUDE.md
+
+```markdown
+# React Native + Expo Development Guide
+
+This project uses React Native + Expo with TDD and docs-first principles.
+
+## 🚀 Quick Start
+
+**Before any code:**
+1. Read `.claude/CORE_PRINCIPLES.md` - 11 core principles + Expo rules
+2. Understand `.claude/WORKFLOWS.md` - TDD workflow with Expo
+3. Check `.claude/CHECKPOINTS.md` - When to ask
+
+## 📋 Expo Workflow
+
+**For new features (e.g., "Create ProductCard component"):**
+```
+1. Git Branch First 🌿
+   └─ Ask: "Create branch? (yes/no)"
+
+2. Docs-First ⚠️ MANDATORY
+   ├─ fetch_rn_docs(topic: "View")
+   └─ fetch_expo_sdk(module: "expo-image")
+
+3. TDD Cycle
+   ├─ RED: Write failing test ❌
+   ├─ GREEN: Implement using docs ✅
+   └─ REFACTOR: Improve 🔧
+
+4. Verify ✅
+   ├─ npm test → All passed
+   ├─ npx expo lint → 0 errors
+   └─ npx expo start → App runs
+
+5. Ask to commit
+   └─ "Commit? (yes/no)"
+```
+
+## 🛠 Tech Stack
+
+- **Expo SDK 52+**
+- **React Native 0.76+** (New Architecture)
+- **React 18.3+**
+- **TypeScript 5.3+**
+- **Test**: `npm test` (Jest)
+- **Lint**: `npx expo lint`
+
+## 📚 MCP Tools (Docs-First)
+
+Available via `expo-workflow.skill`:
+- `fetch_expo_sdk(module)` - expo-camera, expo-image, expo-video
+- `fetch_rn_docs(topic)` - View, FlatList, StyleSheet
+- `fetch_expo_router(topic)` - file-based-routing, tabs, navigation
+- `fetch_npm_docs(package)` - zustand, nativewind, etc.
+
+## ⚠️ Critical Expo Rules
+
+From `.claude/CORE_PRINCIPLES.md` Section 8:
+
+1. **Every component MUST:**
+   - Use functional components with hooks
+   - Have proper TypeScript types
+   - Use StyleSheet.create (not inline styles)
+
+2. **State management MUST:**
+   - Choose one pattern (Zustand/Context)
+   - Use memo/useCallback for performance
+
+3. **Navigation MUST:**
+   - Use Expo Router (file-based)
+   - Type-safe routes
+
+## 🔗 Active Skills
+
+- **project-setup** - Initial setup (done!)
+- **expo-workflow** - Development workflows + MANDATORY docs-first
+
+## 📖 Documentation
+
+- `.claude/CORE_PRINCIPLES.md` - Complete principles + Expo rules
+- `.claude/WORKFLOWS.md` - TDD with Expo commands
+- `.claude/CHECKPOINTS.md` - When to ask
+
+---
+
+**Ready! Try: "Create ProductCard with expo-image"**
+```
+
+---
+
+### TEMPLATE: FastAPI CLAUDE.md
+
+```markdown
+# Python + FastAPI Development Guide
+
+This project uses FastAPI with Pydantic v2, SQLAlchemy 2.0, and TDD + docs-first principles.
+
+## 🚀 Quick Start
+
+**Before any code:**
+1. Read `.claude/CORE_PRINCIPLES.md` - 11 core principles + FastAPI rules
+2. Understand `.claude/WORKFLOWS.md` - TDD workflow with FastAPI
+3. Check `.claude/CHECKPOINTS.md` - When to ask
+
+## 📋 FastAPI Workflow
+
+**For new features (e.g., "Create /products endpoint"):**
+```
+1. Git Branch First 🌿
+   └─ Ask: "Create branch? (yes/no)"
+
+2. Docs-First ⚠️ MANDATORY
+   ├─ fetch_fastapi_docs(topic: "routing")
+   └─ fetch_pydantic_docs(topic: "models")
+
+3. TDD Cycle
+   ├─ RED: Write failing test ❌
+   ├─ GREEN: Implement using docs ✅
+   └─ REFACTOR: Improve 🔧
+
+4. Verify ✅
+   ├─ pytest → All passed
+   ├─ mypy → 0 errors
+   └─ uvicorn app.main:app → Server runs
+
+5. Ask to commit
+   └─ "Commit? (yes/no)"
+```
+
+## 🛠 Tech Stack
+
+- **Python 3.11+**
+- **FastAPI 0.115+**
+- **Pydantic 2.x** (v2 syntax)
+- **SQLAlchemy 2.0+** (async)
+- **Test**: `pytest` + `pytest-asyncio`
+- **Type check**: `mypy`
+
+## 📚 MCP Tools (Docs-First)
+
+Available via `fastapi-workflow.skill`:
+- `fetch_fastapi_docs(topic)` - routing, dependencies, security
+- `fetch_pydantic_docs(topic)` - models, validators, config
+- `fetch_sqlalchemy_docs(topic)` - async, relationships, queries
+- `search_pypi(package)` - Python packages
+
+## ⚠️ Critical FastAPI Rules
+
+From `.claude/CORE_PRINCIPLES.md` Section 8:
+
+1. **Every endpoint MUST:**
+   - Have response_model in decorator
+   - Use Annotated[Type, Depends()] for DI
+   - Have type hints everywhere
+
+2. **Pydantic models MUST:**
+   - Use v2 syntax (ConfigDict, not class Config)
+   - Use field_validator, not validator
+   - Use str | None, not Optional[str]
+
+3. **Database MUST:**
+   - Use SQLAlchemy 2.0 async
+   - Use Mapped and mapped_column
+
+## 🔗 Active Skills
+
+- **project-setup** - Initial setup (done!)
+- **fastapi-workflow** - Development workflows + MANDATORY docs-first
+
+## 📖 Documentation
+
+- `.claude/CORE_PRINCIPLES.md` - Complete principles + FastAPI rules
+- `.claude/WORKFLOWS.md` - TDD with FastAPI commands
+- `.claude/CHECKPOINTS.md` - When to ask
+
+---
+
+**Ready! Try: "Create /products endpoint with CRUD"**
+```
+
+---
+
+## Summary
+
+This skill:
+- ✅ Creates `.claude/` structure with principles
+- ✅ Supports 6 variants: Generic, Nette, Flutter, Frontend, Expo, FastAPI
+- ✅ Integrates with framework-specific workflow skills
+- ✅ Enforces TDD, Git safety, Verification, Checkpoints
+- ✅ Customizable Section 8 for project-specific rules
+- ✅ **Optional:** Adds workflow-optimization (mistakes.md, verification.md, context pruning)
+
+**Use:** "Setup this project" → Ready to develop!
+
+## Integration with workflow-optimization
+
+At the end of setup, user is offered workflow-optimization which adds:
+- `mistakes.md` - Log errors with lessons learned (Cherny pattern)
+- `verification.md` - Stack-specific pre-commit checklist
+- CHECKPOINTS.md update - Auto-detect mistakes at session end
+- [MAJOR]/[MINOR] tagging for ACTIVE_CONTEXT.md
+
+This is optional but recommended for quality improvement.

@@ -1,0 +1,8 @@
+{
+  "name": "children-books",
+  "version": "1.0.0",
+  "description": "Production pipeline for children's books - storywriting, illustration, and typography",
+  "author": {"name": "Petr"},
+  "keywords": ["children-books", "storytelling", "illustration", "typography", "dtp"],
+  "skills": "./skills/"
+}

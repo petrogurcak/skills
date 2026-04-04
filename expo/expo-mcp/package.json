@@ -1,0 +1,37 @@
+{
+  "name": "expo-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for React Native + Expo documentation access - workflow-driven docs-first development",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "expo-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "npm run build && node dist/index.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "expo",
+    "react-native",
+    "documentation",
+    "workflow"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "cheerio": "^1.0.0",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^3.3.2",
+    "turndown": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/turndown": "^5.0.5",
+    "typescript": "^5.3.0"
+  }
+}

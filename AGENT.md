@@ -158,19 +158,21 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 
 **Poznámka:** UUID se může změnit. Pokud skills v Cowork zmizí, najdi novou cestu a znovu vytvoř symlinky.
 
-## 9 pluginů (44 skills)
+## 11 pluginů (55 skills)
 
-| Plugin          | Skills | Popis                                                               |
-| --------------- | ------ | ------------------------------------------------------------------- |
-| **seo**         | 4      | SEO, technical SEO, keyword research, ASO                           |
-| **growth**      | 3      | Growth hacking, PLG, SaaS bootstrap                                 |
-| **marketing**   | 5      | Orchestrator, offers, UVP, analytics, pricing                       |
-| **copywriting** | 6      | OttoCopy framework, web/product copy, newsletters                   |
-| **development** | 12     | Flutter, Expo, FastAPI, frontend workflows                          |
-| **review**      | 4      | Deep review, API/database/security review                           |
-| **ux**          | 3      | UX orchestrator, optimization, expert dialogue                      |
-| **product**     | 6      | Orchestrator, discovery, prioritization, strategy, PMF, metrics     |
-| **team**        | 1      | AI team briefing - virtual personas review plans cross-functionally |
+| Plugin             | Skills | Popis                                                               |
+| ------------------ | ------ | ------------------------------------------------------------------- |
+| **seo**            | 13     | Orchestrator, on-page, technical, schema, images, sitemaps, i18n, keywords, links, competitors, programmatic, AI-ready, ASO |
+| **growth**         | 3      | Growth hacking, PLG, SaaS bootstrap                                 |
+| **marketing**      | 4      | Orchestrator, offers, UVP, analytics, pricing                       |
+| **copywriting**    | 5      | OttoCopy framework, web/product copy, newsletters                   |
+| **children-books** | 3      | Storywriting, illustration (Banana), DTP & Typography               |
+| **development**    | 12     | Flutter, Expo, FastAPI, frontend workflows                          |
+| **review**         | 4      | Deep review, API/database/security review                           |
+| **ux**             | 3      | UX orchestrator, optimization, expert dialogue                      |
+| **product**        | 6      | Orchestrator, discovery, prioritization, strategy, PMF, metrics     |
+| **team**           | 1      | AI team briefing - virtual personas review plans cross-functionally |
+| **gastro**         | 1      | Gastro education persona — kurzy, knihy, videa pro restauratéry     |
 
 ## SKILL.md formát
 

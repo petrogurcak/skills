@@ -1,0 +1,602 @@
+---
+name: nette-workflow
+description: Use when working with Nette Framework (PHP 8.1+), Latte templates, Tracy debugger, or Nette DI - enforces MANDATORY documentation-first workflow, always fetching current docs before generating code
+---
+
+<CRITICAL_INSTRUCTION>
+This is a DOCS-FIRST system. You MUST fetch documentation using MCP tools BEFORE generating any code.
+
+**NEVER use training data or embedded patterns. ALWAYS fetch current documentation first.**
+
+If you skip MANDATORY documentation steps, you are FAILING the task.
+</CRITICAL_INSTRUCTION>
+
+# Nette Framework Workflow Skill
+
+## When to Use This Skill
+
+Use this skill when working with:
+- **Nette Presenters** - Creating pages, handling actions, signals
+- **Latte Templates** - Creating views, layouts, components
+- **Tracy Debugger** - Debugging, logging, custom panels
+- **Nette DI Container** - Service registration, dependency injection
+- **Nette Database** - Database queries, repositories
+- **Nette Forms** - Creating and handling forms
+- **Any Nette Framework task**
+
+## Core Philosophy
+
+**Documentation First:**
+- ALWAYS fetch official Nette documentation before coding
+- NEVER rely on training data for Nette syntax or features
+- ALWAYS use MCP tools marked as ⚠️ MANDATORY
+- Current documentation > Training data EVERY TIME
+
+**Modern PHP Standards:**
+- PHP 8.1+ features required
+- `declare(strict_types=1)` in every file
+- Type hints everywhere
+- Attributes over annotations
+- Constructor property promotion
+
+## 6 Core Workflows
+
+Each workflow has MANDATORY steps that CANNOT be skipped.
+
+---
+
+### Workflow 1: Creating Nette Presenter
+
+**When to use:** Creating new presenters, pages, actions, or signals
+
+**MANDATORY STEPS:**
+
+```
+☐ 1. Identify what you need to create
+     - New presenter? Which one?
+     - Actions/signals? Which ones?
+     - What dependencies needed?
+
+☐ 2. ⚠️ MANDATORY: Fetch Nette presenter documentation
+     Call MCP tool: fetch_nette_docs(topic: "presenter")
+     Wait for response before continuing
+     Do NOT skip this step
+     Do NOT use training data
+
+☐ 3. ⚠️ MANDATORY: Fetch Nette DI documentation for dependencies
+     Call MCP tool: fetch_di_pattern(pattern: "constructor-injection")
+     Wait for response before continuing
+
+☐ 4. Review fetched documentation
+     - Check presenter lifecycle
+     - Verify action* and render* methods
+     - Confirm DI constructor pattern
+     - Review signal handling if needed
+
+☐ 5. Generate presenter code
+     - Use fetched documentation patterns
+     - Include declare(strict_types=1)
+     - Type all parameters and returns
+     - Follow constructor injection pattern
+     - Add proper namespace
+
+☐ 6. Create corresponding template
+     - Follow naming: templates/<Presenter>/<view>.latte
+     - Use Latte syntax from docs
+```
+
+**Example Request:**
+"Create a UserPresenter with edit action that loads user by ID"
+
+**Required MCP Calls:**
+1. `fetch_nette_docs(topic: "presenter")`
+2. `fetch_di_pattern(pattern: "constructor-injection")`
+3. `fetch_latte_syntax(feature: "n-attributes")` (for template)
+
+---
+
+### Workflow 2: Creating Latte Template
+
+**When to use:** Creating or modifying Latte templates, layouts, blocks
+
+**MANDATORY STEPS:**
+
+```
+☐ 1. Identify template requirements
+     - New template or modify existing?
+     - Which Latte features needed?
+     - Layout inheritance? Blocks? Loops?
+
+☐ 2. ⚠️ MANDATORY: Fetch Latte syntax documentation
+     Call MCP tool: fetch_latte_syntax(feature: <needed_feature>)
+     Features: "n-attributes", "blocks", "loops", "filters", "security"
+     Wait for response before continuing
+     Do NOT skip this step
+
+☐ 3. ⚠️ OPTIONAL: Fetch additional Latte features if needed
+     Examples:
+     - fetch_latte_syntax(feature: "filters") for custom filters
+     - fetch_latte_syntax(feature: "blocks") for template inheritance
+
+☐ 4. Review fetched documentation
+     - Verify n:href vs {link} syntax
+     - Check n:if vs {if} patterns
+     - Confirm auto-escaping rules
+     - Review security best practices
+
+☐ 5. Generate template code
+     - Use n:attributes for HTML attributes
+     - Trust auto-escaping (it's on by default)
+     - Follow block structure from docs
+     - Use proper filters
+
+☐ 6. Add security considerations
+     - Never disable escaping without reason
+     - Use |noescape only for sanitized data
+     - Follow CSRF protection patterns
+```
+
+**Example Request:**
+"Create a product listing template with foreach loop and filters"
+
+**Required MCP Calls:**
+1. `fetch_latte_syntax(feature: "loops")`
+2. `fetch_latte_syntax(feature: "filters")`
+3. `fetch_latte_syntax(feature: "n-attributes")`
+
+---
+
+### Workflow 3: Working with Tracy Debugger
+
+**When to use:** Adding debugging, logging, custom Tracy panels
+
+**MANDATORY STEPS:**
+
+```
+☐ 1. Identify debugging need
+     - Debug variables? Use barDump/dump
+     - Production logging? Use log()
+     - Custom panel? Create IBarPanel
+
+☐ 2. ⚠️ MANDATORY: Fetch Tracy documentation
+     Call MCP tool: fetch_tracy_feature(feature: <needed_feature>)
+     Features: "debugging", "logging", "panels", "production"
+     Wait for response before continuing
+
+☐ 3. Review fetched documentation
+     - Check correct Tracy methods
+     - Verify development vs production usage
+     - Confirm logging levels
+     - Review custom panel interface
+
+☐ 4. Implement debugging/logging
+     - Use correct Tracy methods from docs
+     - Add proper error handling
+     - Configure production mode correctly
+     - Register custom panels if needed
+```
+
+**Example Request:**
+"Add Tracy logging for user authentication errors"
+
+**Required MCP Calls:**
+1. `fetch_tracy_feature(feature: "logging")`
+2. `fetch_tracy_feature(feature: "production")`
+
+---
+
+### Workflow 4: Configuring Nette DI Container
+
+**When to use:** Registering services, configuring DI, creating factories
+
+**MANDATORY STEPS:**
+
+```
+☐ 1. Identify DI requirement
+     - Register new service?
+     - Create factory?
+     - Configure decorator?
+     - Add extension?
+
+☐ 2. ⚠️ MANDATORY: Fetch DI pattern documentation
+     Call MCP tool: fetch_di_pattern(pattern: <needed_pattern>)
+     Patterns: "service-registration", "factories", "decorators",
+              "constructor-injection", "extensions"
+     Wait for response before continuing
+
+☐ 3. Review fetched documentation
+     - Verify config.neon syntax
+     - Check autowiring rules
+     - Confirm factory generation
+     - Review service lifecycle
+
+☐ 4. Configure DI container
+     - Update config.neon
+     - Use correct NEON syntax from docs
+     - Configure autowiring
+     - Register factories/decorators
+
+☐ 5. Implement in PHP code
+     - Use constructor injection
+     - Type all dependencies
+     - Follow DI best practices
+```
+
+**Example Request:**
+"Register UserRepository service with database dependency"
+
+**Required MCP Calls:**
+1. `fetch_di_pattern(pattern: "service-registration")`
+2. `fetch_di_pattern(pattern: "constructor-injection")`
+
+---
+
+### Workflow 5: Creating Nette Component
+
+**When to use:** Creating reusable UI components, component factories
+
+**MANDATORY STEPS:**
+
+```
+☐ 1. Identify component purpose
+     - What does component render?
+     - What signals/actions needed?
+     - What dependencies required?
+     - Factory pattern needed?
+
+☐ 2. ⚠️ MANDATORY: Fetch Nette component documentation
+     Call MCP tool: fetch_nette_docs(topic: "components")
+     Wait for response before continuing
+
+☐ 3. ⚠️ MANDATORY: Fetch factory pattern if needed
+     Call MCP tool: fetch_di_pattern(pattern: "factories")
+     Wait for response before continuing
+
+☐ 4. ⚠️ MANDATORY: Fetch Latte syntax for component template
+     Call MCP tool: fetch_latte_syntax(feature: "n-attributes")
+     Wait for response before continuing
+
+☐ 5. Review all fetched documentation
+     - Check component lifecycle
+     - Verify render() method pattern
+     - Confirm factory interface
+     - Review signal handling
+
+☐ 6. Create component class
+     - Extend Control
+     - Add dependencies via constructor
+     - Implement render() method
+     - Add signals if needed
+
+☐ 7. Create component factory
+     - Define factory interface
+     - Register in config.neon
+     - Use in presenter
+
+☐ 8. Create component template
+     - Use Latte patterns from docs
+     - Add snippets for AJAX if needed
+```
+
+**Example Request:**
+"Create a UserGrid component with sorting and pagination"
+
+**Required MCP Calls:**
+1. `fetch_nette_docs(topic: "components")`
+2. `fetch_di_pattern(pattern: "factories")`
+3. `fetch_latte_syntax(feature: "n-attributes")`
+
+---
+
+### Workflow 6: Working with Nette Database
+
+**When to use:** Creating repositories, database queries, transactions
+
+**MANDATORY STEPS:**
+
+```
+☐ 1. Identify database operation
+     - Simple query?
+     - Repository pattern?
+     - Transactions needed?
+     - Relations?
+
+☐ 2. ⚠️ MANDATORY: Fetch Nette database documentation
+     Call MCP tool: fetch_nette_docs(topic: "database")
+     Wait for response before continuing
+
+☐ 3. ⚠️ MANDATORY: Fetch DI pattern for repository
+     Call MCP tool: fetch_di_pattern(pattern: "service-registration")
+     Wait for response before continuing
+
+☐ 4. Review fetched documentation
+     - Check Explorer API
+     - Verify query methods
+     - Confirm transaction pattern
+     - Review relation handling
+
+☐ 5. Create repository class
+     - Inject Database\Explorer
+     - Add query methods
+     - Type return values
+     - Handle transactions correctly
+
+☐ 6. Register in DI container
+     - Add to config.neon
+     - Configure autowiring
+```
+
+**Example Request:**
+"Create ArticleRepository with findPublished method"
+
+**Required MCP Calls:**
+1. `fetch_nette_docs(topic: "database")`
+2. `fetch_di_pattern(pattern: "service-registration")`
+
+---
+
+## MANDATORY Rules
+
+**Before generating ANY code:**
+
+1. ☐ **ALWAYS fetch documentation first** using MCP tools
+2. ☐ **NEVER skip ⚠️ MANDATORY steps** - they are required
+3. ☐ **WAIT for MCP response** before continuing
+4. ☐ **USE the fetched documentation** to generate code
+5. ☐ **DO NOT use training data** for Nette-specific syntax
+
+**After generating code:**
+
+6. ☐ **Verify code matches** fetched documentation
+7. ☐ **Include declare(strict_types=1)** in all PHP files
+8. ☐ **Type everything** - parameters, returns, properties
+9. ☐ **Use modern PHP 8.1+** features
+10. ☐ **Follow Nette conventions** from official docs
+
+## Quick Decision Tree
+
+**"I need to create..."**
+
+- **New page/endpoint** → Workflow 1: Creating Nette Presenter
+- **Template/view** → Workflow 2: Creating Latte Template
+- **Debug/log something** → Workflow 3: Working with Tracy Debugger
+- **Register service** → Workflow 4: Configuring Nette DI Container
+- **Reusable UI** → Workflow 5: Creating Nette Component
+- **Data access** → Workflow 6: Working with Nette Database
+
+**"I need to modify..."**
+
+- **Presenter** → Workflow 1, fetch presenter docs first
+- **Template** → Workflow 2, fetch Latte syntax first
+- **config.neon** → Workflow 4, fetch DI pattern first
+- **Repository** → Workflow 6, fetch database docs first
+
+## Available MCP Tools
+
+### 1. fetch_nette_docs
+Fetch Nette Framework documentation.
+
+**Parameters:**
+- `topic` (string): "presenter", "routing", "components", "forms", "database", "application", "sessions"
+
+**Example:**
+```json
+{
+  "topic": "presenter"
+}
+```
+
+### 2. fetch_latte_syntax
+Fetch Latte template documentation.
+
+**Parameters:**
+- `feature` (string): "n-attributes", "blocks", "loops", "filters", "security", "syntax", "macros"
+
+**Example:**
+```json
+{
+  "feature": "n-attributes"
+}
+```
+
+### 3. fetch_tracy_feature
+Fetch Tracy debugger documentation.
+
+**Parameters:**
+- `feature` (string): "debugging", "logging", "panels", "production", "configuration"
+
+**Example:**
+```json
+{
+  "feature": "logging"
+}
+```
+
+### 4. fetch_di_pattern
+Fetch Nette DI container patterns.
+
+**Parameters:**
+- `pattern` (string): "service-registration", "factories", "decorators", "constructor-injection", "extensions", "autowiring"
+
+**Example:**
+```json
+{
+  "pattern": "factories"
+}
+```
+
+## Code Style Standards
+
+**Every PHP File Must Have:**
+```
+☐ declare(strict_types=1); as first line
+☐ Proper namespace
+☐ Type hints on ALL parameters
+☐ Return type on ALL methods
+☐ Property types declared
+☐ Final class (unless designed for inheritance)
+☐ Constructor property promotion (PHP 8.0+)
+```
+
+**Modern PHP Features to Use:**
+- Constructor property promotion
+- Attributes (not annotations)
+- Named arguments
+- Null-safe operator (?->)
+- Match expressions
+
+## Common Patterns Reference
+
+**Presenter:**
+```php
+declare(strict_types=1);
+
+namespace App\Presenters;
+
+use Nette\Application\UI\Presenter;
+
+final class UserPresenter extends Presenter
+{
+    public function __construct(
+        private UserRepository $userRepository,
+    ) {
+        parent::__construct();
+    }
+
+    public function actionEdit(int $id): void
+    {
+        // Load data - AFTER fetching docs!
+    }
+}
+```
+
+**Latte Template:**
+```latte
+{* AFTER fetching Latte syntax docs *}
+<a n:href="Product:detail $product->id">Link</a>
+<div n:if="$user->isLoggedIn()">Content</div>
+
+{foreach $items as $item}
+    <li>{$item->name}</li>
+{/foreach}
+```
+
+**DI Configuration:**
+```neon
+# AFTER fetching DI pattern docs
+services:
+    - App\Model\UserRepository
+    - UserGridFactory
+```
+
+## Enforcement
+
+**This skill ENFORCES:**
+- ✓ Documentation-first approach
+- ✓ MANDATORY MCP tool usage
+- ✓ No training data fallback
+- ✓ Modern PHP 8.1+ patterns
+- ✓ Type safety everywhere
+- ✓ Nette best practices
+
+**You CANNOT:**
+- ✗ Skip MANDATORY documentation steps
+- ✗ Use training data instead of docs
+- ✗ Generate code without fetching docs first
+- ✗ Skip type declarations
+- ✗ Use legacy patterns
+
+## Success Criteria
+
+**For EVERY Nette task:**
+
+1. ✓ All ⚠️ MANDATORY MCP calls executed
+2. ✓ Documentation fetched and reviewed
+3. ✓ Code generated using fetched docs
+4. ✓ declare(strict_types=1) present
+5. ✓ All types declared
+6. ✓ Modern PHP 8.1+ features used
+7. ✓ Nette conventions followed
+8. ✓ Security best practices applied
+
+**If ANY criterion is not met, the task is INCOMPLETE.**
+
+## Examples
+
+### Example 1: Create Product Listing
+
+**Request:** "Create a ProductPresenter with a list action showing all products"
+
+**Required Flow:**
+```
+1. ⚠️ MANDATORY: fetch_nette_docs(topic: "presenter")
+   → Wait for response
+   → Review presenter structure
+
+2. ⚠️ MANDATORY: fetch_di_pattern(pattern: "constructor-injection")
+   → Wait for response
+   → Review DI constructor pattern
+
+3. ⚠️ MANDATORY: fetch_latte_syntax(feature: "loops")
+   → Wait for response
+   → Review {foreach} syntax
+
+4. Generate ProductPresenter.php using fetched docs
+5. Generate list.latte using fetched Latte syntax
+6. Register ProductRepository in config.neon
+```
+
+### Example 2: Add Tracy Logging
+
+**Request:** "Add Tracy logging for failed login attempts"
+
+**Required Flow:**
+```
+1. ⚠️ MANDATORY: fetch_tracy_feature(feature: "logging")
+   → Wait for response
+   → Review Tracy::log() method
+
+2. ⚠️ MANDATORY: fetch_tracy_feature(feature: "production")
+   → Wait for response
+   → Review production configuration
+
+3. Add logging code using fetched Tracy patterns
+4. Configure production email notifications
+```
+
+### Example 3: Create Form Component
+
+**Request:** "Create a ContactForm component with name and email fields"
+
+**Required Flow:**
+```
+1. ⚠️ MANDATORY: fetch_nette_docs(topic: "forms")
+   → Wait for response
+   → Review form creation
+
+2. ⚠️ MANDATORY: fetch_nette_docs(topic: "components")
+   → Wait for response
+   → Review component pattern
+
+3. ⚠️ MANDATORY: fetch_di_pattern(pattern: "factories")
+   → Wait for response
+   → Review factory pattern
+
+4. Create ContactForm component using fetched docs
+5. Create factory interface
+6. Register in config.neon
+```
+
+## Summary
+
+**This is a DOCS-FIRST system.**
+
+- ⚠️ MANDATORY steps CANNOT be skipped
+- Documentation MUST be fetched before coding
+- Training data MUST NOT be used for Nette syntax
+- All code MUST use modern PHP 8.1+ patterns
+- All code MUST follow fetched documentation
+
+**If you skip documentation steps, you are FAILING the task.**
+
+Follow the workflows, fetch the docs, use current information.

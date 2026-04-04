@@ -27,3 +27,18 @@ Thumbs.db
 # Bun
 bun-darwin-x64-baseline/
 bun-baseline.zip
+
+# Secrets
+.env
+
+# Local MCP config
+.mcp.json
+
+# Embedded git repos (separate projects)
+code-mode/
+flutter/
+postmark/
+
+# Copyrighted materials
+pricing/*.pdf
+pricing/*.epub

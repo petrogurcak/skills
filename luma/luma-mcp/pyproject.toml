@@ -1,0 +1,21 @@
+[project]
+name = "luma-mcp"
+version = "0.1.0"
+description = "MCP server for Luma AI Dream Machine (Ray-2)"
+authors = [
+    { name = "Petr", email = "petr@example.com" }
+]
+dependencies = [
+    "mcp[cli]>=1.1.2",
+    "lumaai>=0.1.0",
+    "python-dotenv>=1.0.1",
+    "httpx>=0.27.0"
+]
+requires-python = ">=3.10"
+
+[project.scripts]
+luma-mcp = "luma_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

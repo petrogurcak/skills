@@ -35,6 +35,11 @@
     { "name": "product", "source": "./plugins/product", "category": "product" },
     { "name": "team", "source": "./plugins/team", "category": "team" },
     { "name": "legal", "source": "./plugins/legal", "category": "legal" },
-    { "name": "gastro", "source": "./plugins/gastro", "category": "education" }
+    { "name": "gastro", "source": "./plugins/gastro", "category": "education" },
+    {
+      "name": "children-books",
+      "source": "./plugins/children-books",
+      "category": "creative"
+    }
   ]
 }

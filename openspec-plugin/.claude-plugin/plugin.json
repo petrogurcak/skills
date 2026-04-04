@@ -1,0 +1,23 @@
+{
+  "name": "skill-activation-enforcer",
+  "displayName": "Skill Activation Enforcer",
+  "description": "Universal SessionStart hook that forces Claude to evaluate ALL available skills for every task. Dramatically increases skill activation reliability through mandatory evaluation protocol.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Petro Gurcak",
+    "email": "petro@example.com"
+  },
+  "homepage": "https://github.com/your-username/skill-activation-enforcer",
+  "repository": "https://github.com/your-username/skill-activation-enforcer",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "activation",
+    "enforcement",
+    "hook",
+    "sessionstart",
+    "mandatory",
+    "evaluation",
+    "reliability"
+  ]
+}
