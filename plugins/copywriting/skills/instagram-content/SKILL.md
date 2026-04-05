@@ -522,8 +522,13 @@ Připravte si **shot list** před natáčením:
 
 **3. Storytelling**
 
-- Použijte mikro-příběh i v krátkém caption
-- "Před rokem jsem... Dnes..."
+- Pouzijte mikro-pribeh i v kratkem caption
+- "Pred rokem jsem... Dnes..."
+- Pro delsi captions zvolte framework z `storytelling` skillu (sekce Social Media Storytelling Frameworks):
+  - **Denni posty:** 7-Sentence Framework
+  - **Prodej:** PAS nebo Before-After-Bridge
+  - **Emocni connection:** Pixar Formula nebo V Formula
+  - **Brand building:** Golden Circle
 
 **4. Žádné klišé**
 
@@ -757,20 +762,26 @@ Ideální pro:
 
 ## Integration with Other Skills
 
+**From Storytelling** (auto-invoked for caption writing):
+
+- 9 social media storytelling frameworks (7-Sentence, BAB, PAS, Hero's Journey, Three-Act, Pixar, Golden Circle, Star-Chain-Hook, V Formula)
+- Framework selection by goal: daily content, sales, brand, emotion
+- ABT (And-But-Therefore) as universal building block
+
 **From Product Copy:**
 
-- Konkrétnost (čísla, fakta)
+- Konkretnost (cisla, fakta)
 - Microbenefit hook
 
 **From Web Copy:**
 
 - Storytelling techniky
-- Psychologické triggery (Triáda, Zeigarnik)
+- Psychologicke triggery (Triada, Zeigarnik)
 
 **From Newsletter:**
 
 - CTA techniky
-- Personalizace přístupu
+- Personalizace pristupu
 
 ---
 
@@ -791,6 +802,36 @@ Důvod pro save a share. Saves = signál kvalitního obsahu pro Instagram.
 
 **Engagement tactics:**
 Kontroverze, úmyslná chyba a CTA zvyšují komentáře o 40-60 %.
+
+---
+
+## Monetizace
+
+Dulezite pro dlouhodoby plan tvorby obsahu. Bez monetizacni strategie neni tvorba udrzitelna.
+
+### Brand Deals (Partnerstvi)
+
+Po vybudovani zakladny fanousku vas mohou znacky platit penezi nebo produkty za propagaci.
+
+**Predpoklady:**
+
+- Email pro spoluprace uvedeny v biu
+- **Media kit** — jednostrankovy PDF s profilem, statistikami a demografickymi udaji publika
+- Aktivne oslovovat znacky (ne cekat az prijdou)
+
+**Pomer obsahu:** 1 sponzorovany prispevek na 7 nesponzorovanych. Zahlceni sponzorovanym obsahem nici duveru.
+
+### Affiliate Marketing
+
+Muzete zacit hned od prvniho dne. Propagujete produkty jine spolecnosti a dostavate provizi z prodeje pres vas specialni odkaz (typicky 1-15 %).
+
+**Vhodne pro:** Recenze, "top 5" listy, tutorialy s nastroji.
+
+### Vlastni Produkty
+
+Nejvyssi uroven monetizace — prodej vlastnich produktu (fyzickych nebo digitalnich: kurzy, sablony, e-knihy). Produkty musi uzce souviset s vasi niche.
+
+**Postup:** Audience first, product second. Nejdriv vybudujte publikum, pak nabidnete produkt ktery resi jejich problem.
 
 ---
 
