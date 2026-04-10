@@ -2,34 +2,39 @@
 
 ## Posledni session
 
-- **Datum:** 2026-04-04
+- **Datum:** 2026-04-10
 - **Branch:** main
 - **Dokonceno:**
-  - **Velky commit** — 171 souboru: vsechny untracked skills, MCP servery, plany, pluginy commitnuty a pushnuty
-  - **Utilities plugin** — pridan do marketplace.json + plugin.json, nainstalovan
-  - **mac-cleanup SKILL.md** — odstranen `metadata` blok z frontmatteru
-  - **.gitignore** — pridany: `.env`, `.mcp.json`, `pricing/*.pdf/*.epub`, embedded git repos (`code-mode/`, `flutter/`, `postmark/`)
-  - **children-books plugin** — nainstalovan do Claude Code
+  - **legal:ecommerce skill** — novy skill pro ceskou e-commerce legislativu. 16 souboru (SKILL.md + 15 references). Tri mody: audit otazky, compliance check, planning. 13 pravnich oblasti (obchodni podminky, odstoupeni, reklamace, cookies, GDPR v e-shopu, ceny/Omnibus, pristupnost/EAA, ADR, GPSR, objednavkovy proces). Progressive disclosure — SKILL.md 798 slov, knowledge base v references/.
+  - **Orchestrator update** — ecommerce routing s prioritnim pravidlem (e-shop kontext > GDPR routing)
+  - **plugin.json** — aktualizovan popis
+  - **Research** — ceska e-commerce legislativa (36 web searches, 20+ zdroju) ulozeny v docs/research/
+  - **Design spec + plan** — ulozeny v docs/superpowers/specs/ a plans/
+  - **Deploy** — Claude Code cache + Cowork symlink + pushed to GitHub
+  - Commity: `62919ef`, `b0d29ff`, `69c3672`, `69ed670`, `1718dd6`, `084883f`
+- **Rozdelano:** Nic
 
 ## Otevrene problemy
 
-- **utilities:mac-cleanup** — skill je nacteny (funguje pres Skill tool), ale NEOBJEVUJE se v `/` autocomplete menu. Restart Claude Code nepomohl. Frontmatter je ciste (jen name + description). Mozny bug v Claude Code plugin systemu — dalsi pluginy ze `skills` marketplace funguji.
+- **utilities:mac-cleanup** — skill funguje pres Skill tool, ale NEOBJEVUJE se v `/` autocomplete menu
+- **Necommitnuty kod z minule session** — ideogram server v0.3.0, nanobanana MCP, image-generation skill update (stale necommitnuty)
 
 ## Poznamky pro dalsi session
 
-- Otestovat research, second-opinion, team-briefing engine choice
-- Cowork symlinky pro research + second-opinion
-- Stale neotestovano: brand-strategy, children-stories, finance-ops
-- Debug proc `/utilities:mac-cleanup` neni v autocomplete (ostatni skills z toho marketplace funguji)
+- Commitnout a pushnout zbyle zmeny z minule session (ideogram, nanobanana, skill)
+- Otestovat ecommerce skill v praxi (zavolat `/legal:ecommerce` s realnym dotazem)
+- Otestovat nanobanana MCP server
+- Finalizovat plakat Winegeek v Etape + Instagram post
 
 ## Dalsi kroky
 
 ### Priorita 1
 
-1. Debug utilities:mac-cleanup autocomplete issue
-2. Otestovat nove skills pri prilezitosti
+1. Commit zbylych zmen (ideogram, nanobanana)
+2. Test ecommerce skill
+3. Finalni plakat + Instagram post
 
 ### Priorita 2
 
-3. Otestovat brand-strategy, children-stories, finance-ops
-4. Spustit copywriting-reviewer na realnem projektu
+4. Brand Strategy skill — deep research
+5. Sales skill — novy plugin
