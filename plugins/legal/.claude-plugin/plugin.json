@@ -1,7 +1,7 @@
 {
   "name": "legal",
   "version": "1.0.0",
-  "description": "Czech legal compliance — labor law, GDPR, contract validation",
+  "description": "Czech legal compliance — labor law, GDPR, e-commerce legislation, contract validation",
   "author": { "name": "Petr" },
   "skills": "./skills/"
 }
