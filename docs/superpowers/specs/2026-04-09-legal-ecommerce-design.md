@@ -4,7 +4,7 @@
 
 Skill pro posouzeni pravni compliance ceskeho e-shopu. Pokryva vsechny zakonne povinnosti pro provoz online obchodu v CR.
 
-## Dva mody
+## Tri mody
 
 ### 1. Audit otazky (default)
 
@@ -12,9 +12,16 @@ Uzivatel polozi konkretni otazku ("musim ukazovat nejnizsi cenu za 30 dni?"). Sk
 
 ### 2. Compliance check
 
-Uzivatel rekne "zkontroluj e-shop" / "compliance audit" / "co vsechno musim mit". Skill projede systematicky vsech 12 oblasti a vypise co chybi.
+Uzivatel rekne "zkontroluj e-shop" / "compliance audit" / "co vsechno musim mit". Skill projede systematicky vsech 13 oblasti a vypise co chybi.
 
-**Detekce modu:** Pokud dotaz obsahuje "audit", "zkontroluj", "compliance", "co musim", "co potrebuju", "checklist" — compliance check. Jinak audit otazka.
+### 3. Planning mode
+
+Uzivatel planuje novy e-shop ("chystam e-shop", "co budu potrebovat", "zakladam obchod"). Skill vypise pozadavky jako build checklist — co pripravit pred spustenim, ne co chybi.
+
+**Detekce modu:**
+- Planning: "chystam", "zakladam", "planuji", "novy e-shop", "pred spustenim", "co budu potrebovat"
+- Compliance check: "audit", "zkontroluj", "compliance", "co musim", "co potrebuju", "checklist"
+- Default: audit otazka
 
 ## Architektura
 
@@ -25,17 +32,37 @@ Uzivatel rekne "zkontroluj e-shop" / "compliance audit" / "co vsechno musim mit"
 - Pro pracovnepravni otazky (brigadnici v e-shopu) odkazuje na `legal:labor-law`
 - Orchestrator (`legal:legal-orchestrator`) routuje e-shop dotazy sem
 
-### Bez corpusu
+### Progressive disclosure — knowledge base v references/
 
-Vsechna pravidla embedded v SKILL.md jako knowledge base s referencemi na paragrafy. Duvody:
-- E-commerce pokryva 10+ zakonu (ne 1 jako u gdpr/labor-law)
-- Vetsi cast dotazu je checklistoveho typu
-- Pro presne citace GDPR uz existuje `gdpr` skill s corpusem
-- Jednodussi udrzba
+SKILL.md obsahuje **jen** proces, detekci modu, response format a rules (~1500 slov).
+Knowledge base je v `references/` souborech — skill je cte pres Read tool az kdyz je potrebuje.
+
+```
+plugins/legal/skills/ecommerce/
+├── SKILL.md                          # Proces, routing, format, rules
+└── references/
+    ├── informacni-povinnosti.md      # OZ §435, §1811, §1820; ZOS §9-13
+    ├── obchodni-podminky.md          # OZ §1751-1753, §1810-1826
+    ├── odstoupeni-od-smlouvy.md      # OZ §1829-1837
+    ├── reklamace-zaruka.md           # OZ §2099-2174; ZOS §13, §19
+    ├── ceny-dph-omnibus.md           # ZDPH; ZOS §12, §12a
+    ├── cookies.md                    # ZEK §89; GDPR
+    ├── osobni-udaje-eshop.md         # GDPR, ZObS
+    ├── marketing-obchodni-sdeleni.md # ZObS zakon 480/2004
+    ├── pristupnost-eaa.md            # ZPrist zakon 424/2023
+    ├── adr.md                        # ZOS §14, §20d-20n
+    ├── doruceni-riziko.md            # OZ §2090-2095, §2121
+    ├── gpsr-bezpecnost.md            # GPSR zakon 387/2024
+    ├── objednavkovy-proces.md        # OZ §1824-1826 (review step, archivace)
+    ├── checklist.md                  # Compliance checklist (vsechny oblasti)
+    └── upcoming.md                   # Pripravovane zmeny 2026-2027
+```
+
+**Proc:** Anthropic skills guide doporucuje SKILL.md pod 5000 slov. Knowledge base pro 13 oblasti by prekrocila limit. References se ctou on-demand — audit otazka na cookies nacte jen `cookies.md`, compliance check nacte `checklist.md`.
 
 ## Jazyk
 
-Cely skill v **cestine** — instrukce, pravidla, response format. Ceska legislativa, cesky uzivatel.
+Cely skill v **cestine** — instrukce, pravidla, response format, references. Ceska legislativa, cesky uzivatel.
 
 ## Zakonova baze
 
@@ -55,90 +82,39 @@ Cely skill v **cestine** — instrukce, pravidla, response format. Ceska legisla
 ```
 1. YAML frontmatter (name, description, trigger phrases)
 2. Announce
-3. Detekce modu (audit vs. compliance check)
-4. KNOWLEDGE BASE — 12 oblasti:
-   4.1  Informacni povinnosti (OZ §435, §1811, §1820; ZOS §9-13)
-   4.2  Obchodni podminky (OZ §1751-1753, §1810-1820)
-   4.3  Odstoupeni od smlouvy (OZ §1829-1837)
-   4.4  Reklamace a zaruka (OZ §2099-2174; ZOS §13, §19)
-   4.5  Ceny, DPH, Omnibus (ZDPH; ZOS §12, §12a)
-   4.6  Cookies (ZEK §89; GDPR)
-   4.7  Ochrana osobnich udaju v e-shopu (GDPR, ZObS)
-   4.8  Marketing a obchodni sdeleni (ZObS zakon 480/2004)
-   4.9  Pristupnost / EAA (ZPrist zakon 424/2023)
-   4.10 ADR (ZOS §14, §20d-20n)
-   4.11 Doruceni a prechod rizika (OZ §2090-2095, §2121)
-   4.12 Bezpecnost vyrobku / GPSR (GPSR zakon 387/2024)
-5. COMPLIANCE CHECKLIST — strukturovany checklist vsech povinnosti
-6. UPCOMING CHANGES — zmeny 2026-2027
-7. Response format
-8. Rules
+3. Detekce modu (audit vs. compliance check vs. planning)
+4. Mapovani oblasti na references/ soubory
+5. Proces pro kazdy mod:
+   - Audit: identifikuj oblast → Read prislusny reference → odpovez
+   - Compliance: Read checklist.md → projdi systematicky
+   - Planning: Read checklist.md → preformuluj jako build checklist
+6. Response format (verdikt + reference + doporuceni + disclaimer)
+7. Rules
 ```
 
-### 4. Knowledge base — obsah kazde oblasti
+## Obsah references/ souboru
 
-Kazda oblast obsahuje:
+Kazdy reference soubor obsahuje:
 - **Zakony:** Presne reference (zakon, paragraf)
 - **Pravidla:** Co zakon vyzaduje, v bodech
 - **Vyjimky:** Kde se pravidla neuplatni
-- **Sankce:** Vyse pokut
+- **Sankce:** Vyse pokut (konkretni castky)
 - **Prakticke poznamky:** Jak to implementovat na e-shopu
 
-### 5. Compliance checklist
+### Oblast 4.13 (nova): Objednavkovy proces
 
-Strukturovany checklist pro compliance check mod:
+Pokryva OZ §1824-1826:
+- §1824: Potvrzeni na trvalem nosici ihned po uzavreni smlouvy
+- §1825: Objednavkovy proces musi obsahovat review step pred potvrzenim, moznost opravy chyb
+- §1826: Text smlouvy musi byt archivovan a pristupny spotrebiteli
 
-```markdown
-### Web musi zobrazovat:
-- [ ] Obchodni jmeno, ICO, DIC, sidlo
-- [ ] Zapisy v rejstriku
-- [ ] Kontakt: email, telefon, adresa
-- [ ] Ceny v CZK vcetne DPH
-- [ ] Naklady na doruceni pred checkout
-- [ ] Tlacitko "Objednat a zaplatit"
+### Compliance checklist (checklist.md)
 
-### Pravni dokumenty:
-- [ ] Obchodni podminky (19 polozek dle §1820 OZ)
-- [ ] Reklamacni rad
-- [ ] Vzorovy formular pro odstoupeni
-- [ ] Zasady ochrany osobnich udaju
-- [ ] Cookie policy + consent banner
+Strukturovany checklist vsech povinnosti vcetne sankci. Pouziva se v compliance check i planning modu.
 
-### Cookie banner:
-- [ ] Blokuje neesencialni cookies pred souhlasem
-- [ ] Rovnocenne tlacitko Prijmout/Odmitnout
-- [ ] Zadne predzaskrtnute boxy
-- [ ] Zadne cookie walls
-- [ ] Granularni volba (analytika vs marketing)
+### Upcoming changes (upcoming.md)
 
-### Prava spotrebitele:
-- [ ] 14denni odstoupeni bez udani duvodu
-- [ ] Vraceni penez do 14 dnu od odstoupeni
-- [ ] 24mesicni lhuta na reklamaci
-- [ ] Vyrizeni reklamace do 30 dnu
-- [ ] Reklamace zdarma
-- [ ] ADR info s kontaktem na COI
-
-### Slevy a ceny:
-- [ ] Nejnizsi cena za poslednich 30 dni u slev
-- [ ] Evidence cen
-
-### Pristupnost (od 28.6.2025, krome mikropodniku):
-- [ ] WCAG 2.1 AA
-- [ ] Prohlaseni o pristupnosti
-
-### Marketingove emaily:
-- [ ] Opt-in souhlas pro ne-zakazniky
-- [ ] Snadne odhlaseni v kazdem emailu
-- [ ] Oznaceni jako obchodni sdeleni
-
-### Bezpecnost vyrobku (GPSR):
-- [ ] Identifikace vyrobku na listingu
-- [ ] EU odpovedna osoba
-- [ ] Bezpecnostni upozorneni v cestine
-```
-
-### 6. Upcoming changes
+Separatni soubor pro snadnou aktualizaci:
 
 | Zmena | Ucinnost | Zdroj |
 |-------|----------|-------|
@@ -147,7 +123,11 @@ Strukturovany checklist pro compliance check mod:
 | Prodlouzeni zaruky na 3 roky pri oprave | zari 2026 | Novela OZ |
 | EET 2.0 (planovane) | 1.1.2027 | Navrh zakona MF CR |
 
-### 7. Response format
+**Udrzba:** Po ucinnosti zakona presunout z upcoming.md do prislusneho reference souboru.
+
+## Response format
+
+### Audit mod
 
 ```markdown
 ## Pravni posouzeni: [tema]
@@ -167,31 +147,79 @@ Strukturovany checklist pro compliance check mod:
 Toto neni pravni porada. Overte s pravnikem.
 ```
 
-Pro compliance check mod: tabulka oblasti s verdiktem + seznam chybejicich polozek.
+### Compliance check mod
 
-### 8. Rules
+```markdown
+## E-shop compliance audit
 
-- Nikdy nefabrikovat cisla paragrafu — pouzivat jen to co je v knowledge base
+| Oblast | Verdikt | Poznamka |
+|--------|---------|----------|
+| Informacni povinnosti | OK/CHYBI/RIZIKO | ... |
+| ... | ... | ... |
+
+### Chybejici polozky
+1. [co chybi + reference na zakon]
+
+### Upozorneni
+Toto neni pravni porada. Overte s pravnikem.
+```
+
+### Planning mod
+
+```markdown
+## E-shop — co pripravit pred spustenim
+
+### 1. Pravni dokumenty k vytvoreni
+- [ ] Obchodni podminky (§1820 OZ — 19 povinnych bodu)
+- [ ] ...
+
+### 2. Technicke pozadavky na web
+- [ ] Cookie consent banner (§89 ZEK)
+- [ ] ...
+
+### 3. Provozni procesy
+- [ ] Postup reklamace (§19 ZOS — 30 dnu)
+- [ ] ...
+
+### Upozorneni
+Toto neni pravni porada. Overte s pravnikem.
+```
+
+## Rules
+
+- Nikdy nefabrikovat cisla paragrafu — pouzivat jen to co je v references/
 - Pro hloubkovy GDPR rozbor odkazat na `legal:gdpr`
 - Pro pracovnepravni otazky odkazat na `legal:labor-law`
 - Vzdy uvest disclaimer "Toto neni pravni porada"
 - Kdyz otazka presahuje scope knowledge base, rici to explicitne
 - Verdikt RIZIKO pouzit kdyz odpoved zavisi na konkretni implementaci
+- Upcoming changes vzdy zminit pokud se tykaji dotazu
 
 ## Orchestrator update
 
-Pridat radek do routing tabulky v `legal-orchestrator/SKILL.md`:
+Upravit routing tabulku v `legal-orchestrator/SKILL.md`:
+
+1. **Pridat ecommerce radek** s e-shop keywords
+2. **Pridat prioritni pravidlo:** Pokud dotaz obsahuje e-shop kontext (e-shop, eshop, obchod, checkout, objednavka, zbozi, zasilka), routuj na `legal:ecommerce` — i kdyz obsahuje GDPR/cookies keywords. GDPR skill se pouzije jen pro ciste datove otazky bez e-shop kontextu.
 
 ```
-| e-shop, eshop, obchodni podminky, odstoupeni, reklamace, zaruka, vraceni, sleva, Omnibus, cookie, DPH, cena, pristupnost, WCAG, ADR, COI, doruceni, zasilka, spotrebitel, distancni, checkout, newsletter, obchodni sdeleni | `legal:ecommerce` |
+| e-shop, eshop, obchodni podminky, odstoupeni, reklamace, zaruka, vraceni, sleva, Omnibus, cookie lista, DPH, cena, pristupnost, WCAG, ADR, COI, doruceni, zasilka, spotrebitel, distancni, checkout, newsletter, obchodni sdeleni, zbozi, objednavka | `legal:ecommerce` |
 ```
+
+**Priorita:** Pokud dotaz matchne keywords pro ecommerce I gdpr zaroven a obsahuje e-shop kontext → ecommerce. Bez e-shop kontextu → gdpr.
 
 ## Soubory k vytvoreni/upravit
 
-1. **Novy:** `plugins/legal/skills/ecommerce/SKILL.md` — hlavni skill
-2. **Upravit:** `plugins/legal/skills/legal-orchestrator/SKILL.md` — pridat routing
-3. **Upravit:** `plugins/legal/.claude-plugin/plugin.json` — overit ze skills discovery funguje
+1. **Novy:** `plugins/legal/skills/ecommerce/SKILL.md` — hlavni skill (~1500 slov)
+2. **Novy:** `plugins/legal/skills/ecommerce/references/` — 15 souboru knowledge base
+3. **Upravit:** `plugins/legal/skills/legal-orchestrator/SKILL.md` — pridat routing + prioritu
+4. **Upravit:** `plugins/legal/.claude-plugin/plugin.json` — pridat ecommerce do popisu
 
 ## Zdrojova data
 
 Research: `docs/research/2026-04-09-czech-ecommerce-legislation.md`
+
+## Review log
+
+- **2026-04-09:** Plan-challenger review — 2 CRITICAL, 4 WARNING, 3 INFO
+- **Opravy:** C1 (progressive disclosure), C2 (routing priorita), W1 (+objednavkovy proces), W2 (+planning mode), W4 (upcoming do references/)
