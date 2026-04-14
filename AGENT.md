@@ -158,7 +158,7 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 
 **Poznámka:** UUID se může změnit. Pokud skills v Cowork zmizí, najdi novou cestu a znovu vytvoř symlinky.
 
-## 11 pluginů (55 skills)
+## 13 pluginů (60 skills)
 
 | Plugin             | Skills | Popis                                                               |
 | ------------------ | ------ | ------------------------------------------------------------------- |
@@ -173,6 +173,8 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 | **product**        | 6      | Orchestrator, discovery, prioritization, strategy, PMF, metrics     |
 | **team**           | 1      | AI team briefing - virtual personas review plans cross-functionally |
 | **gastro**         | 1      | Gastro education persona — kurzy, knihy, videa pro restauratéry     |
+| **legal**          | 4      | Orchestrator, GDPR, labor-law, e-commerce legislation               |
+| **creative**       | 1      | Image generation orchestrator (Ideogram, Luma, nanobanana)          |
 
 ## SKILL.md formát
 
