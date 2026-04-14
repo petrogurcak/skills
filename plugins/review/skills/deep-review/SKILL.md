@@ -212,6 +212,18 @@ For each invoked skill, run its checklist and record findings.
 - Rate limiting
 - Versioning
 
+### Abstraction Review (`abstraction-review`)
+
+**Auto-trigger:** diff adds/modifies a helper, wrapper, dispatcher, shared module, OR consolidates duplicates.
+
+- Parallel implementation scan (Grep repo before accepting a new helper — AI context-collapse guard)
+- Red flag checklist (12 items: stringly-typed dispatcher, boolean params, primitive obsession, braided concerns, god-functions, N-wrapper pattern, missing invariants, etc.)
+- Connascence audit (Position → Name suggestions, Algorithm/Identity flags)
+- Public API vs internal plumbing boundaries
+- Tests-at-the-seam check (invariants on dispatcher contract, not every wrapper)
+
+Invoke via: `Skill tool → review:abstraction-review`. Folds its output into the deep-review findings. Shares the 12-principle taxonomy with `development:designing-abstractions` (design-time counterpart).
+
 ### Framework-Specific
 
 - `fastapi-workflow` - FastAPI patterns
