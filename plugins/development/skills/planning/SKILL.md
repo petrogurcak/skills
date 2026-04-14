@@ -55,8 +55,9 @@ Explore, brainstorm, and write implementation plan in one flow. Saves plan to pr
    - Architecture, components, data flow
    - Check after each section: "Tohle sedí?"
    - Iterate until user confirms
+   - **Abstraction gate:** If design includes shared helpers, a dispatcher, ≥2 call sites sharing logic, or any consolidation/refactor of duplicates → invoke `development:designing-abstractions` skill. It produces an "Abstraction Strategy" artifact (concern-layers, invariants, boundary map, public API vs internal, Connascence audit) that must be pasted into the plan before Phase 2.
 
-**Exit Phase 1 when:** User confirms the approach and design.
+**Exit Phase 1 when:** User confirms the approach and design (with Abstraction Strategy attached if applicable).
 
 ---
 
@@ -381,4 +382,5 @@ Phase 7: Wrap-up & Reflect
 | `development:session-context`                | Phase 7 context save              |
 | `development:research`                       | Phase 1 optional research         |
 | `development:second-opinion`                 | Phase 3 optional Gemini review    |
+| `development:designing-abstractions`         | Phase 1 abstraction gate          |
 ````

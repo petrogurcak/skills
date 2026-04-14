@@ -80,23 +80,24 @@ ls -la .claude/
 
 **Question:** What optimizations do you want?
 
-| Option                                 | What it adds                                                 |
-| -------------------------------------- | ------------------------------------------------------------ |
-| **A) Full optimization** (Recommended) | Everything below                                             |
-| **B) Mistakes tracking only**          | .claude/mistakes.md + CHECKPOINTS update                     |
-| **C) Verification checklist only**     | .claude/verification.md customized for project               |
-| **D) Context pruning only**            | Update ACTIVE_CONTEXT.md format                              |
-| **E) Code quality hooks**              | Auto-Prettier, TS check, console.log warning                 |
-| **F) Pattern learning**                | /learn command + continuous-learning SessionEnd hook         |
-| **G) Checkpoints**                     | /checkpoint command for workflow milestones                  |
-| **H) Build error resolver**            | Agent for minimal-diff build/TS error fixes                  |
-| **I) Project Summaries**               | ARCHITECTURE.md + module READMEs (Pyramid Summaries pattern) |
-| **J) Stop Guard**                      | Plan-aware stop prevention hook                              |
-| **K) Context Monitor**                 | Tool call count based context usage tracking                 |
-| **L) TDD Enforcer**                    | Missing test file detection on Write/Edit                    |
-| **M) Plan Lifecycle**                  | YAML frontmatter status in plan files                        |
-| **N) Review Agents**                   | plan-challenger + compliance-reviewer + quality-reviewer     |
-| **O) OS Notifications**                | macOS/Linux native notifications                             |
+| Option                                  | What it adds                                                                                                 |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **A) Full optimization** (Recommended)  | Everything below                                                                                             |
+| **B) Mistakes tracking only**           | .claude/mistakes.md + CHECKPOINTS update                                                                     |
+| **C) Verification checklist only**      | .claude/verification.md customized for project                                                               |
+| **D) Context pruning only**             | Update ACTIVE_CONTEXT.md format                                                                              |
+| **E) Code quality hooks**               | Auto-Prettier, TS check, console.log warning                                                                 |
+| **F) Pattern learning**                 | /learn command + continuous-learning SessionEnd hook                                                         |
+| **G) Checkpoints**                      | /checkpoint command for workflow milestones                                                                  |
+| **H) Build error resolver**             | Agent for minimal-diff build/TS error fixes                                                                  |
+| **I) Project Summaries**                | ARCHITECTURE.md + module READMEs (Pyramid Summaries pattern)                                                 |
+| **J) Stop Guard**                       | Plan-aware stop prevention hook                                                                              |
+| **K) Context Monitor**                  | Tool call count based context usage tracking                                                                 |
+| **L) TDD Enforcer**                     | Missing test file detection on Write/Edit                                                                    |
+| **M) Plan Lifecycle**                   | YAML frontmatter status in plan files                                                                        |
+| **N) Review Agents**                    | plan-challenger + compliance-reviewer + quality-reviewer                                                     |
+| **O) OS Notifications**                 | macOS/Linux native notifications                                                                             |
+| **P) Designing Abstractions Principle** | Adds Principle 14 (responsibilities-before-DRY) to CORE_PRINCIPLES.md + abstraction rules to CLAUDE.md TL;DR |
 
 ### Step 3: Implement Changes
 
@@ -1002,3 +1003,35 @@ macOS/Linux native notifications. Creates `~/.claude/hooks/notify.sh`:
 - macOS: osascript with Glass sound
 - Linux: notify-send with paplay
 - Triggered at session end and after stop verification approval
+
+---
+
+### P) Designing Abstractions Principle
+
+Retrofits the **"responsibilities-before-DRY"** principle (Principle 14) onto an existing project. Use when the project was set up before Principle 14 existed, or when duplicated helpers and stringly-typed dispatchers keep appearing.
+
+**What it adds:**
+
+1. **Appends Principle 14 to `.claude/CORE_PRINCIPLES.md`** — full content (7-step workflow, red flags, decision rules, Grep-first AI mitigation, sources).
+2. **Updates `CLAUDE.md` TL;DR** — adds "Before writing a helper, dispatcher, or refactoring duplicates" checklist + Always-Do / Never-Do entries.
+3. **Updates principles count** — `14 core principles` in header and Quick Links.
+4. **Links the skill** — points to `development:designing-abstractions` for the full Abstraction Strategy workflow.
+
+**Source of truth for the content to inject:**
+
+- Principle 14 body → copy from `plugins/development/skills/projectsetup/templates/generic/.claude/CORE_PRINCIPLES.md` (section 14 block).
+- CLAUDE.md additions → copy from `plugins/development/skills/projectsetup/templates/generic/CLAUDE.md` (TL;DR abstraction block + Always/Never entries).
+
+**Implementation:**
+
+1. Check `.claude/CORE_PRINCIPLES.md` — if Principle 14 already present, skip.
+2. Read the template section from projectsetup.
+3. Append before the `## Summary` section.
+4. Update the `13 principles` → `14 principles` references in the header and Summary.
+5. Update `CLAUDE.md` TL;DR and Critical Rules lists the same way.
+6. Confirm with user: "Principle 14 added to CORE_PRINCIPLES.md + CLAUDE.md TL;DR. Invoke `development:designing-abstractions` skill when planning shared modules or refactors."
+
+**Why:**
+
+- AI-assisted sessions keep producing parallel helper implementations because the LLM can't see sibling files — baking Grep-first discipline + responsibility enumeration into the always-loaded CLAUDE.md ensures every session starts with that context.
+- Projects set up before 2026-04-14 don't have this principle; Option P retrofits it without running full projectsetup.

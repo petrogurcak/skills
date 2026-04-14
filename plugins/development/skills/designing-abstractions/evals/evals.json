@@ -1,0 +1,40 @@
+{
+  "skill_name": "designing-abstractions",
+  "evals": [
+    {
+      "id": 1,
+      "name": "consolidate-three-email-senders",
+      "prompt": "Mam v projektu tri funkce co posilaji email a kazda to dela trochu jinak. send_invite_email(user_id, role) v src/auth/invites.py posila pres SMTP, ma retry 3x. notify_user(user, template, data) v src/notifications/user.py pouziva SendGrid API, loguje do audit.log. send_staff_alert(message, recipients) v src/admin/alerts.py je sync SMTP bez retry, ale pridava X-Priority header. Chci to sjednotit do jednoho moduluu — at uz to neni tak rozsypane a muzeme tam snadno pridat rate limiting. Naplanuj mi to.",
+      "expected_output": "Plan invoking designing-abstractions skill. Should produce Abstraction Strategy artifact listing: concern-layers (transport/retry/observability/priority), invariants (logging), public API = named wrappers (send_invite_email, notify_user, send_staff_alert preserved), internal = single dispatcher taking EmailRequest domain object. Should explicitly reject send(type='invite', ...) stringly-typed approach. Should reference Rule of Three / Metz. Should NOT add rate limiting in same PR (Beck's separate-change rule).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "new-notification-module-greenfield",
+      "prompt": "Potrebuju novy modul na posilani notifikaci. Projekt je v Pythonu, FastAPI backend. Musi podporovat email (pres SES), Slack (webhook) a push notifikace (FCM). Kazdy notifikacni kanal ma jine parametry a jine error handling. Nekteri useri maji nastaveny fallback — kdyz email selze, zkusi Slack. Napis mi design.",
+      "expected_output": "Design using Ports & Adapters / Stable Dependencies. Should produce Abstraction Strategy: NotificationRequest domain object (Parse Don't Validate at boundary), NotificationChannel protocol/ABC with send() contract, adapters per channel (EmailAdapter, SlackAdapter, PushAdapter), orchestrator handling fallback logic. Should identify invariants (logging, retry policy, user preferences). Should avoid stringly-typed send(channel='email'). Should NOT have boolean flags controlling behavior.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "extract-validation-helper",
+      "prompt": "Napis mi helper funkci na validaci user inputu — potrebuju ze tri formularu (registrace, checkout, profile update) validovat email, telefon a ICO. Zatim to je v kazdem controlleru zvlast a kopiruje se to.",
+      "expected_output": "Should trigger Grep-first discipline (check if similar validators exist). Should apply Parse, Don't Validate — produce Value Objects: Email, PhoneNumber, ICO as types with parsing constructors, not boolean validators. Should warn against a single validate(input, type='email') dispatcher. Each VO has one canonical parsing entry point. Should mention primitive obsession fix.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "negative-fix-typo",
+      "prompt": "Oprav preklep na radku 42 v src/utils/helpers.py — je tam 'recieve' misto 'receive'.",
+      "expected_output": "Should NOT invoke designing-abstractions skill. Trivial one-line fix, no abstraction involved. Just make the edit.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "negative-bug-fix",
+      "prompt": "Mam bug — kdyz user klikne na 'Logout' v mobile view, aplikace padne s TypeError: Cannot read property 'session' of undefined. Najdi to a oprav.",
+      "expected_output": "Should NOT invoke designing-abstractions. This is a bug fix — should use systematic-debugging instead. No abstraction design needed.",
+      "files": []
+    }
+  ]
+}

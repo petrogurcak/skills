@@ -90,7 +90,20 @@ Use Skill tool: superpowers:brainstorming
 - Validate approach with user
 - Clarify requirements and edge cases
 
-**2. Write Plan:**
+**2. Abstraction Check (if design has shared logic):**
+
+```
+IF design includes a dispatcher, shared helper, ≥2 call sites with similar logic,
+   a consolidation/unification of existing code, or new module API surface:
+   Announce: "Using development:designing-abstractions to design the interface."
+   Use Skill tool: development:designing-abstractions
+```
+
+- Produces mandatory "Abstraction Strategy" artifact (concern-layers, invariants, boundary map, public API vs internal, Connascence audit)
+- Attach the artifact to the plan before writing tasks
+- Skip if design is a single function with one call site and no invariants
+
+**3. Write Plan:**
 
 ```
 Announce: "I'm using superpowers:writing-plans to create implementation tasks."

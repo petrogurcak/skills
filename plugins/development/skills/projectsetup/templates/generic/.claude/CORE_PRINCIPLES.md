@@ -1,6 +1,6 @@
 # Core Development Principles
 
-This document outlines the 13 core principles that guide all development work in this project.
+This document outlines the 14 core principles that guide all development work in this project.
 
 ---
 
@@ -9,17 +9,20 @@ This document outlines the 13 core principles that guide all development work in
 **Principle:** Tests are written BEFORE implementation code, always.
 
 **Process:**
+
 1. **RED:** Write a failing test first
 2. **GREEN:** Write minimal code to make it pass
 3. **REFACTOR:** Clean up code while keeping tests green
 
 **Why:**
+
 - Confirms tests actually test something (watching them fail first)
 - Prevents false positives (tests that always pass)
 - Drives better API design
 - Creates living documentation
 
 **Rules:**
+
 - NEVER write implementation code before the test
 - ALWAYS run the test and watch it fail before writing code
 - Write the simplest code that makes the test pass
@@ -29,13 +32,14 @@ This document outlines the 13 core principles that guide all development work in
 
 For projects with user-facing UI, complement TDD with scenario-based testing:
 
-| Project Type | Testing Approach |
-|-------------|-----------------|
-| Backend/Logic | Classic TDD (mandatory) - RED → GREEN → REFACTOR |
-| Web Application | Scenario-First (recommended) - Define user flows → Implement → Playwright e2e |
-| Landing Page | Scenario-Light (recommended) - Define scenarios for interactive sections → Implement → Verify |
+| Project Type    | Testing Approach                                                                              |
+| --------------- | --------------------------------------------------------------------------------------------- |
+| Backend/Logic   | Classic TDD (mandatory) - RED → GREEN → REFACTOR                                              |
+| Web Application | Scenario-First (recommended) - Define user flows → Implement → Playwright e2e                 |
+| Landing Page    | Scenario-Light (recommended) - Define scenarios for interactive sections → Implement → Verify |
 
 **Scenario-First process:**
+
 1. Define user flows BEFORE implementation (natural language):
    "User logs in → sees dashboard → clicks 'New Item' → fills form → saves → item appears in list"
 2. Implement the feature
@@ -45,6 +49,7 @@ For projects with user-facing UI, complement TDD with scenario-based testing:
    - Core (< 15 min, pre-deploy): full user journeys, error states
 
 **Scenario-Light process (landing pages):**
+
 1. Define scenarios for interactive sections (CTA clicks, form submissions, pricing toggles)
 2. Implement sections
 3. Verify manually or with Playwright
@@ -59,6 +64,7 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 **Principle:** Protect main/master branch. Always branch first.
 
 **Process:**
+
 1. Create feature branch before ANY code changes
 2. Work on the branch
 3. Verify all tests pass
@@ -66,12 +72,14 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 5. Ask before merging to main
 
 **Why:**
+
 - Prevents accidental commits to main
 - Allows safe experimentation
 - Makes it easy to discard failed attempts
 - Keeps main always deployable
 
 **Rules:**
+
 - NEVER work directly on main/master
 - NEVER commit without asking (unless auto-approved)
 - ALWAYS create a branch first: `git checkout -b feature/name`
@@ -84,6 +92,7 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 **Principle:** Never claim success without proof.
 
 **Process:**
+
 1. Make code changes
 2. Run ALL tests (not just new ones)
 3. Run static analysis tools
@@ -91,12 +100,14 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 5. Only then claim "done" or "passing"
 
 **Why:**
+
 - Prevents "it should work" syndrome
 - Catches regressions in existing tests
 - Ensures claims are backed by evidence
 - Builds trust through verification
 
 **Rules:**
+
 - NEVER say "tests pass" without running them
 - NEVER skip static analysis
 - ALWAYS run full test suite before commits
@@ -109,6 +120,7 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 **Principle:** Ask at decision points, auto-proceed at safe steps.
 
 **When to Ask:**
+
 - Before creating commits
 - Before merging to main/master
 - Before force-pushing or destructive operations
@@ -116,6 +128,7 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 - When multiple valid approaches exist
 
 **When to Auto-Proceed:**
+
 - Creating branches
 - Running tests
 - Running static analysis
@@ -123,6 +136,7 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 - Installing dependencies (if in package.json/requirements.txt)
 
 **Why:**
+
 - Respects user control over their codebase
 - Prevents unwanted commits or destructive operations
 - Balances automation with oversight
@@ -135,6 +149,7 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 **Principle:** Tests must fail before they can be trusted to pass.
 
 **Process:**
+
 1. Write test
 2. Run test -> MUST see it fail
 3. If it passes immediately -> test is broken
@@ -143,12 +158,14 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 6. Only then write implementation
 
 **Why:**
+
 - Tests that always pass are worthless
 - Confirms test actually exercises the code
 - Prevents false confidence
 - Catches copy-paste errors in tests
 
 **Rules:**
+
 - NEVER trust a test you haven't seen fail
 - ALWAYS verify RED phase before GREEN phase
 - If test passes immediately, treat it as a bug in the test
@@ -160,17 +177,20 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 **Principle:** Write the simplest code that makes the test pass.
 
 **Why:**
+
 - Prevents over-engineering
 - Keeps code focused
 - Makes refactoring easier
 - Reduces cognitive load
 
 **Examples:**
+
 - If test checks for "Hello", return "Hello" (not a template engine)
 - If test checks for 1+1=2, return 2 (not a calculation engine)
 - Add complexity only when tests demand it
 
 **Rules:**
+
 - Start with the dumbest thing that could work
 - Add complexity only when new tests require it
 - Don't add features "because we'll need them later"
@@ -182,17 +202,20 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 **Principle:** Refactor only when tests are green.
 
 **Process:**
+
 1. Get to GREEN (all tests pass)
 2. Identify code smells
 3. Refactor while keeping tests green
 4. If tests go red, revert and try smaller steps
 
 **Why:**
+
 - Separates "making it work" from "making it clean"
 - Reduces risk (tests are safety net)
 - Makes debugging easier (only one variable changing)
 
 **Rules:**
+
 - Refactor only after reaching GREEN
 - Keep test runs fast so you can run them constantly
 - Never refactor and add features at the same time
@@ -204,6 +227,7 @@ Note: Scenario-First does NOT replace backend TDD. Backend logic still requires 
 **This section is for YOUR project's specific rules.**
 
 Examples of what goes here:
+
 - File naming conventions
 - Directory structure standards
 - Code style preferences
@@ -240,6 +264,7 @@ Edit this section with your project's conventions. Everything above (Principles 
 **Principle:** Static analysis must pass before commits.
 
 **Tools (configure based on your stack):**
+
 - TypeScript: `tsc --noEmit`
 - Python: `mypy`, `pylint`
 - Rust: `cargo clippy`
@@ -247,12 +272,14 @@ Edit this section with your project's conventions. Everything above (Principles 
 - Go: `go vet`
 
 **Why:**
+
 - Catches type errors before runtime
 - Enforces code quality standards
 - Prevents entire classes of bugs
 - Complements tests (tests check behavior, static analysis checks structure)
 
 **Rules:**
+
 - Run static analysis before every commit
 - Fix all errors (not just warnings)
 - Don't commit if static analysis fails
@@ -264,6 +291,7 @@ Edit this section with your project's conventions. Everything above (Principles 
 **Principle:** Commit messages explain WHY, not WHAT.
 
 **Format:**
+
 ```
 type(scope): brief summary (50 chars max)
 
@@ -274,6 +302,7 @@ Closes #123
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `refactor`: Code restructure (no behavior change)
@@ -282,6 +311,7 @@ Closes #123
 - `chore`: Build, dependencies, tooling
 
 **Why:**
+
 - Code shows WHAT changed (diffs)
 - Messages should explain WHY
 - Helps future developers (including you)
@@ -293,6 +323,7 @@ Closes #123
 **Principle:** Small, verified steps beat big leaps.
 
 **Process:**
+
 1. Break large features into small slices
 2. Each slice should:
    - Have its own test
@@ -301,12 +332,14 @@ Closes #123
 3. Commit each slice separately
 
 **Why:**
+
 - Easier to debug (smaller change surface)
 - Easier to review
 - Easier to revert if needed
 - Builds confidence incrementally
 
 **Rules:**
+
 - Prefer many small commits over few large ones
 - Each commit should leave code in working state
 - Don't accumulate changes without committing
@@ -318,6 +351,7 @@ Closes #123
 **Principle:** Configuration, secrets, and environment-specific values NEVER belong in code.
 
 **What to externalize:**
+
 - API keys, secrets, passwords, tokens
 - URLs (API endpoints, database connections)
 - Port numbers
@@ -326,18 +360,21 @@ Closes #123
 - File paths that differ between environments
 
 **Where to put them:**
+
 - `.env` files (with `.env.example` template)
 - Config files (config.json, settings.yaml)
 - Environment variables
 - Secret managers (for production)
 
 **Why:**
+
 - Security (secrets don't leak to git)
 - Flexibility (change config without code changes)
 - Deployability (same code runs in all environments)
 - Collaboration (each developer has own local settings)
 
 **Rules:**
+
 - NEVER commit `.env` files (add to .gitignore)
 - ALWAYS provide `.env.example` with dummy/placeholder values
 - Use typed config objects, not raw strings scattered in code
@@ -345,6 +382,7 @@ Closes #123
 - Use descriptive names: `DATABASE_URL`, not `DB` or `URL`
 
 **Examples:**
+
 ```
 # BAD - hardcoded
 const API_URL = "https://api.example.com";
@@ -362,17 +400,20 @@ const PORT = parseInt(process.env.PORT || "3000");
 **Principle:** Documentation follows a pyramid - broad overview → module details → source code. Agents read top-down.
 
 **Process:**
+
 1. Read `ARCHITECTURE.md` first (project root, 1 page max)
 2. Read module `README.md` when working in that area
 3. Read source code only for specific files needed
 
 **Why:**
+
 - Saves tokens (10x reduction in context needed)
 - Faster orientation for new sessions
 - Prevents "lost in codebase" syndrome
 - Scales to any project size
 
 **Rules:**
+
 - ALWAYS read `ARCHITECTURE.md` before starting work on any task
 - Each major module/directory SHOULD have a `README.md` with public API summary
 - Keep `ARCHITECTURE.md` under 1 page (concise, not exhaustive)
@@ -380,9 +421,65 @@ const PORT = parseInt(process.env.PORT || "3000");
 
 ---
 
+## 14. Designing Abstractions — Responsibilities Before DRY
+
+**Principle:** Before extracting a helper, adding a dispatcher, or DRY-ing duplicated code, enumerate responsibilities first. Duplication is cheaper than the wrong abstraction.
+
+**When this applies:**
+
+- Planning a module/API with ≥2 call sites sharing logic
+- About to write a helper/wrapper/dispatcher
+- Refactoring to eliminate duplication
+
+**Process — 7 steps:**
+
+1. **List concern-layers** — transport, observability, gates, content, persistence, validation. Each duplication mixes 2-4 concerns.
+2. **Find invariants** — what MUST hold for all callers (logging, rate limit, audit). Invariants go into the dispatcher, not per-caller.
+3. **Parameter sprawl test** — ≥5 params → wrap in a named domain object (dataclass, Pydantic model, Value Object).
+4. **Thin wrappers over fat dispatcher** — public API = discoverable named functions (`send_invite_email`), internal = single canonical path. Never `send(type="invite")`.
+5. **Rename before refactor** — confusing names are bugs. Rename first, consolidate after.
+6. **Refactor preserves behavior** — no new features (retry, rate limit) in the same PR. Prepare the seam; add features next.
+7. **TDD at the seam** — tests target the dispatcher contract (invariants), not each wrapper.
+
+**Before writing any helper (AI context-collapse mitigation):**
+
+- **Grep repo** for the likely name and responsibility — a sibling helper may already exist.
+- Read CLAUDE.md / ACTIVE_CONTEXT.md for mentions of the concern.
+- Only write a new helper if nothing relevant is found.
+
+**Red flags (backtrack if any hit):**
+
+- Boolean parameter controlling behavior → split into two named functions.
+- Primitive obsession (raw strings/IDs through >2 layers) → introduce Value Object (Parse, Don't Validate).
+- One function mixing transport + logic + persistence → split by concern.
+- Caller must know HOW module works → deepen the interface (Ousterhout).
+- Stringly-typed dispatcher (`send(type="X")`) → fat dispatcher + thin named wrappers.
+- Helper called from N places, each customizing it → wrapper-per-use-case.
+
+**Decision rules:**
+
+- **<3 duplications** → leave it. Rule of Three (Metz).
+- **3+ duplications, same responsibility** → extract named function.
+- **3+ duplications, different responsibilities** → fat dispatcher (invariants) + thin named wrappers (use-cases).
+- **Refactor needed to prepare a feature** → separate PR. _Make the change easy, then make the easy change_ (Beck).
+- **Migrating live code** → Parallel Change (expand → migrate → contract). Never swap in one PR.
+
+**Why:**
+
+- AI-assisted development fails twice: writing parallel implementations because context is limited, and over-DRY-ing into god-functions / stringly-typed dispatchers.
+- Responsibility analysis produces the RIGHT abstraction, not just LESS code.
+- Named domain objects beat 10-param signatures for readability and safety.
+
+**Deeper workflow:** Invoke the `development:designing-abstractions` skill for full "Abstraction Strategy" artifact (Boundary Map, Connascence Audit, Public API vs Internal plumbing).
+
+**Sources:** Metz (Rule of Three, constraints), Hickey (Simple vs Easy), Ousterhout (Deep Modules), King (Parse, Don't Validate), Beck (Tidy First, Make the change easy), Fowler (Parallel Change), Connascence.
+
+---
+
 ## Summary
 
-These 13 principles work together to create:
+These 14 principles work together to create:
+
 - **Confidence:** Tests verify everything works
 - **Safety:** Git workflow prevents disasters
 - **Quality:** Static analysis + TDD prevent bugs
@@ -391,6 +488,7 @@ These 13 principles work together to create:
 - **Orientation:** Progressive context prevents token waste
 
 **Remember:**
+
 1. Branch first
 2. Test first (RED -> GREEN -> REFACTOR)
 3. Verify always

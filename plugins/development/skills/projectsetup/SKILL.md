@@ -22,7 +22,7 @@ Use this skill when:
 **Creates development principles structure:**
 
 - `CLAUDE.md` - Entry point with quick reference + **development-workflow** skill reference
-- `.claude/CORE_PRINCIPLES.md` - 11 core principles (TDD, Git, Verification, etc.)
+- `.claude/CORE_PRINCIPLES.md` - 14 core principles (TDD, Git, Verification, Designing Abstractions, etc.)
 - `.claude/WORKFLOWS.md` - TDD workflow, Bug Fix, Git operations
 - `.claude/CHECKPOINTS.md` - When to ask vs auto
 - `.claude/settings.local.json` - Project permissions

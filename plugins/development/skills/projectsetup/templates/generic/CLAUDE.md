@@ -7,26 +7,30 @@ This project follows framework-free development principles focused on **TDD**, *
 This project uses session context for continuity between Claude sessions.
 
 **At session start:**
+
 - Claude automatically loads `.claude/ACTIVE_CONTEXT.md`
 - Announces where we left off and continues
 
 **At session/task end:**
+
 - Claude updates ACTIVE_CONTEXT.md with current state
 - Logs important decisions to DECISIONS.md
 
 **Manual commands:**
+
 - "Načti kontext" / "Load context" - display current state
 - "Ulož kontext" / "Save context" - save current state
 
 ## Quick Links
 
-- **[Core Principles](.claude/CORE_PRINCIPLES.md)** - 13 core development principles
+- **[Core Principles](.claude/CORE_PRINCIPLES.md)** - 14 core development principles
 - **[Workflows](.claude/WORKFLOWS.md)** - TDD workflow, Bug fixes, Git operations
 - **[Checkpoints](.claude/CHECKPOINTS.md)** - When to ask vs when to proceed automatically
 
 ## TL;DR
 
 **Before writing ANY code:**
+
 1. **Create a branch** (never work on main/master)
 2. **Write the test first** (RED phase)
 3. **Watch it fail** (confirms test actually tests something)
@@ -35,40 +39,62 @@ This project uses session context for continuity between Claude sessions.
 6. **Run all tests + static analysis** before committing
 7. **Ask before committing** (unless auto-approved in settings)
 
+**Before writing a helper, dispatcher, or refactoring duplicates:**
+
+1. **Grep first** — a sibling helper may already exist elsewhere in the repo.
+2. **Enumerate responsibilities** before DRY-ing (Principle 14).
+3. **Named functions over stringly-typed dispatchers** — `send_invite_email(...)`, never `send(type="invite", ...)`.
+4. **Value Objects over primitive obsession** — parse at boundaries, don't validate everywhere.
+5. **Rule of Three** — <3 duplications, leave it; duplication is cheaper than the wrong abstraction.
+6. **Invoke `development:designing-abstractions` skill** for anything non-trivial.
+
 ## Critical Rules
 
 ### Always Do
+
 - Branch first, commit later
 - Test first, code second
 - Verify before claiming success
 - Ask at checkpoints (see CHECKPOINTS.md)
 - Run full test suite before commits
+- Grep for existing helpers before writing a new one
+- Enumerate responsibilities before extracting abstractions
 
 ### Never Do
+
 - Work directly on main/master
 - Write code before tests
 - Commit without verification
+- Write a `send(type="X")` or similar stringly-typed dispatcher
+- DRY duplicated code without first asking what concerns each duplication mixes
+- Create a helper with ≥5 parameters instead of a named domain object
 - Skip static analysis
 - Assume tests pass without running them
 
 ## Workflow Skills
 
 ### Feature Implementation
+
 **Use `development-workflow` skill** for any feature implementation:
+
 ```
 User: "Implement feature X"
 -> Skill orchestrates: Brainstorm -> Plan -> Branch -> Docs -> TDD -> Verify -> Review -> Finish
 ```
 
 ### Complex Features (API/Multi-step)
+
 **Use `openspec-workflow` skill** for complex features requiring specs:
+
 ```
 User: "Add user authentication with multiple endpoints"
 -> Skill orchestrates: Proposal -> Align -> Specs -> Tasks -> TDD -> Archive
 ```
 
 ### Bug Fixes
+
 **Use `systematic-debugging` skill**:
+
 ```
 User: "Fix bug X"
 -> Skill orchestrates: Investigate -> Hypothesize -> Verify -> Fix with TDD
