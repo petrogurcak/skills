@@ -25,20 +25,36 @@ Before using this skill, check which tools are available. Not all are required �
 
 ## Available Tools
 
-### 1. Ideogram 3.0 (`ideogram_generate`)
+### 1. Ideogram 3.0 (`ideogram_generate` + `ideogram_edit`)
 
-**Best for:** Typography in images, complex layouts, strong character consistency, detailed scenes.
+**Best for:** Typography in images, complex layouts, strong character consistency, detailed scenes, inpainting edits.
 
-**MCP tool:** `mcp__ideogram__ideogram_generate`
+**MCP tools:**
 
-**Key parameters:**
+- `ideogram_generate` — generate new images from prompt
+- `ideogram_edit` — edit parts of an existing image using a mask (inpainting)
 
-- `prompt` — the generation prompt
-- `aspect_ratio` — e.g. `"1:1"`, `"16:9"`, `"2:1"`, `"9:16"`
-- `style_type` — `"auto"`, `"general"`, `"realistic"`, `"design"`
-- `rendering_speed` — `"DEFAULT"`, `"TURBO"` (faster, slightly lower quality)
-- `character_reference_image_url` — URL of reference image to maintain character identity across generations
+**Key parameters for `ideogram_generate`:**
+
+- `prompt` — text description of the image
+- `aspect_ratio` — `"1x1"`, `"3x4"`, `"4x3"`, `"9x16"`, `"16x9"`, `"2x1"`, `"1x2"`, etc.
+- `style_type` — `"AUTO"`, `"GENERAL"`, `"REALISTIC"`, `"DESIGN"`, `"FICTION"`
+- `rendering_speed` — `"QUALITY"`, `"BALANCED"`, `"TURBO"`, `"FLASH"`
+- `num_images` — generate 1-4 variants at once
+- `seed` — for reproducibility (reuse a seed from previous generation)
+- `negative_prompt` — what to exclude (e.g. "blurry, text errors, extra fingers")
+- `magic_prompt` — `"AUTO"`, `"ON"`, `"OFF"` — Ideogram rewrites your prompt for better results. Use OFF for exact control.
+- `style_preset` — predefined styles: WATERCOLOR, OIL_PAINTING, PRODUCT_PHOTOGRAPHY, ANIME, COMIC_BOOK, LINE_ART, MINIMALISM, PENCIL_DRAWING, etc.
+- `color_palette_hex` — list of hex colors to enforce (e.g. `["#1C2B3A", "#4A2035", "#F7F4EF"]`)
+- `character_reference_image_url` — URL of reference image to maintain character identity
 - `style_reference_image_url` — URL of style reference to maintain artistic consistency
+
+**Key parameters for `ideogram_edit` (inpainting):**
+
+- `prompt` — what should appear in the edited region
+- `image_path` — absolute path to source image (PNG/JPEG/WebP)
+- `mask_path` — absolute path to mask (same dimensions, black=edit, white=keep)
+- `rendering_speed`, `magic_prompt`, `style_type`, `seed` — same as generate
 
 **When to use:**
 
@@ -46,13 +62,25 @@ Before using this skill, check which tools are available. Not all are required �
 - Character must stay consistent across multiple generations
 - Complex multi-element compositions
 - Product mockups with text overlays
+- Editing specific parts of an existing image (inpainting with mask)
+- Enforcing exact brand colors via `color_palette_hex`
 
 **Prompting tips:**
 
 - Be specific about composition: "character on the left, object on the right"
 - For text in images, put the exact text in quotes within the prompt
-- Use `character_reference_image_url` once you have a good base image — Ideogram maintains identity (including details like glasses, markings, accessories)
+- Use `color_palette_hex` to enforce brand colors — Ideogram will stick to those colors
+- Use `negative_prompt` to prevent common issues: "blurry, distorted text, extra limbs"
+- Set `magic_prompt: "OFF"` when you need exact prompt control (Ideogram rewrites prompts by default)
+- Use `character_reference_image_url` once you have a good base image — maintains identity across scenes
 - Use `style_reference_image_url` to lock artistic style across a series
+- Use `seed` from a successful generation to create variations with similar composition
+
+**Limitations:**
+
+- No custom font upload — text styling is prompt-controlled only
+- No direct image compositing — cannot place a specific image at a specific position
+- Character/style references guide the output but don't guarantee exact reproduction
 
 ### 2. Luma Dream Machine (`luma_generate_video`)
 

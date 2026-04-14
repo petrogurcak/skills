@@ -15,6 +15,9 @@ requires-python = ">=3.10"
 [project.scripts]
 ideogram-mcp = "ideogram_mcp.server:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/ideogram_mcp"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
