@@ -4,6 +4,44 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-04-14: Designing Abstractions — vrstevna strategie (skill + princip + retrofit)
+
+**Kontext:** Opakovany failure pattern v AI-assisted developmentu: LLM pise parallel implementace helperu (neni schopen videt sibling files), a pak kdyz se ho poprosi o consolidaci, udela spatnou abstrakci — god-function, stringly-typed dispatcher nebo parameter sprawl. Chteli jsme aby se "responsibilities-before-abstraction" principy aplikovaly vzdy, ne jen kdyz na ne nekdo konkretne myslí.
+
+**Rozhodnuti:** Trojvrstvy pristup:
+
+1. **On-demand skill `development:designing-abstractions`** — plny workflow s Abstraction Strategy artefaktem, fires na trigger frazich (refactor, DRY, dispatcher, helper, shared).
+2. **Always-loaded Principle 14 v projectsetup templatu** — CORE_PRINCIPLES.md + CLAUDE.md TL;DR. Kazda session zacina s kompaktnim checklistem (Grep first, Rule of Three, no stringly-typed dispatchers, Value Objects).
+3. **Retrofit pres `workflow-optimization` Option P** — existujici projekty si mohou princip doinstalovat bez plneho rerunu projectsetup.
+4. **Symetricky review skill `review:abstraction-review`** — sdili 12-principle taxonomii s design-time skillem, volan z deep-review auto kdyz diff obsahuje helpers/dispatchers.
+
+**Alternativy:**
+
+- Jen skill (no always-loaded) — LLM by princip nepouzival pokud by si na nej neveypamtoval fires
+- Jen princip v CLAUDE.md (no skill) — chybelo by hloubkove zpracovani + Abstraction Strategy artefakt
+- Rigid enforcement hook — moc invazivni, blokoval by i legitimni pripady
+- Samostatny plugin pro abstractions — overkill, patri do development + review
+
+**Duvod:** Vrstveni = defense in depth. Princip v CLAUDE.md TL;DR zajisti ze LLM o nem vi kazdou session (always in context). Skill provadi hlubku kdyz je treba. Review skill validuje ex-post. Retrofit moznost umoznuje postupne prijeti v existujicich projektech. 12-principle taxonomia sdilena mezi design/review = konzistentni slovnik napric fazemi, snadne mapovat findings z review zpet na design principles.
+
+---
+
+## 2026-04-14: Research-first skill creation workflow
+
+**Kontext:** Pri tvorbe `designing-abstractions` skillu jsem nejdriv napsal draft z hlavy, pak pustil Gemini deep research a zjistil ze chybi 3-4 klicove principy (Connascence, Deep Modules, Parse-Don't-Validate, Mikado Method).
+
+**Rozhodnuti:** Pri tvorbe skillu s domenovym obsahem (principy, patterny, frameworky) spustit `development:research` skill PRED psanim draftu, ne az po nem. Gemini/Claude prohleda canonical zdroje a zabrani premature draft, ktery pak musim zahazovat.
+
+**Alternativy:**
+
+- Psat draft z hlavy (risk: prehledneme klicove principy)
+- Research az pri review (moc pozde, draft uz je vic fixovany)
+- Gemini second-opinion na hotovy skill (vic tokenu na to same)
+
+**Duvod:** Research-first je levnejsi (jeden Gemini call misto iteraci na draftu) a produkuje grounded obsah. Update `skill-creator` a `writing-skills` workflow aby research-first byl defaultni pro domain skills.
+
+---
+
 ## 2026-02-28: Sentry Auto-Fix Agent — bash poller + headless claude -p
 
 **Kontext:** Chceme automaticky detekovat a opravovat Sentry issues bez lidske intervence.

@@ -141,6 +141,12 @@ Is there CLAUDE.md in current directory?
    (or --transport http for HTTP servers)
 
 5. This creates .mcp.json in project root with project-scoped servers
+
+6. Generate Gemini CLI MCP config (dual-CLI parity):
+   ~/.claude/scripts/sync-mcp-to-gemini.sh
+
+   This creates .gemini/settings.json from .mcp.json so the same MCP servers
+   are available when switching between Claude Code and Gemini CLI in this project.
 ```
 
 **Important:** Phase-based servers are NOT added during setup. User activates them on-demand:
