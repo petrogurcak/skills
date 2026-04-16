@@ -228,25 +228,25 @@ Note: Options B, C, and D include verification in their workflows.
 
 Options B, C, and D include code review in their workflows. For Manual TDD (option A):
 
-Launch review agents in parallel:
+Invoke review skills (parallel in Claude Code, sequential v Gemini CLI):
 
-a) **Compliance Review** (code vs plan):
+a) **Compliance Review** (code vs plan) — `review:compliance-reviewer` skill:
 
-```
-Use compliance-reviewer agent to review against [plan file]
-```
+**Claude Code:** `Skill` tool → `review:compliance-reviewer` s plan file path
+**Gemini CLI:** `activate_skill` → `review:compliance-reviewer` s plan file path
 
 - Checks every plan task was implemented
 - Identifies scope creep or missing pieces
+- Produces verdict: COMPLIANT / PARTIALLY COMPLIANT / NON-COMPLIANT
 
-b) **Quality Review** (code quality):
+b) **Quality Review** (code quality) — `review:quality-reviewer` skill:
 
-```
-Use quality-reviewer agent to review [changed files]
-```
+**Claude Code:** `Skill` tool → `review:quality-reviewer` s changed files list
+**Gemini CLI:** `activate_skill` → `review:quality-reviewer` s changed files list
 
-- TDD compliance, error handling
+- TDD compliance, error handling, security basics, performance red flags
 - Independent of plan — focuses on code itself
+- Produces TDD score (A-F) + verdict: APPROVE / APPROVE WITH NOTES / REQUEST CHANGES
 
 **Fallback:** If no plan file exists, use single review:
 
