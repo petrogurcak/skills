@@ -1,5 +1,33 @@
 # Mistakes Log
 
+## 2026-04-15: Pushnul jsem 2 API klice na public GitHub repo
+
+**Co se stalo:** Vygeneroval jsem `.gemini/settings.json` v `~/Projects/skills` (PUBLIC repo `petrogurcak/skills`) kopirovanim env values z `.mcp.json` — ktery obsahoval plaintext `GEMINI_API_KEY` a `IDEOGRAM_API_KEY`. `.mcp.json` byl v `.gitignore`, ale novou `.gemini/settings.json` jsem tam nepridal. `git add -A` ji stagnul. Pushnul jsem commit `97c17a2` na public repo. Keys exposed.
+
+**Proc:**
+
+1. Predpokladal jsem ze zdrojovy `.mcp.json` je gitignored takze i cilovy `.gemini/settings.json` bude bezpecny — spatny predpoklad, zapomnel jsem dodat vlastni gitignore entry.
+2. Neudelal jsem pre-push secret scan. Repo je PUBLIC a to vyzaduje vyssi laťku.
+3. Kopiroval jsem env values 1:1 misto aby uz zdrojovy config pouzival secret manager reference (op://, ${ENV_VAR}).
+
+**Oprava:**
+
+1. `git rm --cached .gemini/settings.json` + add to `.gitignore` (commit `de6aa35`).
+2. User rotated both keys (Gemini Studio + Ideogram dashboard).
+3. Prepsal `.mcp.json` na `op run --no-masking -- python3 ...` wrapper + `op://Dev/shared-keys/<KEY>` env refs. Lokalni configy uz neobsahuji plaintext.
+4. `sync-mcp-to-gemini.sh` nyni auto-addne `.gemini/settings.json` do `.gitignore` + warning kdyz output obsahuje env vars.
+
+**Pouceni:**
+
+- **Pred `git push` na public repo VZDY:** `git diff --cached | grep -iE "api[_-]?key|secret|token|password"` + `git diff --cached --stat` review.
+- **Secret manager reference (op://, ${VAR}) v configu,** nikdy ne plaintext value — i kdyz je soubor gitignored. Defence in depth: prvni vrstva je `.gitignore`, druha je ze soubor ani lokalne neobsahuje raw secrets.
+- **Novy file vedle gitignored sourcu:** pokud zdroj je v `.gitignore` kvuli citlivemu obsahu, derivovany soubor se STEJNYM obsahem MUSI byt taky v `.gitignore` — nebo lepe, mit pattern `*.json` + allowlist.
+- **History scrubbing na public pushed commit nepomuze** — keys jsou v GitHub search indexu, archive.org, botnet scrapers do minuty. Jedina oprava = rotace.
+
+**Tags:** #security #api-keys #gitignore #public-repo #1password
+
+---
+
 ## 2026-04-04: git add -A s embedded git repos
 
 **Co se stalo:** `git add -A` failnul s "error: 'flutter/' does not have a commit checked out" a pridaval embedded git repos jako submoduly.
