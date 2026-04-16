@@ -4,6 +4,35 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-04-16: Hook-equivalent discipline pro Gemini + Agent Tool guidance
+
+**Kontext:** Claude Code ma 4 event-driven hooks (SessionStart, PostToolUse, Stop, SessionEnd) co automatizuji kriticke quality gates: auto-format, console-log detection, pre-completion verify, memory indexing, session evaluation. Gemini CLI hook system nema. Zaroven Claude Code ma `Agent tool` se subagent_type co poskytuje isolation (fresh context, tool restriction, parallelism, model override) — Gemini to nema 1:1.
+
+**Rozhodnuti:**
+
+1. **Cross-CLI session context loader** — `~/.claude/scripts/session-start.sh` vypise ACTIVE_CONTEXT + DECISIONS + mistakes + MEMORY.md v jednom bashi. Claude Code ho muze spustit jako fallback, Gemini ho **povinně** spousti na začátku session (nahrazuje Claude Code claudeMd auto-injection).
+
+2. **Lifecycle Rules v GEMINI.md** — explicit text rules ktere simulují Claude Code hooks:
+   - Post-Edit: manual format + console.log grep + secrets scan
+   - Pre-completion: mandatory tests + lint + build s command output
+   - User correction: auto-save jako feedback memory + MEMORY.md update
+   - Session end: wrapup skill call
+
+3. **Agent Tool guidance v obou configs:**
+   - CLAUDE.md: "Pro review skills DEFAULT = Agent tool se subagent_type" (explicit guidance pro Claude aby pouzival isolation, ne inline Skill)
+   - GEMINI.md: "Ztráta Agent Tool isolation" sekce + compensation rules (concise reading, sekvenční review, honor max limits)
+
+**Alternativy:**
+
+- **Gemini CLI wrapper v bash** co spousti hooks kolem každého Claude call — hack, fragile, neřeší PostToolUse atomicky
+- **Ignorovat hooks pro Gemini** — drift mezi CLI by rostl, Gemini by skipl quality gates
+- **Implementovat Gemini agent isolation pres Gemini ADK** — velký projekt (týdny práce), Python/JS implementace, out of scope
+- **Nedělat Gemini parity vůbec** — user hlásil že Gemini skipuje Phase 3 v planning skillu, nepřijatelné
+
+**Duvod:** Pragmaticky trade-off. Gemini = plan B, but as close as possible. Cena 90% parity je ~100 řádků instructions v GEMINI.md + 50-line bash script + porting 4 agents as skills. Zbylá 10% (true isolation, deterministic enforcement) vyžaduje fundamentální kroky které nejsou worth it. Claude Code zůstává primary — Gemini pokryt pro secondary use cases (when Claude Code unavailable, cross-checking, model diversity).
+
+---
+
 ## 2026-04-15: Dual-CLI parity — `op run` wrapper + sync script + agent-driven config sync
 
 **Kontext:** Chceme plne stridat Claude Code a Gemini CLI ve stejnem projektu se sdilenym workflow (ACTIVE_CONTEXT, DECISIONS, mistakes, CORE_PRINCIPLES). Drift mezi `~/.claude/CLAUDE.md` a `~/.gemini/GEMINI.md` (2 mesice) odhalil ze pattern "symlinky" z 2026-02-25 nefunguje kvuli Gemini Added Memories (Gemini auto-appenduje). API key leak pri sync `.mcp.json` → `.gemini/settings.json` odhalil ze plaintext env values v configu jsou tikajici bomba.
