@@ -223,15 +223,21 @@ Obsah skillu...
    # Vytvoř SKILL.md s YAML frontmatter (viz formát výše)
    ```
 
-2. **Přidej symlinky:**
+2. **Sync symlinky pro Gemini CLI + Cowork (povinný krok):**
 
    ```bash
-   # Pro Cowork (globální skills)
-   COWORK="$HOME/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/803e4d51-6951-4e8b-86ba-07e2a6118f12/a8e7d198-e221-402c-b591-385eb8ba7245/skills"
-   ln -sf ~/Projects/skills/plugins/<plugin>/skills/<novy-skill> "$COWORK/"
+   ~/.claude/scripts/sync-skills-symlinks.sh
    ```
 
-3. **Commit, push, update Claude Code cache**
+   Script je idempotentní — vytvoří chybějící symlinky, opraví přesunuté, smaže broken. Spouštěj po KAŽDÉM:
+   - novém skillu
+   - přesunu skillu mezi pluginy (např. `copywriting/children-stories` → `children-books/children-stories`)
+   - přejmenování skillu
+   - smazání skillu
+
+   **Důvod:** Claude Code používá plugin marketplace cache system (kopírování), ale Gemini CLI a Cowork používají symlinky. Bez sync skriptu jsou out-of-date a nové skills nevidí.
+
+3. **Commit, push, update Claude Code cache** (viz Workflow: Úprava skillu)
 
 ## Workflow: Nový plugin
 
