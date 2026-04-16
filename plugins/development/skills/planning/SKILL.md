@@ -148,6 +148,8 @@ git commit -m "feat: [message]"
 
 **Goal:** Catch gaps, missing edge cases, and wrong assumptions before coding.
 
+**KRITICKÉ:** Phase 3 NENÍ volitelná. Nikdy neskočit z Phase 2 (Write Plan) přímo na Phase 4 (Execution) bez minimálně plan-challenger. User upozornil že Gemini CLI tento krok preskakuje — dělej ho **VŽDY**.
+
 After saving the plan:
 
 1. **Add YAML frontmatter** to the plan file if not already present:
@@ -160,36 +162,51 @@ After saving the plan:
    ---
 ````
 
-2. **Run plan-challenger agent** (adversarial review):
+2. **POVINNÝ KROK: Invoke `review:plan-challenger` skill** (adversarial review):
 
-   ```
-   Use plan-challenger agent to review [plan file path]
-   ```
+   **Claude Code:** `Skill` tool → `review:plan-challenger` s plan file path
+   **Gemini CLI:** `activate_skill` → `review:plan-challenger` s plan file path
 
-   - Presents structured findings (CRITICAL / WARNING / INFO)
-   - CRITICAL findings must be addressed before proceeding
-   - **After addressing findings, update the plan file**
+   Skill produkuje structured findings (CRITICAL / WARNING / INFO) + verdict (APPROVE/REVISE/REJECT).
+   - **CRITICAL** findings: MUST fix before proceeding. Update plan file.
+   - **REJECT** verdict: vrať se do Phase 1, plán je fundamentálně špatně.
+   - **APPROVE** verdict: můžeš pokračovat ke kroku 3.
 
-3. **Ask user:** "Plan-challenger hotovy. Chces pustit i deep review? (Doporuceno — challenger hleda strategicke diry, deep-review technicke problemy.)"
+   Nikdy tento krok nepřeskoč. Ani pro "jednoduchý" plan. Ani když jsi si jistý. Plan-challenger často najde něco co jsi přehlédl.
+
+3. **POVINNÝ DOTAZ: Ask user:** "Plan-challenger hotovy (verdict: [APPROVE/REVISE]). Chceš pustit i deep review? (Doporučeno — challenger hledá strategické díry, deep-review technické problémy.)"
    - **If yes** → continue to step 4
    - **If no** → skip to step 7
 
+   **Nikdy neprocházej krok 3 beze slova.** Gemini CLI reportováno že se neptá — VŽDY tuhle otázku polož explicitně.
+
 4. **Announce:** "Pouštím deep review."
-5. **Run `review:deep-review`** on the plan file
+
+5. **Invoke `review:deep-review` skill** na plan file:
    - Architecture consistency
    - Missing error handling / edge cases
    - Security concerns
    - Task ordering and dependencies
    - Missing tests or test scenarios
+
 6. **Present review findings** to user, incorporate feedback, update plan
-   - **Offer Gemini second opinion (optional):** "Chceš i Gemini second opinion na plán? (Doporučeno — jiný AI model = jiné blind spots.)"
-     - If yes → invoke `development:second-opinion` skill with plan file path; optionally ask which domain skills to apply (e.g., "ux", "security"); present Gemini findings alongside other findings
+   - **POVINNÝ DOTAZ: Offer Gemini second opinion:** "Chceš i Gemini second opinion na plán? (Doporučeno — jiný AI model = jiné blind spots.)"
+     - If yes → invoke `development:second-opinion` skill s plan file path; optionally ask which domain skills to apply (e.g., "ux", "security"); present Gemini findings alongside other findings
      - If no → continue to user confirmation
 
 7. **User confirms:** "Plan je OK, jdeme implementovat"
 8. **Update plan status** to `in_progress` when user confirms
 
-**Exit Phase 3 when:** Plan-challenger done + optional deep-review done + user confirms.
+**Exit Phase 3 when:** `review:plan-challenger` invoked + user asked about deep-review + user asked about second-opinion + user confirms.
+
+**Checklist před přechodem do Phase 4:**
+
+- [ ] plan-challenger invoked (verdict known)
+- [ ] CRITICAL findings addressed (if any)
+- [ ] User explicitly asked about deep-review
+- [ ] User explicitly asked about Gemini second-opinion
+- [ ] User said "plán je OK" nebo ekvivalent
+- [ ] Plan status updated na `in_progress`
 
 ---
 
