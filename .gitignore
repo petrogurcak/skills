@@ -35,8 +35,9 @@ bun-baseline.zip
 # Secrets
 .env
 
-# Local MCP config
+# Local MCP config (contains API keys — NEVER commit)
 .mcp.json
+.gemini/settings.json
 
 # Embedded git repos (separate projects)
 code-mode/

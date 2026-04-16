@@ -147,6 +147,14 @@ Is there CLAUDE.md in current directory?
 
    This creates .gemini/settings.json from .mcp.json so the same MCP servers
    are available when switching between Claude Code and Gemini CLI in this project.
+
+   ⚠️  SECURITY: Both .mcp.json and .gemini/settings.json may contain API keys
+   in plaintext env values. The script auto-adds .gemini/settings.json to .gitignore,
+   but verify before first commit:
+
+   grep -E "\.mcp\.json|\.gemini/settings\.json" .gitignore
+
+   If missing, add both lines manually.
 ```
 
 **Important:** Phase-based servers are NOT added during setup. User activates them on-demand:
