@@ -4,6 +4,29 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-04-15: Dual-CLI parity — `op run` wrapper + sync script + agent-driven config sync
+
+**Kontext:** Chceme plne stridat Claude Code a Gemini CLI ve stejnem projektu se sdilenym workflow (ACTIVE_CONTEXT, DECISIONS, mistakes, CORE_PRINCIPLES). Drift mezi `~/.claude/CLAUDE.md` a `~/.gemini/GEMINI.md` (2 mesice) odhalil ze pattern "symlinky" z 2026-02-25 nefunguje kvuli Gemini Added Memories (Gemini auto-appenduje). API key leak pri sync `.mcp.json` → `.gemini/settings.json` odhalil ze plaintext env values v configu jsou tikajici bomba.
+
+**Rozhodnuti:** Trojvrstvy pristup:
+
+1. **Agent-driven config sync** pro global configs: pravidlo v obou CLAUDE.md i GEMINI.md ("pri editu jednoho VZDY updatni druhy, liší se jen v path refs + Gemini Added Memories"). Ne symlinky (Gemini's auto-append by prepsal Claude config).
+
+2. **Script-driven MCP sync** pro project-level: `~/.claude/scripts/sync-mcp-to-gemini.sh` prevadi `.mcp.json` (Claude format) → `.gemini/settings.json` (Gemini format, bez `"type":"stdio"`), auto-addne do `.gitignore`, warninguje na env vars.
+
+3. **1Password `op run` wrapper pro secrets:** `command: op run --no-masking -- python3 ...` + `env: {"X_API_KEY": "op://Dev/shared-keys/X_API_KEY"}`. Zero plaintext v configu — reference pouze. `op` resolvuje secrets za behu.
+
+**Alternativy:**
+
+- **Symlinky na global level** — rozbilo by Gemini Added Memories (Gemini auto-appenduje, prepsalo by Claude config)
+- **`.mcp.json` s `${ENV_VAR}` + user source shell script pred launch Claude Code** — kricha (easy to forget source), nereseni pro GUI Cowork session
+- **Vault file (encrypted .env)** — dalsi dependencia + extra krok, op je uz na stroji
+- **Plaintext v gitignored souborech** — defence in depth fail: jedna vrstva (gitignore) proti leaku, bez redundance
+
+**Duvod:** `op run` je native 1Password pattern, zvladne env refs bez sourcingu. Public repo push `97c17a2` ukazal ze gitignore sam nestaci — pokud se na novy file zapomene, leak. op:// reference v configu jsou bezpecne i pri accidental commitu. Sync script + agent-driven pravidlo = low-friction pattern ktery skaluje pres projekty. Agent-driven sync je trade-off: vyzaduje disciplinu (agent musí cist pravidlo), ale flexibilnejsi nez mechanicky diff.
+
+---
+
 ## 2026-04-14: Designing Abstractions — vrstevna strategie (skill + princip + retrofit)
 
 **Kontext:** Opakovany failure pattern v AI-assisted developmentu: LLM pise parallel implementace helperu (neni schopen videt sibling files), a pak kdyz se ho poprosi o consolidaci, udela spatnou abstrakci — god-function, stringly-typed dispatcher nebo parameter sprawl. Chteli jsme aby se "responsibilities-before-abstraction" principy aplikovaly vzdy, ne jen kdyz na ne nekdo konkretne myslí.

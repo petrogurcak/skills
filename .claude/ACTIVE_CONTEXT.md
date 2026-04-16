@@ -2,44 +2,48 @@
 
 ## Posledni session
 
-- **Datum:** 2026-04-14
-- **Branch:** main (pushed)
+- **Datum:** 2026-04-15 / 2026-04-16 (vecer)
+- **Branch:** main (pushed: `5034cb6`)
 - **Dokonceno:**
-  - **Research** — Gemini deep research na design principles/patterns chybejici v dev workflow (12 principu: Metz, Hickey, Ousterhout, King, Beck, Fowler, Connascence). Ulozeno `docs/research/2026-04-14-designing-abstractions-principles.md`.
-  - **Novy skill `development:designing-abstractions`** — design-time skill pro responsibilities-before-abstraction analyzu. 12 principu, 7-step workflow, red flag checklist, Abstraction Strategy artefakt, Grep-first AI context-collapse mitigace. Trigger: "refactor", "DRY", "duplikace", "helper", "dispatcher", shared logic, ≥2 call sites.
-  - **Novy skill `review:abstraction-review`** — review-time lens symetricky k designing-abstractions. 12-item red flag checklist + Connascence audit + parallel implementation scan. Severity rules (CRITICAL/HIGH/MEDIUM/LOW). Auto-triggers z deep-review kdyz diff obsahuje helpers/dispatchers.
-  - **Principle 14 baked-in** — responsibilities-before-DRY pridany do projectsetup template (`.claude/CORE_PRINCIPLES.md` + `CLAUDE.md` TL;DR s Always-Do/Never-Do rules). Nove projekty ho dostanou automaticky.
-  - **Workflow integrations:**
-    - `planning` Phase 1 Step 4 — abstraction gate
-    - `development-workflow` Phase 1 Step 2 — abstraction check
-    - `deep-review` Specialist Skills — auto-trigger abstraction-review
-    - `workflow-optimization` Option P — retrofit Principle 14 do existujicich projektu
-  - **Necommitnute zmeny z minule session** — ideogram v0.3.0, nanobanana MCP server, image-generation skill update, dtp-typography, AGENT.md — vsechno commitnuto.
-  - **.gitignore** — pridano `__pycache__/` a `*.pyc`
-  - Commity: `8ff5174` (designing-abstractions), `58d38e6` (creative: ideogram/nanobanana/image-gen), `e16aeef` (AGENT.md + dtp-typography), `55f4928` (abstraction-review + deep-review)
+  - **Dual-CLI setup sjednoceny** mezi Claude Code a Gemini CLI:
+    - `~/.gemini/GEMINI.md` resynced s `~/.claude/CLAUDE.md` (byl 7. brezna, za mezi tim driftnul o "skill capture", "worktree isolation", "memory decay dates", MCP SERVERS sekci)
+    - Pridano pravidlo **"Dual-CLI config sync"** do obou global configs — agent sam sync-uje pri edit
+    - Pridano pravidlo **"Cross-CLI session continuity"** — .claude/ACTIVE_CONTEXT.md / DECISIONS.md / mistakes.md cte a pise oba CLI stejne
+  - **Novy script `~/.claude/scripts/sync-mcp-to-gemini.sh`** — prevadi `.mcp.json` → `.gemini/settings.json` (strip `"type":"stdio"`, warning na secrets, auto-add do .gitignore)
+  - **`projectsetup` Step 2.5 Step 6** pridan: po `claude mcp add` auto-generate Gemini settings + security check
+  - **🚨 API key leak + oprava:**
+    - Push `97c17a2` obsahoval `GEMINI_API_KEY` + `IDEOGRAM_API_KEY` v `.gemini/settings.json` na public `petrogurcak/skills`
+    - User rotoval oba klice (Gemini Studio + Ideogram dashboard)
+    - Commit `de6aa35`: `.gemini/settings.json` → `.gitignore` + `git rm --cached`
+    - **Migrace na 1Password:** `.mcp.json` + `.gemini/settings.json` nyni pouzivaji `op run --no-masking -- python3 ...` + `op://Dev/shared-keys/<KEY>` env refs. Zero plaintext klicu lokalne.
+    - Commit `5034cb6`: `mistakes.md` postmortem (4 lessons)
+  - **Skills project ma** `.gemini/settings.json` (gitignored) s 4 MCP servery: notebooklm, luma, nanobanana, ideogram
 - **Rozdelano:** Nic
 
 ## Otevrene problemy
 
-- **utilities:mac-cleanup** — skill funguje pres Skill tool, ale NEOBJEVUJE se v `/` autocomplete menu
-- **Root CLAUDE.md plugin table** — potrebuje aktualizovat: development 12→13, review 4→5, total 60→62 skills
+- **Verify 1Password setup funguje v praxi** — po restartu Claude Code otestovat `ideogram_generate` nebo `nanobanana_generate`, pokud `op signin` neni aktivni, MCP server spadne
+- **Retrofit existujicich projektu** — crewboard a dalsi projekty nemaji `.mcp.json` / `.gemini/settings.json`. Pokud nekdy budou potrebovat MCP, pouzit workflow: `claude mcp add --scope project ...` → `~/.claude/scripts/sync-mcp-to-gemini.sh`
+- **claude-config repo** ma spoustu necommitnutych zmen (17k deletions z migrace skills/, 10 novych hook scriptu) — user je ceka, commit pozdeji sam
+- **Root CLAUDE.md plugin table** — stale nutne aktualizovat counts (development 13, review 5, total 60)
 
 ## Poznamky pro dalsi session
 
-- Otestovat designing-abstractions v praxi (pouzit pri prvnim refactoru nebo novem modulu)
-- Otestovat abstraction-review jako lens v deep-review na realnem PR
-- V existujicich projektech (kde chces Principle 14) pustit `/development:workflow-optimization` → Option P
-- Finalizovat plakat Winegeek v Etape + Instagram post (carry-over)
+- Novy pattern pro MCP secrets: **vzdy op:// refs + `op run` wrapper**, nikdy plaintext v `.mcp.json`
+- **Pre-push check na public repo:** `git diff --cached | grep -iE "api[_-]?key|secret|token|password"`
+- Sync script umi retrofit existujici projekty: `cd ~/Projects/<foo> && ~/.claude/scripts/sync-mcp-to-gemini.sh`
+- Gemini CLI v projektu: `.claude/*` soubory sdilene, MCP pres `.gemini/settings.json` (ma vlastni format bez `"type":"stdio"`)
 
 ## Dalsi kroky
 
 ### Priorita 1
 
-1. Aktualizovat root CLAUDE.md plugin table (counts)
-2. Test designing-abstractions na realnem use-case
-3. Finalni plakat + Instagram post
+1. Otestovat `op run` wrapper v Claude Code (restart + trigger MCP call)
+2. Zrotovane klice uz jsou v 1Password? Verify `op item get shared-keys --vault Dev --fields GEMINI_API_KEY,IDEOGRAM_API_KEY`
+3. Aktualizovat root CLAUDE.md plugin table
 
 ### Priorita 2
 
-4. Brand Strategy skill — deep research
-5. Sales skill — novy plugin
+4. Test designing-abstractions v praxi (carry-over z minule session)
+5. Brand Strategy skill — deep research
+6. Sales skill — novy plugin
