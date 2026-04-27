@@ -135,7 +135,15 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 │   ├── copywriting/
 │   ├── development/
 │   ├── review/
-│   └── ux/
+│   ├── ux/
+│   ├── branding/
+│   ├── product/
+│   ├── legal/
+│   ├── utilities/
+│   ├── creative/
+│   ├── children-books/
+│   ├── gastro/
+│   └── team/
 └── README.md
 
 # Symlinky směřují DO source:
@@ -158,23 +166,25 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 
 **Poznámka:** UUID se může změnit. Pokud skills v Cowork zmizí, najdi novou cestu a znovu vytvoř symlinky.
 
-## 13 pluginů (60 skills)
+## 15 pluginů (101 skills)
 
 | Plugin             | Skills | Popis                                                               |
 | ------------------ | ------ | ------------------------------------------------------------------- |
+| **development**    | 31     | Workflows (Flutter, Expo, FastAPI, frontend), planning, debugging, verify, demo, finish, projectsetup, agent design, session-context, openspec, designing-abstractions, ralph-loop, sentry-fix, analytics, second-opinion |
 | **seo**            | 13     | Orchestrator, on-page, technical, schema, images, sitemaps, i18n, keywords, links, competitors, programmatic, AI-ready, ASO |
-| **growth**         | 3      | Growth hacking, PLG, SaaS bootstrap                                 |
-| **marketing**      | 4      | Orchestrator, offers, UVP, analytics, pricing                       |
-| **copywriting**    | 5      | OttoCopy framework, web/product copy, newsletters                   |
-| **children-books** | 3      | Storywriting, illustration (Banana), DTP & Typography               |
-| **development**    | 12     | Flutter, Expo, FastAPI, frontend workflows                          |
-| **review**         | 4      | Deep review, API/database/security review                           |
-| **ux**             | 3      | UX orchestrator, optimization, expert dialogue                      |
+| **copywriting**    | 11     | Orchestrator, IG family (ig-orchestrator + ig-content + ig-strategy), web/product copy, newsletter, storytelling, brand-voice, knowledge-book, writing-clearly-and-concisely |
+| **review**         | 8      | Orchestrator (deep-review), API/database/security review, abstraction-review, plan-challenger, compliance-reviewer, quality-reviewer |
+| **marketing**      | 7      | Orchestrator, offers, UVP, analytics-setup, pricing, competitive-analysis, launch-strategy |
+| **growth**         | 6      | Orchestrator, growth-hacking, PLG, SaaS bootstrap, referral-program, churn-prevention, finance-ops |
 | **product**        | 6      | Orchestrator, discovery, prioritization, strategy, PMF, metrics     |
-| **team**           | 1      | AI team briefing - virtual personas review plans cross-functionally |
-| **gastro**         | 1      | Gastro education persona — kurzy, knihy, videa pro restauratéry     |
 | **legal**          | 4      | Orchestrator, GDPR, labor-law, e-commerce legislation               |
+| **ux**             | 4      | Orchestrator, optimization, expert dialogue, ui                     |
+| **branding**       | 3      | Brand naming, brand strategy, logo design                           |
+| **children-books** | 3      | Storywriting, illustration (Banana), DTP & Typography               |
+| **utilities**      | 2      | Mac cleanup, cowork-setup                                           |
 | **creative**       | 1      | Image generation orchestrator (Ideogram, Luma, nanobanana)          |
+| **gastro**         | 1      | Gastro education persona — kurzy, knihy, videa pro restauratéry     |
+| **team**           | 1      | AI team briefing — virtual personas review plans cross-functionally |
 
 ## SKILL.md formát
 
