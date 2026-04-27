@@ -41,13 +41,15 @@ The conductor doesn't play instruments, but coordinates who plays when.
 
 ### Step 1: Keyword Detection
 
-| Keywords in Request                                               | Detected Type | Specialist Skill    |
-| ----------------------------------------------------------------- | ------------- | ------------------- |
-| `instagram`, `reel`, `stories`, `post`, `social`, `tiktok`        | Social Media  | `instagram-content` |
-| `homepage`, `web`, `landing`, `about us`, `sales page`, `website` | Web Copy      | `web-copy`          |
-| `produkt`, `e-shop`, `product description`, `e-commerce`, `popis` | Product Copy  | `product-copy`      |
-| `email`, `newsletter`, `mailing`, `campaign`, `sequence`          | Email         | `newsletter`        |
-| `story`, `narrative`, `compelling`, `pitch deck`, `founder story` | Storytelling  | `storytelling`      |
+| Keywords in Request                                                      | Detected Type       | Specialist Skill                          |
+| ------------------------------------------------------------------------ | ------------------- | ----------------------------------------- |
+| `instagram`, `ig`, `reel`, `stories`, `post`, `carousel`, `social media` | IG (any sub-intent) | `ig-orchestrator` → routes to ig-\*       |
+| `napiš IG post`, `caption`, `Reel caption`, `IG copy` (writing intent)   | IG Writing          | `ig-content` (direct, skip orchestrator)  |
+| `IG strategie`, `co točit`, `formát Reelu`, `engagement plán` (planning) | IG Strategy         | `ig-strategy` (direct, skip orchestrator) |
+| `homepage`, `web`, `landing`, `about us`, `sales page`, `website`        | Web Copy            | `web-copy`                                |
+| `produkt`, `e-shop`, `product description`, `e-commerce`, `popis`        | Product Copy        | `product-copy`                            |
+| `email`, `newsletter`, `mailing`, `campaign`, `sequence`                 | Email               | `newsletter`                              |
+| `story`, `narrative`, `compelling`, `pitch deck`, `founder story`        | Storytelling        | `storytelling`                            |
 
 ### Step 2: Context Clues
 
@@ -89,8 +91,10 @@ E) Multi-channel campaign (combination)
 ```
 copywriting-orchestrator
         │
-        ├── instagram-content
-        │   └── Hook-Substance-Payoff, viral content
+        ├── ig-orchestrator (IG family router)
+        │   ├── ig-content     — writing (Otto methodology, strict output discipline)
+        │   ├── ig-strategy    — planning (formats, production, engagement, monetizace)
+        │   └── (future) ig-reels, ig-stories, ig-carousel, ig-ads, ig-analytics
         │
         ├── web-copy
         │   └── Blueprint, Triáda, PROTTO, homepage elements
@@ -101,14 +105,24 @@ copywriting-orchestrator
         ├── newsletter
         │   └── 9-step email anatomy, subject lines
         │
-        └── storytelling
-            └── ABT, SB7, Strategic Narrative, Sparkline, SUCCESs
+        ├── storytelling
+        │   └── ABT, SB7, Strategic Narrative, Sparkline, SUCCESs, 9 SM frameworks
+        │
+        ├── brand-voice
+        │   └── Voice attributes, tone adaptation, terminology
+        │
+        ├── writing-clearly-and-concisely
+        │   └── Strunk's Elements of Style applied
+        │
+        └── knowledge-book
+            └── Non-fiction knowledge book writing
 ```
 
 ### Shared Resources (loaded by specialists):
 
-- `core-copywriting-principles.md` - 8 základních pravidel
-- `core-briefing-process.md` - 8 otázek (CO, JAK, ČÍM, KDE, KOMU, KDO, KAM, PROČ)
+- `../core-copywriting-principles.md` — Otto Bohuš universal principles (banned words, triáda, <20 word sentences, psychological triggers)
+- `../365-copy-triky.md` — 365 micro-tipů (Mužíková) — hooks, CTAs, anti-clichés reference bank
+- `../core-briefing-process.md` — 8 otázek (CO, JAK, ČÍM, KDE, KOMU, KDO, KAM, PROČ)
 
 ## Standard Workflow
 
@@ -211,13 +225,15 @@ digraph copywriting_flow {
 
 ## Quick Reference
 
-| Content Type     | Specialist Skill    | Core Framework            |
-| ---------------- | ------------------- | ------------------------- |
-| Instagram/Social | `instagram-content` | Hook-Substance-Payoff     |
-| Website/Landing  | `web-copy`          | Blueprint, Triáda, PROTTO |
-| E-shop Products  | `product-copy`      | 7-step, Type A/B          |
-| Email/Newsletter | `newsletter`        | 9-step anatomy            |
-| Story/Narrative  | `storytelling`      | ABT, SB7, Sparkline       |
+| Content Type           | Specialist Skill  | Core Framework                                |
+| ---------------------- | ----------------- | --------------------------------------------- |
+| Instagram (any)        | `ig-orchestrator` | Routes to ig-content / ig-strategy            |
+| IG copy/captions       | `ig-content`      | Otto methodology, 3-5 variants, strict output |
+| IG planning/production | `ig-strategy`     | 4 idea criteria, 9 formats, technical setup   |
+| Website/Landing        | `web-copy`        | Blueprint, Triáda, PROTTO                     |
+| E-shop Products        | `product-copy`    | 7-step, Type A/B                              |
+| Email/Newsletter       | `newsletter`      | 9-step anatomy                                |
+| Story/Narrative        | `storytelling`    | ABT, SB7, Sparkline, 9 SM frameworks          |
 
 ## Common Mistakes
 

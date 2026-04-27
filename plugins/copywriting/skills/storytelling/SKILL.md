@@ -254,17 +254,19 @@ From Matthew Dicks — use these to enhance ANY framework:
 
 ### Platform Router
 
-| Framework             | Best for                   | Length | Platforms                              |
-| --------------------- | -------------------------- | ------ | -------------------------------------- |
-| 7-Sentence            | Daily posts, threads       | Short  | LinkedIn, Twitter/X, IG caption        |
-| Before-After-Bridge   | Product launches, how-to   | Medium | LinkedIn, email, FB Ads, LP            |
-| Problem-Agitate-Solve | Sales content, retargeting | Short  | FB/IG Ads, email funnels, sales pages  |
-| Hero's Journey        | Case studies, testimonials | Long   | LinkedIn long-form, YouTube, blog      |
-| Three-Act Structure   | Brand stories, campaigns   | Medium | FB/IG Stories, TikTok, LinkedIn        |
-| Pixar Formula         | Emotional stories          | Long   | IG Reels, TikTok, LinkedIn carousel    |
-| Golden Circle         | Brand positioning, values  | Medium | LinkedIn, About pages, pitch decks     |
-| Star-Chain-Hook       | Lead generation            | Short  | FB/IG Ads, Twitter/X, email            |
-| V Formula             | Transformation stories     | Medium | LinkedIn, IG story highlights, YouTube |
+| Framework             | Best for                   | Length | Difficulty | Platforms                              |
+| --------------------- | -------------------------- | ------ | ---------- | -------------------------------------- |
+| 7-Sentence            | Daily posts, threads       | Short  | ⭐         | LinkedIn, Twitter/X, IG caption        |
+| Before-After-Bridge   | Product launches, how-to   | Medium | ⭐         | LinkedIn, email, FB Ads, LP            |
+| Problem-Agitate-Solve | Sales content, retargeting | Short  | ⭐⭐       | FB/IG Ads, email funnels, sales pages  |
+| Hero's Journey        | Case studies, testimonials | Long   | ⭐⭐⭐     | LinkedIn long-form, YouTube, blog      |
+| Three-Act Structure   | Brand stories, campaigns   | Medium | ⭐⭐       | FB/IG Stories, TikTok, LinkedIn        |
+| Pixar Formula         | Emotional stories          | Long   | ⭐⭐       | IG Reels, TikTok, LinkedIn carousel    |
+| Golden Circle         | Brand positioning, values  | Medium | ⭐⭐       | LinkedIn, About pages, pitch decks     |
+| Star-Chain-Hook       | Lead generation            | Short  | ⭐         | FB/IG Ads, Twitter/X, email            |
+| V Formula             | Transformation stories     | Medium | ⭐⭐       | LinkedIn, IG story highlights, YouTube |
+
+**Difficulty key:** ⭐ easy (just fill the slots) · ⭐⭐ medium (needs setup + restraint) · ⭐⭐⭐ hard (long-form arc + character work)
 
 ### Quick Selection
 
@@ -340,6 +342,8 @@ ACT 2:  Confrontation — problem and rising tension
 ACT 3:  Resolution — problem solved (with your product/service)
 ```
 
+**Example:** ACT 1: "Martin launched an outdoor clothing e-shop. First month: 5 orders. Solo operation — phone-shot product photos, WordPress theme for €20." ACT 2: "After 3 months still 30 orders/month. Burned 50K on FB ads. Site loaded in 8s, mobile checkout broken, 85% bounce." ACT 3: "Hired an e-commerce agency. 6 weeks later: new site, pro photos, optimized checkout. First month: 150 orders. Six months later: 300K/month, team of 3, site loads in 1.2s."
+
 ### SM6. Pixar Formula
 
 The framework behind 13 Oscars. Works because people are wired for fairy tales since childhood.
@@ -369,6 +373,8 @@ WHAT:  What we do (products, services)
 
 **Best for:** Brand positioning, About Us pages, company LinkedIn posts, pitch decks.
 
+**Example:** WHY: "We believe work shouldn't drain you. It should energize you. We spend 1/3 of life at work — why should it suck? We want people excited about what they'll create today." HOW: "That's why we build tools that make work easier and more enjoyable. No complex dashboards. No 100 clicks for one action. UX a junior or a CEO both understand." WHAT: "We make project management software. Not another Trello. A place where teams collaborate without friction. Where meetings aren't needed because everyone knows the work. Where feedback comes in context, not via email."
+
 ### SM8. Star-Chain-Hook
 
 Framework for fast conversion. Not storytelling per se, but highly effective for lead gen.
@@ -378,6 +384,8 @@ STAR:   Catchy positive opening (attention)
 CHAIN:  Series of facts, benefits, reasons (desire)
 HOOK:   Strong call-to-action (action)
 ```
+
+**Example:** STAR: "Build AI agents in 30 days — even if you've never coded. ✨" CHAIN: "→ 50+ hours of video tutorials → Private Discord (500+ students) → Weekly Q&A with AI experts → Templates for 10 common use cases → Certificate on completion → Lifetime access to updates" HOOK: "🎯 First 100 students: 50% off · ⏰ Offer ends in 48 hours · 👉 Reserve your spot: [LINK]"
 
 ### SM9. V Formula (Dave Lieber)
 
