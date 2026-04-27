@@ -3,7 +3,7 @@ name: cowork-setup
 description: Creates `~/Claude-shared/` (user-level shared context — about-me, voice, working-rules, projects-index) and per-project scaffolding in `~/Projects/<name>/` for Claude Cowork non-development projects (marketing, copywriting, strategy, concepts, research). Lightweight alternative to development:projectsetup. Use when user says "setup cowork project", "nový cowork projekt", "nastav coworku", "cowork init", or starting non-dev work in Cowork desktop app. NOT for development projects (use development:projectsetup) or for adding workflow optimizations to existing setup (use workflow-optimization).
 metadata:
   author: Petr
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Cowork Setup Skill
@@ -90,6 +90,11 @@ If `~/Claude-shared/` exists, prompt:
 
    > "When creating a new project in Cowork: Add Context → `~/Claude-shared/` AND your project folder."
 
+9. **GitHub bridge setup** (optional, strongly recommended for claude.ai chat sync). Ask: "Init git + push to GitHub? [yes/no/later]"
+   - **yes:** (a) `gh auth status` — if fail, instruct `gh auth login` and pause. (b) Ask repo path (default `<gh-user>/claude-shared`). (c) Write `.gitignore` from `templates/gitignore.template`. (d) Skip init if `.git/` exists, else: `cd ~/Claude-shared && git init && git branch -m main && git add . && git commit -m "init: shared context layer" && gh repo create <REPO> --private --source=. --push`. (e) Append `templates/working-rules-git-addendum.md.template` to `working-rules.md`. (f) Print: "claude.ai → Settings → Connectors → Add GitHub → Authorize → Find `<REPO>`. Per-Project: Sources → GitHub → Select `<REPO>`."
+   - **no:** skip, no git artifacts.
+   - **later:** print manual instructions, skip exec.
+
 ## Voice Extraction Sub-Procedure
 
 Used in Mode A step 5 when user has writing samples. Grounds voice in real texts vs. Q&A.
@@ -170,15 +175,16 @@ Run for each new Cowork project. Creates `~/Projects/<project-name>/` and append
 
 ## Error Handling & Edge Cases
 
-| Situation                                            | Skill behavior                                                                                                                      |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `~/Claude-shared/` exists, user runs `--init-shared` | 3-way prompt: Reinit / Update single file / Cancel (default)                                                                        |
-| `~/Projects/<name>/` exists                          | Stop, suggest different name                                                                                                        |
-| Mode B but `~/Claude-shared/` missing                | Stop, instruct to run `--init-shared` first                                                                                         |
-| Voice extraction: no samples provided                | Fallback to `copywriting:brand-voice` Q&A or skip                                                                                   |
-| Voice extraction: WebFetch fail                      | Continue with remaining samples, notify user                                                                                        |
-| `projects-index.md` append fail (file locked)        | Retry once, else warn user + print line for manual paste                                                                            |
-| User cancels mid-flow Q&A                            | Use intent marker — delete ONLY paths skill created in this session. Never touch pre-existing files. If no `mkdir` ran yet → no-op. |
+| Situation                                                                  | Skill behavior                                                                                                                                               |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `~/Claude-shared/` exists, user runs `--init-shared`                       | 3-way prompt: Reinit / Update single file / Cancel (default)                                                                                                 |
+| `~/Projects/<name>/` exists                                                | Stop, suggest different name                                                                                                                                 |
+| Mode B but `~/Claude-shared/` missing                                      | Stop, instruct to run `--init-shared` first                                                                                                                  |
+| Voice extraction: no samples provided                                      | Fallback to `copywriting:brand-voice` Q&A or skip                                                                                                            |
+| Voice extraction: WebFetch fail                                            | Continue with remaining samples, notify user                                                                                                                 |
+| `projects-index.md` append fail (file locked)                              | Retry once, else warn user + print line for manual paste                                                                                                     |
+| User cancels mid-flow Q&A                                                  | Use intent marker — delete ONLY paths skill created in this session. Never touch pre-existing files. If no `mkdir` ran yet → no-op.                          |
+| Step 9: `gh auth status` fails / `.git/` exists / `gh repo create` rejects | Auth fail → instruct `gh auth login` + retry. `.git/` exists → skip init, verify remote. Repo exists → ask "Use existing?" + `git remote add origin` + push. |
 
 ## Idempotence
 

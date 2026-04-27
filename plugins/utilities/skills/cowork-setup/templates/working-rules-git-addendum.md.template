@@ -1,0 +1,15 @@
+
+## Git sync (auto-push to GitHub)
+
+After session end (after projects-index + Log updates), ask user:
+"Pushnout změny na GitHub? [yes/no]"
+
+If yes, run:
+```bash
+cd ~/Claude-shared
+git add .
+git commit -m "session $(date +%Y-%m-%d): <brief summary>"
+git push
+```
+
+Confirm with user before pushing if `git status` shows >5 changed files.
