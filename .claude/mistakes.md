@@ -1,5 +1,26 @@
 # Mistakes Log
 
+## 2026-04-28: Cowork "Check for updates" nepull-ne marketplace cache
+
+**Co se stalo:** Cowork UI tlačítko "Check for updates" v marketplace settings neudělalo `git pull` v `~/Library/.../cowork_plugins/marketplaces/skills/`. Cache zůstala na starém commitu (např. `80eb7a5` z 2026-02-05) i když origin/main byl 59 commits dál. Pattern se zopakoval 3× za poslední 2 session — pokaždé jsem musel manuálně pull.
+
+**Proc:** Cowork update flow má pravděpodobně bug nebo specifický trigger condition (např. čeká na verze diff v marketplace.json) co se v naší situaci nesplnil. UI "Synced commit" indicator ukázal nový SHA i když filesystem byl pořád na starém.
+
+**Oprava:** Manuální fast-forward pull:
+
+```bash
+cd "$HOME/Library/Application Support/Claude/local-agent-mode-sessions/<UUID>/<UUID>/cowork_plugins/marketplaces/skills"
+git fetch origin && git pull --ff-only origin main
+```
+
+Po pull Cowork UI zobrazí update tlačítko jakmile je `plugin.json` version bumpnutá v cache.
+
+**Pouceni:** Při každé Cowork update relaci zkontroluj (1) commit SHA cache vs origin (`git log --oneline -1` v cache dir), (2) version v `cache/skills/<plugin>/<ver>/.claude-plugin/plugin.json` vs aktuální v repu. Pokud nesoulad — manual pull. Pokud version bump chybí — bump v source repo.
+
+**Tags:** #cowork #plugin-marketplace #git-pull #manual-workaround #cache-staleness
+
+---
+
 ## 2026-04-28: `git add CLAUDE.md` neaktualizuje když je symlink
 
 **Co se stalo:** Po edit CLAUDE.md (plugin counts update) jsem stagnul `git add CLAUDE.md` a commit prošel s "1 file changed, 21 insertions(+), 11 deletions(-)" — ale `git status` pak nezobrazil žádné staged changes, "no changes added to commit". Musel jsem zjistit že `CLAUDE.md` je symlink na `AGENT.md` (`-> AGENT.md`), reálný file který se editoval byl AGENT.md. `git add CLAUDE.md` přidal symlink (který se nezměnil), ne target file.

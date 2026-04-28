@@ -2,60 +2,57 @@
 
 ## Posledni session
 
-- **Datum:** 2026-04-28
-- **Branch:** main (pushed: `52f8d27`)
+- **Datum:** 2026-04-28 (sub-session 2 — pokračování)
+- **Branch:** main (pushed: `f06022f`)
 - **Dokonceno:**
-  - **Layered IG architecture v copywriting plugin** (commit `66073f2`):
-    - `ig-orchestrator` (245 lines) — IG family router, ready pro budoucí ig-reels/ig-stories/ig-carousel/ig-ads/ig-analytics
-    - `ig-content` (662 lines + 1100 lines references) — 1:1 port Otto v3.3 production artifaktu (strict output discipline: 3-5 variants v code blocks, banned words, žádné HOOK/SUBSTANCE/PAYOFF labely, posts vs stories interpunkce)
-    - `ig-strategy` (400 lines) — extracted z bývalého instagram-content (4 idea criteria, 9 formats, technical, engagement, monetizace)
-    - Smazán starý `instagram-content` (847 řádků nahrazeno 3 čistšími skillami)
-  - **Plugin-shared references** (3 nové soubory na úrovni plugin root):
-    - `365-copy-triky.md` (766 lines) — full Mužíková extract + Best-of 50 curated for IG (Hooks, Anti-clichés, Numbers, CTAs, Microcopy)
-    - `core-copywriting-principles.md` (180 lines) — Otto principles 1-11
-    - `core-briefing-process.md` (160 lines) — 8 question brief + Quick brief 4 (fixed broken refs ze 4 skills)
-  - **Storytelling skill update**: difficulty column ⭐ až ⭐⭐⭐ + 3 chybějící examples (Three-Act, Golden Circle, Star-Chain-Hook)
-  - **Routing changes**: `copywriting-orchestrator` IG keywords → ig-orchestrator (nebo direct ig-content/ig-strategy když intent jasný)
-  - **examples.md generalizace**: +3 ne-coffee niche (SaaS Drag&Drop builder, Restaurant Cacio e pepe, Fitness HIIT)
-  - **AGENT.md (CLAUDE.md symlink) plugin counts** (commit `52f8d27`): 13 plugins/60 skills → **15 plugins/101 skills**, sorted desc, added branding (3) + utilities (2)
-  - **Cleanup**: smazáno 5x `otto-copywriting*.skill` archivů z repo root (history v `3bf4cb3`)
-  - **Git**: 2 commity pushed to GitHub (po cca 30min network delay s GitHubem)
+  - **`marketing:sell-like-crazy` skill** (commit `227a688`):
+    - `plugins/marketing/sell-like-crazy.md` (792 lines) — plugin-shared reference banka, full Sabri Suby canon: 8 phases × deep frameworks, 27 indexed methods, 7 case studies s reálnými čísly, Power Words, CZ-EN glossary
+    - `plugins/marketing/skills/sell-like-crazy/SKILL.md` (487 lines) — production skill v Otto v3.3 stylu: 8 fází jako sekce, output templates (Godfather Stack, VSL script, Soap Opera Sequence, Sales Letter), 3 production módy (Full Funnel Build / Apply Principles / Cross-Skill Integration)
+    - **Source:** Sabri Suby PDF z NotebookLM (358K chars) → `glm-delegate` extraction ($1.53, 14 turns, 90K input tokens)
+    - **Cross-linky** v existing copy skills:
+      - `copywriting:ig-content` → Phase 4 (Godfather compression) + Phase 6 (VSL pattern interrupt)
+      - `copywriting:newsletter` → Phase 8 (P Group, Soap Opera, Daily Email mix)
+      - `copywriting:web-copy` → Phase 4 + Phase 6 (sales pages)
+  - **Cowork-setup working-rules.md template** (commit `f389a29`): nová sekce "Collaboration patterns" — 7 universal patterns extrahovaných z Flatwhite project memory (editorial autonomy, multi-variants 3-5, iteration cadence, research before hooks, critical feedback, verify before claiming, conciseness, save learnings inline). Aktivuje se při příštím `cowork-setup --init-shared`.
+  - **Cowork plugin update fix** (commit `0ed9239`): bumpnul `copywriting/.claude-plugin/plugin.json` 1.0.0 → 2.0.0 — Cowork UI Update tlačítko vyžaduje version bump pro detekci nových skills. Bez bumpu zůstane installed plugin pořád na ottocopy* skills.
+  - **Wrapup skill enhancement** (commit `f06022f`): Step 5 (Usage & Savings) + 5b (savings log + threshold promotion) — ccusage tracking, heavy activity analysis, auto-promotion patternů ≥3× do memory feedback files.
+  - **Plugin verze:**
+    - marketing 1.0.0 → 1.1.0 (sell-like-crazy)
+    - copywriting 2.0.0 → 2.1.0 (cross-links)
+  - **AGENT.md:** 101 → 102 skills, marketing 7 → 8
 
-- **Rozdelano:** Nic (Sprint 0 + Sprint 1 IG architecture komplet, pushed)
+- **Rozdelano:** Nic. Tree clean, 4 commity pushed (`0ed9239`, `f389a29`, `227a688`, `f06022f`).
 
-## PŘEDCHOZÍ session (2026-04-27)
+## PŘEDCHOZÍ session (2026-04-28 — Sub-session 1)
 
-- `utilities:cowork-setup` skill v1.0 + v1.1 (commits `63f0a24`, `a8898f6`, `bb2d58d`) — lightweight setup pro Cowork non-dev projekty, GitHub bridge integration. Detaily v git log.
-
-## PŘEDCHOZÍ session (2026-04-16)
-
-- Dual-CLI parity finale (`6f80a46`): 4 review agents portovaní jako skills, session-start.sh, hook-equivalent rules pro Gemini, planning Phase 3 hardened.
+- Layered IG architecture (commit `66073f2`): ig-orchestrator + ig-content + ig-strategy. Plugin-shared references: 365-copy-triky.md, core-copywriting-principles.md, core-briefing-process.md.
 
 ## Otevrene problemy
 
-- **GitHub connectivity** — během této session 3× `git push` timeout 75s (Google fungoval 271ms). Push prošel po cca 30 min. Diagnostika pokud opakuje: `curl -v https://github.com`, `dig github.com`, VPN/firewall check.
-- **CLAUDE.md je symlink → AGENT.md** v skills repu — `git add CLAUDE.md` neaktualizuje, musí se `git add AGENT.md`.
-- **Test ig-content vs claude.ai** — produkční verifikace neudělaná, příští session.
+- **Cowork marketplace cache nepull-ne přes UI "Check for updates"** — pattern, opakovaně 3× za poslední 2 session. Workaround: manual `git pull` v `~/Library/.../cowork_plugins/marketplaces/skills`. Diagnostika hlubší příčiny pending.
+- **Test ig-content vs claude.ai** — produkční verifikace pořád neudělaná (carry-over).
+- **Test sell-like-crazy v Cowork** — Cowork updated, čeká na praktický test ("napiš sales page pro Flatwhite La Marzocco service").
 
 ## Poznamky pro dalsi session
 
-- **Layered orchestrator pattern** osvědčený pro skill families — opakovaně použitelný šablona pro budoucí domény (UX, product family).
-- **Plugin-shared references** convention: cross-skill reusable content → `plugins/<x>/*.md`. Skill-specific reference → `references/` daného skillu.
-- **Future IG expansion**: ig-reels, ig-stories, ig-carousel, ig-ads, ig-analytics. Architektura ready.
-- **365-copy-triky.md použití**: tahá se on-demand jako reference banka, není to skill — všechny copy skills mohou referencovat.
-- **Sprint 2 = Flatwhite project CLAUDE.md** parking lot — udělá se až Petr migruje IG workflow z claude.ai do Claude Code (nebo Gemini, nebo Cowork, nebo Flatwhite na shared repo).
+- **NotebookLM CLI workflow** osvědčený: `nlm login` → `notebook_get` (sources list) → parallel `source_describe` (AI summaries) → `source_get_content` (raw). Source >100K chars přeteče token limit — fallback file dump + jq processing + glm-delegate pro analysis.
+- **Plugin versioning convention:** version bump v `plugin.json` JE vyžadován pro Cowork update detection. Bez bumpu installed plugin zůstává na staré verzi i když marketplace cache je up-to-date.
+- **Cross-skill principle propagation:** Sell Like Crazy principy se propisují do existing copy skills přes "Integration with Other Skills" sekce. Pattern: skill A má reference banka v plugin-shared `.md`, skill B linkuje konkrétní fáze pro svůj use case. Pattern reusable pro budoucí canon imports (Hormozi 100m Offers → marketing:offers, Dunford → marketing:uvp už existuje).
 
 ## Dalsi kroky
 
 ### Priorita 1
 
-1. **Test ig-content v praxi** — restartni Claude Code, "napiš IG post o [Flatwhite produkt]" → porovnej s claude.ai. Gaps doladit.
-2. End-to-end test Gemini CLI na skills projektu (carry-over) — čte session-start? Invokuje skills?
-3. Verify 1Password `op run` v Claude Code po restartu (carry-over).
+1. **Test sell-like-crazy v Cowork** — restartni Cowork session, "napiš sales page pro Flatwhite La Marzocco refurbishment" → měl by invoke sell-like-crazy + použít Phase 4/6 templates.
+2. **Test ig-content v praxi** — carry-over, "napiš IG post o [Flatwhite produkt]" → porovnej s claude.ai.
+3. **Upload sell-like-crazy.md do Flatwhite claude.ai Project Knowledge** — drag-and-drop z `~/Projects/skills/plugins/marketing/sell-like-crazy.md` (nebo z GitHub web UI Raw download na druhém Macu).
 
 ### Priorita 2
 
-4. Cherry-pick `session-start.sh` do claude-config repa (carry-over).
-5. Cowork stale directories cleanup (carry-over).
-6. Brand Strategy skill — deep research (carry-over).
-7. Sales skill — novy plugin (carry-over).
+4. **Cowork marketplace pull diagnostika** — proč UI "Check for updates" nepull-ne? Inspect Cowork app logs, network capture během akce.
+5. End-to-end test Gemini CLI na skills projektu (carry-over).
+6. Verify 1Password `op run` v Claude Code (carry-over).
+7. Cherry-pick `session-start.sh` do claude-config (carry-over).
+8. Cowork stale directories cleanup (carry-over).
+9. Brand Strategy skill — deep research (carry-over).
+10. **Future canon imports** (po sell-like-crazy template): Hormozi 100m Offers do `marketing:offers`, full notebook had 6 books — 4 už mapped k existing skills, 2 použity (Suby + Dunford via uvp-optimization).
