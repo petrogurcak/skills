@@ -654,6 +654,7 @@ Hashtags: Better to use location tag or @mention instead
 - **`ig-orchestrator`** — IG family router. Auto-invokes ig-content for writing requests.
 - **`storytelling`** — generic storytelling frameworks (ABT, SB7, 9 SM frameworks). Used internally for framework selection.
 - **`copywriting-orchestrator`** — top-level router for non-IG copy.
+- **`marketing:sell-like-crazy`** — when IG post is conversion-driven (DM funnel, link-in-bio sales, launch promo), apply Phase 4 (Godfather Offer compression in caption) and Phase 6 (VSL pattern interrupt + agitation in 3-slide carousel structure). Reference banka with 27 frameworks: `plugins/marketing/sell-like-crazy.md`.
 
 **Future siblings (planned):** `ig-reels`, `ig-stories`, `ig-carousel`, `ig-ads`, `ig-analytics`.
 

@@ -54,14 +54,16 @@ The conductor coordinates who plays when.
 
 ### Step 2: Goal Detection
 
-| Keywords in Request                           | Detected Goal | Primary Skill                          |
-| --------------------------------------------- | ------------- | -------------------------------------- |
-| `first customers`, `launch`, `validate`       | Traction      | `offer-creation`, `growth-hacking`     |
-| `positioning`, `differentiation`, `stand out` | Positioning   | `uvp-optimization`                     |
-| `growth`, `scale`, `more customers`           | Growth        | `growth-hacking`, `product-led-growth` |
-| `pricing`, `monetization`, `revenue`          | Monetization  | `pricing`, `offer-creation`            |
-| `onboarding`, `activation`, `retention`       | PLG           | `product-led-growth`                   |
-| `bootstrap`, `solo founder`, `limited budget` | Bootstrap     | `saas-bootstrap`                       |
+| Keywords in Request                                              | Detected Goal | Primary Skill                          |
+| ---------------------------------------------------------------- | ------------- | -------------------------------------- |
+| `first customers`, `launch`, `validate`                          | Traction      | `offer-creation`, `growth-hacking`     |
+| `positioning`, `differentiation`, `stand out`                    | Positioning   | `uvp-optimization`                     |
+| `growth`, `scale`, `more customers`                              | Growth        | `growth-hacking`, `product-led-growth` |
+| `pricing`, `monetization`, `revenue`                             | Monetization  | `pricing`, `offer-creation`            |
+| `onboarding`, `activation`, `retention`                          | PLG           | `product-led-growth`                   |
+| `bootstrap`, `solo founder`, `limited budget`                    | Bootstrap     | `saas-bootstrap`                       |
+| `sales funnel`, `VSL`, `lead magnet`, `sales page`, `email seq.` | Direct sales  | `sell-like-crazy`                      |
+| `godfather offer`, `risk reversal`, `urgency`, `conversion copy` | Sales offer   | `sell-like-crazy`                      |
 
 ### Step 3: Ask if Unclear
 
@@ -99,9 +101,14 @@ marketing-orchestrator
         │   └── Stair Step Method, 3 High/3 Low Metrics
         │   └── Source: The SaaS Playbook (Rob Walling)
         │
-        └── uvp-optimization (existing)
-            └── 10-Step Positioning Process
-            └── Source: Obviously Awesome (April Dunford)
+        ├── uvp-optimization (existing)
+        │   └── 10-Step Positioning Process
+        │   └── Source: Obviously Awesome (April Dunford)
+        │
+        └── sell-like-crazy
+            └── 8-Phase Direct Response System (Halo Strategy, HVCO,
+                Godfather Offer, Magic Lantern VSL, Soap Opera emails)
+            └── Source: Sell Like Crazy (Sabri Suby)
 ```
 
 ### Cross-skill from copywriting-orchestrator:

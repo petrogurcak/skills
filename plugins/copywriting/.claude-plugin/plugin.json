@@ -1,7 +1,7 @@
 {
   "name": "copywriting",
-  "version": "2.0.0",
-  "description": "Copywriting skills - layered IG architecture (orchestrator/content/strategy), web copy, product copy, newsletters, storytelling, brand voice",
+  "version": "2.1.0",
+  "description": "Copywriting skills - layered IG architecture (orchestrator/content/strategy), web copy, product copy, newsletters, storytelling, brand voice. Cross-links to marketing:sell-like-crazy for conversion-driven copy.",
   "author": { "name": "Petr" },
   "keywords": [
     "copywriting",

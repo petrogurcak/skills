@@ -908,6 +908,14 @@ MUSÍ být pravda! Jinak ztratíte důvěru.
 - Cliffhangery (Zeigarnik)
 - Engagement CTA
 
+**From `marketing:sell-like-crazy` (for promo and sequences):**
+
+- **P Group format** — plain-text personal style bypasses email blindness; default for all newsletters
+- **Subject line formulas** — curiosity gap, contrarian, one-word ("Hey")
+- **Soap Opera Sequence** — 5-email welcome series (Drama → Open Loops → Epiphany → Hidden Benefits → Urgency)
+- **Daily Email mix** — 70% value / 20% soft pitch / 10% direct (counter-intuitive: daily senders = higher engagement, lower unsub)
+- Full templates and 27 frameworks → `plugins/marketing/sell-like-crazy.md`
+
 ---
 
 ## Real-World Impact
