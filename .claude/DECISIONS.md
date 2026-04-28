@@ -4,6 +4,78 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-04-28: Layered IG architecture — ig-orchestrator + ig-content + ig-strategy
+
+**Kontext:** Existující `instagram-content` skill (847 řádků) mixoval ~40% writing (Hook/Substance/Payoff, hooks library, captions, Otto principy) + ~60% strategy (4 idea criteria, 9 formats, technical settings, engagement, monetizace). Vedle toho byl v repo root mimo plugin strukturu `otto-copywriting-v3.3.skill` (production artifakt z claude.ai, 589 řádků s strict output discipline) — 5 verzí archivů, žádná integrovaná do plugin systému. User identifikoval že kvalita IG output v claude.ai pochází právě z Otto v3.3 (banned framework labels v output, 3-5 variants v code blocks, banned words enforced) — což `instagram-content` skill nedělal.
+
+**Rozhodnuti:** Layered architecture pod copywriting-orchestrator:
+
+```
+copywriting-orchestrator (top router for all copy)
+        ↓ detects "instagram, ig, reel, story, post, social"
+
+ig-orchestrator (IG family router)
+        ↓ detects sub-intent
+        ├── ig-content    (WRITING — Otto v3.3 port, strict output discipline)
+        ├── ig-strategy   (PLANNING — extracted from old instagram-content)
+        └── (future) ig-reels, ig-stories, ig-carousel, ig-ads, ig-analytics
+```
+
+**Klíčové elementy:**
+
+1. **Naming convention `ig-` prefix** (ne `instagram-` ani `otto-copywriting`):
+   - Krátší, konzistentní pro celou IG family
+   - "Otto" jako name skipnutý — Otto Bohuš je jen autor metodologie, jméno skillu má popisovat funkci ne osobu
+
+2. **Plugin-shared references** na úrovni `plugins/copywriting/*.md` (ne uvnitř konkrétního skillu):
+   - `core-copywriting-principles.md` — Otto principy 1-11 (universal)
+   - `365-copy-triky.md` — Mužíková reference banka
+   - `core-briefing-process.md` — 8 otázek brief
+   - Důvod: tyto soubory jsou cross-skill reusable (newsletter, web-copy, ig-content všechny mohou referencovat)
+
+3. **Separation of concerns**:
+   - `ig-content`: WRITING discipline (jak napsat — Otto methodology, output rules)
+   - `ig-strategy`: PLANNING (co/kdy točit, formáty, technical, engagement)
+   - `ig-orchestrator`: ROUTING (detekuje sub-intent + koordinuje multi-skill workflows)
+
+**Alternativy:**
+
+- **Update existujícího `instagram-content`**: zkazil by čistotu (instagram-content je generic encyclopedia, Otto je strict execution), nemixovat
+- **Flat architecture bez ig-orchestrator** (peer-to-peer cross-refs): jednodušší, ale nescaluje když přibyde 4+ IG skills (ig-reels, ig-stories, ig-ads, ig-analytics — Petr explicitně potvrdil že chce expansion)
+- **Otto jako standalone skill mimo IG namespace**: matoucí — Otto je IG-specific, mimo IG kontext nepoužitelný
+
+**Důvod:** User explicitně chce expansion na ig-reels/ig-stories/ig-analytics. Layered orchestrator pattern (precedent z `copywriting-orchestrator` + `seo-orchestrator` + `marketing-orchestrator`) je v plugin systému osvědčený. Plus rozdělení writing vs strategy je intuitivní pro routing — user řekne "napiš post" → ig-content; "co točit" → ig-strategy. Bez mid-layer by `copywriting-orchestrator` rozrostl do 5+ IG-specific routing rules.
+
+---
+
+## 2026-04-27: cowork-setup skill v utilities pluginu, ne development
+
+**Kontext:** Bylo potřeba lightweight setup pro Claude Cowork non-dev projekty (marketing, copy, strategie, koncepty, research). Existující `development:projectsetup` má 44K templates a po 2 projektech vyhořel 5h Claude Max limit — overkill pro non-dev práci. Otázka: kde nový skill žije?
+
+**Volby:**
+
+1. `development` plugin (vedle projectsetup) — ALE kontextově není dev
+2. `utilities` plugin (s `mac-cleanup`) — neutral home pro user-level infrastruktur tooling
+3. Nový plugin `cowork` — overkill pro 1 skill, future expansion nejistý
+
+**Rozhodnutí:** `utilities`. Důvod: `cowork-setup` není dev-specific (žádné TDD/Git/build rules), je to user-level setup helper. `mac-cleanup` v utilities má podobný character (system-level, cross-domain). Nový plugin `cowork` by byl premature — kdyby přibyly další cowork-\* skills, lze pak split.
+
+## 2026-04-27: GitHub bridge jako Cowork ↔ claude.ai chat propojení (ne unofficial API)
+
+**Kontext:** Target user (Gabi) potřebuje stejný kontext v Cowork desktop **i** claude.ai chat na mobilu (IG posts za pochodu). Research ukázal že není oficiální bidirectional sync mezi Cowork a claude.ai chat. GitHub issue #2511 open 10 měsíců bez Anthropic odpovědi.
+
+**Volby:**
+
+1. **Pattern A — Import-once + zapomeň** (oficiální, low fidelity, žádný runtime sync)
+2. **Pattern B — claude-pyrojects unofficial API** (reverse-engineered, riskuje rate-limit/ban/breakage)
+3. **Pattern C — GitHub jako bridge** (oficiální, robustní): `~/Claude-shared/` = git repo → push → claude.ai chat čte přes GitHub Connector
+
+**Rozhodnutí:** Pattern C. Důvod: jediný oficiálně podporovaný bidirectional flow. Žádný unofficial API risk. Versioning brand voice + klient deliverables zdarma (git history). Mobile/iPhone friendly bez setupu. Dependency: GitHub CLI + Connector v claude.ai (free tier).
+
+**Implementační dopad:** v1.1 Mode A Step 9 dělá `git init` + `gh repo create --private --push` + appendne git addendum do `working-rules.md`. Cowork pak při session end nabídne "Pushnout změny na GitHub?" — auto-sync trigger.
+
+---
+
 ## 2026-04-16: Hook-equivalent discipline pro Gemini + Agent Tool guidance
 
 **Kontext:** Claude Code ma 4 event-driven hooks (SessionStart, PostToolUse, Stop, SessionEnd) co automatizuji kriticke quality gates: auto-format, console-log detection, pre-completion verify, memory indexing, session evaluation. Gemini CLI hook system nema. Zaroven Claude Code ma `Agent tool` se subagent_type co poskytuje isolation (fresh context, tool restriction, parallelism, model override) — Gemini to nema 1:1.

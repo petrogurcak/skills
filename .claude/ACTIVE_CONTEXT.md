@@ -2,72 +2,60 @@
 
 ## Posledni session
 
-- **Datum:** 2026-04-16
-- **Branch:** main (pushed: `6f80a46`)
+- **Datum:** 2026-04-28
+- **Branch:** main (pushed: `52f8d27`)
 - **Dokonceno:**
-  - **Dual-CLI parity — finalni runda (3 iterace):**
-    1. Global config sync: CLAUDE.md ↔ GEMINI.md identicky, pravidlo "auto-sync při editu"
-    2. Per-project MCP: `.mcp.json` + `.gemini/settings.json` přes 1Password `op://Dev/shared-keys/<KEY>` + `op run` wrapper. Zero plaintext lokálně.
-    3. Skills symlinks: 98/98 v Gemini a Cowork (retrofit 32 missing Gemini + 66 missing Cowork + 3 broken)
-  - **API key leak + oprava (postmortem v mistakes.md):**
-    - Pushnul jsem `.gemini/settings.json` s `GEMINI_API_KEY` + `IDEOGRAM_API_KEY` na public `petrogurcak/skills` (commit `97c17a2`)
-    - User rotoval oba klíče. Commit `de6aa35` removal + gitignore. Commit `5034cb6` mistakes.md postmortem (4 lessons).
-  - **4 agenti portovani na skills** (Gemini teď může volat to samé co Claude Code přes Agent tool):
-    - `review:plan-challenger` (commit `80f4703`)
-    - `review:compliance-reviewer` (commit `6f80a46`)
-    - `review:quality-reviewer` (commit `6f80a46`)
-    - `development:build-error-resolver` (commit `6f80a46`)
-  - **Planning skill Phase 3 posileny gates:**
-    - "POVINNÝ KROK" / "POVINNÝ DOTAZ" markery
-    - 6-item checklist před Phase 4 exit
-    - Explicit cross-CLI invocation paths (Skill tool / activate_skill)
-  - **Hook-equivalent rules pro Gemini:**
-    - `~/.claude/scripts/session-start.sh` — cross-CLI session context loader (ACTIVE_CONTEXT + DECISIONS + mistakes + MEMORY.md)
-    - GEMINI.md "Lifecycle Rules" sekce — manuální equivalent pro auto-prettier, console-log-check, auto-capture-corrections, stop-verify, memory-reindex
-    - "Ztráta Agent Tool isolation" awareness + compensation rules (concise reading, sekvenční review)
-  - **Global configs nová sekce `# DEVELOPMENT`:**
-    - Skill Invocation Protocol (1% rule + red flags tabulka)
-    - 22 Trigger → Skill mapping (development + domain + nove review skills)
-    - 8 Always-Applied Principles (branch first, TDD, verify, Principle 14, commit rules, git safety, pre-push grep, CLI verify)
-    - 7 Checkpoints s user confirmation
-    - Session Start mandatory rules (s session-start.sh fallback)
-  - **Utility scripts:**
-    - `~/.claude/scripts/sync-mcp-to-gemini.sh` (konverze .mcp.json → .gemini/settings.json + auto-gitignore)
-    - `~/.claude/scripts/sync-skills-symlinks.sh` (idempotentni sync Gemini + Cowork)
-    - `~/.claude/scripts/session-start.sh` (cross-CLI session loader)
-  - **`projectsetup` Step 2.5 Step 6** pridan: auto-generate `.gemini/settings.json` + security check
-- **Rozdelano:** Nic (tato session kompletni)
+  - **Layered IG architecture v copywriting plugin** (commit `66073f2`):
+    - `ig-orchestrator` (245 lines) — IG family router, ready pro budoucí ig-reels/ig-stories/ig-carousel/ig-ads/ig-analytics
+    - `ig-content` (662 lines + 1100 lines references) — 1:1 port Otto v3.3 production artifaktu (strict output discipline: 3-5 variants v code blocks, banned words, žádné HOOK/SUBSTANCE/PAYOFF labely, posts vs stories interpunkce)
+    - `ig-strategy` (400 lines) — extracted z bývalého instagram-content (4 idea criteria, 9 formats, technical, engagement, monetizace)
+    - Smazán starý `instagram-content` (847 řádků nahrazeno 3 čistšími skillami)
+  - **Plugin-shared references** (3 nové soubory na úrovni plugin root):
+    - `365-copy-triky.md` (766 lines) — full Mužíková extract + Best-of 50 curated for IG (Hooks, Anti-clichés, Numbers, CTAs, Microcopy)
+    - `core-copywriting-principles.md` (180 lines) — Otto principles 1-11
+    - `core-briefing-process.md` (160 lines) — 8 question brief + Quick brief 4 (fixed broken refs ze 4 skills)
+  - **Storytelling skill update**: difficulty column ⭐ až ⭐⭐⭐ + 3 chybějící examples (Three-Act, Golden Circle, Star-Chain-Hook)
+  - **Routing changes**: `copywriting-orchestrator` IG keywords → ig-orchestrator (nebo direct ig-content/ig-strategy když intent jasný)
+  - **examples.md generalizace**: +3 ne-coffee niche (SaaS Drag&Drop builder, Restaurant Cacio e pepe, Fitness HIIT)
+  - **AGENT.md (CLAUDE.md symlink) plugin counts** (commit `52f8d27`): 13 plugins/60 skills → **15 plugins/101 skills**, sorted desc, added branding (3) + utilities (2)
+  - **Cleanup**: smazáno 5x `otto-copywriting*.skill` archivů z repo root (history v `3bf4cb3`)
+  - **Git**: 2 commity pushed to GitHub (po cca 30min network delay s GitHubem)
+
+- **Rozdelano:** Nic (Sprint 0 + Sprint 1 IG architecture komplet, pushed)
+
+## PŘEDCHOZÍ session (2026-04-27)
+
+- `utilities:cowork-setup` skill v1.0 + v1.1 (commits `63f0a24`, `a8898f6`, `bb2d58d`) — lightweight setup pro Cowork non-dev projekty, GitHub bridge integration. Detaily v git log.
+
+## PŘEDCHOZÍ session (2026-04-16)
+
+- Dual-CLI parity finale (`6f80a46`): 4 review agents portovaní jako skills, session-start.sh, hook-equivalent rules pro Gemini, planning Phase 3 hardened.
 
 ## Otevrene problemy
 
-- **Verify 1Password `op run` funguje v Claude Code** — po restartu otestovat `ideogram_generate` / `nanobanana_generate` a ověřit `op signin` je aktivni
-- **Gemini CLI behavior test** — spustit Gemini session v projektu, ověřit že:
-  1. Běží `session-start.sh` jako první akci
-  2. Invokuje `review:plan-challenger` po `planning` Phase 2
-  3. Ptá se na deep-review a second-opinion
-  4. Před claim "hotovo" spouští tests/lint
-- **Session start script commit** — skript je v `~/.claude/scripts/`, to je claude-config repo (massive uncommitted changes 17k deletions from skills/ migration). Buď commit jen tento skript (cherry), nebo nech čekat
-- **Cowork stale directories** — 10 ne-symlink dirs (canvas-design, consolidate-memory, atd.) — user old skills, let user rozhodnout co s nimi
-- **Root CLAUDE.md plugin table counts** — stále outdated (development 13, review 5, total 60)
+- **GitHub connectivity** — během této session 3× `git push` timeout 75s (Google fungoval 271ms). Push prošel po cca 30 min. Diagnostika pokud opakuje: `curl -v https://github.com`, `dig github.com`, VPN/firewall check.
+- **CLAUDE.md je symlink → AGENT.md** v skills repu — `git add CLAUDE.md` neaktualizuje, musí se `git add AGENT.md`.
+- **Test ig-content vs claude.ai** — produkční verifikace neudělaná, příští session.
 
 ## Poznamky pro dalsi session
 
-- **Memory path encoding:** `~/.claude/projects/$(pwd | tr / -)/memory/` — Claude Code convention, session-start.sh používá stejné
-- **Dual-CLI sync pravidlo v obou configs:** editnout jeden → vždy updatni druhý (liší se jen v path refs k NOW.md + Gemini Added Memories sekce)
-- **Review skills patterně-unifikované:** všechny 3 (plan-challenger, compliance, quality) mají `Announce` + `When to Use` + `When NOT to Use` + `Process` + `Output Format` + `Rules` + `After Review` strukturu
-- **Hook semantika:** hook = deterministic enforcement harness-side, skill = instruction current session. Gemini nemá hooks → spoléhá na disciplinu + explicit rules v GEMINI.md.
+- **Layered orchestrator pattern** osvědčený pro skill families — opakovaně použitelný šablona pro budoucí domény (UX, product family).
+- **Plugin-shared references** convention: cross-skill reusable content → `plugins/<x>/*.md`. Skill-specific reference → `references/` daného skillu.
+- **Future IG expansion**: ig-reels, ig-stories, ig-carousel, ig-ads, ig-analytics. Architektura ready.
+- **365-copy-triky.md použití**: tahá se on-demand jako reference banka, není to skill — všechny copy skills mohou referencovat.
+- **Sprint 2 = Flatwhite project CLAUDE.md** parking lot — udělá se až Petr migruje IG workflow z claude.ai do Claude Code (nebo Gemini, nebo Cowork, nebo Flatwhite na shared repo).
 
 ## Dalsi kroky
 
 ### Priorita 1
 
-1. **End-to-end test Gemini CLI** na skills projektu — čte session-start? Invokuje skills? Následuje Lifecycle Rules?
-2. Verify 1Password `op run` v Claude Code po restartu
-3. Cherry-pick commit `session-start.sh` do claude-config repa (jen ten jeden skript)
+1. **Test ig-content v praxi** — restartni Claude Code, "napiš IG post o [Flatwhite produkt]" → porovnej s claude.ai. Gaps doladit.
+2. End-to-end test Gemini CLI na skills projektu (carry-over) — čte session-start? Invokuje skills?
+3. Verify 1Password `op run` v Claude Code po restartu (carry-over).
 
 ### Priorita 2
 
-4. Root CLAUDE.md plugin counts update (carry-over)
-5. Test designing-abstractions v praxi (carry-over)
-6. Brand Strategy skill — deep research
-7. Sales skill — novy plugin
+4. Cherry-pick `session-start.sh` do claude-config repa (carry-over).
+5. Cowork stale directories cleanup (carry-over).
+6. Brand Strategy skill — deep research (carry-over).
+7. Sales skill — novy plugin (carry-over).

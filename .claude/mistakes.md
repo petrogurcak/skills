@@ -1,5 +1,45 @@
 # Mistakes Log
 
+## 2026-04-28: `git add CLAUDE.md` neaktualizuje když je symlink
+
+**Co se stalo:** Po edit CLAUDE.md (plugin counts update) jsem stagnul `git add CLAUDE.md` a commit prošel s "1 file changed, 21 insertions(+), 11 deletions(-)" — ale `git status` pak nezobrazil žádné staged changes, "no changes added to commit". Musel jsem zjistit že `CLAUDE.md` je symlink na `AGENT.md` (`-> AGENT.md`), reálný file který se editoval byl AGENT.md. `git add CLAUDE.md` přidal symlink (který se nezměnil), ne target file.
+
+**Proc:** Symlinky v repu jsou pro dual-naming convention (CLAUDE.md pro Claude Code/users, AGENT.md jako neutrální název pro budoucí AGENTS.md spec). Edit tools (Read/Edit/Write) následují symlink transparentně, ale `git add <symlink>` přidá pouze symlink entry, ne target. Easy mistake když nevíš že je to symlink.
+
+**Oprava:** `git add AGENT.md` (target souboru), pak commit. Pro budoucnost: před commit edit-after-symlink check `ls -la <file>` — pokud je `lrwxr-xr-x ... -> target.md`, staguj target.
+
+**Pouceni:** Při práci v skills repu (a kdekoliv kde existují CLAUDE.md ↔ AGENT.md ↔ AGENTS.md symlinky) si pamatuj: edits vidí target, git vidí symlink. Když `git add <symlink-name>` ale `git status` nezobrazí staged → `ls -la` na file a stage target místo symlinku.
+
+**Tags:** #git #symlinks #claude-md #agent-md #stage-target
+
+---
+
+## 2026-04-27: Designoval jsem skill bez identifikace target usera
+
+**Co se stalo:** Dlouho jsem brainstormoval `cowork-setup` skill v předpokladu že primary user je Petr. Spec, voice extraction defaulty, GitHub bridge instrukce — všechno laděné na jeho profil. Po dokončení v1.0 a začátku v1.1 plánování Petr revealoval _"nedělám to pro sebe ale pro Gabi"_. To si vynutilo retroaktivní reframe: nový memory file (user_gabi.md), spec addendum o Gabi context, úpravu setup instrukcí, restrukturalizaci kdo je technical proxy vs. end user.
+
+**Proc:**
+
+1. Zeptal jsem se "co potřebuješ" ale neptal jsem se "pro koho" — předpokládal jsem default audience = ten kdo chatuje (Petr).
+2. Žádný explicitní "audience check" v brainstormingu skill design — skill description říká "use when user says X", ale neptá se "what kind of user".
+3. Petr používá Claude Code intenzivně sám pro sebe v ostatních kontextech, takže default assumpce dávala statisticky smysl, ale tady selhala.
+
+**Oprava:**
+
+1. Memory file `user_gabi.md` s Gabi profilem (non-dev, marketing/copy, MacBook setup, technical proxy = Petr).
+2. Spec addendum (2026-04-27 sekce) zaznamenává context shift, GitHub bridge requirements (must-have ne optional), setup instrukce pro Petra jako proxy.
+3. SKILL.md `description` zůstal user-agnostic ("non-development projects (marketing, copywriting, strategy, concepts, research)") — naštěstí to nebylo Petr-specific. Ale `<NAME>` v Global Instructions templátu by mohl být problém pokud by extracted hardcoded "Petr".
+
+**Pouceni:**
+
+1. **Při designu skillu / tooling: explicitní audience question před scope question.** "Pro koho je tohle? Ty sám, nebo někdo jiný — koho a jak technicky zdatný?"
+2. **Default audience hypothesis musí být ověřena**, ne assumed. I když Petr je primary user pro 90% věcí, content/marketing tooling může mít jiný target (Gabi).
+3. **Brainstormingem skillu s "user" = vágní. Persona = konkrétní.** "User" myslí oba (Petr i Gabi). "Persona = Gabi (non-dev marketer, MacBook, iPhone)" produkuje jiné defaulty.
+
+**Tags:** #brainstorming #skill-design #user-personas #defaults #assumption-check
+
+---
+
 ## 2026-04-15: Pushnul jsem 2 API klice na public GitHub repo
 
 **Co se stalo:** Vygeneroval jsem `.gemini/settings.json` v `~/Projects/skills` (PUBLIC repo `petrogurcak/skills`) kopirovanim env values z `.mcp.json` — ktery obsahoval plaintext `GEMINI_API_KEY` a `IDEOGRAM_API_KEY`. `.mcp.json` byl v `.gitignore`, ale novou `.gemini/settings.json` jsem tam nepridal. `git add -A` ji stagnul. Pushnul jsem commit `97c17a2` na public repo. Keys exposed.
