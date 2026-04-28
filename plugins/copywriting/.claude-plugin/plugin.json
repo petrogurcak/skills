@@ -1,16 +1,17 @@
 {
   "name": "copywriting",
-  "version": "1.0.0",
-  "description": "Copywriting skills - web copy, product copy, newsletters, Instagram, brand voice",
+  "version": "2.0.0",
+  "description": "Copywriting skills - layered IG architecture (orchestrator/content/strategy), web copy, product copy, newsletters, storytelling, brand voice",
   "author": { "name": "Petr" },
   "keywords": [
     "copywriting",
     "content",
     "newsletter",
     "instagram",
+    "ig",
+    "storytelling",
     "brand-voice",
-    "knowledge-book",
-    "book"
+    "knowledge-book"
   ],
   "skills": "./skills/"
 }
