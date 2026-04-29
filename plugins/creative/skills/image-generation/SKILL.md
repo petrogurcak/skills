@@ -1,216 +1,230 @@
 ---
 name: image-generation
-description: Orchestrates image generation across Ideogram 3.0, Luma Dream Machine, and nanobanana (Gemini Imagen). Handles tool selection, prompting best practices, character/style consistency, and batch workflows. Use this skill whenever the user wants to generate, create, or produce any image — product photos, brand visuals, illustrations, social media graphics, presentations, logos, mockups, book covers, posters, icons, or any visual content. Also use when the user mentions Ideogram, Luma, nanobanana, Imagen, or asks about which image generation tool to use. Even if the user just says "make me an image" or "generate a picture" or "create a visual", this skill applies.
+description: Generate images via Ideogram 3.0 (typography, character/style consistency, brand colors) or Nanobanana / Google Imagen 3 (artistic textures, fast iterations). Cowork-friendly — uses bash + REST API, no MCP required, keys fetched from 1Password. Use whenever the user wants to create, generate, or produce any image — product photos, brand visuals, illustrations, social posts, mockups, posters, icons, or visual content. Triggers also on "Ideogram", "nanobanana", "Imagen", "vygeneruj obrázek", "udělej vizuál".
 ---
 
-# Image Generation Orchestrator
+# Image Generation
 
-Universal skill for generating images using available MCP tools. Handles tool selection, prompt engineering, character consistency, and batch workflows.
+Generates images using REST APIs through bash scripts. Works in Claude Code AND Cowork — no MCP server required.
 
-**Announce:** "Using image-generation skill to [generate/orchestrate] visuals with [tool name]."
-
-## Prerequisites
-
-Before using this skill, check which tools are available. Not all are required — use what you have.
-
-| Tool               | MCP Server                                                            | API Key            | How to get                                               |
-| ------------------ | --------------------------------------------------------------------- | ------------------ | -------------------------------------------------------- |
-| Ideogram 3.0       | `ideogram` — `python3 <path>/ideogram-mcp/src/ideogram_mcp/server.py` | `IDEOGRAM_API_KEY` | https://ideogram.ai/manage-api — create key in dashboard |
-| Luma Dream Machine | `luma` — `python3 <path>/luma-mcp/src/luma_mcp/server.py`             | `LUMAAI_API_KEY`   | https://lumalabs.ai/api — generate API key               |
-| Nanobanana         | Gemini extension (built into Claude Code)                             | Gemini API access  | Pre-configured if Gemini is set up                       |
-
-**Setup:** Add the MCP server to your project's `.mcp.json`, set the API key in your environment or `.env`, restart Claude Code.
-
-**At skill start:** Check which tools are actually available. If a tool is missing, say which one and why (e.g., "Ideogram not available — `ideogram_generate` tool not found. Install the Ideogram MCP server and set `IDEOGRAM_API_KEY`."). Continue with whatever tools ARE available.
-
-## Available Tools
-
-### 1. Ideogram 3.0 (`ideogram_generate` + `ideogram_edit`)
-
-**Best for:** Typography in images, complex layouts, strong character consistency, detailed scenes, inpainting edits.
-
-**MCP tools:**
-
-- `ideogram_generate` — generate new images from prompt
-- `ideogram_edit` — edit parts of an existing image using a mask (inpainting)
-
-**Key parameters for `ideogram_generate`:**
-
-- `prompt` — text description of the image
-- `aspect_ratio` — `"1x1"`, `"3x4"`, `"4x3"`, `"9x16"`, `"16x9"`, `"2x1"`, `"1x2"`, etc.
-- `style_type` — `"AUTO"`, `"GENERAL"`, `"REALISTIC"`, `"DESIGN"`, `"FICTION"`
-- `rendering_speed` — `"QUALITY"`, `"BALANCED"`, `"TURBO"`, `"FLASH"`
-- `num_images` — generate 1-4 variants at once
-- `seed` — for reproducibility (reuse a seed from previous generation)
-- `negative_prompt` — what to exclude (e.g. "blurry, text errors, extra fingers")
-- `magic_prompt` — `"AUTO"`, `"ON"`, `"OFF"` — Ideogram rewrites your prompt for better results. Use OFF for exact control.
-- `style_preset` — predefined styles: WATERCOLOR, OIL_PAINTING, PRODUCT_PHOTOGRAPHY, ANIME, COMIC_BOOK, LINE_ART, MINIMALISM, PENCIL_DRAWING, etc.
-- `color_palette_hex` — list of hex colors to enforce (e.g. `["#1C2B3A", "#4A2035", "#F7F4EF"]`)
-- `character_reference_image_url` — URL of reference image to maintain character identity
-- `style_reference_image_url` — URL of style reference to maintain artistic consistency
-
-**Key parameters for `ideogram_edit` (inpainting):**
-
-- `prompt` — what should appear in the edited region
-- `image_path` — absolute path to source image (PNG/JPEG/WebP)
-- `mask_path` — absolute path to mask (same dimensions, black=edit, white=keep)
-- `rendering_speed`, `magic_prompt`, `style_type`, `seed` — same as generate
-
-**When to use:**
-
-- Text/typography needs to appear IN the image (logos, signs, labels)
-- Character must stay consistent across multiple generations
-- Complex multi-element compositions
-- Product mockups with text overlays
-- Editing specific parts of an existing image (inpainting with mask)
-- Enforcing exact brand colors via `color_palette_hex`
-
-**Prompting tips:**
-
-- Be specific about composition: "character on the left, object on the right"
-- For text in images, put the exact text in quotes within the prompt
-- Use `color_palette_hex` to enforce brand colors — Ideogram will stick to those colors
-- Use `negative_prompt` to prevent common issues: "blurry, distorted text, extra limbs"
-- Set `magic_prompt: "OFF"` when you need exact prompt control (Ideogram rewrites prompts by default)
-- Use `character_reference_image_url` once you have a good base image — maintains identity across scenes
-- Use `style_reference_image_url` to lock artistic style across a series
-- Use `seed` from a successful generation to create variations with similar composition
-
-**Limitations:**
-
-- No custom font upload — text styling is prompt-controlled only
-- No direct image compositing — cannot place a specific image at a specific position
-- Character/style references guide the output but don't guarantee exact reproduction
-
-### 2. Luma Dream Machine (`luma_generate_video`)
-
-**Best for:** Character turnarounds (360-degree rotations), motion references, animated previews.
-
-**MCP tools:**
-
-- `luma_generate_video` — generate video from prompt or image
-- `luma_get_generation` — poll for completion status
-- `luma_list_generations` — list recent generations
-
-**Key parameters for `luma_generate_video`:**
-
-- `prompt` — description of the video/animation
-- `frame0_url` — starting image URL (image-to-video mode)
-- `aspect_ratio` — video aspect ratio
-- `loop` — whether to loop the video
-
-**When to use:**
-
-- Creating character reference sheets (turnarounds)
-- Testing how a character/object looks from multiple angles
-- Generating motion references for animation
-- When static images aren't enough to establish consistency
-
-**Workflow: Character Turnaround**
-
-1. Generate one perfect master image (via Ideogram or nanobanana)
-2. Use `luma_generate_video` with `frame0_url` pointing to master image
-3. Prompt: "character turnaround, rotating 360 degrees, white background, consistent lighting"
-4. Poll `luma_get_generation` until complete
-5. Extract frames from different angles as reference images for future generations
-
-### 3. Nanobanana (Gemini Imagen)
-
-**Best for:** Quick iterations, artistic textures, watercolor/sketch styles, rapid prototyping.
-
-**Commands:**
-
-- `/generate "prompt" --ar 2:1` — generate new image
-- `/edit "change description"` — modify existing image
-- `/restore` — enhance quality of previous generation
-
-**When to use:**
-
-- Fast sketching and exploration
-- Artistic/painterly styles (watercolor, pencil, charcoal)
-- Quick edits to existing images
-- When you need many variations fast
-
-## Tool Selection Decision Tree
-
-```
-Need text IN the image?
-  YES → Ideogram 3.0
-  NO →
-    Need character turnaround/360 view?
-      YES → Luma (image-to-video)
-      NO →
-        Need strong character consistency across series?
-          YES → Ideogram 3.0 (with character_reference)
-          NO →
-            Need artistic/painterly style?
-              YES → Nanobanana
-              NO →
-                Need complex layout/composition?
-                  YES → Ideogram 3.0
-                  NO → Nanobanana (fastest)
-```
-
-## Character Consistency Workflow
-
-When generating a series of images with the same character(s):
-
-1. **Create Master Image:** Generate the definitive version of the character using any tool. Iterate until perfect.
-2. **Upload/Host:** Make the master image available via URL (for `character_reference_image_url`).
-3. **Lock Style:** If using a specific artistic style, also save a style reference image.
-4. **Generate Series:** Use Ideogram with both `character_reference_image_url` and `style_reference_image_url` for all subsequent images.
-5. **Optional Turnaround:** If you need the character from multiple angles, run a Luma turnaround first, extract frames, then use those as additional references.
-
-## Style Consistency Workflow
-
-When all images in a project must share the same visual style:
-
-1. **Define Style Keywords:** Write a master style string (e.g., "minimalist pencil lines, soft watercolor, muted pastels, naive art").
-2. **Create Style Reference:** Generate or find one image that perfectly represents the target style.
-3. **Lock:** Pass `style_reference_image_url` to every Ideogram generation.
-4. **For nanobanana:** Prepend the master style string to every prompt.
-
-## Batch Generation
-
-When generating multiple images for a project:
-
-1. **Plan in a table:**
-
-| #   | Description | Composition | Tool               | Prompt      |
-| --- | ----------- | ----------- | ------------------ | ----------- |
-| 1   | ...         | ...         | Ideogram/Luma/Nano | Full prompt |
-
-2. **Generate sequentially** — each image may inform the next
-3. **Review after each batch of 3-5** — adjust style/prompts if drifting
-4. **Save successful prompts** — reuse structure for consistency
-
-## Aspect Ratio Quick Reference
-
-| Use Case                  | Ratio | Notes             |
-| ------------------------- | ----- | ----------------- |
-| Instagram post            | 1:1   | Square            |
-| Instagram story/reel      | 9:16  | Vertical          |
-| Book spread (double page) | 2:1   | Wide horizontal   |
-| Book single page          | 3:4   | Vertical          |
-| Presentation slide        | 16:9  | Widescreen        |
-| Product photo             | 4:5   | Slightly vertical |
-| Banner/header             | 3:1   | Ultra-wide        |
-| Social media card         | 16:9  | Standard          |
-
-## Common Prompt Patterns
-
-**Product on clean background:**
-`[Product description], centered, clean white background, studio lighting, product photography, high detail, [aspect_ratio]`
-
-**Character illustration:**
-`[Character description], [action/pose], [setting], [art style], [mood/lighting]`
-
-**Typography/Logo:**
-`[Design description], text reading "[EXACT TEXT]", [style], clean composition`
-
-**Scene/Environment:**
-`[Setting description], [time of day], [atmosphere], [art style], [perspective]`
+**Announce:** "Using image-generation skill — [Ideogram | Nanobanana] for [purpose]."
 
 ---
 
-_Always ask the user which tool to use, or suggest based on the decision tree above. When in doubt, start with Ideogram for quality or nanobanana for speed._
+## First-run setup (one-time per machine)
+
+Before generating, the skill needs API keys. **Always run setup first when on a new machine:**
+
+```bash
+bash plugins/creative/scripts/setup.sh
+```
+
+(Path is relative to the skills repo root. From a Cowork project the absolute path is `~/Projects/skills/plugins/creative/scripts/setup.sh`.)
+
+The script tries to find each key in this order:
+
+1. **1Password** — `op://Dev/shared-keys/<KEY_NAME>` (recommended, portable across machines)
+2. **Environment variable** — `$IDEOGRAM_API_KEY`, `$GEMINI_API_KEY`
+3. **`.env` file** in current working directory
+
+If a key is missing, the script prints exact instructions including the provider URL.
+
+### What to tell the user when keys are missing
+
+When `setup.sh` reports a missing key, instruct the user:
+
+> Pro **Ideogram** (typografie, character consistency):
+> 1. Get key: https://ideogram.ai/manage-api
+> 2. Open 1Password → vault `Dev` → item `shared-keys` (create if missing)
+> 3. Add field `IDEOGRAM_API_KEY` with the key value
+> 4. Make sure `op` CLI is signed in (`op signin`)
+> 5. Re-run setup
+>
+> Pro **Nanobanana** (Google Imagen 3, fast iterations):
+> 1. Get key: https://aistudio.google.com/apikey
+> 2. Same 1Password item, add field `GEMINI_API_KEY`
+> 3. Re-run setup
+
+The user can also use env vars or `.env` — `setup.sh` documents all options.
+
+---
+
+## Tool selection
+
+```
+Need text/typography IN the image?         → Ideogram
+Need exact brand colors enforced?           → Ideogram (--colors)
+Need character consistency across series?   → Ideogram (--char-ref)
+Need fast/artistic exploration?             → Nanobanana
+Need painterly/watercolor/sketch?           → Nanobanana
+Need complex layout with named elements?    → Ideogram
+Don't know yet?                             → Nanobanana (faster, cheaper) for first draft, then Ideogram if needed
+```
+
+---
+
+## Ideogram
+
+Best for: typography in images, complex compositions, character/style consistency, brand-color-locked outputs, inpainting edits.
+
+### Generate
+
+```bash
+bash plugins/creative/scripts/ideogram-generate.sh \
+  --prompt "minimalist coffee bag mockup with text 'Flatwhite La Marzocco'" \
+  --aspect 4x5 \
+  --style DESIGN \
+  --speed QUALITY \
+  --colors "#1C2B3A,#F7F4EF,#C9A86A" \
+  --num 2 \
+  --out ./generated/coffee-mockups
+```
+
+### Key flags
+
+| Flag           | Values                                                   | Notes                                  |
+| -------------- | -------------------------------------------------------- | -------------------------------------- |
+| `--prompt`     | text                                                     | Required. Be specific about layout.    |
+| `--aspect`     | `1x1` `2x1` `1x2` `2x3` `3x2` `3x4` `4x3` `4x5` `5x4` `9x16` `16x9` | Default `1x1`             |
+| `--style`      | `AUTO` `REALISTIC` `DESIGN` `GENERAL` `FICTION`          | Default `AUTO`                         |
+| `--speed`      | `QUALITY` `BALANCED` `TURBO` `FLASH`                     | Default `QUALITY`                      |
+| `--magic`      | `AUTO` `ON` `OFF`                                        | `OFF` = use prompt verbatim            |
+| `--num`        | `1`-`4`                                                  | Default `1`                            |
+| `--seed`       | integer                                                  | Reuse seed from successful run         |
+| `--negative`   | text                                                     | e.g. `"blurry, distorted text"`        |
+| `--preset`     | preset name                                              | `WATERCOLOR` `OIL_PAINTING` `PRODUCT_PHOTOGRAPHY` `MINIMALISM` `LINE_ART` etc. |
+| `--colors`     | `#hex,#hex,...`                                          | Enforce brand palette                  |
+| `--char-ref`   | URL                                                      | Maintain character identity            |
+| `--style-ref`  | URL                                                      | Lock artistic style                    |
+| `--out`        | path                                                     | Default `./generated/ideogram`         |
+
+### Prompting tips for Ideogram
+
+- For text in images, put the exact words in quotes: `text reading "Coffee Roastery"`
+- Use `--magic OFF` when you've crafted a specific prompt — Ideogram won't rewrite it
+- `--colors` is strict — Ideogram sticks to the palette
+- `--char-ref` + `--style-ref` together = strong consistency across a series
+- Reuse `--seed` from a successful generation to make controlled variations
+
+---
+
+## Nanobanana (Google Imagen 3)
+
+Best for: fast iterations, artistic textures, watercolor/sketch styles, exploration.
+
+### Generate
+
+```bash
+bash plugins/creative/scripts/nanobanana-generate.sh \
+  --prompt "watercolor sketch of a small Italian coffee bar, morning light" \
+  --aspect 16:9 \
+  --num 3 \
+  --out ./generated/exploration
+```
+
+### Key flags
+
+| Flag       | Values                                | Notes                            |
+| ---------- | ------------------------------------- | -------------------------------- |
+| `--prompt` | text                                  | Required.                        |
+| `--aspect` | `1:1` `3:4` `4:3` `9:16` `16:9`       | Default `1:1`                    |
+| `--num`    | `1`-`4`                               | Default `1`                      |
+| `--model`  | model id                              | Default `imagen-3.0-generate-002`|
+| `--out`    | path                                  | Default `./generated/nanobanana` |
+| `--prefix` | string                                | Filename prefix (default `banana`)|
+
+### Prompting tips for Nanobanana
+
+- Start every prompt with style keywords: `"watercolor, soft pastels, hand-drawn,"` then describe scene
+- Imagen 3 doesn't render in-image text reliably — use Ideogram for typography
+- Generate 3-4 variants at once (`--num 3`), pick the best, refine the prompt
+
+---
+
+## Workflows
+
+### Character consistency (series of images)
+
+1. Generate a master image with Ideogram (iterate until perfect)
+2. Upload it somewhere with a public URL (Imgur, S3, GitHub raw)
+3. For every subsequent image, pass `--char-ref <url>` and ideally `--style-ref <url>`
+4. Reuse `--seed` for controlled variations
+
+### Style consistency (project look)
+
+1. Define style string: e.g. "minimalist line art, muted earth tones, naive style"
+2. Prepend it to every prompt (both tools)
+3. Ideogram: also use `--style-ref <url>` and `--colors` to enforce palette
+4. Nanobanana: prepend the style string + add specific texture keywords
+
+### Brand mockups with text
+
+Use Ideogram only. Pattern:
+
+```bash
+ideogram-generate.sh \
+  --prompt "[product] mockup, centered, white studio background, text '[BRAND]' visible on label" \
+  --style DESIGN \
+  --colors "#brand1,#brand2" \
+  --magic OFF \
+  --num 4
+```
+
+Pick the best, reuse `--seed`, refine.
+
+### Quick exploration → polish
+
+1. Nanobanana with `--num 4` and a loose prompt — pick best direction
+2. Refine the prompt based on what worked
+3. Switch to Ideogram for the final polished version with brand colors / typography
+
+---
+
+## Aspect ratio cheatsheet
+
+| Use case                  | Ideogram | Nanobanana |
+| ------------------------- | -------- | ---------- |
+| Instagram post            | `1x1`    | `1:1`      |
+| Instagram story / reel    | `9x16`   | `9:16`     |
+| Book single page          | `3x4`    | `3:4`      |
+| Presentation slide        | `16x9`   | `16:9`     |
+| Product photo             | `4x5`    | `3:4`      |
+| Web hero (banner)         | `2x1`    | `16:9`     |
+
+---
+
+## Error handling
+
+If a script exits with code:
+- `1` — key missing → run `setup.sh`, follow instructions
+- `2` — bad CLI args → check `--help`
+- `3` — API error → message printed to stderr (rate limit, quota, malformed prompt)
+
+If `op` is not signed in: `eval $(op signin)` then retry.
+
+If running on a machine without `op` and no env var set: create a `.env` in the project working folder with `IDEOGRAM_API_KEY=...` / `GEMINI_API_KEY=...` (and add `.env` to `.gitignore` — the get-key.sh helper reads `.env` from cwd).
+
+---
+
+## Output
+
+Both scripts print absolute paths of saved images to stdout, one per line. Use this in shell composition:
+
+```bash
+img=$(bash plugins/creative/scripts/ideogram-generate.sh --prompt "..." | tail -1)
+open "$img"
+```
+
+---
+
+## Notes for Cowork
+
+- **Plugin must be enabled.** Cowork loads only enabled plugins. If `creative@skills` is not in `cowork_settings.json > enabledPlugins`, this skill is invisible — enable it via Cowork UI or by editing the file.
+- **`op` CLI inside Cowork sandbox.** Cowork runs in a gVisor sandbox; `op` may or may not work depending on filesystem access. If it fails, use the `.env` fallback in the project working folder.
+- **Output dir:** by default scripts write to `./generated/<tool>/` relative to the current working directory — meaning relative to the Cowork project folder. Easy to find afterwards.
+
+---
+
+## When to delegate to MCP instead
+
+This skill uses bash for portability. If you're in Claude Code with MCP servers configured (`ideogram`, `nanobanana`), the MCP tools are also valid — they expose the same parameters as structured tool calls. The bash path is the universal fallback that always works.
