@@ -4,6 +4,48 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-04-29: creative plugin — bash + REST místo MCP, klíče přes 1Password
+
+**Kontext:** `creative:image-generation` skill předpokládal MCP servery (`ideogram-mcp`, `nanobanana-mcp` jako custom Python servery na host filesystem) a `IDEOGRAM_API_KEY` / `GEMINI_API_KEY` v env. To nefungovalo v Coworku — Cowork je gVisor-sandboxed agent app která nemá host MCP setup, plus user chce skills přenosné přes víc Maců (instalace na druhém počítači). User explicitně řekl: "při inicializaci řekni uživateli at si do 1pass uloží klíče" — first-run UX musí být self-explaining.
+
+**Rozhodnuti:** Přepsat skill na **bash + REST API + 1Password key resolution chain**:
+
+```
+On invoke:
+  setup.sh checks keys via priority chain:
+    1. op read op://Dev/shared-keys/<KEY_NAME>   ← 1Password (preferred, portable)
+    2. $<KEY_NAME> environment variable           ← single-machine fallback
+    3. <KEY>=... from .env in cwd                 ← per-project fallback
+    4. fail with exact instructions (provider URL, op item path)
+
+Generation scripts (ideogram-generate.sh, nanobanana-generate.sh):
+  - call get-key.sh helper
+  - build JSON payload via python3 (safe quoting)
+  - curl REST endpoint
+  - parse response, save image, print path
+```
+
+**Klíčové elementy:**
+
+1. **1Password jako default source of truth** — `op://Dev/shared-keys/<FIELD>` vault path je vault+item+field convention. Override přes `$CREATIVE_OP_VAULT` / `$CREATIVE_OP_ITEM` env. Zero plaintext anywhere — keys nikdy v repu, env, nebo `.env` (pokud user explicitně nezvolí fallback).
+
+2. **First-run UX** — `setup.sh` je primary entry point pro nového uživatele. Při missing key prints exact 5-step instructions s provider URL, vault path, field name. Žádný "RTFM" — copy-paste do 1Password a hotovo.
+
+3. **REST místo MCP** — bash skript volá `curl` přímo na `https://api.ideogram.ai/v1/ideogram-v3/generate` a `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-fast-generate-001:predict`. Žádné Python deps, žádná MCP setup, žádný stdio bridge. Funguje všude kde je `bash` + `curl` + `python3`.
+
+4. **Imagen 3 → Imagen 4 forced upgrade** — discovered při smoke testu že `imagen-3.0-generate-002` vrací 404 z v1beta endpoint. Default model změněn na `imagen-4.0-fast-generate-001`. Override přes `--model`.
+
+**Alternativy:**
+
+- **Zachovat MCP-only přístup** + dokumentovat MCP setup v Coworku: gvisor sandbox brání direct MCP host bridge, byl by reverse proxy hack — fragile, uncovered edge cases.
+- **DXT extension** (Anthropic packaging format pro Cowork extensions): Větší práce (build + sign + install flow), ale long-term cleaner. Odloženo na P2 — bash je dost na 90% use cases.
+- **`.env` jako default + 1Password ručně:** Plaintext na disku je risk + vyžaduje user discipline udržovat sync přes víc Maců. 1Password = single source of truth bez plaintext.
+- **AWS Secrets Manager / Vault:** Overkill pro solo dev. 1Password má desktop integration + `op` CLI + vault sharing built-in.
+
+**Důvod:** User instruction "skills i na jiném počítači" + "při inicializaci řekni uživateli at si do 1pass uloží klíče" jednoznačně směřuje k 1Password jako canonical source. Bash + REST je nejjednodušší integrace která funguje v Cowork sandboxu i v Claude Code identicky bez větveného code path. Priority chain (op → env → .env) zajišťuje graceful degradation pro situace kde `op` nefunguje (CI, sandbox bez 1Password access, quick local hack). First-run setup.sh je self-explaining — user nemusí číst SKILL.md, copy-paste instrukcí stačí.
+
+---
+
 ## 2026-04-28: Layered IG architecture — ig-orchestrator + ig-content + ig-strategy
 
 **Kontext:** Existující `instagram-content` skill (847 řádků) mixoval ~40% writing (Hook/Substance/Payoff, hooks library, captions, Otto principy) + ~60% strategy (4 idea criteria, 9 formats, technical settings, engagement, monetizace). Vedle toho byl v repo root mimo plugin strukturu `otto-copywriting-v3.3.skill` (production artifakt z claude.ai, 589 řádků s strict output discipline) — 5 verzí archivů, žádná integrovaná do plugin systému. User identifikoval že kvalita IG output v claude.ai pochází právě z Otto v3.3 (banned framework labels v output, 3-5 variants v code blocks, banned words enforced) — což `instagram-content` skill nedělal.

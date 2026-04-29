@@ -2,57 +2,57 @@
 
 ## Posledni session
 
-- **Datum:** 2026-04-28 (sub-session 2 — pokračování)
-- **Branch:** main (pushed: `f06022f`)
+- **Datum:** 2026-04-29
+- **Branch:** main (merged + pushed `db88b8f`)
 - **Dokonceno:**
-  - **`marketing:sell-like-crazy` skill** (commit `227a688`):
-    - `plugins/marketing/sell-like-crazy.md` (792 lines) — plugin-shared reference banka, full Sabri Suby canon: 8 phases × deep frameworks, 27 indexed methods, 7 case studies s reálnými čísly, Power Words, CZ-EN glossary
-    - `plugins/marketing/skills/sell-like-crazy/SKILL.md` (487 lines) — production skill v Otto v3.3 stylu: 8 fází jako sekce, output templates (Godfather Stack, VSL script, Soap Opera Sequence, Sales Letter), 3 production módy (Full Funnel Build / Apply Principles / Cross-Skill Integration)
-    - **Source:** Sabri Suby PDF z NotebookLM (358K chars) → `glm-delegate` extraction ($1.53, 14 turns, 90K input tokens)
-    - **Cross-linky** v existing copy skills:
-      - `copywriting:ig-content` → Phase 4 (Godfather compression) + Phase 6 (VSL pattern interrupt)
-      - `copywriting:newsletter` → Phase 8 (P Group, Soap Opera, Daily Email mix)
-      - `copywriting:web-copy` → Phase 4 + Phase 6 (sales pages)
-  - **Cowork-setup working-rules.md template** (commit `f389a29`): nová sekce "Collaboration patterns" — 7 universal patterns extrahovaných z Flatwhite project memory (editorial autonomy, multi-variants 3-5, iteration cadence, research before hooks, critical feedback, verify before claiming, conciseness, save learnings inline). Aktivuje se při příštím `cowork-setup --init-shared`.
-  - **Cowork plugin update fix** (commit `0ed9239`): bumpnul `copywriting/.claude-plugin/plugin.json` 1.0.0 → 2.0.0 — Cowork UI Update tlačítko vyžaduje version bump pro detekci nových skills. Bez bumpu zůstane installed plugin pořád na ottocopy* skills.
-  - **Wrapup skill enhancement** (commit `f06022f`): Step 5 (Usage & Savings) + 5b (savings log + threshold promotion) — ccusage tracking, heavy activity analysis, auto-promotion patternů ≥3× do memory feedback files.
-  - **Plugin verze:**
-    - marketing 1.0.0 → 1.1.0 (sell-like-crazy)
-    - copywriting 2.0.0 → 2.1.0 (cross-links)
-  - **AGENT.md:** 101 → 102 skills, marketing 7 → 8
+  - **`creative` plugin 1.0.0 → 2.0.0** (commit `385b895`, merge `db88b8f`):
+    - `plugins/creative/scripts/setup.sh` — first-run check, instruktuje user na 1Password setup s exact field names a provider URLs
+    - `plugins/creative/scripts/lib/get-key.sh` — priority chain: `op read op://Dev/shared-keys/<KEY>` → env var → `.env` v cwd → fail s instrukcemi. Override přes `$CREATIVE_OP_VAULT` / `$CREATIVE_OP_ITEM`.
+    - `plugins/creative/scripts/ideogram-generate.sh` — Ideogram 3.0 v1 generate REST, full param set (aspect, style, speed, magic, num, seed, negative, preset, colors, char-ref, style-ref). FLASH speed default pro low-cost.
+    - `plugins/creative/scripts/nanobanana-generate.sh` — Google Imagen 4 REST. Default `imagen-4.0-fast-generate-001` (Imagen 3 už deprecated z v1beta).
+    - `plugins/creative/skills/image-generation/SKILL.md` rewrite — first-run UX, key resolution chain, per-tool sections, workflows (character/style consistency, brand mockups), Cowork-specific notes.
+  - **Plugin description update** v root `CLAUDE.md` — řádka pro creative plugin teď reflektuje bash+REST+1Password approach.
+  - **Smoke test:** Ideogram FLASH 1024×1024 (PNG 330KB) + Imagen 4 Fast 1024×1024 (PNG 1.5MB) oba generated end-to-end z `/tmp/test-image-gen/` ✅
+  - **Symlinks synced** — Cowork i Gemini CLI vidí novou verzi.
 
-- **Rozdelano:** Nic. Tree clean, 4 commity pushed (`0ed9239`, `f389a29`, `227a688`, `f06022f`).
-
-## PŘEDCHOZÍ session (2026-04-28 — Sub-session 1)
-
-- Layered IG architecture (commit `66073f2`): ig-orchestrator + ig-content + ig-strategy. Plugin-shared references: 365-copy-triky.md, core-copywriting-principles.md, core-briefing-process.md.
+- **Rozdelano:** Nic. Tree clean, main pushed.
 
 ## Otevrene problemy
 
-- **Cowork marketplace cache nepull-ne přes UI "Check for updates"** — pattern, opakovaně 3× za poslední 2 session. Workaround: manual `git pull` v `~/Library/.../cowork_plugins/marketplaces/skills`. Diagnostika hlubší příčiny pending.
+- **Cowork enable krok manuálně** — `creative@skills` stále chybí v `cowork_settings.json > enabledPlugins`. Bez UI/manual edit Cowork skill nevidí. User to musí kliknout v Cowork UI po restartu (Settings → Plugins → enable creative) nebo manuálně přidat `"creative@skills": true` do JSON.
+- **`.zshenv` plaintext key konflikt** — `~/.zshenv` má `GEMINI_API_KEY=AIzaSyCFgLf...` který je JINÝ než ten v 1Password (`AIzaSyByOC...`). Pokud `AIzaSyCFgLf...` nebyl rotován, je leaked v public git historii commit `97c17a2`. Doporučení: rotovat + smazat z `.zshenv`, sjednotit přes `op`.
+- **Cowork marketplace cache nepull-ne přes UI "Check for updates"** — pattern z předchozí session, opakovaně 3× za 2 session. Workaround: manual `git pull` v `~/Library/.../cowork_plugins/marketplaces/skills`. Diagnostika pending.
 - **Test ig-content vs claude.ai** — produkční verifikace pořád neudělaná (carry-over).
-- **Test sell-like-crazy v Cowork** — Cowork updated, čeká na praktický test ("napiš sales page pro Flatwhite La Marzocco service").
+- **Test sell-like-crazy v Cowork** — Cowork updated, čeká na praktický test (carry-over).
 
 ## Poznamky pro dalsi session
 
-- **NotebookLM CLI workflow** osvědčený: `nlm login` → `notebook_get` (sources list) → parallel `source_describe` (AI summaries) → `source_get_content` (raw). Source >100K chars přeteče token limit — fallback file dump + jq processing + glm-delegate pro analysis.
-- **Plugin versioning convention:** version bump v `plugin.json` JE vyžadován pro Cowork update detection. Bez bumpu installed plugin zůstává na staré verzi i když marketplace cache je up-to-date.
-- **Cross-skill principle propagation:** Sell Like Crazy principy se propisují do existing copy skills přes "Integration with Other Skills" sekce. Pattern: skill A má reference banka v plugin-shared `.md`, skill B linkuje konkrétní fáze pro svůj use case. Pattern reusable pro budoucí canon imports (Hormozi 100m Offers → marketing:offers, Dunford → marketing:uvp už existuje).
+- **Bash heredoc gotcha:** `echo "$BODY" | python3 <<'PY'` — heredoc PŘEPÍŠE pipe, python dostane heredoc jako stdin (ne pipe). Fix: env var nebo tempfile + python3 -c. Saved as feedback memory.
+- **Imagen 3 deprecated** na `generativelanguage.googleapis.com/v1beta` (April 2026) — jen Imagen 4 family available (`fast`, `generate`, `ultra`). Update default model když starší skripty fail s 404.
+- **Portable skill pattern přes 1Password:**
+  - Nový computer setup: `nainstaluju skills` → first invoke → `setup.sh` → user instruktován jak přidat do `Dev/shared-keys`.
+  - `op read op://Dev/shared-keys/<FIELD>` v skriptu = bezpečné, žádný plaintext anywhere.
+  - Reusable pattern pro budoucí skills s API keys (Luma, Replicate, ElevenLabs, atd.).
+- **NotebookLM CLI workflow** osvědčený (carry-over): `nlm login` → `notebook_get` → parallel `source_describe` → `source_get_content` (pozor na 100K char limit).
+- **Plugin versioning convention** (carry-over): version bump v `plugin.json` JE vyžadován pro Cowork update detection.
 
 ## Dalsi kroky
 
 ### Priorita 1
 
-1. **Test sell-like-crazy v Cowork** — restartni Cowork session, "napiš sales page pro Flatwhite La Marzocco refurbishment" → měl by invoke sell-like-crazy + použít Phase 4/6 templates.
-2. **Test ig-content v praxi** — carry-over, "napiš IG post o [Flatwhite produkt]" → porovnej s claude.ai.
-3. **Upload sell-like-crazy.md do Flatwhite claude.ai Project Knowledge** — drag-and-drop z `~/Projects/skills/plugins/marketing/sell-like-crazy.md` (nebo z GitHub web UI Raw download na druhém Macu).
+1. **Enable `creative@skills` v Cowork UI** — po restart Coworku, Settings → Plugins → enable creative. Pak otestuj: "vygeneruj minimalist logo pro Flatwhite" → měl by invoke image-generation skill.
+2. **Rotovat & smazat `.zshenv` GEMINI_API_KEY** — pokud `AIzaSyCFgLf...` byl ten exposed v commit `97c17a2`, vytvořit nový v Google AI Studio, updatnout 1Password `Dev/shared-keys`, smazat řádku z `.zshenv`. Otestovat scripts po restart.
+3. **Test sell-like-crazy v Cowork** (carry-over).
+4. **Test ig-content v praxi** (carry-over).
 
 ### Priorita 2
 
-4. **Cowork marketplace pull diagnostika** — proč UI "Check for updates" nepull-ne? Inspect Cowork app logs, network capture během akce.
-5. End-to-end test Gemini CLI na skills projektu (carry-over).
-6. Verify 1Password `op run` v Claude Code (carry-over).
-7. Cherry-pick `session-start.sh` do claude-config (carry-over).
-8. Cowork stale directories cleanup (carry-over).
-9. Brand Strategy skill — deep research (carry-over).
-10. **Future canon imports** (po sell-like-crazy template): Hormozi 100m Offers do `marketing:offers`, full notebook had 6 books — 4 už mapped k existing skills, 2 použity (Suby + Dunford via uvp-optimization).
+5. **Cowork marketplace pull diagnostika** (carry-over).
+6. **Generalize get-key.sh do shared lib** — pokud další skill bude potřebovat API key, povýšit `lib/get-key.sh` na plugin-shared (např. `plugins/_shared/lib/get-key.sh`) místo creative-only.
+7. **DXT extension pro Ideogram** — pokud bash path bude limitovat (hosting URLs pro `--char-ref` v sandbox), DXT version of MCP server může být cleaner long-term path.
+8. End-to-end test Gemini CLI na skills projektu (carry-over).
+9. Verify 1Password `op run` v Claude Code (carry-over).
+10. Cherry-pick `session-start.sh` do claude-config (carry-over).
+11. Cowork stale directories cleanup (carry-over).
+12. Brand Strategy skill — deep research (carry-over).
+13. **Future canon imports** — Hormozi 100m Offers do `marketing:offers` (carry-over).
