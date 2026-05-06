@@ -214,6 +214,17 @@ After saving the plan:
 
 After plan is reviewed and confirmed:
 
+### Step 1: Capture rationale (handoff)
+
+**Before asking about execution strategy**, offer to write handoff section to plan file:
+
+**"Plán je zrevidovaný. Chceš teď zachytit rationale (why-this-approach, rejected alternatives, constraints) jako Handoff Context section v plan filu? Useful pokud budeš /clear před execute. (Y/n)"**
+
+- **Y:** Invoke `development:handoff` skill with plan path. Skill writes section + updates ACTIVE_CONTEXT + offers commit.
+- **n:** Skip handoff (e.g., user is executing immediately in same session, no /clear needed).
+
+### Step 2: Choose execution strategy
+
 **"Plan zrevidovan a pripraven. Jak chces implementovat?"**
 
 | #     | Strategy                           | When to use                                                                     | Skill                                     |
