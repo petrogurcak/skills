@@ -80,24 +80,25 @@ ls -la .claude/
 
 **Question:** What optimizations do you want?
 
-| Option                                  | What it adds                                                                                                 |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **A) Full optimization** (Recommended)  | Everything below                                                                                             |
-| **B) Mistakes tracking only**           | .claude/mistakes.md + CHECKPOINTS update                                                                     |
-| **C) Verification checklist only**      | .claude/verification.md customized for project                                                               |
-| **D) Context pruning only**             | Update ACTIVE_CONTEXT.md format                                                                              |
-| **E) Code quality hooks**               | Auto-Prettier, TS check, console.log warning                                                                 |
-| **F) Pattern learning**                 | /learn command + continuous-learning SessionEnd hook                                                         |
-| **G) Checkpoints**                      | /checkpoint command for workflow milestones                                                                  |
-| **H) Build error resolver**             | Agent for minimal-diff build/TS error fixes                                                                  |
-| **I) Project Summaries**                | ARCHITECTURE.md + module READMEs (Pyramid Summaries pattern)                                                 |
-| **J) Stop Guard**                       | Plan-aware stop prevention hook                                                                              |
-| **K) Context Monitor**                  | Tool call count based context usage tracking                                                                 |
-| **L) TDD Enforcer**                     | Missing test file detection on Write/Edit                                                                    |
-| **M) Plan Lifecycle**                   | YAML frontmatter status in plan files                                                                        |
-| **N) Review Agents**                    | plan-challenger + compliance-reviewer + quality-reviewer                                                     |
-| **O) OS Notifications**                 | macOS/Linux native notifications                                                                             |
-| **P) Designing Abstractions Principle** | Adds Principle 14 (responsibilities-before-DRY) to CORE_PRINCIPLES.md + abstraction rules to CLAUDE.md TL;DR |
+| Option                                  | What it adds                                                                                                                                                                                   |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A) Full optimization** (Recommended)  | Everything below                                                                                                                                                                               |
+| **B) Mistakes tracking only**           | .claude/mistakes.md + CHECKPOINTS update                                                                                                                                                       |
+| **C) Verification checklist only**      | .claude/verification.md customized for project                                                                                                                                                 |
+| **D) Context pruning only**             | Update ACTIVE_CONTEXT.md format                                                                                                                                                                |
+| **E) Code quality hooks**               | Auto-Prettier, TS check, console.log warning                                                                                                                                                   |
+| **F) Pattern learning**                 | /learn command + continuous-learning SessionEnd hook                                                                                                                                           |
+| **G) Checkpoints**                      | /checkpoint command for workflow milestones                                                                                                                                                    |
+| **H) Build error resolver**             | Agent for minimal-diff build/TS error fixes                                                                                                                                                    |
+| **I) Project Summaries**                | ARCHITECTURE.md + module READMEs (Pyramid Summaries pattern)                                                                                                                                   |
+| **J) Stop Guard**                       | Plan-aware stop prevention hook                                                                                                                                                                |
+| **K) Context Monitor**                  | Tool call count based context usage tracking                                                                                                                                                   |
+| **L) TDD Enforcer**                     | Missing test file detection on Write/Edit                                                                                                                                                      |
+| **M) Plan Lifecycle**                   | YAML frontmatter status in plan files                                                                                                                                                          |
+| **N) Review Agents**                    | plan-challenger + compliance-reviewer + quality-reviewer                                                                                                                                       |
+| **O) OS Notifications**                 | macOS/Linux native notifications                                                                                                                                                               |
+| **P) Designing Abstractions Principle** | Adds Principle 14 (responsibilities-before-DRY) to CORE_PRINCIPLES.md + abstraction rules to CLAUDE.md TL;DR                                                                                   |
+| **Q) Global Rules Awareness**           | Adds reference to `~/.claude/RULES.md` + `~/.claude/CODING.md` in project CLAUDE.md + pre-creates `## Výjimky z obecných pravidel` and `## Consistency` sections (idempotent — safe to re-run) |
 
 ### Step 3: Implement Changes
 
@@ -119,6 +120,7 @@ Based on user choice, create/update files.
 9. **NEW:** Add checkpoint command (Option G)
 10. **NEW:** Create build-error-resolver agent (Option H)
 11. **NEW:** Add project summaries (Option I)
+12. **NEW:** Global rules awareness (Option Q) — add references + sections to project CLAUDE.md
 
 #### B) Mistakes Tracking Only
 
@@ -182,6 +184,75 @@ See "Build Error Resolver Agent" section below for implementation.
 5. Add to `CHECKPOINTS.md`: "After adding new module → update ARCHITECTURE.md"
 
 See "Project Summaries" section below for implementation.
+
+#### Q) Global Rules Awareness
+
+Adds references to global rules (`~/.claude/RULES.md` + `~/.claude/CODING.md`) into project `CLAUDE.md`, plus pre-creates sections for documenting per-project exceptions and consistency-audit "won't fix" log.
+
+**Idempotent:** safe to re-run on a project that already has some references — skill detects and only adds missing pieces.
+
+**Steps:**
+
+1. **Read project `CLAUDE.md`** (must exist — if not, run `projectsetup` first).
+
+2. **Detect what's already there** (case-insensitive, substring match):
+   - `~/.claude/RULES.md` referenced? Skip A1.
+   - `~/.claude/CODING.md` referenced? Skip A2.
+   - Section heading `## Výjimky z obecných pravidel`? Skip A3.
+   - Section heading `## Consistency`? Skip A4.
+
+3. **A1 — Add Global Rules section** (if missing). Insert after the file's H1 title, before any other section:
+
+   ```markdown
+   ## Global Rules (loaded automatically)
+
+   Claude Code loads these from `~/.claude/CLAUDE.md` for every session:
+
+   - **`~/.claude/RULES.md`** — META rules: communication, language, file organization, doc-first, conflict detection
+   - **`~/.claude/CODING.md`** — code standards: anti-duplication, Rule of Three, cross-layer consistency, naming across boundaries, TS/SQL/Web/Python/Bash, Git, Security
+
+   This document covers project-specific additions and exceptions. Do not duplicate global rule content.
+   ```
+
+4. **A3 — Add Výjimky section** (if missing). Insert before the file's final `---` separator (or append to end if none):
+
+   ```markdown
+   ## Výjimky z obecných pravidel
+
+   Per-project odchylky od `~/.claude/RULES.md` nebo `~/.claude/CODING.md`. Always include source + reason + plan.
+
+   Format:
+
+   - **<rule name>** (source: RULES.md > <section> | CODING.md > <section>)
+     - Reason: <why this project diverges>
+     - Plan: <by when, or "won't fix" with justification>
+
+   (empty by default)
+   ```
+
+5. **A4 — Add Consistency section** (if missing). Append after Výjimky section:
+
+   ```markdown
+   ## Consistency
+
+   Items evaluated during `/consistency` audit as "won't fix". Future audits skip these.
+
+   - **YYYY-MM-DD** — _<title>_: <reason>
+     - Locations: <file:line, ...>
+
+   (empty by default — auto-populated by `/consistency` skill on user choice "Skip")
+   ```
+
+6. **Detect and warn about duplicated global rule content.** Grep project CLAUDE.md for phrases that should now live only in global files:
+   - `Rule of Three`
+   - `stringly-typed dispatcher`
+   - `Grep first` / `Grep for existing helpers`
+   - `responsibilities-before-DRY`
+   - `Branch first, commit later` (in Critical Rules — keep TL;DR but flag if duplicated 1:1 from CODING.md)
+
+   If found, **show user the duplicated lines** and ask: "Tyto řádky duplikují obsah z `~/.claude/CODING.md`. Smazat / Ponechat jako TL;DR / Přesunout do global rules?"
+
+7. **Verify** — show diff of project CLAUDE.md changes, confirm with user before saving.
 
 ### Step 4: Update Maturity & Verify
 

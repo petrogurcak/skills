@@ -21,13 +21,22 @@ Use this skill when:
 
 **Creates development principles structure:**
 
-- `CLAUDE.md` - Entry point with quick reference + **development-workflow** skill reference
+- `CLAUDE.md` - Entry point referencing **global rules** (`~/.claude/RULES.md`, `~/.claude/CODING.md`) + project-specific quick reference + pre-created sections for `## Výjimky z obecných pravidel` and `## Consistency`
 - `.claude/CORE_PRINCIPLES.md` - 14 core principles (TDD, Git, Verification, Designing Abstractions, etc.)
 - `.claude/WORKFLOWS.md` - TDD workflow, Bug Fix, Git operations
 - `.claude/CHECKPOINTS.md` - When to ask vs auto
 - `.claude/settings.local.json` - Project permissions
 - `.claude/ACTIVE_CONTEXT.md` - Session context (where you left off)
 - `.claude/DECISIONS.md` - Architectural decisions log
+
+**IMPORTANT — relationship to global rules:**
+
+The created project `CLAUDE.md` **does not duplicate** global rule content. Global rules from `~/.claude/RULES.md` (META rules — communication, file org, doc-first) and `~/.claude/CODING.md` (code standards — anti-duplication, Rule of Three, cross-layer consistency, naming, TS/SQL/Web/Python/Bash/Git/Security) load automatically via `@`-import in `~/.claude/CLAUDE.md`. The project file references them and provides project-specific additions/exceptions only.
+
+Pre-created sections in project `CLAUDE.md`:
+
+- `## Výjimky z obecných pravidel` — for documented per-project deviations from global rules (with source + reason + plan)
+- `## Consistency` — for `/consistency` skill "won't fix" log (auto-populated when user chooses Skip on a finding)
 
 **Integrates with workflow orchestration:**
 

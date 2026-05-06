@@ -2,7 +2,16 @@
 
 # Development Principles - Quick Reference
 
-This project follows framework-free development principles focused on **TDD**, **Git Safety**, and **Verification**.
+This project follows global rules + project-specific principles.
+
+## Global Rules (loaded automatically)
+
+Claude Code loads these from `~/.claude/CLAUDE.md` for every session:
+
+- **`~/.claude/RULES.md`** — META rules: communication, language, file organization, doc-first, conflict detection, skills repo conventions
+- **`~/.claude/CODING.md`** — code standards: anti-duplication, Rule of Three, cross-layer consistency, naming across boundaries, TS/SQL/Web/Python/Bash, Git, Security
+
+This document covers **project-specific additions and exceptions** to those global rules. Do not duplicate global rule content here.
 
 ## Session Context
 
@@ -182,7 +191,7 @@ Skills jsou organizovány v **private GitHub repo** `petrogurcak/skills` jako **
 | **branding**       | 3      | Brand naming, brand strategy, logo design                                                                                                                                                                                 |
 | **children-books** | 3      | Storywriting, illustration (Banana), DTP & Typography                                                                                                                                                                     |
 | **utilities**      | 2      | Mac cleanup, cowork-setup                                                                                                                                                                                                 |
-| **creative**       | 1      | Image generation — Ideogram 3.0 + Nanobanana (Imagen 4). Cowork-friendly (bash + REST, no MCP). Keys via 1Password (`Dev/shared-keys`) → env → `.env`. First-run `setup.sh` instructs user.                                |
+| **creative**       | 1      | Image generation — Ideogram 3.0 + Nanobanana (Imagen 4). Cowork-friendly (bash + REST, no MCP). Keys via 1Password (`Dev/shared-keys`) → env → `.env`. First-run `setup.sh` instructs user.                               |
 | **gastro**         | 1      | Gastro education persona — kurzy, knihy, videa pro restauratéry                                                                                                                                                           |
 | **team**           | 1      | AI team briefing — virtual personas review plans cross-functionally                                                                                                                                                       |
 
@@ -280,3 +289,28 @@ Obsah skillu...
 ```
 
 **Cowork:** Vyber `~/Projects/skills/` jako working folder, skills se načtou automaticky z `.skills/skills/`
+
+---
+
+## Výjimky z obecných pravidel
+
+Per-project odchylky od `~/.claude/RULES.md` nebo `~/.claude/CODING.md`. Always include source + reason + plan.
+
+Format:
+
+- **<rule name>** (source: RULES.md > <section> | CODING.md > <section>)
+  - Reason: <why this project diverges>
+  - Plan: <by when, or "won't fix" with justification>
+
+(empty by default)
+
+## Consistency
+
+Items evaluated during `/consistency` audit as "won't fix". Future audits skip these.
+
+```
+- **YYYY-MM-DD** — *<title>*: <reason>
+  - Locations: <file:line, ...>
+```
+
+(empty by default — auto-populated by `/consistency` skill on user choice "Skip")

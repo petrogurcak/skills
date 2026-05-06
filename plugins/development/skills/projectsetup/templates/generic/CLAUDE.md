@@ -1,6 +1,15 @@
 # Claude Development Principles - Quick Reference
 
-This project follows framework-free development principles focused on **TDD**, **Git Safety**, and **Verification**.
+This project follows global rules + project-specific principles.
+
+## Global Rules (loaded automatically)
+
+Claude Code loads these from `~/.claude/CLAUDE.md` for every session:
+
+- **`~/.claude/RULES.md`** — META rules: communication, language, file organization, doc-first, conflict detection, skills repo conventions
+- **`~/.claude/CODING.md`** — code standards: anti-duplication, Rule of Three, cross-layer consistency, naming across boundaries, TS/SQL/Web/Python/Bash, Git, Security
+
+This project document covers **project-specific additions and exceptions** to those global rules. Do not duplicate global rule content here — reference it.
 
 ## Session Context
 
@@ -27,49 +36,13 @@ This project uses session context for continuity between Claude sessions.
 - **[Workflows](.claude/WORKFLOWS.md)** - TDD workflow, Bug fixes, Git operations
 - **[Checkpoints](.claude/CHECKPOINTS.md)** - When to ask vs when to proceed automatically
 
-## TL;DR
+## TL;DR — Always-Applied Discipline
 
-**Before writing ANY code:**
-
-1. **Create a branch** (never work on main/master)
-2. **Write the test first** (RED phase)
-3. **Watch it fail** (confirms test actually tests something)
-4. **Write minimal code** to pass (GREEN phase)
-5. **Refactor** if needed
-6. **Run all tests + static analysis** before committing
-7. **Ask before committing** (unless auto-approved in settings)
-
-**Before writing a helper, dispatcher, or refactoring duplicates:**
-
-1. **Grep first** — a sibling helper may already exist elsewhere in the repo.
-2. **Enumerate responsibilities** before DRY-ing (Principle 14).
-3. **Named functions over stringly-typed dispatchers** — `send_invite_email(...)`, never `send(type="invite", ...)`.
-4. **Value Objects over primitive obsession** — parse at boundaries, don't validate everywhere.
-5. **Rule of Three** — <3 duplications, leave it; duplication is cheaper than the wrong abstraction.
-6. **Invoke `development:designing-abstractions` skill** for anything non-trivial.
-
-## Critical Rules
-
-### Always Do
-
-- Branch first, commit later
-- Test first, code second
-- Verify before claiming success
-- Ask at checkpoints (see CHECKPOINTS.md)
-- Run full test suite before commits
-- Grep for existing helpers before writing a new one
-- Enumerate responsibilities before extracting abstractions
-
-### Never Do
-
-- Work directly on main/master
-- Write code before tests
-- Commit without verification
-- Write a `send(type="X")` or similar stringly-typed dispatcher
-- DRY duplicated code without first asking what concerns each duplication mixes
-- Create a helper with ≥5 parameters instead of a named domain object
-- Skip static analysis
-- Assume tests pass without running them
+1. **Branch first** — never work on main/master
+2. **Test first (TDD)** — RED → GREEN → REFACTOR
+3. **Verify before claiming complete** — tests + lint + build with output as evidence
+4. **Code consistency** — see `~/.claude/CODING.md > Obecné principy psaní kódu` (grep before helper, Rule of Three, cross-layer check, naming boundaries, no god-functions/stringly-typed dispatchers)
+5. **Commit only when user explicitly asks**
 
 ## Workflow Skills
 
@@ -100,6 +73,15 @@ User: "Fix bug X"
 -> Skill orchestrates: Investigate -> Hypothesize -> Verify -> Fix with TDD
 ```
 
+### Consistency Audit
+
+**Use `review:consistency` skill** to find drift in existing code (cross-layer inconsistency, dead code, naming drift, file group structure):
+
+```
+User: "/consistency"
+-> Skill: Pre-flight -> Explore agent -> Categorize -> Interactive walkthrough (A/B/C/D)
+```
+
 ## Project Commands
 
 ```bash
@@ -116,6 +98,31 @@ npm run build      # or: cargo build, etc.
 ## Project-Specific Customizations
 
 See Section 8 in [CORE_PRINCIPLES.md](.claude/CORE_PRINCIPLES.md) for any project-specific rules and conventions.
+
+## Výjimky z obecných pravidel
+
+Per-project odchylky od `~/.claude/RULES.md` nebo `~/.claude/CODING.md`. Always include source + reason + plan.
+
+Format:
+
+```
+- **<rule name>** (source: RULES.md > <section> | CODING.md > <section>)
+  - Reason: <why this project diverges>
+  - Plan: <by when, or "won't fix" with justification>
+```
+
+(empty by default — populated as project diverges from global rules)
+
+## Consistency
+
+Items evaluated during `/consistency` audit as "won't fix". Future audits skip these.
+
+```
+- **YYYY-MM-DD** — *<title>*: <reason>
+  - Locations: <file:line, ...>
+```
+
+(empty by default — auto-populated by `/consistency` skill on user choice "Skip")
 
 ---
 
