@@ -1,0 +1,8 @@
+{
+  "name": "negotiation",
+  "version": "1.0.0",
+  "description": "Negotiation and meeting leadership — Joe Navarro nonverbal reading + Chris Voss tactical empathy + Fisher/Ury BATNA + Goulston/Kohlrieser/Stone for emotional contexts. Czech business culture context.",
+  "author": { "name": "Petr" },
+  "skills": "./skills/",
+  "category": "business"
+}
