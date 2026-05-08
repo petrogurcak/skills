@@ -1,5 +1,33 @@
 # Mistakes Log
 
+## 2026-05-08: Marketplace cache fetch refspec limituje pre-merge testing
+
+**Co se stalo:** Po push `feat/negotiation-plugin` do origin jsem chtěl checkoutnout feat branch v `~/.claude/plugins/marketplaces/skills/` pro pre-merge plugin testing v `/plugins` UI. `git fetch origin feat/negotiation-plugin` proběhl, ale `git checkout feat/negotiation-plugin` failoval s "pathspec did not match any file(s)". Branch nebyla v `git branch -a`.
+
+**Proc:** Marketplace cache `.git/config` má refspec `+refs/heads/main:refs/remotes/origin/main` — fetch jen main, ne všechny branches. Explicitní `git fetch origin <branch>` jen vytvoří `FETCH_HEAD`, neukotví remote tracking branch. Pak `git checkout <branch>` neexistuje protože není v local refs ani remote-tracking refs.
+
+**Oprava:** Buď (a) merge feat → main a pull cache (zvolili jsme pro tuhle session), nebo (b) modifikovat `.git/config` na `+refs/heads/*:refs/remotes/origin/*` pro full branch fetch. (a) je jednodušší, (b) umožní pre-merge testing v budoucnu.
+
+**Pouceni:** Marketplace cache je read-only mirror nakonfigurovaný jen pro main. Pre-merge plugin testing v Claude Code `/plugins` UI vyžaduje merge nebo refspec change. Pro rychlou iteraci preferuj merge-first; pro velké pluginy s rizikem kde chceš pre-merge sanity check zvaž refspec úpravu.
+
+**Tags:** #marketplace-cache #git-refspec #plugin-workflow #pre-merge-testing
+
+---
+
+## 2026-05-08: Plan validation grep counts byly underspecified
+
+**Co se stalo:** Plan tasks měly validation rules typu `grep -c "^## Conversation" plugins/.../difficult-conversations-three-frame.md` s `Expected: count = 3`. Implementace ale obsahovala 4 valid matches (3 conversations + "Conversation structure" sekce). Validation by hlásilo "wrong count" i když content matchoval template přesně. Podobně pro orchestrator: `grep -c "cialdini"` rule "≤5 = embedded", actual byl 9 ale všech 9 byly pointer-style references, ne embedded content.
+
+**Proc:** Plan author (já) napsal validation grep patterns příliš obecně. `^## Conversation` matchuje víc než jen číslované conversations. Číselná hranice "≤5" pro Cialdini byla intuitivní guess, ne empirická.
+
+**Oprava:** Spec compliance review zachytil odchylky, ale subagent po implementaci taky flagoval — výsledek byl OK protože content matchoval template, jen validation rule byla loose. Pragmaticky proceeded.
+
+**Pouceni:** Plan validation grep patterns by měly být buď specific (`^## Conversation [0-9]`) nebo s tolerance buffer (`Expected: count >= 3`). Číselné hranice typu "≤5 = embedded" jsou křehké — lepší check by byl "no full Cialdini content blocks (no `### N. <Principle Name>` H3 sections)" který detekuje skutečné embedding.
+
+**Tags:** #plan-validation #grep-patterns #spec-compliance
+
+---
+
 ## 2026-04-28: Cowork "Check for updates" nepull-ne marketplace cache
 
 **Co se stalo:** Cowork UI tlačítko "Check for updates" v marketplace settings neudělalo `git pull` v `~/Library/.../cowork_plugins/marketplaces/skills/`. Cache zůstala na starém commitu (např. `80eb7a5` z 2026-02-05) i když origin/main byl 59 commits dál. Pattern se zopakoval 3× za poslední 2 session — pokaždé jsem musel manuálně pull.

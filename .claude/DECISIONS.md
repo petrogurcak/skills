@@ -4,6 +4,101 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-05-08: Negotiation plugin architecture — 6 skills + 8 references + Cialdini-as-shared
+
+**Kontext:** Nový plugin pro vyjednávání (vzor Joe Navarro). Iterativní brainstorming odhalil že primárně live verbal Voss + Navarro nonverbal nestačí — user identifikoval reálnou potřebu pro **emotionally-charged negotiation** (cofounder split, firing) + **persuasive-email-de-escalation** (angry klient response). To posunulo scope ze 4 sub-skills na 6: orchestrator + reading-people + tactical-empathy + batna-strategy + emotional-conflict + written-negotiation.
+
+**Rozhodnuti:**
+
+1. **Lean orchestrator pattern** (z `copywriting-orchestrator`) — pure router, ne fat orchestrator s embedded modes. 214 lines. Sub-skills nesou všechnu doménovou znalost.
+
+2. **Cialdini = shared reference** (`references/cialdini-7-principles.md`), ne vlastní sub-skill. Volá ho tactical-empathy + batna-strategy + written-negotiation. Důvod: Cialdini je bias overlay, ne standalone activity. Embedded by způsobil duplikaci napříč 3 skills; vlastní sub-skill by byl over-decomposed.
+
+3. **NotebookLM-grounded subagent dispatch** pro Phase 3 sub-skills (5 task). Každý subagent dostal notebook ID `8b989435-d568-4248-a3a1-4ddd8ea57da2` (10 EN books + BCSM paper). Výsledek: direct quotes z primárních zdrojů s page attribution místo paraphrase-of-paraphrase. Subagent for Task 15 caught plan error (Malhotra/Bazerman Ch. 9 vs actual Ch. 11).
+
+4. **Hybrid execution flow** vs strict subagent-driven-development: Phase 2 (8 references s full content templates v plánu) inline-write, Phase 3 (5 sub-skills s real content generation + NotebookLM) subagent dispatch. Důvod: subagent dispatch pro verbatim copy je čistý overhead. Pro content generation s NotebookLM extraction je subagent value-add real.
+
+5. **Ethical frame "discomfort, not deception"** (Navarro post-2018 + Vrij research) napříč všemi sub-skills. Cialdini principles documented in ethical use only s manipulation flag + defense pattern. Crisis refusal (CZ helplines 112/158/116 006/116 111/116 123) v emotional-conflict skill.
+
+6. **CZ adaptation as universal cross-skill reference** (`references/cz-business-culture-deltas.md`). Volá ho všech 5 specialist sub-skills. Pařík/Dolník/Prokůpek jako kanonické CZ autori. Pařík + Dolník PDFs ještě nejsou v notebooku — kompenzace přes free-primary-sources.md (30h+ Pařík free obsah na podcastech/YouTube/press interviews).
+
+**Alternativy:**
+
+- 4 sub-skills bez emotional/written variantů (původní plán) — discarded protože user explicit pain ("emotionally-charged-negotiation" + "persuasive-email-de-escalation" jako needed v jiné session).
+- Fat orchestrator s embedded high-emotion + written modes — discarded, user preferoval lean router pattern z copywriting plugin.
+- Cialdini jako vlastní sub-skill `cialdini-bias` — discarded, over-decomposed pro single bias library.
+- Strict subagent-driven-development (23 tasks × 3 reviewers = 69 subagents) — pragmatic adaptation pro markdown content (inline write pro verbatim, subagent jen pro content generation).
+
+**Důvod:** Negotiation jako disciplína má distinct sub-domains (channel: live/written, charge: business/emotional), které mají dramaticky jiný output structure. Sub-skill split podle channel + emotional intensity dává cleaner routing než single mega-skill. Lean orchestrator pattern z copywriting plugin už proven. NotebookLM-grounded subagents zvyšují kvalitu (direct quotes vs paraphrase) bez kompromisu na CZ adaptation kvalitě (general-purpose Sonnet, ne glm-delegate kvůli CZ output quality).
+
+**Dopad:**
+
+- 1 nový plugin s 6 skills + 8 references na main (`7036407` merge commit)
+- 5413 lines content, 16 commits historie
+- Marketplace cache synced, symlinky vytvořeny pro Gemini CLI + Cowork
+- v1.1 uplift čeká na Pařík + Dolník PDFs (až user získá)
+- NotebookLM corpus `8b989435-d568-4248-a3a1-4ddd8ea57da2` jako single source of truth pro plugin content extraction
+
+---
+
+## 2026-05-06: Settings deny list + statusline rate limits (Honza adopt round 2)
+
+**Kontext:** Po dokončení RULES.md + CODING.md + `review:consistency` (audit round 1) zbývaly 2 položky z Honzova repa: statusline a settings. Můj `~/Projects/claude-config/settings.json` měl `Bash(*)` blanket allow + 0 deny rules — žádné guardrails proti accidental Read na `.env`/`.pem`/`.ssh`/credentials. Můj statusline (`statusline-robbyrussell.sh`) zobrazoval session/repo/branch/model/tokens, ale neukazoval rate limit usage — což je kritické vzhledem k tomu že přečerpávám weekly Max limit.
+
+**Rozhodnuti:** Adopt Honzova vzoru pro oba soubory (P1, zero downside):
+
+1. **Settings deny list** (1:1 copy z Honzy) — 57 paths v `permissions.deny` pokrývající Read+Write+Edit pro: `.env*`, `.pem`, `.key`, `.p12`, `.pfx`, `.keystore`, `.ssh/*`, `id_rsa*`/`id_dsa*`/`id_ecdsa*`/`id_ed25519*`, `.aws/credentials`+`config`, `.kube/config`, `.docker/config.json`, `.npmrc`, `.pypirc`, `.netrc`, `.git-credentials`, `auth.json`, `master.key`, `.jks`, `.htpasswd`, `credentials*`, `secrets*`. Doplňuje 1Password-first key management — defense in depth proti accidental tool misuse.
+
+2. **Statusline rate limit segments** (Honzův pattern + můj styl) — 5h session bar + 7-day weekly bar s 5-char `█░` glyfy, color-coded (≥80% svítivá magenta/cyan, ≥60% žlutá, jinak tlumená), reset timery (`H:MM` <24h, `XdYh` ≥24h). Helper funkce `make_bar()` + `format_remaining_short()` reusable. Graceful degradation — segmenty se neukáží pokud `rate_limits` chybí v stdin JSON.
+
+**Alternativy:**
+
+- **Adopt Honzův statusline 1:1** — ztratil bych iTerm2 session name + git branch (Honza má jen change count, já preferuji branch name pro multi-worktree disambiguation). Hybrid je lepší.
+- **`BAR_WIDTH=10` jako Honza** — můj statusline má víc segmentů (session + repo + branch + model + tokens + 5h + 7d), 10-char bary by vyhnaly řádek. `BAR_WIDTH=5` je kompromis.
+- **Adopt Honzův granular `allow` whitelist** — paralyzovalo by `Bash(*)` workflow (musím psát explicit allow per command). Skip — můj `Bash(*)` je consistent s "high autonomy" v profilu.
+- **`ask` list pro destructive ops** (`rm:*`, `git reset:*`, `pkill:*`, `chmod:*`, `docker:*`) — odložené P2 trade-off. Risk reduction vs friction; budu sledovat zda accidental damage scenario se objeví.
+- **Adopt `defaultMode: acceptEdits` + `voice` + `autoCompactEnabled: false`** — skip. Mám `skipDangerousModePermissionPrompt: true` (functionally similar pro file edits), voice nepotřebuju, autoCompact OK as-is.
+
+**Důvod:** Deny list je no-brainer (zero downside, čistý security gain — chrání i v scénářích kde Bash command implicitně reads `.env` přes pipe nebo glob). Rate limit segmenty řeší konkrétní pain point (přečerpávám weekly Max — vidět projection in real-time je actionable). Hybrid přístup u statusline (Honzovy bary + můj iTerm2/branch) zachovává moje proven workflow elements (multi-session disambiguation přes session name) a přidává Honzovy missing pieces (rate visibility).
+
+**Dopad:**
+
+- 1 commit pending v claude-config (settings.json deny list)
+- statusline change live okamžitě (nevyžaduje restart)
+- Honzův repo audit **uzavřený** — všechno relevant z `github.com/jantichy/claude` adoptované nebo explicitně skipped (autoprompt P1 audit, autocommit P1 audit, RULES.md round 1, CODING.md round 1, consistency round 1, statusline+settings round 2).
+- Future inspiration sources: pokud Honza přidá nové soubory v repu, sledovat (RSS na GitHub releases / commit feed).
+
+---
+
+## 2026-05-06: Globální pravidla — RULES.md + CODING.md (Hybrid Honza pattern)
+
+**Kontext:** Po auditu Honzova `~/.claude` repa ([github.com/jantichy/claude](https://github.com/jantichy/claude)) zjištěno že Honza má dekomponovaný `CLAUDE.md` (skoro prázdný) + `RULES.md` (META rules) + `CODING.md` (TS/SQL/Web standards). Náš `CLAUDE.md` měl ~400 řádků a chyběly mu: jazyk pravidla, "při nejistotě se zeptat", organizace souborů (single source of truth, generic-base+delta), code-level consistency principy aplikované při psaní (ne jen on-audit). User explicitně chtěl: "rovnou by s těmi principy kód měl psát" — proactive, ne reactive (audit only).
+
+**Rozhodnuti:** Vytvořit 2 globální soubory + 1 audit skill (Hybrid Honza pattern):
+
+1. **`~/.claude/RULES.md`** (META rules) — komunikace + organizace souborů + práce se změnami + skills repo specific
+2. **`~/.claude/CODING.md`** (code standards) — 6 obecných principů psaní kódu (proactive consistency) + Platform-specific (TS/SQL/Web/Python/Bash) + Git + Security
+3. **`review:consistency` skill** (interactive audit walkthrough) — Honzův pattern: 6 fází, A/B/C/D walk-through
+
+CLAUDE.md zůstává jako identity + agent lifecycle. Reference na RULES + CODING přes `@`-import. Bod 4 v Always-Applied zkrácen na pointer (single source of truth — detail v CODING.md).
+
+**Alternativy:**
+
+- **A) Honzův reactive pattern** (žádné code-level principy v RULES.md, spoléhat na `/consistency` audit). Pros: čistá separace, méně cognitive load. Cons: drift se sbírá, vyžaduje pamatovat audit. Pro Petrův profil (102 skills + dual CLI + Cowork) = nedostatečné.
+- **B) Proactive v RULES.md** (přidat "Práce s kódem" sekci). Pros: aplikuje se vždy. Cons: RULES mixuje META s code rules, riziko ignore (delší soubor).
+- **C) Hybrid (zvolené)** — Honzova separace + tvůj proactive layer. Pros: single source of truth respektován, Honzova proven separace zachována, drift se nesbírá. Cons: 1 navíc soubor (3 místo 2 globálních pravidel).
+
+**Důvod:** Petrův profil (102 skills, dual-CLI, multi-project Cowork) je drift-prone — reactive nestačí. Současně Honzova separation (META vs Standards) je clean a respektuje single source of truth. Hybrid = best of both. Code-level principy (anti-duplication grep, Rule of Three, cross-layer consistency, naming napříč boundaries) jsou aplikovány **při každém Edit/Write**, ne jen on `/consistency` invoke.
+
+**Dopad:**
+
+- `projectsetup` template přepsán: smazány duplicitní sekce (Rule of Three, no stringly-typed) které jsou nyní v CODING.md, přidaná reference + pre-vytvořené `## Výjimky` + `## Consistency` sekce
+- `workflow-optimization` rozšířen o **Option Q "Global Rules Awareness"** — idempotent update existing project CLAUDE.md
+- `~/.claude/CLAUDE.md` + `~/.gemini/GEMINI.md` synced (dual-CLI rule)
+- 3 commits: claude-config `7e28645` (RULES) + `fda265d` (CODING), skills `423968c` (consistency) + `2df1902` (projectsetup/workflow-optimization)
+
+---
+
 ## 2026-04-29: creative plugin — bash + REST místo MCP, klíče přes 1Password
 
 **Kontext:** `creative:image-generation` skill předpokládal MCP servery (`ideogram-mcp`, `nanobanana-mcp` jako custom Python servery na host filesystem) a `IDEOGRAM_API_KEY` / `GEMINI_API_KEY` v env. To nefungovalo v Coworku — Cowork je gVisor-sandboxed agent app která nemá host MCP setup, plus user chce skills přenosné přes víc Maců (instalace na druhém počítači). User explicitně řekl: "při inicializaci řekni uživateli at si do 1pass uloží klíče" — first-run UX musí být self-explaining.
