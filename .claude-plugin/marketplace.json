@@ -50,6 +50,11 @@
       "name": "utilities",
       "source": "./plugins/utilities",
       "category": "tools"
+    },
+    {
+      "name": "negotiation",
+      "source": "./plugins/negotiation",
+      "category": "business"
     }
   ]
 }
