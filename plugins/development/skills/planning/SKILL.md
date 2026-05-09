@@ -39,25 +39,46 @@ Explore, brainstorm, and write implementation plan in one flow. Saves plan to pr
      - If yes → invoke `development:research` skill with topic from context; findings inform questions, approaches, and design
      - If no → continue normally
 
-2. **Ask questions one at a time:**
+2. **Recon — touched-files deep scan** (POVINNÝ KROK):
+
+   **Trigger:** Jakmile z user briefu / Phase 1 questions znáš dotčené entity / soubory (i hrubě). PŘED Step 4 (Explore approaches).
+
+   **Goal:** Catch hallucinated APIs, naming collisions, stack assumptions, lazy-load pitfalls PŘED design fází. Plan-challenger v Phase 3 jinak najde tyhle problémy a forcne REJECT + replan (30+ min ztráta).
+
+   **Execution — dvě cesty:**
+   - **(a) Inline grep+read** — když scope = 1-3 soubory.
+   - **(b) Spawn `feature-dev:code-explorer` agent** — když scope = 4+ soubory nebo cross-layer (entity + presenter + service + DB). **Doporučeno default.** Důvody: fresh context (nežere tvoje tokeny), agent description fitne přesně ("traces execution paths, maps architecture layers, documents dependencies").
+
+   **Recon checklist** (output paste do plan file pod `## Recon`):
+   1. **Existing API na dotčených entitách/modulech** — `grep -n "public function\|def \|fn " <files>`. Catches: duplicate methods (např. `getOptions()` už existuje), naming collisions, return-type mismatches.
+   2. **Existing handlers/routes/listeners v dotčených presenterech/controllers** — `grep -n "function handle\|function action\|@Route\|app.post\|app.get" <files>`. Catches: handler name collision (např. `handleReorderVariants` už použité).
+   3. **Stack facts ověřené** — read `composer.json` / `package.json` / `pyproject.toml` + 1 sample z každé vrstvy (Mapper, Service, Repository, EntityManager). Catches: hallucinated framework primitives (Doctrine vs Sellastica EntityManager, Facade vs Service, wrapInTransaction API vymyšlené).
+   4. **Lazy-load / cache / state pitfalls** — `grep -n "if (null === \$this->\|private \$\(option\|cache\)\|memoize\|@cached_property" <files>`. Catches: in-memory stale po DB swap (entity cachuje value, swap v DB nechá stale).
+   5. **Pre-existing bugs / typos v dotčených souborech** — quick scan na dotčené třídy. Catches: typos jako `$option13d` místo `$option3Id` které by tvůj plan zlomil.
+
+   **Exit Recon when:** `## Recon` sekce v plan filu (nebo draft notes před Phase 2) obsahuje konkrétní zjištění (NE "checked, OK") — alespoň 1 položka per checklist bod, nebo explicitní "N/A — důvod proč nerelevantní".
+
+   **Anti-pattern:** "Recon: looked at code, looks fine" — to NENÍ Recon. Recon je list konkrétních method signatures, handler names, framework imports, pitfall locations s `file:line` references.
+
+3. **Ask questions one at a time:**
    - Purpose: What problem does this solve?
    - Scope: What's in/out?
    - Constraints: Performance, compatibility, dependencies?
    - Prefer multiple choice when possible
    - **One question per message** - don't overwhelm
 
-3. **Explore approaches (2-3 options):**
-   - Present each with trade-offs
+4. **Explore approaches (2-3 options):**
+   - Present each with trade-offs (informed by Recon findings — žádné API které Recon neviděl)
    - Lead with recommended option + reasoning
    - Let user pick or combine
 
-4. **Present design in sections (200-300 words each):**
+5. **Present design in sections (200-300 words each):**
    - Architecture, components, data flow
    - Check after each section: "Tohle sedí?"
    - Iterate until user confirms
    - **Abstraction gate:** If design includes shared helpers, a dispatcher, ≥2 call sites sharing logic, or any consolidation/refactor of duplicates → invoke `development:designing-abstractions` skill. It produces an "Abstraction Strategy" artifact (concern-layers, invariants, boundary map, public API vs internal, Connascence audit) that must be pasted into the plan before Phase 2.
 
-**Exit Phase 1 when:** User confirms the approach and design (with Abstraction Strategy attached if applicable).
+**Exit Phase 1 when:** User confirms the approach and design (with Recon section + Abstraction Strategy attached if applicable).
 
 ---
 
@@ -377,7 +398,7 @@ Neco dalsiho, nebo koncime?
 
 ```
 Phase 1: Explore & Understand
-  └─ Check context → [Research?] → Ask questions → Explore approaches → Present design
+  └─ Check context → [Research?] → **Recon (touched-files deep scan)** → Ask questions → Explore approaches → Present design
 Phase 2: Write Plan
   └─ TDD tasks with bite-sized steps → Save to docs/plans/
 Phase 3: Review Plan
@@ -411,4 +432,5 @@ Phase 7: Wrap-up & Reflect
 | `development:research`                       | Phase 1 optional research         |
 | `development:second-opinion`                 | Phase 3 optional Gemini review    |
 | `development:designing-abstractions`         | Phase 1 abstraction gate          |
+| `feature-dev:code-explorer`                  | Phase 1 Recon (touched-files scan) |
 ````
