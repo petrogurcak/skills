@@ -4,6 +4,41 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-05-09: Recon Phase 1 step v planning skillu + plan-challenger Recon verification
+
+**Kontext:** Phase 3 review reálného plánu (Sellastica reorder slot variant axes) vrátil REJECT s 4 CRITICAL issues — všechny způsobené hallucinated APIs: duplicate method (`getOptions()` už existoval), naming collision (`handleReorderVariants` už použité), wrong stack assumptions (Doctrine vs Sellastica EntityManager, `wrapInTransaction` API vymyšlené, `ProductFacade` neexistuje), pre-existing typo (`$option13d` na entitě). Všechny by zachytil 5-10min recon (grep existing API, handler names, framework primitives, lazy-load patterns) PŘED design fází. Phase 1 původně měla jen vágní "Look at relevant code" — user nebo subagent skipne nebo udělá generic scan.
+
+**Rozhodnuti:**
+
+1. **Phase 1 nový Step 2 "Recon — touched-files deep scan"** v `development:planning` skillu — POVINNÝ krok před Step 4 (Explore approaches). 5-bodový checklist: existing API (grep `public function`/`def`/`fn`), existing handlers (grep `handle/action/@Route`), stack facts (composer.json + 1 sample per layer), lazy-load patterns (grep `null === $this->`/cached_property), pre-existing bugs/typos. Output paste do plan filu pod `## Recon`.
+
+2. **2 execution paths:** (a) inline grep+read pro 1-3 soubory, (b) spawn `feature-dev:code-explorer` agent pro 4+ souborů / cross-layer. Doporučeno default (b) — fresh context, agent description fitne přesně ("traces execution paths, maps architecture layers").
+
+3. **Anti-pattern guard:** "Recon: looked at code, OK" NENÍ Recon. Vyžaduje konkrétní `file:line` references nebo explicit "N/A — důvod proč nerelevantní".
+
+4. **`review:plan-challenger` Step 2.5 "Verify Recon Section"** — POVINNÝ krok. Greppy KAŽDÝ cited method/handler/stack claim z Recon sekce. Hallucinated method existence → CRITICAL. Recon section chybí u 4+ souborů scope → WARNING. Generic Recon → WARNING.
+
+5. **Dimension 1 v plan-challenger přejmenován** "Hidden Dependencies & Hallucinated APIs" s explicitními grep instrukcemi (každá cited method, každý handler, framework primitives ověřit).
+
+**Alternativy:**
+
+- **Phase 0 "Recon" before Phase 1** — discarded, protože při startu sessions nevíme touched files. Recon má fungovat jakmile máme rough scope (po Phase 1 Step 1 + brief).
+- **Recon jako separátní persistent artefakt mimo plan file** — discarded, kandidát na rot. `## Recon` sekce inline v plan filu = single source, plan-challenger ji čte přímo.
+- **Mandatory `feature-dev:code-explorer` agent vždy** — discarded, overkill pro malé scope (1-3 soubory). Inline grep+read pro 1-3 souborů = pragmatic.
+- **Optional Recon ("offer to user")** — discarded, user (a Gemini CLI especially) tendence skipnout optional kroky. Mandatory s exit criteria je jediný způsob jak dohnat compliance.
+
+**Důvod:** Phase-3 REJECT + replan = 30+ min ztráty + plan-challenger token burn. Recon ve Phase 1 = 5-10 min investice s explicit checkpoint co se kontroluje. ROI je 3-6× minimálně. Code-explorer agent je proven (description fitne use-case), náklad jen na fresh-context spawn. Mandatory Step 2.5 v plan-challengeru forcuje verification — bez toho hallucinated Recon proklouzne stejně jako hallucinated plan.
+
+**Dopad:**
+
+- 1 commit (`ebe558a`) + merge (`54956a8`) na main
+- 2 SKILL.md upraveny: `development:planning` (+25 lines Phase 1 Step 2), `review:plan-challenger` (+18 lines Step 2.5 + Dimension 1 rewrite)
+- Plugin cache + symlinks synced — změny live od příštího restartu
+- Future planning sessions: 5-10 min delší Phase 1 (grep/explore + paste do plan), ale prevents Phase-3 REJECT cycles
+- Validation pending: příští reálný planning úkol změří jestli Recon fakt zachytí hallucinations
+
+---
+
 ## 2026-05-08: Negotiation plugin architecture — 6 skills + 8 references + Cialdini-as-shared
 
 **Kontext:** Nový plugin pro vyjednávání (vzor Joe Navarro). Iterativní brainstorming odhalil že primárně live verbal Voss + Navarro nonverbal nestačí — user identifikoval reálnou potřebu pro **emotionally-charged negotiation** (cofounder split, firing) + **persuasive-email-de-escalation** (angry klient response). To posunulo scope ze 4 sub-skills na 6: orchestrator + reading-people + tactical-empathy + batna-strategy + emotional-conflict + written-negotiation.
