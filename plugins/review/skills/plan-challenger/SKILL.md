@@ -57,11 +57,27 @@ Přečti celý plan file. Věnuj pozornost:
 
 Plan může vypadat rozumně, ale konfliktovat s existujícími konvencemi.
 
+### Step 2.5: Verify Recon Section (POVINNÝ)
+
+Pokud plan obsahuje `## Recon` sekci (z `development:planning` Phase 1 Step 2), **ověř každý claim**:
+
+1. **Method/function existence** — pro každou cited method (`Class::methodName()`, `def fn_name`, etc.): `grep -n "function methodName\|def fn_name" <file>`. Pokud claim říká "method existuje" a grep nenajde → CRITICAL hallucination.
+2. **Handler/route existence** — pro každý cited handler/route: grep za přesný název. Plan tvrdí "no collision" ale handler existuje → CRITICAL.
+3. **Stack claims** — pokud Recon říká "uses Doctrine" / "uses ProductFacade" / "wrapInTransaction available": ověř v composer.json/package.json + sample file. Hallucinated framework primitive → CRITICAL.
+4. **Pre-existing bugs** — pokud Recon zmiňuje typo / bug ($option13d, etc.): grep za přesný symbol. Pokud bug existuje a plan ho ignoruje, ale plan dotčený soubor mění → WARNING (nebo CRITICAL pokud plan na bug spoléhá).
+
+**Pokud `## Recon` sekce chybí úplně** a plan dotýká 4+ souborů nebo cross-layer (entity + presenter + service): WARNING — "Recon section missing, recommend running Phase 1 Step 2 before proceeding."
+
+**Pokud Recon je generic** ("checked, OK"): WARNING — "Recon must contain concrete file:line references, not generic statements."
+
 ### Step 3: Challenge Across 5 Dimensions
 
-#### 1. Hidden Dependencies
+#### 1. Hidden Dependencies & Hallucinated APIs
 
 - Plan předpokládá libraries/APIs které nemusí existovat nebo mohly změnit API?
+- **Hallucinated method names** — každá cited method na entitě/service: `grep -n "function <name>\|def <name>"` v dotčeném souboru. Pokud nenajdeš → CRITICAL.
+- **Naming collisions** — každý plánovaný handler/method/class: grep zda už neexistuje pod stejným jménem. Plan by tiše přepsal existující kód → CRITICAL.
+- **Wrong framework primitives** — plan zmiňuje Doctrine `EntityManager::flush()` ale projekt používá custom EM? Wrong DI pattern (Facade vs Service)? Read 1 sample z dotčené vrstvy.
 - Implicitní ordering dependencies mezi tasky (task 5 vyžaduje output tasku 2)?
 - Jakýkoliv task vyžaduje setup který není zmíněn?
 - Environment proměnné, config files, migrace DB — zmíněné?
