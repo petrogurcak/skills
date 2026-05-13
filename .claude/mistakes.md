@@ -1,5 +1,60 @@
 # Mistakes Log
 
+## 2026-05-13: Plugin.json version bump chyběl po přidání nových skills → Gabi v Cowork nevidí nové skills (podruhé stejný root cause)
+
+**Co se stalo:** Po dvou commitech (`dca203d` = 6 nových skills, `d38d03f` = mobile-store-release) přidaných do source repo + symlinks synced + manual copy do Claude Code plugin cache jsem si lokálně potvrdil že vše funguje. Gabi v jejím Cowork session ale nevidí video-scripting ani žádný z nově přidaných skills. Audit odhalil: `copywriting/plugin.json` na 2.1.0 (přidány 3 skills bez bumpu), `marketing/plugin.json` na 1.1.0 (přidány 3 skills bez bumpu), `development/plugin.json` na 1.0.0 (přidán mobile-store-release bez bumpu). `installed_plugins.json` pinuje `gitCommitSha: 95d7ff79` z 28. dubna — od té doby žádný plugin update.
+
+**Proc:** Plugin marketplace systém Claude Code/Cowork detekuje "novou verzi k instalaci" porovnáním `version` v `plugin.json` mezi installed copy a marketplace cache. Bez bumpu → žádná notifikace → uživatel (Gabi) nikdy nezjistí, že jsou nové skills. Petr to lokálně viděl jen proto, že workflow v `~/Projects/skills/CLAUDE.md > Workflow: Úprava skillu` zahrnuje **manuální `cp -r plugins/$p/. ~/.claude/plugins/cache/skills/$p/<ver>/`** — tj. bypassne plugin systém. Gabi tuhle mechaniku nemá, je odkázaná na `/plugins` update flow.
+
+**Souvislost s 2026-04-28:** Tehdy jsme zjistili, že Cowork "Check for updates" tlačítko neudělá `git pull` v marketplace cache, takže i kdyby byl bump, Gabi by ho neviděla bez manuálního pull. Plus poznámka z tehdejšího entry: _"Pokud version bump chybí — bump v source repo."_ Tu lekci jsme nezvnitřnili — workflow "Nový skill" v `~/Projects/skills/CLAUDE.md` krok "bumpni plugin.json version" nezmiňuje, takže defaultně to zapomínám.
+
+**Oprava (této session):**
+
+1. `copywriting/plugin.json` 2.1.0 → **2.2.0** (3 nové skills: email-orchestrator, email-sequences, video-scripting)
+2. `marketing/plugin.json` 1.1.0 → **1.2.0** (3 nové skills: launch-orchestrator, info-product-launch, testimonial-harvesting)
+3. `development/plugin.json` 1.0.0 → **1.1.0** (1 nový skill: mobile-store-release)
+4. Commit + push do `origin/main`
+5. Návod pro Gabi: v Cowork `/plugins` → marketplace skills → update copywriting + marketing + development (případně předem manual `git pull` v `cowork_plugins/marketplaces/skills/` per 2026-04-28 fix)
+
+**Pouceni (preventivně do workflow):**
+
+- **SemVer pravidlo pro plugin.json:** přidání skill = MINOR bump, edit existujícího SKILL.md = PATCH bump, nový plugin = MAJOR (1.0.0).
+- **Workflow "Nový skill" v `~/Projects/skills/CLAUDE.md` musí dostat krok 0:** "Bumpni `plugins/<plugin>/.claude-plugin/plugin.json > version` před commitem." Bez toho propagace na Gabi/Cowork nikdy nefunguje.
+- **Pre-push check:** Před `git push` skills repo → `git diff origin/main -- 'plugins/**/SKILL.md'` ukáže nové/změněné skills; pokud ano → verify `plugin.json` má bumped version. Kandidát na hook nebo CI check.
+- **Lokální Petrův workflow maskuje problém:** Manual `cp` do plugin cache funguje pro Petra ale skrývá fakt že downstream consumers (Gabi) jsou na nevedlejší koleji. Při testování nových skills vždy uvažovat: "Jak to Gabi uvidí přes `/plugins`?"
+
+**Tags:** #plugin-version #semver #cowork-propagation #gabi-workflow #recurring-mistake #workflow-gap
+
+---
+
+## 2026-05-13: NotebookLM `notebook_query` biased to named book when prompt obsahuje book title
+
+**Co se stalo:** 7 NotebookLM notebooků mělo total 21 zdrojů (13 unique books). První dvě query round použily `notebook_query` bez `source_ids` filtru + prompt obsahoval konkrétní book name ("Extrahuj z Expert Secrets..."). NotebookLM vrátil výsledky s `sources_used` array obsahující jen 1 source (=Expert Secrets), zbylé 2 zdroje (DotCom Secrets, Schwartz Breakthrough Advertising) v stejném notebooku skipnul. Discovered až v 3. kole když user explicitně řekl "vzdyt tady je save the cat ne?" + spustil jsem `notebook_get` na všechny notebooky → 9 books missed přes 7 notebooků.
+
+**Proc:** Default `notebook_query` chování = AI se rozhodne který source je relevantní. Kdyz prompt obsahuje "z knihy Expert Secrets..." → AI bias na ten 1 specific source. Bez explicitního `source_ids: [...]` filtru se ostatní zdroje nemusí použít vůbec.
+
+**Oprava:** (1) Vždy spustit `notebook_get` PRVNÍ k enumeraci všech sources. (2) Pokud notebook má 2+ sources a chci comprehensive coverage → 1 query per source s `source_ids` filtrem, ne 1 query naděje. (3) Pokud chci syntetický view → 1 query bez source_ids + explicit "Use ALL sources in this notebook" v promptu.
+
+**Pouceni:** Multi-source NotebookLM notebooks vyžadují per-source query strategy, ne 1 broad query. Cost: 9 books missed = 3 extra query rounds + ~3h research time + retry assembly. Pattern: enumerate before query.
+
+**Tags:** #notebooklm #multi-source #source-ids #research-strategy
+
+---
+
+## 2026-05-13: glm-delegate failed pro creative writing tasks (SKILL.md authoring)
+
+**Co se stalo:** Spawn 4 paralel glm-delegate agentů pro write 4 SKILL.md files. Vsechny 4 vrátily suspicious summaries ("Let me create the file...", "Now I'll write...", "Now let me read key sections..."). Verify: 3/4 souborů NEzapsány (0 bytes, empty dirs), 1/4 (testimonial-harvesting) zapsán. Plus 2× během session (info-product-launch v2 + v3 rewrite rounds) glm-delegate vložil literal `[Content preserved in original]` placeholder místo skutečného obsahu při rewrite operations — repair via awk inject z /tmp source.
+
+**Proc:** glm-delegate má omezený tool budget per invocation (~5 tool uses). SKILL.md authoring vyžaduje: read research (50K+) + read 2 reference patterns + write 8-21K output. To je 4+ tool uses jen na input gathering — agent dojede na turn limit před write operation. Plus glm má tendenci zkratkovitě "summarize for brevity" + insert placeholder místo verbatim content preservation v rewrites.
+
+**Oprava:** Retry 3 failed SKILL.md s `general-purpose` (Sonnet) agenty + stripped-down prompts ("just write, minimal exploration"). 100% success rate, ~50s wall clock per agent. Pro file rewrite operations s preservation requirement → write explicit "NEVER use placeholders — preserve verbatim" + check after each agent run via grep for "placeholder" / "preserved in original" / specific known content terms.
+
+**Pouceni:** glm-delegate ≠ creative writing. Profile match: glm pro mechanical/bulk operations (grep sweepy, mechanický refactor, repetitive task). Sonnet pro authoring/synthesis (SKILL.md, plan files, synthesis sections). Cost saving od delegation vs reliability trade-off — pro high-stakes outputs Sonnet pays off.
+
+**Tags:** #glm-delegate #creative-writing #sonnet-fallback #placeholder-bug
+
+---
+
 ## 2026-05-08: Marketplace cache fetch refspec limituje pre-merge testing
 
 **Co se stalo:** Po push `feat/negotiation-plugin` do origin jsem chtěl checkoutnout feat branch v `~/.claude/plugins/marketplaces/skills/` pro pre-merge plugin testing v `/plugins` UI. `git fetch origin feat/negotiation-plugin` proběhl, ale `git checkout feat/negotiation-plugin` failoval s "pathspec did not match any file(s)". Branch nebyla v `git branch -a`.

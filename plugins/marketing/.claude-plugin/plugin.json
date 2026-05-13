@@ -1,7 +1,7 @@
 {
   "name": "marketing",
-  "version": "1.1.0",
-  "description": "Marketing skills - orchestrator, offer creation, UVP, analytics, pricing, competitive analysis, launch strategy, Sell Like Crazy direct response system",
+  "version": "1.2.0",
+  "description": "Marketing skills - orchestrator, offer creation, UVP, analytics, pricing, competitive analysis, launch family (orchestrator + launch-strategy + info-product-launch), testimonial-harvesting, Sell Like Crazy direct response system",
   "author": { "name": "Petr" },
   "keywords": [
     "marketing",

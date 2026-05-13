@@ -4,6 +4,44 @@ Historie architektonických a designových rozhodnutí pro tento projekt.
 
 ---
 
+## 2026-05-13: 4 nové skills + 2 mid-orchestrators (email + launch) + canon-driven research strategy
+
+**Kontext:** Marketing agent identifikoval 4 missing skills: email-sequences (multi-day vs newsletter one-off), info-product-launch (info-specific vs generic launch-strategy), testimonial-harvesting (pre-launch beta → social proof), video-scripting (YouTube/VSL/course videos). User chce orchestrator-based routing (nepamatuje si 100+ skill names přímo).
+
+**Rozhodnutí:**
+
+1. **Layered orchestrator pattern** (mirror IG family precedent):
+   - `copywriting:email-orchestrator` (mid-layer) → newsletter (one-off) + email-sequences (multi-day)
+   - `marketing:launch-orchestrator` (mid-layer) → launch-strategy (generic) + info-product-launch (specific)
+   - `video-scripting` + `testimonial-harvesting` jako flat siblings (zatím 1 skill v doméně — mid-orchestrator je premature)
+
+2. **Bohaté trigger phrases CZ+EN v description** (10-15 phrases per skill) místo minimalistic 5-7. Rationale: user invokuje přes orchestrator pomocí natural-language fráze, nepotřebuje si pamatovat skill name. Trade-off: dlouhé descriptions (blízko 1024 char limit), ale orchestrator routing přesněji.
+
+3. **Pragmatic write (NE TDD RED phase)** — research je už comprehensive (219K material across 4 reports), TDD RED by přidalo 1-2h per skill bez výrazného value-add. Pro v1.1 lze přidat compliance tests pokud bugs vyplynou.
+
+4. **NotebookLM-grounded canon research** přes 7 notebooks / 13 books — primary source pro skill foundations místo Claude WebSearch (cost saving + higher quality direct quotes from books vs paraphrase from web). Discovered need pro `notebook_get` enumeration first + per-source queries when multi-book notebook (viz mistakes 2026-05-13).
+
+**Alternativy:**
+
+- **Flat structure bez mid-orchestrators** — orchestrator descriptions by nabobtnaly trigger phrases pro email + launch family, future expansion (post-purchase-drip, saas-launch) by vyžadovalo refactor. Discarded.
+- **Refactor launch-strategy → orchestrator + split content** — moc invazivní, existing launch-strategy je validated, lepší zachovat jako sub-skill pod novým orchestrator.
+- **Full TDD RED phase per skill** — 3× delší implementation time bez clear value-add pro stable canonical content. Discarded.
+- **Skip canon books, use only WebSearch** — chybělo by foundational depth (Schwartz 5 Awareness Levels, Snyder 15-Beat, D'Souza Brain Audit 6-Q jsou primary frameworks ne 3rd-party citations).
+- **Author SKILL.md s glm-delegate** — failed 3/4 pro creative writing (viz mistakes 2026-05-13), retry s Sonnet 100% success.
+
+**Důvod:** Layered orchestrator pattern proven v IG family (ig-orchestrator → ig-content + ig-strategy). Pro user profil (100+ skills total, dual-CLI, multi-project Cowork) nutno orchestrator-first routing — fráze "drip campaign" trefí email-orchestrator → email-sequences bez znalosti přesného skill name. NotebookLM canon je quality multiplier vs web research (direct primary sources, page-attributed quotes).
+
+**Dopad:**
+
+- 2 commits na main (`dca203d` + `d38d03f`)
+- 16 pluginů → still 16; **108 skills → 115 skills** (+7: 6 z této session + 1 mobile-store-release z dřívější session)
+- copywriting 11 → 14, marketing 8 → 11, development 31 → 32
+- Symlinks synced (Gemini CLI + Cowork), Claude Code cache updated (copywriting/2.1.0, marketing/1.1.0, development/1.0.0)
+- 219K research material persistent v `docs/research/` (audit trail pro future skill maintenance)
+- 13 canon books mapped to 4 skill domains — foundation pro budoucí v1.1 uplifts (add specific case studies, CZ adaptation)
+
+---
+
 ## 2026-05-09: Recon Phase 1 step v planning skillu + plan-challenger Recon verification
 
 **Kontext:** Phase 3 review reálného plánu (Sellastica reorder slot variant axes) vrátil REJECT s 4 CRITICAL issues — všechny způsobené hallucinated APIs: duplicate method (`getOptions()` už existoval), naming collision (`handleReorderVariants` už použité), wrong stack assumptions (Doctrine vs Sellastica EntityManager, `wrapInTransaction` API vymyšlené, `ProductFacade` neexistuje), pre-existing typo (`$option13d` na entitě). Všechny by zachytil 5-10min recon (grep existing API, handler names, framework primitives, lazy-load patterns) PŘED design fází. Phase 1 původně měla jen vágní "Look at relevant code" — user nebo subagent skipne nebo udělá generic scan.

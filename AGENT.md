@@ -243,7 +243,19 @@ Obsah skillu...
    # Vytvoř SKILL.md s YAML frontmatter (viz formát výše)
    ```
 
-2. **Sync symlinky pro Gemini CLI + Cowork (povinný krok):**
+2. **Bumpni plugin.json version (POVINNÝ — bez bumpu Cowork/Gabi nové skills nevidí):**
+
+   ```bash
+   # ~/Projects/skills/plugins/<plugin>/.claude-plugin/plugin.json
+   # SemVer pravidlo:
+   #   - přidání skill   = MINOR bump (2.1.0 → 2.2.0)
+   #   - edit SKILL.md   = PATCH bump (2.2.0 → 2.2.1)
+   #   - nový plugin     = MAJOR start (1.0.0)
+   ```
+
+   **Důvod:** Plugin marketplace systém detekuje novou verzi srovnáním `plugin.json > version` mezi installed copy a marketplace cache. Bez bumpu downstream consumers (Gabi, druhá Cowork session) `/plugins` update flow nikdy nezachytí novou verzi → nové skills neuvidí. Viz `.claude/mistakes.md` 2026-05-13 (stalo se podruhé).
+
+3. **Sync symlinky pro Gemini CLI + Cowork (povinný krok):**
 
    ```bash
    ~/.claude/scripts/sync-skills-symlinks.sh
@@ -257,7 +269,9 @@ Obsah skillu...
 
    **Důvod:** Claude Code používá plugin marketplace cache system (kopírování), ale Gemini CLI a Cowork používají symlinky. Bez sync skriptu jsou out-of-date a nové skills nevidí.
 
-3. **Commit, push, update Claude Code cache** (viz Workflow: Úprava skillu)
+4. **Commit, push, update Claude Code cache** (viz Workflow: Úprava skillu)
+
+5. **Návod pro Gabi / druhá Cowork instance:** V Claude Code spusť `/plugins` → marketplace `skills` → update `<plugin>` (auto-detect nové verze po bumpu + push). Pokud Cowork cache nezobrazí update, manual pull: `cd "$HOME/Library/Application Support/Claude/local-agent-mode-sessions/<UUID>/<UUID>/cowork_plugins/marketplaces/skills" && git pull` (viz mistakes.md 2026-04-28).
 
 ## Workflow: Nový plugin
 
