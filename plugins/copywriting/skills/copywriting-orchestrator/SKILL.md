@@ -1,6 +1,6 @@
 ---
 name: copywriting-orchestrator
-description: Detects content type and routes to the right specialized copywriting skill (instagram-content, web-copy, product-copy, newsletter, storytelling). Use when the user asks for copy but it is unclear which specialist to use, or for multi-channel campaigns spanning several formats. Trigger phrases - "write copy for", "help me with copywriting", "product launch campaign", "I need marketing text", "make it more compelling", "tell a story". Do NOT use when you already know the exact medium — call the specialist skill directly instead.
+description: Detects content type and routes to the right specialized copywriting skill (ig-orchestrator, email-orchestrator, video-scripting, web-copy, product-copy, storytelling). Use when the user asks for copy but it is unclear which specialist to use, or for multi-channel campaigns spanning several formats. Trigger phrases - "write copy for", "help me with copywriting", "product launch campaign", "I need marketing text", "make it more compelling", "tell a story", "video script", "VSL", "email sequence", "drip campaign". Do NOT use when you already know the exact medium — call the specialist skill directly instead.
 metadata:
   author: Petr
   version: 1.0.0
@@ -41,15 +41,18 @@ The conductor doesn't play instruments, but coordinates who plays when.
 
 ### Step 1: Keyword Detection
 
-| Keywords in Request                                                      | Detected Type       | Specialist Skill                          |
-| ------------------------------------------------------------------------ | ------------------- | ----------------------------------------- |
-| `instagram`, `ig`, `reel`, `stories`, `post`, `carousel`, `social media` | IG (any sub-intent) | `ig-orchestrator` → routes to ig-\*       |
-| `napiš IG post`, `caption`, `Reel caption`, `IG copy` (writing intent)   | IG Writing          | `ig-content` (direct, skip orchestrator)  |
-| `IG strategie`, `co točit`, `formát Reelu`, `engagement plán` (planning) | IG Strategy         | `ig-strategy` (direct, skip orchestrator) |
-| `homepage`, `web`, `landing`, `about us`, `sales page`, `website`        | Web Copy            | `web-copy`                                |
-| `produkt`, `e-shop`, `product description`, `e-commerce`, `popis`        | Product Copy        | `product-copy`                            |
-| `email`, `newsletter`, `mailing`, `campaign`, `sequence`                 | Email               | `newsletter`                              |
-| `story`, `narrative`, `compelling`, `pitch deck`, `founder story`        | Storytelling        | `storytelling`                            |
+| Keywords in Request                                                                              | Detected Type       | Specialist Skill                                            |
+| ------------------------------------------------------------------------------------------------ | ------------------- | ----------------------------------------------------------- |
+| `instagram`, `ig`, `reel`, `stories`, `post`, `carousel`, `social media`                         | IG (any sub-intent) | `ig-orchestrator` → routes to ig-\*                         |
+| `napiš IG post`, `caption`, `Reel caption`, `IG copy` (writing intent)                           | IG Writing          | `ig-content` (direct, skip orchestrator)                    |
+| `IG strategie`, `co točit`, `formát Reelu`, `engagement plán` (planning)                         | IG Strategy         | `ig-strategy` (direct, skip orchestrator)                   |
+| `homepage`, `web`, `landing`, `about us`, `sales page`, `website`                                | Web Copy            | `web-copy`                                                  |
+| `produkt`, `e-shop`, `product description`, `e-commerce`, `popis`                                | Product Copy        | `product-copy`                                              |
+| `email`, `newsletter`, `mailing`, `campaign`, `sequence`, `drip`                                 | Email (any)         | `email-orchestrator` → routes to newsletter/email-sequences |
+| `single email`, `weekly newsletter`, `holiday email`, `kampaň`                                   | Email (one-off)     | `newsletter` (direct, skip orchestrator)                    |
+| `5-day sequence`, `welcome series`, `drip campaign`, `tripwire`, `SOS`, `indoktrinační sekvence` | Email (sequence)    | `email-sequences` (direct)                                  |
+| `video script`, `YouTube`, `VSL`, `course video`, `explainer video`, `scénář videa`              | Video Scripting     | `video-scripting`                                           |
+| `story`, `narrative`, `compelling`, `pitch deck`, `founder story`                                | Storytelling        | `storytelling`                                              |
 
 ### Step 2: Context Clues
 
@@ -102,8 +105,13 @@ copywriting-orchestrator
         ├── product-copy
         │   └── 7-step framework, Type A/B products
         │
-        ├── newsletter
-        │   └── 9-step email anatomy, subject lines
+        ├── email-orchestrator (Email family router)
+        │   ├── newsletter         — one-off emails, weekly broadcasts, campaigns
+        │   ├── email-sequences    — multi-day SOS, drip, tripwire, post-purchase
+        │   └── (future) cold-outreach, partnership-emails
+        │
+        ├── video-scripting
+        │   └── Snyder 15-Beat + Heath SUCCESs + retention layer (YouTube, VSL, course)
         │
         ├── storytelling
         │   └── ABT, SB7, Strategic Narrative, Sparkline, SUCCESs, 9 SM frameworks
@@ -225,15 +233,18 @@ digraph copywriting_flow {
 
 ## Quick Reference
 
-| Content Type           | Specialist Skill  | Core Framework                                |
-| ---------------------- | ----------------- | --------------------------------------------- |
-| Instagram (any)        | `ig-orchestrator` | Routes to ig-content / ig-strategy            |
-| IG copy/captions       | `ig-content`      | Otto methodology, 3-5 variants, strict output |
-| IG planning/production | `ig-strategy`     | 4 idea criteria, 9 formats, technical setup   |
-| Website/Landing        | `web-copy`        | Blueprint, Triáda, PROTTO                     |
-| E-shop Products        | `product-copy`    | 7-step, Type A/B                              |
-| Email/Newsletter       | `newsletter`      | 9-step anatomy                                |
-| Story/Narrative        | `storytelling`    | ABT, SB7, Sparkline, 9 SM frameworks          |
+| Content Type             | Specialist Skill     | Core Framework                                |
+| ------------------------ | -------------------- | --------------------------------------------- |
+| Instagram (any)          | `ig-orchestrator`    | Routes to ig-content / ig-strategy            |
+| IG copy/captions         | `ig-content`         | Otto methodology, 3-5 variants, strict output |
+| IG planning/production   | `ig-strategy`        | 4 idea criteria, 9 formats, technical setup   |
+| Website/Landing          | `web-copy`           | Blueprint, Triáda, PROTTO                     |
+| E-shop Products          | `product-copy`       | 7-step, Type A/B                              |
+| Email (any/unclear)      | `email-orchestrator` | Routes to newsletter / email-sequences        |
+| Email (one-off)          | `newsletter`         | 9-step anatomy, subject lines                 |
+| Email (sequence)         | `email-sequences`    | 5-day SOS, Schwartz awareness, Hormozi offers |
+| Video script (long-form) | `video-scripting`    | Snyder 15-Beat, Heath SUCCESs, VSL canon      |
+| Story/Narrative          | `storytelling`       | ABT, SB7, Sparkline, 9 SM frameworks          |
 
 ## Common Mistakes
 

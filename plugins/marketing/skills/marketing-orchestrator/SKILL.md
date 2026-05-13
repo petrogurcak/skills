@@ -1,6 +1,6 @@
 ---
 name: marketing-orchestrator
-description: Orchestrates marketing and growth work by detecting business stage, goal type, and routing to specialized skills (offer-creation, growth-hacking, product-led-growth, saas-bootstrap, uvp-optimization). Use when planning marketing strategy, go-to-market, growth strategy for SaaS, launch planning, or asking "how do I get first customers" or "help me grow my product". NOT for when you already know the exact specialist skill needed, just copywriting (use copywriting-orchestrator), just UX (use ux-orchestrator), or just positioning (use uvp-optimization).
+description: Orchestrates marketing and growth work by detecting business stage, goal type, and routing to specialized skills (offer-creation, growth-hacking, product-led-growth, saas-bootstrap, uvp-optimization, launch-orchestrator, testimonial-harvesting, sell-like-crazy). Use when planning marketing strategy, go-to-market, growth strategy for SaaS, launch planning, beta tester program, social proof collection, or asking "how do I get first customers" or "help me grow my product". Trigger phrases - "launch", "spuštění produktu", "beta tester program", "testimonial harvest", "sběr referencí", "social proof before launch". NOT for when you already know the exact specialist skill needed, just copywriting (use copywriting-orchestrator), just UX (use ux-orchestrator), or just positioning (use uvp-optimization).
 metadata:
   author: Petr
   version: 1.0.0
@@ -54,16 +54,20 @@ The conductor coordinates who plays when.
 
 ### Step 2: Goal Detection
 
-| Keywords in Request                                              | Detected Goal | Primary Skill                          |
-| ---------------------------------------------------------------- | ------------- | -------------------------------------- |
-| `first customers`, `launch`, `validate`                          | Traction      | `offer-creation`, `growth-hacking`     |
-| `positioning`, `differentiation`, `stand out`                    | Positioning   | `uvp-optimization`                     |
-| `growth`, `scale`, `more customers`                              | Growth        | `growth-hacking`, `product-led-growth` |
-| `pricing`, `monetization`, `revenue`                             | Monetization  | `pricing`, `offer-creation`            |
-| `onboarding`, `activation`, `retention`                          | PLG           | `product-led-growth`                   |
-| `bootstrap`, `solo founder`, `limited budget`                    | Bootstrap     | `saas-bootstrap`                       |
-| `sales funnel`, `VSL`, `lead magnet`, `sales page`, `email seq.` | Direct sales  | `sell-like-crazy`                      |
-| `godfather offer`, `risk reversal`, `urgency`, `conversion copy` | Sales offer   | `sell-like-crazy`                      |
+| Keywords in Request                                                                                                   | Detected Goal         | Primary Skill                                                         |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------- |
+| `first customers`, `validate`                                                                                         | Traction              | `offer-creation`, `growth-hacking`                                    |
+| `launch`, `spuštění`, `go-to-market`, `release strategy`                                                              | Launch (any)          | `launch-orchestrator` → routes to launch-strategy/info-product-launch |
+| `SaaS launch`, `app launch`, `physical product`, `hardware launch`                                                    | Launch (generic)      | `launch-strategy` (direct)                                            |
+| `course launch`, `kurz launch`, `info-product launch`, `PLF`, `membership launch`, `cohort launch`                    | Launch (info-product) | `info-product-launch` (direct)                                        |
+| `beta tester program`, `sběr referencí`, `testimonial harvest`, `social proof before launch`, `case study collection` | Testimonials          | `testimonial-harvesting`                                              |
+| `positioning`, `differentiation`, `stand out`                                                                         | Positioning           | `uvp-optimization`                                                    |
+| `growth`, `scale`, `more customers`                                                                                   | Growth                | `growth-hacking`, `product-led-growth`                                |
+| `pricing`, `monetization`, `revenue`                                                                                  | Monetization          | `pricing`, `offer-creation`                                           |
+| `onboarding`, `activation`, `retention`                                                                               | PLG                   | `product-led-growth`                                                  |
+| `bootstrap`, `solo founder`, `limited budget`                                                                         | Bootstrap             | `saas-bootstrap`                                                      |
+| `sales funnel`, `VSL`, `lead magnet`, `sales page`, `email seq.`                                                      | Direct sales          | `sell-like-crazy`                                                     |
+| `godfather offer`, `risk reversal`, `urgency`, `conversion copy`                                                      | Sales offer           | `sell-like-crazy`                                                     |
 
 ### Step 3: Ask if Unclear
 
@@ -104,6 +108,14 @@ marketing-orchestrator
         ├── uvp-optimization (existing)
         │   └── 10-Step Positioning Process
         │   └── Source: Obviously Awesome (April Dunford)
+        │
+        ├── launch-orchestrator (Launch family router)
+        │   ├── launch-strategy       — generic launches (SaaS, app, physical, service)
+        │   └── info-product-launch   — courses, memberships, cohorts, ebooks (PLF + McLaren + Hormozi)
+        │
+        ├── testimonial-harvesting
+        │   └── Brain Audit 6-Q script, 10-person beta protocol, Reverse Testimonial, Mirror-image Rule
+        │   └── Source: The Brain Audit (Sean D'Souza)
         │
         └── sell-like-crazy
             └── 8-Phase Direct Response System (Halo Strategy, HVCO,
@@ -221,13 +233,17 @@ digraph marketing_flow {
 
 ## Quick Reference
 
-| Problem Type               | Specialist Skill     | Core Framework                   |
-| -------------------------- | -------------------- | -------------------------------- |
-| Can't articulate value     | `uvp-optimization`   | 10-Step Positioning              |
-| Offer not compelling       | `offer-creation`     | Grand Slam Offer, Value Equation |
-| Need systematic growth     | `growth-hacking`     | Growth Process, ICE Scoring      |
-| Product should sell itself | `product-led-growth` | Bowling Alley, MOAT              |
-| Bootstrap SaaS             | `saas-bootstrap`     | Stair Step, 3H/3L Metrics        |
+| Problem Type               | Specialist Skill         | Core Framework                                        |
+| -------------------------- | ------------------------ | ----------------------------------------------------- |
+| Can't articulate value     | `uvp-optimization`       | 10-Step Positioning                                   |
+| Offer not compelling       | `offer-creation`         | Grand Slam Offer, Value Equation                      |
+| Need systematic growth     | `growth-hacking`         | Growth Process, ICE Scoring                           |
+| Product should sell itself | `product-led-growth`     | Bowling Alley, MOAT                                   |
+| Bootstrap SaaS             | `saas-bootstrap`         | Stair Step, 3H/3L Metrics                             |
+| Launch planning (any)      | `launch-orchestrator`    | Routes to launch-strategy / info-product-launch       |
+| Generic launch (SaaS/app)  | `launch-strategy`        | Generic launch playbook                               |
+| Info-product launch        | `info-product-launch`    | Walker PLF + McLaren membership + Hormozi offer stack |
+| Testimonials before launch | `testimonial-harvesting` | Brain Audit 6-Q script, 10-person beta protocol       |
 
 ## Iron Laws
 

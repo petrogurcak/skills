@@ -2,61 +2,71 @@
 
 ## Posledni session
 
-- **Datum:** 2026-05-09
-- **Branch:** main (feat/planning-recon-phase merged + smazan)
+- **Datum:** 2026-05-13
+- **Branch:** feat/4-new-skills-marketing-copywriting → merge do main pending
 - **Dokonceno:**
-  - **Recon Phase 1 step pridan do `development:planning` skillu** — POVINNY krok pred Explore approaches. 5-bodovy checklist (existing API, handlers, stack facts, lazy-load, pre-existing bugs) + 2 cesty (inline grep / spawn `feature-dev:code-explorer`).
-  - **`review:plan-challenger` updated** — novy Step 2.5 "Verify Recon Section" greppy kazdy cited method/handler/stack claim. Hallucinated API → CRITICAL. Dimension 1 prejmenovan na "Hidden Dependencies & Hallucinated APIs".
-  - **Merge commit `54956a8` na main, pushed origin**
-  - **Marketplace cache pulled** (`~/.claude/plugins/marketplaces/skills/`) + plugin cache synced (development + review)
-  - **Symlinks synced** (Gemini CLI 111, Cowork 131)
 
-- **Rozdelano:**
-  - Reálný test Recon flow na příštím planning úkolu (validace, jestli 5-bodový checklist + code-explorer agent fakt zachytí Phase-3 hallucination problémy z minula).
+### 4 nové skills + 2 mid-layer orchestratory + 2 top router updates
+
+**Research foundation (4 reports, 219K total v `docs/research/`):**
+- `2026-05-12-email-sequences-indoctrination.md` (55K) — 5 canon books: Hormozi $100M Offers, Brunson Expert Secrets, Brunson DotCom Secrets, Schwartz Breakthrough Advertising, Heath Made to Stick
+- `2026-05-12-info-product-launch-cadence.md` (85K) — 9 canon books: Walker Launch (primary PLF), McLaren Predictable Profits, Hormozi, Brunson Expert Secrets, Suby Sell Like Crazy, Dunford Obviously Awesome, Ellis Hacking Growth, Walling SaaS Playbook, Wes Bush PLG
+- `2026-05-12-testimonial-harvesting-beta.md` (36K) — D'Souza Brain Audit (primary canon) + Claude WebSearch + Gemini
+- `2026-05-12-video-scripting-retention.md` (43K) — Video Creator Playbook, Heath Made to Stick, Snyder Save the Cat
+
+**Process:** NotebookLM queries (12+ queries napříč 7 notebooks), Claude WebSearch agenty, Gemini grounded research. 4 reports plně integrované přes glm-delegate + general-purpose Sonnet agenty (po failed glm round retry s Sonnet).
+
+**Skills written (6 SKILL.md, ~63K):**
+
+| Skill | Plugin | Size | Architektura |
+|---|---|---|---|
+| `email-sequences` | copywriting | 8.2K | pod email-orchestrator |
+| `email-orchestrator` | copywriting | 10K | mid-layer → newsletter + email-sequences |
+| `video-scripting` | copywriting | 7.4K | flat sibling |
+| `info-product-launch` | marketing | 8.3K | pod launch-orchestrator |
+| `launch-orchestrator` | marketing | 8.5K | mid-layer → launch-strategy + info-product-launch |
+| `testimonial-harvesting` | marketing | 21K | flat sibling |
+
+**Top orchestrators updated:**
+- `copywriting-orchestrator` — nyní routuje na email-orchestrator + video-scripting
+- `marketing-orchestrator` — nyní routuje na launch-orchestrator + testimonial-harvesting
+
+**Infrastructure:**
+- ✅ Symlinks synced (Gemini CLI + Cowork)
+- ✅ Claude Code cache updated (`copywriting/2.1.0` + `marketing/1.1.0`)
 
 ## Klicove insights ze session
 
-- **Pain point z minula** (Sellastica reorder slot plan REJECT): plan-challenger odhalil 4 CRITICAL po napsání plánu — všechny by zachytil jednoduchý Recon (grep existing API, handler names, framework primitives, lazy-load patterns) v Phase 1. Recon = pojistka proti hallucinated APIs PŘED design fází.
-- **Anti-pattern v původní planning skill Phase 1 Step 1:** "Look at relevant code" je moc vágní → user (nebo subagent) skipne nebo udělá generic scan. Fix = explicit checklist s grep příkazy + požadavek na konkrétní `file:line` refs.
-- **Code-explorer agent** (`feature-dev:code-explorer`) fitne přesně na Recon use-case: fresh context, traces execution paths, maps architecture layers — nezere parent tokeny.
+- **Glm-delegate selhává na creative writing** (4 SKILL.md tasks → 3 failed, jen testimonial úspěch). Retry s general-purpose Sonnet agenty fungoval 100%. Pattern: glm pro mechanical/bulk operations, Sonnet pro authoring.
+- **NotebookLM notebooky mají multiple sources** — `notebook_get` ukazuje všechny zdroje, `notebook_query` defaultně používá všechny ale dá se source_ids filtrovat. První round queries (s book name v promptu) NotebookLM biasoval na ten 1 source → 9 books přehlédnuto v 7 notebookech, doplněno v 2 dalších kolech.
+- **Glm-delegate placeholder bug** — agenti při file rewrite vkládají `[Content preserved in original]` místo skutečného obsahu. Repair pattern: `awk` inject z /tmp source files.
+- **NotebookLM auth refresh** — `nlm login` interaktivně přes browser OAuth obnovil 61 cookies, funkční na hodiny.
 
 ## Otevrene problemy
 
-- Změny live od příštího Claude Code restartu. Restart → /plugins refresh není potřeba (cache je file-based).
-- Gemini CLI / Cowork → restart pro symlink pickup.
+- Branch ještě nemerged do main + nepushnut na GitHub
+- Skills nejsou otestované — restart Claude Code + smoke test pending
+- Plugin marketplace.json registry: může vyžadovat update pokud user installne přes `/plugins` UI (jinak symlinks + cache stačí)
+- 13 canon books v notebookech, **219K research material**, **63K skill content** — total knowledge layer ~282K
 
 ## Poznamky pro dalsi session
 
-- Při dalším /development:planning úkolu sleduj: zda Phase 1 Step 2 Recon fakt vygeneruje konkrétní zjištění, zda plan-challenger Step 2.5 najde hallucinations.
-- Pokud Recon checklist bude moc rigid pro malé úkoly (1-3 soubory) → zvážit thresholds nebo "skip pokud trivial" exit.
+- Po restartu otestovat: `/copywriting:email-orchestrator "5-day welcome sequence pro X"` → routing check
+- `/marketing:launch-orchestrator "launch online kurzu pro Y"` → routing check
+- Cowork: open Cowork session, ověřit že 6 nových skills je viditelných v skill picker
+- Gemini CLI: stejný test
 
 ## Dalsi kroky
 
-### Priorita 1 — pending z minulé session (negotiation plugin)
+### Priorita 1 — test deployment
+1. **Restart Claude Code** → `/doctor` (check skills count + dropped warnings)
+2. Smoke test 4 nové skills (routing, output quality)
+3. Cowork open + verify skill picker shows new entries
+4. Pokud OK → close branch
 
-1. Restart Claude Code → `/plugins` → install **negotiation**
-2. Smoke testy 6 scénářů
-3. Cowork test (skill picker check)
-4. Gemini CLI test
-
-### Priorita 2 — Recon validation
-
-5. Přiští reálný planning úkol → validovat Recon flow (zda fakt zachytí hallucinated APIs)
-6. Pokud Recon spawne `feature-dev:code-explorer` → measure tokens saved vs inline
-
-### Priorita 3 — v1.1 negotiation uplift
-
-7. Pařík + Dolník PDFs upload do NotebookLM (`8b989435-d568-4248-a3a1-4ddd8ea57da2`)
-8. CZ-deltas reference uplift s direct Pařík quotes
-9. Navarro *Be Exceptional* import → reading-people Tier 2 leadership extension
-
-### Priorita 4 — carry-over
-
-10. `.zshenv` GEMINI_API_KEY rotace
-11. Cowork enable creative@skills
-12. Statusline backup do claude-config repo
-13. `/quickcommit` skill
-14. sell-like-crazy + ig-content tests
-15. Cowork marketplace pull diagnostika
-16. Generalize get-key.sh do shared lib
-17. Hormozi 100m Offers import do marketing:offers
+### Priorita 2 — carry-over z dřívějších sessions
+- Negotiation plugin install + smoke test (z minulé session)
+- Recon validation na příštím reálném planning úkolu
+- v1.1 negotiation uplift (Pařík + Dolník PDFs do notebook)
+- .zshenv GEMINI_API_KEY rotace
+- /quickcommit skill
